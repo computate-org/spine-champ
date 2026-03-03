@@ -245,9 +245,9 @@ public abstract class TeamPageGen<DEV> extends TeamGenPage {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchTeamPage(entityVar,  siteRequest_, o);
@@ -302,51 +302,6 @@ public abstract class TeamPageGen<DEV> extends TeamGenPage {
   public static final String CLASS_AUTH_RESOURCE = "";
 
 
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
-
   public static String displayNameForClass(String var) {
     return TeamPage.displayNameTeamPage(var);
   }
@@ -354,71 +309,6 @@ public abstract class TeamPageGen<DEV> extends TeamGenPage {
     switch(var) {
     default:
       return TeamGenPage.displayNameTeamGenPage(var);
-    }
-  }
-
-  public static String descriptionTeamPage(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return TeamGenPage.descriptionTeamGenPage(var);
-    }
-  }
-
-  public static String classSimpleNameTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.classSimpleNameTeamGenPage(var);
-    }
-  }
-
-  public static Integer htmColumnTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.htmColumnTeamGenPage(var);
-    }
-  }
-
-  public static Integer htmRowTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.htmRowTeamGenPage(var);
-    }
-  }
-
-  public static Integer htmCellTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.htmCellTeamGenPage(var);
-    }
-  }
-
-  public static Integer lengthMinTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.lengthMinTeamGenPage(var);
-    }
-  }
-
-  public static Integer lengthMaxTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.lengthMaxTeamGenPage(var);
-    }
-  }
-
-  public static Integer maxTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.maxTeamGenPage(var);
-    }
-  }
-
-  public static Integer minTeamPage(String var) {
-    switch(var) {
-      default:
-        return TeamGenPage.minTeamGenPage(var);
     }
   }
 }

@@ -3,6 +3,2718 @@ info:
   title: "SPINE Champ"
   version: 3.0.0
 paths:
+  /en-us/api/championship:
+    get:
+      operationId: searchChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchChampionshipResponse'
+    patch:
+      operationId: patchChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PATCHChampionshipRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PATCHChampionshipResponse'
+    post:
+      operationId: postChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POSTChampionshipRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/POSTChampionshipResponse'
+    delete:
+      operationId: deletefilterChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEFilterChampionshipResponse'
+  /en-us/api/championship-import:
+    put:
+      operationId: putimportChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PUTImportChampionshipRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PUTImportChampionshipResponse'
+  /en-us/api/championship/{bracketId}:
+    get:
+      operationId: getChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GETChampionshipResponse'
+    delete:
+      operationId: deleteChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEChampionshipResponse'
+  /en-us/edit/championship/{bracketId}:
+    get:
+      operationId: editpageChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/EditPageChampionshipResponse'
+  /en-us/search/championship:
+    get:
+      operationId: searchpageChampionship
+      x-vertx-event-bus: spine-champ-enUS-Championship
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - championship brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchPageChampionshipResponse'
+  /en-us/api/elite-eight:
+    get:
+      operationId: searchEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchEliteEightResponse'
+    patch:
+      operationId: patchEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PATCHEliteEightRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PATCHEliteEightResponse'
+    post:
+      operationId: postEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POSTEliteEightRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/POSTEliteEightResponse'
+    delete:
+      operationId: deletefilterEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEFilterEliteEightResponse'
+  /en-us/api/elite-eight-import:
+    put:
+      operationId: putimportEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PUTImportEliteEightRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PUTImportEliteEightResponse'
+  /en-us/api/elite-eight/{bracketId}:
+    get:
+      operationId: getEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GETEliteEightResponse'
+    delete:
+      operationId: deleteEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEEliteEightResponse'
+  /en-us/edit/elite-eight/{bracketId}:
+    get:
+      operationId: editpageEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/EditPageEliteEightResponse'
+  /en-us/search/elite-eight:
+    get:
+      operationId: searchpageEliteEight
+      x-vertx-event-bus: spine-champ-enUS-EliteEight
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - elite eight brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchPageEliteEightResponse'
+  /en-us/api/final-four:
+    get:
+      operationId: searchFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchFinalFourResponse'
+    patch:
+      operationId: patchFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PATCHFinalFourRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PATCHFinalFourResponse'
+    post:
+      operationId: postFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POSTFinalFourRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/POSTFinalFourResponse'
+    delete:
+      operationId: deletefilterFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEFilterFinalFourResponse'
+  /en-us/api/final-four-import:
+    put:
+      operationId: putimportFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: >+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PUTImportFinalFourRequest'
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/PUTImportFinalFourResponse'
+  /en-us/api/final-four/{bracketId}:
+    get:
+      operationId: getFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GETFinalFourResponse'
+    delete:
+      operationId: deleteFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: commitWithin
+          description: 'The number of milliseconds to commit the record to Solr. '
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: softCommit
+          description: 'Does a soft commit for the record in Solr immediately. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+      responses:
+        '200':
+          description: >+
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/DELETEFinalFourResponse'
+  /en-us/edit/final-four/{bracketId}:
+    get:
+      operationId: editpageFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - name: bracketId
+          in: path
+          description: >+
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/EditPageFinalFourResponse'
+  /en-us/search/final-four:
+    get:
+      operationId: searchpageFinalFour
+      x-vertx-event-bus: spine-champ-enUS-FinalFour
+      security:
+        - openIdConnect:
+          - openid
+          - profile
+          - customerProfileId
+      description: >+
+      summary: >+
+      tags:
+        - final four brackets
+      parameters:
+        - name: vertx-web.session
+          in: cookie
+          schema:
+            type: string
+        - name: sessionIdBefore
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_FONT_SIZE
+          in: cookie
+          schema:
+            type: string
+        - name: SITE_THEME
+          in: cookie
+          schema:
+            type: string
+        - name: WEB_COMPONENTS_THEME
+          in: cookie
+          schema:
+            type: string
+        - in: query
+          name: var
+          description: 'The var parameters are additional optional variables and values to pass into the application. '
+          required: false
+          schema:
+            type: array
+            items:
+                type: string
+        - in: query
+          name: q
+          description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'
+          required: false
+          schema:
+            type: string
+            default: '*:*'
+        - in: query
+          name: fq
+          description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: fl
+          description: 'The field list parameter limits the information included in a query response to a specified list of fields. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: start
+          description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 0
+        - in: query
+          name: facet
+          description: 'The facet parameter enables facet counts in the query response. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: facet.range.start
+          description: 'The facet.range.start parameter specifies the lower bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.end
+          description: 'The facet.range.end specifies the upper bound of the ranges. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range.gap
+          description: 'The span of each range expressed as a value to be added to the lower bound. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.pivot
+          description: 'The facet.pivot parameter defines the fields to use for the pivot. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.range
+          description: 'The facet.range parameter defines the field for which Solr should create range facets. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: facet.field
+          description: 'The facet.field parameter identifies a field that should be treated as a facet. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: d
+          description: 'The radial distance, usually in kilometers. '
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: pt
+          description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sfield
+          description: 'A spatial indexed field. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: score
+          description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: distanceUnits
+          description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stats
+          description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: stats.field
+          description: 'Specifies a field for which statistics should be generated. '
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >+
+          content:
+            text/html; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchPageFinalFourResponse'
   /en-us/api/guesser:
     get:
       operationId: searchGuesser
@@ -5181,6 +7893,186 @@ components:
       type: openIdConnect
       openIdConnectUrl: https://keycloak.apps-crc.testing/realms/SPINECHAMP/.well-known/openid-configuration
   requestBodies:
+    SearchChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchChampionshipResponse'
+    PATCHChampionshipRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PATCHChampionshipRequest'
+    PATCHChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PATCHChampionshipResponse'
+    POSTChampionshipRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/POSTChampionshipRequest'
+    POSTChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/POSTChampionshipResponse'
+    DELETEFilterChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEFilterChampionshipResponse'
+    PUTImportChampionshipRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PUTImportChampionshipRequest'
+    PUTImportChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PUTImportChampionshipResponse'
+    GETChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/GETChampionshipResponse'
+    DELETEChampionshipResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEChampionshipResponse'
+    EditPageChampionshipResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/EditPageChampionshipResponse'
+    SearchPageChampionshipResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchPageChampionshipResponse'
+    SearchEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchEliteEightResponse'
+    PATCHEliteEightRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PATCHEliteEightRequest'
+    PATCHEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PATCHEliteEightResponse'
+    POSTEliteEightRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/POSTEliteEightRequest'
+    POSTEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/POSTEliteEightResponse'
+    DELETEFilterEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEFilterEliteEightResponse'
+    PUTImportEliteEightRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PUTImportEliteEightRequest'
+    PUTImportEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PUTImportEliteEightResponse'
+    GETEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/GETEliteEightResponse'
+    DELETEEliteEightResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEEliteEightResponse'
+    EditPageEliteEightResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/EditPageEliteEightResponse'
+    SearchPageEliteEightResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchPageEliteEightResponse'
+    SearchFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchFinalFourResponse'
+    PATCHFinalFourRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PATCHFinalFourRequest'
+    PATCHFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PATCHFinalFourResponse'
+    POSTFinalFourRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/POSTFinalFourRequest'
+    POSTFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/POSTFinalFourResponse'
+    DELETEFilterFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEFilterFinalFourResponse'
+    PUTImportFinalFourRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PUTImportFinalFourRequest'
+    PUTImportFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/PUTImportFinalFourResponse'
+    GETFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/GETFinalFourResponse'
+    DELETEFinalFourResponse:
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/DELETEFinalFourResponse'
+    EditPageFinalFourResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/EditPageFinalFourResponse'
+    SearchPageFinalFourResponse:
+      content:
+        text/html; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/SearchPageFinalFourResponse'
     SearchGuesserResponse:
       content:
         application/json; charset=utf-8:
@@ -5522,6 +8414,1131 @@ components:
           schema:
             $ref: '#/components/schemas/SearchPageSiteUserResponse'
   schemas:
+    SearchChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            startNum:
+              type: integer
+              minimum: 0
+            foundNum:
+              type: integer
+              minimum: 0
+            returnedNum:
+              type: integer
+              minimum: 0
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  finalFour:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+    PATCHChampionshipRequest:
+      allOf:
+        - type: object
+          properties:
+            setFinalFour:
+              type: string
+              nullable: true
+            removeFinalFour:
+              type: string
+            removeAllFinalFour:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setGame1Winner:
+              type: string
+              nullable: true
+            removeGame1Winner:
+              type: string
+            removeAllGame1Winner:
+              type: string
+            setGame1Loser:
+              type: string
+              nullable: true
+            removeGame1Loser:
+              type: string
+            removeAllGame1Loser:
+              type: string
+    PATCHChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            setFinalFour:
+              type: string
+              nullable: true
+            removeFinalFour:
+              type: string
+            removeAllFinalFour:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setGame1Winner:
+              type: string
+              nullable: true
+            removeGame1Winner:
+              type: string
+            removeAllGame1Winner:
+              type: string
+            setGame1Loser:
+              type: string
+              nullable: true
+            removeGame1Loser:
+              type: string
+            removeAllGame1Loser:
+              type: string
+    POSTChampionshipRequest:
+      allOf:
+        - type: object
+          properties:
+            finalFour:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+    POSTChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            finalFour:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+    DELETEFilterChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            finalFour:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+    PUTImportChampionshipRequest:
+      allOf:
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  finalFour:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+    PUTImportChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+                  finalFour:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+    GETChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            finalFour:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+    DELETEChampionshipResponse:
+      allOf:
+        - type: object
+          properties:
+            finalFour:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+    EditPageChampionshipResponse:
+      allOf:
+        - type: string
+    SearchPageChampionshipResponse:
+      allOf:
+        - type: string
+    SearchEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            startNum:
+              type: integer
+              minimum: 0
+            foundNum:
+              type: integer
+              minimum: 0
+            returnedNum:
+              type: integer
+              minimum: 0
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  sweetSixteen:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  southGame1Winner:
+                    type: string
+                  southGame1Loser:
+                    type: string
+                  westGame1Winner:
+                    type: string
+                  westGame1Loser:
+                    type: string
+                  eastGame1Winner:
+                    type: string
+                  eastGame1Loser:
+                    type: string
+                  midwestGame1Winner:
+                    type: string
+                  midwestGame1Loser:
+                    type: string
+                  finalFour:
+                    type: string
+    PATCHEliteEightRequest:
+      allOf:
+        - type: object
+          properties:
+            setSweetSixteen:
+              type: string
+              nullable: true
+            removeSweetSixteen:
+              type: string
+            removeAllSweetSixteen:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setSouthGame1Winner:
+              type: string
+              nullable: true
+            removeSouthGame1Winner:
+              type: string
+            removeAllSouthGame1Winner:
+              type: string
+            setSouthGame1Loser:
+              type: string
+              nullable: true
+            removeSouthGame1Loser:
+              type: string
+            removeAllSouthGame1Loser:
+              type: string
+            setWestGame1Winner:
+              type: string
+              nullable: true
+            removeWestGame1Winner:
+              type: string
+            removeAllWestGame1Winner:
+              type: string
+            setWestGame1Loser:
+              type: string
+              nullable: true
+            removeWestGame1Loser:
+              type: string
+            removeAllWestGame1Loser:
+              type: string
+            setEastGame1Winner:
+              type: string
+              nullable: true
+            removeEastGame1Winner:
+              type: string
+            removeAllEastGame1Winner:
+              type: string
+            setEastGame1Loser:
+              type: string
+              nullable: true
+            removeEastGame1Loser:
+              type: string
+            removeAllEastGame1Loser:
+              type: string
+            setMidwestGame1Winner:
+              type: string
+              nullable: true
+            removeMidwestGame1Winner:
+              type: string
+            removeAllMidwestGame1Winner:
+              type: string
+            setMidwestGame1Loser:
+              type: string
+              nullable: true
+            removeMidwestGame1Loser:
+              type: string
+            removeAllMidwestGame1Loser:
+              type: string
+            setFinalFour:
+              type: string
+              nullable: true
+            removeFinalFour:
+              type: string
+            removeAllFinalFour:
+              type: string
+    PATCHEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            setSweetSixteen:
+              type: string
+              nullable: true
+            removeSweetSixteen:
+              type: string
+            removeAllSweetSixteen:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setSouthGame1Winner:
+              type: string
+              nullable: true
+            removeSouthGame1Winner:
+              type: string
+            removeAllSouthGame1Winner:
+              type: string
+            setSouthGame1Loser:
+              type: string
+              nullable: true
+            removeSouthGame1Loser:
+              type: string
+            removeAllSouthGame1Loser:
+              type: string
+            setWestGame1Winner:
+              type: string
+              nullable: true
+            removeWestGame1Winner:
+              type: string
+            removeAllWestGame1Winner:
+              type: string
+            setWestGame1Loser:
+              type: string
+              nullable: true
+            removeWestGame1Loser:
+              type: string
+            removeAllWestGame1Loser:
+              type: string
+            setEastGame1Winner:
+              type: string
+              nullable: true
+            removeEastGame1Winner:
+              type: string
+            removeAllEastGame1Winner:
+              type: string
+            setEastGame1Loser:
+              type: string
+              nullable: true
+            removeEastGame1Loser:
+              type: string
+            removeAllEastGame1Loser:
+              type: string
+            setMidwestGame1Winner:
+              type: string
+              nullable: true
+            removeMidwestGame1Winner:
+              type: string
+            removeAllMidwestGame1Winner:
+              type: string
+            setMidwestGame1Loser:
+              type: string
+              nullable: true
+            removeMidwestGame1Loser:
+              type: string
+            removeAllMidwestGame1Loser:
+              type: string
+            setFinalFour:
+              type: string
+              nullable: true
+            removeFinalFour:
+              type: string
+            removeAllFinalFour:
+              type: string
+    POSTEliteEightRequest:
+      allOf:
+        - type: object
+          properties:
+            sweetSixteen:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            southGame1Winner:
+              type: string
+            southGame1Loser:
+              type: string
+            westGame1Winner:
+              type: string
+            westGame1Loser:
+              type: string
+            eastGame1Winner:
+              type: string
+            eastGame1Loser:
+              type: string
+            midwestGame1Winner:
+              type: string
+            midwestGame1Loser:
+              type: string
+            finalFour:
+              type: string
+    POSTEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            sweetSixteen:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            southGame1Winner:
+              type: string
+            southGame1Loser:
+              type: string
+            westGame1Winner:
+              type: string
+            westGame1Loser:
+              type: string
+            eastGame1Winner:
+              type: string
+            eastGame1Loser:
+              type: string
+            midwestGame1Winner:
+              type: string
+            midwestGame1Loser:
+              type: string
+            finalFour:
+              type: string
+    DELETEFilterEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            sweetSixteen:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            southGame1Winner:
+              type: string
+            southGame1Loser:
+              type: string
+            westGame1Winner:
+              type: string
+            westGame1Loser:
+              type: string
+            eastGame1Winner:
+              type: string
+            eastGame1Loser:
+              type: string
+            midwestGame1Winner:
+              type: string
+            midwestGame1Loser:
+              type: string
+            finalFour:
+              type: string
+    PUTImportEliteEightRequest:
+      allOf:
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  sweetSixteen:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  southGame1Winner:
+                    type: string
+                  southGame1Loser:
+                    type: string
+                  westGame1Winner:
+                    type: string
+                  westGame1Loser:
+                    type: string
+                  eastGame1Winner:
+                    type: string
+                  eastGame1Loser:
+                    type: string
+                  midwestGame1Winner:
+                    type: string
+                  midwestGame1Loser:
+                    type: string
+                  finalFour:
+                    type: string
+    PUTImportEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+                  sweetSixteen:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  southGame1Winner:
+                    type: string
+                  southGame1Loser:
+                    type: string
+                  westGame1Winner:
+                    type: string
+                  westGame1Loser:
+                    type: string
+                  eastGame1Winner:
+                    type: string
+                  eastGame1Loser:
+                    type: string
+                  midwestGame1Winner:
+                    type: string
+                  midwestGame1Loser:
+                    type: string
+                  finalFour:
+                    type: string
+    GETEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            sweetSixteen:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            southGame1Winner:
+              type: string
+            southGame1Loser:
+              type: string
+            westGame1Winner:
+              type: string
+            westGame1Loser:
+              type: string
+            eastGame1Winner:
+              type: string
+            eastGame1Loser:
+              type: string
+            midwestGame1Winner:
+              type: string
+            midwestGame1Loser:
+              type: string
+            finalFour:
+              type: string
+    DELETEEliteEightResponse:
+      allOf:
+        - type: object
+          properties:
+            sweetSixteen:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            southGame1Winner:
+              type: string
+            southGame1Loser:
+              type: string
+            westGame1Winner:
+              type: string
+            westGame1Loser:
+              type: string
+            eastGame1Winner:
+              type: string
+            eastGame1Loser:
+              type: string
+            midwestGame1Winner:
+              type: string
+            midwestGame1Loser:
+              type: string
+            finalFour:
+              type: string
+    EditPageEliteEightResponse:
+      allOf:
+        - type: string
+    SearchPageEliteEightResponse:
+      allOf:
+        - type: string
+    SearchFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            startNum:
+              type: integer
+              minimum: 0
+            foundNum:
+              type: integer
+              minimum: 0
+            returnedNum:
+              type: integer
+              minimum: 0
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  eliteEight:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+                  game2Winner:
+                    type: string
+                  game2Loser:
+                    type: string
+                  championship:
+                    type: string
+    PATCHFinalFourRequest:
+      allOf:
+        - type: object
+          properties:
+            setEliteEight:
+              type: string
+              nullable: true
+            removeEliteEight:
+              type: string
+            removeAllEliteEight:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setGame1Winner:
+              type: string
+              nullable: true
+            removeGame1Winner:
+              type: string
+            removeAllGame1Winner:
+              type: string
+            setGame1Loser:
+              type: string
+              nullable: true
+            removeGame1Loser:
+              type: string
+            removeAllGame1Loser:
+              type: string
+            setGame2Winner:
+              type: string
+              nullable: true
+            removeGame2Winner:
+              type: string
+            removeAllGame2Winner:
+              type: string
+            setGame2Loser:
+              type: string
+              nullable: true
+            removeGame2Loser:
+              type: string
+            removeAllGame2Loser:
+              type: string
+            setChampionship:
+              type: string
+              nullable: true
+            removeChampionship:
+              type: string
+            removeAllChampionship:
+              type: string
+    PATCHFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            setEliteEight:
+              type: string
+              nullable: true
+            removeEliteEight:
+              type: string
+            removeAllEliteEight:
+              type: string
+            setGuesserId:
+              type: string
+              nullable: true
+            removeGuesserId:
+              type: string
+            removeAllGuesserId:
+              type: string
+            setYear:
+              type: string
+              nullable: true
+            removeYear:
+              type: string
+            removeAllYear:
+              type: string
+            setBracketId:
+              type: string
+              nullable: true
+            removeBracketId:
+              type: string
+            removeAllBracketId:
+              type: string
+            setName:
+              type: string
+              nullable: true
+            removeName:
+              type: string
+            removeAllName:
+              type: string
+            setGame1Winner:
+              type: string
+              nullable: true
+            removeGame1Winner:
+              type: string
+            removeAllGame1Winner:
+              type: string
+            setGame1Loser:
+              type: string
+              nullable: true
+            removeGame1Loser:
+              type: string
+            removeAllGame1Loser:
+              type: string
+            setGame2Winner:
+              type: string
+              nullable: true
+            removeGame2Winner:
+              type: string
+            removeAllGame2Winner:
+              type: string
+            setGame2Loser:
+              type: string
+              nullable: true
+            removeGame2Loser:
+              type: string
+            removeAllGame2Loser:
+              type: string
+            setChampionship:
+              type: string
+              nullable: true
+            removeChampionship:
+              type: string
+            removeAllChampionship:
+              type: string
+    POSTFinalFourRequest:
+      allOf:
+        - type: object
+          properties:
+            eliteEight:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+            game2Winner:
+              type: string
+            game2Loser:
+              type: string
+            championship:
+              type: string
+    POSTFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            eliteEight:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+            game2Winner:
+              type: string
+            game2Loser:
+              type: string
+            championship:
+              type: string
+    DELETEFilterFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            eliteEight:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+            game2Winner:
+              type: string
+            game2Loser:
+              type: string
+            championship:
+              type: string
+    PUTImportFinalFourRequest:
+      allOf:
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  eliteEight:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+                  game2Winner:
+                    type: string
+                  game2Loser:
+                    type: string
+                  championship:
+                    type: string
+    PUTImportFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+                  eliteEight:
+                    type: string
+                  guesserId:
+                    type: string
+                  year:
+                    type: string
+                  bracketId:
+                    type: string
+                  name:
+                    type: string
+                  game1Winner:
+                    type: string
+                  game1Loser:
+                    type: string
+                  game2Winner:
+                    type: string
+                  game2Loser:
+                    type: string
+                  championship:
+                    type: string
+    GETFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            eliteEight:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+            game2Winner:
+              type: string
+            game2Loser:
+              type: string
+            championship:
+              type: string
+    DELETEFinalFourResponse:
+      allOf:
+        - type: object
+          properties:
+            eliteEight:
+              type: string
+            guesserId:
+              type: string
+            year:
+              type: string
+            bracketId:
+              type: string
+            name:
+              type: string
+            game1Winner:
+              type: string
+            game1Loser:
+              type: string
+            game2Winner:
+              type: string
+            game2Loser:
+              type: string
+            championship:
+              type: string
+    EditPageFinalFourResponse:
+      allOf:
+        - type: string
+    SearchPageFinalFourResponse:
+      allOf:
+        - type: string
     SearchGuesserResponse:
       allOf:
         - type: object
@@ -5735,6 +9752,8 @@ components:
                     type: string
                   midwestGame2Loser:
                     type: string
+                  eliteEight:
+                    type: string
     PATCHSweetSixteenRequest:
       allOf:
         - type: object
@@ -5878,6 +9897,13 @@ components:
             removeMidwestGame2Loser:
               type: string
             removeAllMidwestGame2Loser:
+              type: string
+            setEliteEight:
+              type: string
+              nullable: true
+            removeEliteEight:
+              type: string
+            removeAllEliteEight:
               type: string
     PATCHSweetSixteenResponse:
       allOf:
@@ -6023,6 +10049,13 @@ components:
               type: string
             removeAllMidwestGame2Loser:
               type: string
+            setEliteEight:
+              type: string
+              nullable: true
+            removeEliteEight:
+              type: string
+            removeAllEliteEight:
+              type: string
     POSTSweetSixteenRequest:
       allOf:
         - type: object
@@ -6066,6 +10099,8 @@ components:
             midwestGame2Winner:
               type: string
             midwestGame2Loser:
+              type: string
+            eliteEight:
               type: string
     POSTSweetSixteenResponse:
       allOf:
@@ -6111,6 +10146,8 @@ components:
               type: string
             midwestGame2Loser:
               type: string
+            eliteEight:
+              type: string
     DELETEFilterSweetSixteenResponse:
       allOf:
         - type: object
@@ -6154,6 +10191,8 @@ components:
             midwestGame2Winner:
               type: string
             midwestGame2Loser:
+              type: string
+            eliteEight:
               type: string
     PUTImportSweetSixteenRequest:
       allOf:
@@ -6204,6 +10243,8 @@ components:
                     type: string
                   midwestGame2Loser:
                     type: string
+                  eliteEight:
+                    type: string
     PUTImportSweetSixteenResponse:
       allOf:
         - type: object
@@ -6247,6 +10288,8 @@ components:
                   midwestGame2Winner:
                     type: string
                   midwestGame2Loser:
+                    type: string
+                  eliteEight:
                     type: string
     GETSweetSixteenResponse:
       allOf:
@@ -6292,6 +10335,8 @@ components:
               type: string
             midwestGame2Loser:
               type: string
+            eliteEight:
+              type: string
     DELETESweetSixteenResponse:
       allOf:
         - type: object
@@ -6335,6 +10380,8 @@ components:
             midwestGame2Winner:
               type: string
             midwestGame2Loser:
+              type: string
+            eliteEight:
               type: string
     EditPageSweetSixteenResponse:
       allOf:

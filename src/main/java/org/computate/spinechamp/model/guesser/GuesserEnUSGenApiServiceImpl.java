@@ -209,6 +209,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       List<String> fls = listGuesser.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listGuesser.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -235,15 +236,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       });
       json.put("list", l);
       response200Search(listGuesser.getRequest(), listGuesser.getResponse(), json);
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -376,15 +369,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     try {
       SiteRequest siteRequest = listGuesser.getSiteRequest_(SiteRequest.class);
       JsonObject json = JsonObject.mapFrom(listGuesser.getList().stream().findFirst().orElse(null));
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200GETGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -842,15 +827,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -1305,15 +1282,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -1662,15 +1631,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -1993,15 +1954,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PUTImportGuesser failed. "), ex);
       promise.tryFail(ex);
@@ -2375,7 +2328,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
       Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
       if(result == null || !Files.exists(resourceTemplatePath)) {
-        String template = Files.readString(Path.of(siteTemplatePath, "en-us/search/guesser/GuesserSearchPage.htm"), Charset.forName("UTF-8"));
+        String template = Files.readString(Path.of(siteTemplatePath, "en-us/edit/guesser/GuesserEditPage.htm"), Charset.forName("UTF-8"));
         String renderedTemplate = jinjava.render(template, ctx.getMap());
         promise.complete(renderedTemplate);
       } else if(pageTemplateUri.endsWith(".md")) {
@@ -2860,15 +2813,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String guesserId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("guesserId");
-        String m = String.format("%s %s not found", "guesser", guesserId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEFilterGuesser failed. "), ex);
       promise.tryFail(ex);

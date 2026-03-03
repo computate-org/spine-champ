@@ -185,6 +185,15 @@ import org.computate.spinechamp.model.guesser.Guesser;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSGenApiService;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSApiServiceImpl;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSGenApiService;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.finalfour.FinalFourEnUSGenApiService;
+import org.computate.spinechamp.model.finalfour.FinalFourEnUSApiServiceImpl;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.spinechamp.model.championship.ChampionshipEnUSGenApiService;
+import org.computate.spinechamp.model.championship.ChampionshipEnUSApiServiceImpl;
+import org.computate.spinechamp.model.championship.Championship;
 
 
 /**
@@ -342,6 +351,18 @@ public class MainVerticle extends MainVerticleGen<AbstractVerticle> {
       apiSweetSixteen.setVertx(vertx);
       apiSweetSixteen.setConfig(config);
       apiSweetSixteen.setWebClient(webClient);
+      EliteEightEnUSApiServiceImpl apiEliteEight = new EliteEightEnUSApiServiceImpl();
+      apiEliteEight.setVertx(vertx);
+      apiEliteEight.setConfig(config);
+      apiEliteEight.setWebClient(webClient);
+      FinalFourEnUSApiServiceImpl apiFinalFour = new FinalFourEnUSApiServiceImpl();
+      apiFinalFour.setVertx(vertx);
+      apiFinalFour.setConfig(config);
+      apiFinalFour.setWebClient(webClient);
+      ChampionshipEnUSApiServiceImpl apiChampionship = new ChampionshipEnUSApiServiceImpl();
+      apiChampionship.setVertx(vertx);
+      apiChampionship.setConfig(config);
+      apiChampionship.setWebClient(webClient);
       apiSiteUser.createAuthorizationScopes(new String[] { "DELETE", "GET", "PATCH", "POST", "SuperAdmin", "Admin" }).onSuccess(authToken -> {
           apiTimeZone.authorizeGroupData(authToken, TimeZone.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "SuperAdmin" })
               .onSuccess(q2 -> {
@@ -353,9 +374,22 @@ public class MainVerticle extends MainVerticleGen<AbstractVerticle> {
                 apiGuesser.authorizeGroupData(authToken, Guesser.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
                     .onSuccess(q5 -> {
                   apiSweetSixteen.authorizeGroupData(authToken, SweetSixteen.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
+                      .compose(q6 -> apiSweetSixteen.authorizeGroupData(authToken, SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))
                       .onSuccess(q6 -> {
-                    LOG.info("authorize data complete");
-                    promise.complete();
+                    apiEliteEight.authorizeGroupData(authToken, EliteEight.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
+                        .compose(q7 -> apiEliteEight.authorizeGroupData(authToken, EliteEight.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))
+                        .onSuccess(q7 -> {
+                      apiFinalFour.authorizeGroupData(authToken, FinalFour.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
+                          .compose(q8 -> apiFinalFour.authorizeGroupData(authToken, FinalFour.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))
+                          .onSuccess(q8 -> {
+                        apiChampionship.authorizeGroupData(authToken, Championship.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
+                            .compose(q9 -> apiChampionship.authorizeGroupData(authToken, Championship.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))
+                            .onSuccess(q9 -> {
+                          LOG.info("authorize data complete");
+                          promise.complete();
+                      }).onFailure(ex -> promise.fail(ex));
+                    }).onFailure(ex -> promise.fail(ex));
+                  }).onFailure(ex -> promise.fail(ex));
                 }).onFailure(ex -> promise.fail(ex));
               }).onFailure(ex -> promise.fail(ex));
             }).onFailure(ex -> promise.fail(ex));
@@ -1359,8 +1393,8 @@ public class MainVerticle extends MainVerticleGen<AbstractVerticle> {
     Promise<Void> promise = Promise.promise();
     try {
       List<Future<?>> futures = new ArrayList<>();
-      List<String> authClassSimpleNames = Arrays.asList("SitePage","Team","Guesser","SweetSixteen");
-      List<String> authResources = Arrays.asList("SITEPAGE","TEAM","GUESSER","SWEETSIXTEEN");
+      List<String> authClassSimpleNames = Arrays.asList("SitePage","Team","Guesser","SweetSixteen","EliteEight","FinalFour","Championship");
+      List<String> authResources = Arrays.asList("SITEPAGE","TEAM","GUESSER","SWEETSIXTEEN","ELITEEIGHT","FINALFOUR","CHAMPIONSHIP");
       List<String> publicClassSimpleNames = Arrays.asList("SitePage");
       SiteUserEnUSApiServiceImpl apiSiteUser = new SiteUserEnUSApiServiceImpl();
       initializeApiService(apiSiteUser);
@@ -1387,6 +1421,18 @@ public class MainVerticle extends MainVerticleGen<AbstractVerticle> {
       SweetSixteenEnUSApiServiceImpl apiSweetSixteen = new SweetSixteenEnUSApiServiceImpl();
       initializeApiService(apiSweetSixteen);
       registerApiService(SweetSixteenEnUSGenApiService.class, apiSweetSixteen, SweetSixteen.getClassApiAddress());
+
+      EliteEightEnUSApiServiceImpl apiEliteEight = new EliteEightEnUSApiServiceImpl();
+      initializeApiService(apiEliteEight);
+      registerApiService(EliteEightEnUSGenApiService.class, apiEliteEight, EliteEight.getClassApiAddress());
+
+      FinalFourEnUSApiServiceImpl apiFinalFour = new FinalFourEnUSApiServiceImpl();
+      initializeApiService(apiFinalFour);
+      registerApiService(FinalFourEnUSGenApiService.class, apiFinalFour, FinalFour.getClassApiAddress());
+
+      ChampionshipEnUSApiServiceImpl apiChampionship = new ChampionshipEnUSApiServiceImpl();
+      initializeApiService(apiChampionship);
+      registerApiService(ChampionshipEnUSGenApiService.class, apiChampionship, Championship.getClassApiAddress());
 
       Future.all(futures).onSuccess( a -> {
         LOG.info("The API was configured properly.");

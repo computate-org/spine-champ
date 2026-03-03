@@ -43,6 +43,7 @@ public class Team extends TeamGen<BaseModel> {
    * HtmRowTitleOpen: team details
    * Unique: true
    * Required: true
+   * Facet: true
    **/
   protected void _region(Wrap<String> w) {
   }
@@ -57,6 +58,7 @@ public class Team extends TeamGen<BaseModel> {
    * HtmCell: 2
    * HtmColumn: 2
    * Required: true
+   * Facet: true
    **/
   protected void _name(Wrap<String> w) {
   }
@@ -71,6 +73,7 @@ public class Team extends TeamGen<BaseModel> {
    * HtmCell: 3
    * HtmColumn: 3
    * Required: true
+   * Facet: true
    **/
   protected void _abbreviation(Wrap<String> w) {
   }
@@ -96,6 +99,7 @@ public class Team extends TeamGen<BaseModel> {
    * VarId: true
    * Unique: true
    * Required: true
+   * Facet: true
    **/
   protected void _teamId(Wrap<String> w) {
     w.o(toId(abbreviation));

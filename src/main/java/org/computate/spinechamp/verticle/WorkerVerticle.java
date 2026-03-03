@@ -48,9 +48,18 @@ import org.computate.spinechamp.model.team.TeamEnUSGenApiService;
 import org.computate.spinechamp.model.guesser.Guesser;
 import org.computate.spinechamp.model.guesser.GuesserEnUSApiServiceImpl;
 import org.computate.spinechamp.model.guesser.GuesserEnUSGenApiService;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSGenApiService;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSApiServiceImpl;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSGenApiService;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.spinechamp.model.finalfour.FinalFourEnUSApiServiceImpl;
+import org.computate.spinechamp.model.finalfour.FinalFourEnUSGenApiService;
+import org.computate.spinechamp.model.championship.Championship;
+import org.computate.spinechamp.model.championship.ChampionshipEnUSApiServiceImpl;
+import org.computate.spinechamp.model.championship.ChampionshipEnUSGenApiService;
 import org.computate.vertx.api.ApiCounter;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
@@ -433,16 +442,28 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
       initializeApiService(apiTeam);
       GuesserEnUSApiServiceImpl apiGuesser = new GuesserEnUSApiServiceImpl();
       initializeApiService(apiGuesser);
+      EliteEightEnUSApiServiceImpl apiEliteEight = new EliteEightEnUSApiServiceImpl();
+      initializeApiService(apiEliteEight);
       SweetSixteenEnUSApiServiceImpl apiSweetSixteen = new SweetSixteenEnUSApiServiceImpl();
       initializeApiService(apiSweetSixteen);
+      FinalFourEnUSApiServiceImpl apiFinalFour = new FinalFourEnUSApiServiceImpl();
+      initializeApiService(apiFinalFour);
+      ChampionshipEnUSApiServiceImpl apiChampionship = new ChampionshipEnUSApiServiceImpl();
+      initializeApiService(apiChampionship);
 
 			apiTimeZone.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, TimeZone.CLASS_CANONICAL_NAME, TimeZone.CLASS_SIMPLE_NAME, TimeZone.CLASS_API_ADDRESS_TimeZone, TimeZone.CLASS_AUTH_RESOURCE, "id", "userPage", "download").onSuccess(q1 -> {
 				apiSitePage.importTimer(Paths.get(templatePath, "/en-us/view/article"), vertx, siteRequest, SitePage.CLASS_CANONICAL_NAME, SitePage.CLASS_SIMPLE_NAME, SitePage.CLASS_API_ADDRESS_SitePage, SitePage.CLASS_AUTH_RESOURCE, "pageId", "userPage", "download").onSuccess(q2 -> {
 					apiTeam.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Team.CLASS_CANONICAL_NAME, Team.CLASS_SIMPLE_NAME, Team.CLASS_API_ADDRESS_Team, Team.CLASS_AUTH_RESOURCE, "teamId", "userPage", "download").onSuccess(q3 -> {
 						apiGuesser.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Guesser.CLASS_CANONICAL_NAME, Guesser.CLASS_SIMPLE_NAME, Guesser.CLASS_API_ADDRESS_Guesser, Guesser.CLASS_AUTH_RESOURCE, "guesserId", "userPage", "download").onSuccess(q4 -> {
-							apiSweetSixteen.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, SweetSixteen.CLASS_CANONICAL_NAME, SweetSixteen.CLASS_SIMPLE_NAME, SweetSixteen.CLASS_API_ADDRESS_SweetSixteen, SweetSixteen.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q5 -> {
-								LOG.info("data import complete");
-								promise.complete();
+							apiEliteEight.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, EliteEight.CLASS_CANONICAL_NAME, EliteEight.CLASS_SIMPLE_NAME, EliteEight.CLASS_API_ADDRESS_EliteEight, EliteEight.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q5 -> {
+								apiSweetSixteen.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, SweetSixteen.CLASS_CANONICAL_NAME, SweetSixteen.CLASS_SIMPLE_NAME, SweetSixteen.CLASS_API_ADDRESS_SweetSixteen, SweetSixteen.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q6 -> {
+									apiFinalFour.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, FinalFour.CLASS_CANONICAL_NAME, FinalFour.CLASS_SIMPLE_NAME, FinalFour.CLASS_API_ADDRESS_FinalFour, FinalFour.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q7 -> {
+										apiChampionship.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Championship.CLASS_CANONICAL_NAME, Championship.CLASS_SIMPLE_NAME, Championship.CLASS_API_ADDRESS_Championship, Championship.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q8 -> {
+											LOG.info("data import complete");
+											promise.complete();
+										}).onFailure(ex -> promise.fail(ex));
+									}).onFailure(ex -> promise.fail(ex));
+								}).onFailure(ex -> promise.fail(ex));
 							}).onFailure(ex -> promise.fail(ex));
 						}).onFailure(ex -> promise.fail(ex));
 					}).onFailure(ex -> promise.fail(ex));

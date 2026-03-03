@@ -245,9 +245,9 @@ public abstract class GuesserPageGen<DEV> extends GuesserGenPage {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchGuesserPage(entityVar,  siteRequest_, o);
@@ -302,51 +302,6 @@ public abstract class GuesserPageGen<DEV> extends GuesserGenPage {
   public static final String CLASS_AUTH_RESOURCE = "";
 
 
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
-
   public static String displayNameForClass(String var) {
     return GuesserPage.displayNameGuesserPage(var);
   }
@@ -354,71 +309,6 @@ public abstract class GuesserPageGen<DEV> extends GuesserGenPage {
     switch(var) {
     default:
       return GuesserGenPage.displayNameGuesserGenPage(var);
-    }
-  }
-
-  public static String descriptionGuesserPage(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return GuesserGenPage.descriptionGuesserGenPage(var);
-    }
-  }
-
-  public static String classSimpleNameGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.classSimpleNameGuesserGenPage(var);
-    }
-  }
-
-  public static Integer htmColumnGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.htmColumnGuesserGenPage(var);
-    }
-  }
-
-  public static Integer htmRowGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.htmRowGuesserGenPage(var);
-    }
-  }
-
-  public static Integer htmCellGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.htmCellGuesserGenPage(var);
-    }
-  }
-
-  public static Integer lengthMinGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.lengthMinGuesserGenPage(var);
-    }
-  }
-
-  public static Integer lengthMaxGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.lengthMaxGuesserGenPage(var);
-    }
-  }
-
-  public static Integer maxGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.maxGuesserGenPage(var);
-    }
-  }
-
-  public static Integer minGuesserPage(String var) {
-    switch(var) {
-      default:
-        return GuesserGenPage.minGuesserGenPage(var);
     }
   }
 }

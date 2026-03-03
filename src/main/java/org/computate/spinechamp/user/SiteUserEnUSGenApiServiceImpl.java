@@ -206,6 +206,7 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       List<String> fls = listSiteUser.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listSiteUser.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -232,15 +233,7 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       });
       json.put("list", l);
       response200Search(listSiteUser.getRequest(), listSiteUser.getResponse(), json);
-      if(json == null) {
-        String userId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("userId");
-        String m = String.format("%s %s not found", "site user", userId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchSiteUser failed. "), ex);
       promise.tryFail(ex);
@@ -799,15 +792,7 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String userId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("userId");
-        String m = String.format("%s %s not found", "site user", userId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHSiteUser failed. "), ex);
       promise.tryFail(ex);
@@ -1350,15 +1335,7 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String userId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("userId");
-        String m = String.format("%s %s not found", "site user", userId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTSiteUser failed. "), ex);
       promise.tryFail(ex);

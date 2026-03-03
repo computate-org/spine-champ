@@ -674,9 +674,9 @@ public abstract class GuesserGenPageGen<DEV> extends PageLayout {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchGuesserGenPage(entityVar,  siteRequest_, o);
@@ -760,12 +760,19 @@ public abstract class GuesserGenPageGen<DEV> extends PageLayout {
   public static final String CLASS_CANONICAL_NAME = "org.computate.spinechamp.model.guesser.GuesserGenPage";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_searchListGuesser_ = "searchListGuesser_";
+  public static final String SET_searchListGuesser_ = "setSearchListGuesser_";
   public static final String VAR_listGuesser = "listGuesser";
+  public static final String SET_listGuesser = "setListGuesser";
   public static final String VAR_resultCount = "resultCount";
+  public static final String SET_resultCount = "setResultCount";
   public static final String VAR_result = "result";
+  public static final String SET_result = "setResult";
   public static final String VAR_pk = "pk";
+  public static final String SET_pk = "setPk";
   public static final String VAR_solrId = "solrId";
+  public static final String SET_solrId = "setSolrId";
   public static final String VAR_pageUriGuesser = "pageUriGuesser";
+  public static final String SET_pageUriGuesser = "setPageUriGuesser";
 
   public static final String DISPLAY_NAME_searchListGuesser_ = "";
   public static final String DISPLAY_NAME_listGuesser = "";
@@ -774,51 +781,6 @@ public abstract class GuesserGenPageGen<DEV> extends PageLayout {
   public static final String DISPLAY_NAME_pk = "";
   public static final String DISPLAY_NAME_solrId = "";
   public static final String DISPLAY_NAME_pageUriGuesser = "";
-
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return GuesserGenPage.displayNameGuesserGenPage(var);
@@ -841,85 +803,6 @@ public abstract class GuesserGenPageGen<DEV> extends PageLayout {
       return DISPLAY_NAME_pageUriGuesser;
     default:
       return PageLayout.displayNamePageLayout(var);
-    }
-  }
-
-  public static String descriptionGuesserGenPage(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return PageLayout.descriptionPageLayout(var);
-    }
-  }
-
-  public static String classSimpleNameGuesserGenPage(String var) {
-    switch(var) {
-    case VAR_searchListGuesser_:
-      return "SearchList";
-    case VAR_listGuesser:
-      return "JsonArray";
-    case VAR_resultCount:
-      return "Integer";
-    case VAR_result:
-      return "Guesser";
-    case VAR_pk:
-      return "Long";
-    case VAR_solrId:
-      return "String";
-    case VAR_pageUriGuesser:
-      return "String";
-      default:
-        return PageLayout.classSimpleNamePageLayout(var);
-    }
-  }
-
-  public static Integer htmColumnGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.htmColumnPageLayout(var);
-    }
-  }
-
-  public static Integer htmRowGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.htmRowPageLayout(var);
-    }
-  }
-
-  public static Integer htmCellGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.htmCellPageLayout(var);
-    }
-  }
-
-  public static Integer lengthMinGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.lengthMinPageLayout(var);
-    }
-  }
-
-  public static Integer lengthMaxGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.lengthMaxPageLayout(var);
-    }
-  }
-
-  public static Integer maxGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.maxPageLayout(var);
-    }
-  }
-
-  public static Integer minGuesserGenPage(String var) {
-    switch(var) {
-      default:
-        return PageLayout.minPageLayout(var);
     }
   }
 }

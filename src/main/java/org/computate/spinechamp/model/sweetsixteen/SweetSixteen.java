@@ -1,13 +1,18 @@
 package org.computate.spinechamp.model.sweetsixteen;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
+import java.util.Optional;
 
 import org.computate.search.wrap.Wrap;
 import org.computate.spinechamp.model.BaseModel;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.vertx.search.list.SearchList;
+
+import io.vertx.core.Promise;
 
 /**
  * Order: 7
+ * SqlOrder: 10
  * Description: A predicted tournament with 16 teams. 
  * AName: a sweet sixteen bracket
  * Icon: <i class="fa-regular fa-buildings"></i>
@@ -31,6 +36,13 @@ import org.computate.spinechamp.model.BaseModel;
  *     PATCH:
  *     GET:
  *     DELETE:
+ *   SuperAdmin:
+ *     POST:
+ *     PATCH:
+ *     GET:
+ *     DELETE:
+ *     Admin:
+ *     SuperAdmin:
  **/
 public class SweetSixteen extends SweetSixteenGen<BaseModel> {
 
@@ -142,7 +154,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 1 winner
-   * HtmRow: 5
+   * HtmRow: 6
    * HtmCell: 0
    * HtmRowTitleOpen: West games
    * Relate: Team.teamId
@@ -155,7 +167,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 1 loser
-   * HtmRow: 5
+   * HtmRow: 6
    * HtmCell: 1
    * Relate: Team.teamId
    **/
@@ -167,7 +179,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 2 winner
-   * HtmRow: 5
+   * HtmRow: 6
    * HtmCell: 2
    * Relate: Team.teamId
    **/
@@ -179,7 +191,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 2 loser
-   * HtmRow: 5
+   * HtmRow: 6
    * HtmCell: 3
    * Relate: Team.teamId
    **/
@@ -191,7 +203,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 1 winner
-   * HtmRow: 5
+   * HtmRow: 7
    * HtmCell: 0
    * HtmRowTitleOpen: East games
    * Relate: Team.teamId
@@ -204,7 +216,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 1 loser
-   * HtmRow: 5
+   * HtmRow: 7
    * HtmCell: 1
    * Relate: Team.teamId
    **/
@@ -216,7 +228,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 2 winner
-   * HtmRow: 5
+   * HtmRow: 7
    * HtmCell: 2
    * Relate: Team.teamId
    **/
@@ -228,7 +240,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 2 loser
-   * HtmRow: 5
+   * HtmRow: 7
    * HtmCell: 3
    * Relate: Team.teamId
    **/
@@ -240,7 +252,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 1 winner
-   * HtmRow: 5
+   * HtmRow: 8
    * HtmCell: 0
    * HtmRowTitleOpen: Midwest games
    * Relate: Team.teamId
@@ -253,7 +265,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 1 loser
-   * HtmRow: 5
+   * HtmRow: 8
    * HtmCell: 1
    * Relate: Team.teamId
    **/
@@ -265,7 +277,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 2 winner
-   * HtmRow: 5
+   * HtmRow: 8
    * HtmCell: 2
    * Relate: Team.teamId
    **/
@@ -277,10 +289,24 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 2 loser
-   * HtmRow: 5
+   * HtmRow: 8
    * HtmCell: 3
    * Relate: Team.teamId
    **/
   protected void _midwestGame2Loser(Wrap<String> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * Persist: true
+   * DisplayName: Elite Eight bracket
+   * Description: The Elite Eight bracket of this tournament
+   * HtmRow: 10
+   * HtmCell: 0
+   * HtmRowTitleOpen: later tournaments
+   * Relate: EliteEight.sweetSixteen
+   **/
+  protected void _eliteEight(Wrap<String> w) {
   }
 }

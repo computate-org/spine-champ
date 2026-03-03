@@ -173,6 +173,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       List<String> fls = listSitePage.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listSitePage.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -199,15 +200,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       });
       json.put("list", l);
       response200Search(listSitePage.getRequest(), listSitePage.getResponse(), json);
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchSitePage failed. "), ex);
       promise.tryFail(ex);
@@ -304,15 +297,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     try {
       SiteRequest siteRequest = listSitePage.getSiteRequest_(SiteRequest.class);
       JsonObject json = JsonObject.mapFrom(listSitePage.getList().stream().findFirst().orElse(null));
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200GETSitePage failed. "), ex);
       promise.tryFail(ex);
@@ -580,15 +565,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHSitePage failed. "), ex);
       promise.tryFail(ex);
@@ -804,15 +781,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTSitePage failed. "), ex);
       promise.tryFail(ex);
@@ -1118,15 +1087,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PUTImportSitePage failed. "), ex);
       promise.tryFail(ex);
@@ -1376,15 +1337,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETESitePage failed. "), ex);
       promise.tryFail(ex);
@@ -2323,15 +2276,7 @@ public class SitePageEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String pageId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("pageId");
-        String m = String.format("%s %s not found", "article", pageId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEFilterSitePage failed. "), ex);
       promise.tryFail(ex);

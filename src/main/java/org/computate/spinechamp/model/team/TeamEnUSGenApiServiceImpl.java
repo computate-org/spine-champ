@@ -209,6 +209,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
       List<String> fls = listTeam.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listTeam.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -235,15 +236,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
       });
       json.put("list", l);
       response200Search(listTeam.getRequest(), listTeam.getResponse(), json);
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchTeam failed. "), ex);
       promise.tryFail(ex);
@@ -376,15 +369,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     try {
       SiteRequest siteRequest = listTeam.getSiteRequest_(SiteRequest.class);
       JsonObject json = JsonObject.mapFrom(listTeam.getList().stream().findFirst().orElse(null));
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200GETTeam failed. "), ex);
       promise.tryFail(ex);
@@ -858,15 +843,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHTeam failed. "), ex);
       promise.tryFail(ex);
@@ -1339,15 +1316,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTTeam failed. "), ex);
       promise.tryFail(ex);
@@ -1696,15 +1665,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETETeam failed. "), ex);
       promise.tryFail(ex);
@@ -2027,15 +1988,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PUTImportTeam failed. "), ex);
       promise.tryFail(ex);
@@ -2409,7 +2362,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
       String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
       Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
       if(result == null || !Files.exists(resourceTemplatePath)) {
-        String template = Files.readString(Path.of(siteTemplatePath, "en-us/search/team/TeamSearchPage.htm"), Charset.forName("UTF-8"));
+        String template = Files.readString(Path.of(siteTemplatePath, "en-us/edit/team/TeamEditPage.htm"), Charset.forName("UTF-8"));
         String renderedTemplate = jinjava.render(template, ctx.getMap());
         promise.complete(renderedTemplate);
       } else if(pageTemplateUri.endsWith(".md")) {
@@ -2894,15 +2847,7 @@ public class TeamEnUSGenApiServiceImpl extends BaseApiServiceImpl implements Tea
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String teamId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("teamId");
-        String m = String.format("%s %s not found", "team", teamId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEFilterTeam failed. "), ex);
       promise.tryFail(ex);

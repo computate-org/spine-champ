@@ -34,6 +34,8 @@ import org.computate.spinechamp.model.team.TeamEnUSApiServiceImpl;
 import org.computate.spinechamp.model.team.Team;
 import org.computate.spinechamp.model.team.TeamEnUSApiServiceImpl;
 import org.computate.spinechamp.model.team.Team;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
 import org.computate.spinechamp.request.SiteRequest;
 import org.computate.spinechamp.user.SiteUser;
 import org.computate.vertx.api.ApiRequest;
@@ -169,6 +171,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "GET"));
         webClient.post(
@@ -243,6 +247,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       List<String> fls = listSweetSixteen.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listSweetSixteen.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -269,15 +274,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       });
       json.put("list", l);
       response200Search(listSweetSixteen.getRequest(), listSweetSixteen.getResponse(), json);
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -338,6 +335,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "GET"));
         webClient.post(
@@ -410,15 +409,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     try {
       SiteRequest siteRequest = listSweetSixteen.getSiteRequest_(SiteRequest.class);
       JsonObject json = JsonObject.mapFrom(listSweetSixteen.getList().stream().findFirst().orElse(null));
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200GETSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -446,6 +437,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "PATCH"));
         webClient.post(
@@ -742,6 +735,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Guesser.varIndexedGuesser(Guesser.VAR_guesserId), Guesser.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Guesser");
@@ -813,6 +807,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -844,6 +839,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -875,6 +871,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -906,6 +903,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -945,6 +943,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -984,6 +983,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1015,6 +1015,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1046,6 +1047,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1085,6 +1087,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1124,6 +1127,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1163,6 +1167,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1202,6 +1207,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1241,6 +1247,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1272,6 +1279,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1303,6 +1311,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1334,6 +1343,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1353,6 +1363,42 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(solrId2 -> {
               futures2.add(Future.future(promise2 -> {
                 sql(siteRequest).update(SweetSixteen.class, pk).setToNull(SweetSixteen.VAR_midwestGame2Loser, Team.class, null).onSuccess(a -> {
+                  promise2.complete();
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "setEliteEight":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures1.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_bracketId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk).set(SweetSixteen.VAR_eliteEight, EliteEight.class, solrId2, val).onSuccess(a -> {
+                    sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_sweetSixteen, SweetSixteen.class, o.getSolrId(), ((EliteEight)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "removeEliteEight":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(solrId2 -> {
+              futures2.add(Future.future(promise2 -> {
+                sql(siteRequest).update(SweetSixteen.class, pk).setToNull(SweetSixteen.VAR_eliteEight, EliteEight.class, null).onSuccess(a -> {
                   promise2.complete();
                 }).onFailure(ex -> {
                   promise2.tryFail(ex);
@@ -1403,15 +1449,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -1439,6 +1477,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "POST"));
         webClient.post(
@@ -1721,6 +1761,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Guesser.varIndexedGuesser(Guesser.VAR_guesserId), Guesser.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Guesser");
@@ -1786,6 +1827,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1806,6 +1848,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1826,6 +1869,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1846,6 +1890,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1875,6 +1920,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1904,6 +1950,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1924,6 +1971,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1944,6 +1992,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1973,6 +2022,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2002,6 +2052,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2031,6 +2082,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2060,6 +2112,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2089,6 +2142,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2109,6 +2163,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2129,6 +2184,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2149,12 +2205,38 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
                   }
                   sql(siteRequest).update(SweetSixteen.class, pk).set(SweetSixteen.VAR_midwestGame2Loser, Team.class, solrId2, val).onSuccess(a -> {
                     promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case SweetSixteen.VAR_eliteEight:
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures1.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_bracketId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk).set(SweetSixteen.VAR_eliteEight, EliteEight.class, solrId2, val).onSuccess(a -> {
+                    sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_sweetSixteen, SweetSixteen.class, o.getSolrId(), ((EliteEight)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
                   }).onFailure(ex -> {
                     promise2.tryFail(ex);
                   });
@@ -2206,15 +2288,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -2242,6 +2316,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "DELETE"));
         webClient.post(
@@ -2864,6 +2940,26 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
+          case SweetSixteen.VAR_eliteEight:
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures1.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_sweetSixteen), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk).set(SweetSixteen.VAR_eliteEight, EliteEight.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           }
         }
       }
@@ -2903,15 +2999,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETESweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -2939,6 +3027,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "PUT"));
         webClient.post(
@@ -3234,15 +3324,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PUTImportSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -3269,6 +3351,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "GET"));
         webClient.post(
@@ -3524,6 +3608,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "GET"));
         webClient.post(
@@ -3616,7 +3702,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
       Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
       if(result == null || !Files.exists(resourceTemplatePath)) {
-        String template = Files.readString(Path.of(siteTemplatePath, "en-us/search/sweet-sixteen/SweetSixteenSearchPage.htm"), Charset.forName("UTF-8"));
+        String template = Files.readString(Path.of(siteTemplatePath, "en-us/edit/sweet-sixteen/SweetSixteenEditPage.htm"), Charset.forName("UTF-8"));
         String renderedTemplate = jinjava.render(template, ctx.getMap());
         promise.complete(renderedTemplate);
       } else if(pageTemplateUri.endsWith(".md")) {
@@ -3780,6 +3866,8 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
           form.add("permission", String.format("%s#%s", bracketId, "DELETE"));
         webClient.post(
@@ -4402,6 +4490,26 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
+          case SweetSixteen.VAR_eliteEight:
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures1.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_sweetSixteen), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk).set(SweetSixteen.VAR_eliteEight, EliteEight.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           }
         }
       }
@@ -4441,15 +4549,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String bracketId = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("bracketId");
-        String m = String.format("%s %s not found", "sweet sixteen bracket", bracketId);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEFilterSweetSixteen failed. "), ex);
       promise.tryFail(ex);
@@ -4783,7 +4883,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT guesserId, year, created, bracketId, name, archived, southGame1Winner, southGame1Loser, southGame2Winner, southGame2Loser, sessionId, westGame1Winner, userKey, westGame1Loser, westGame2Winner, westGame2Loser, objectTitle, eastGame1Winner, displayPage, eastGame1Loser, editPage, eastGame2Winner, userPage, eastGame2Loser, download, midwestGame1Winner, midwestGame1Loser, midwestGame2Winner, midwestGame2Loser FROM SweetSixteen WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT guesserId, year, created, bracketId, name, archived, southGame1Winner, southGame1Loser, southGame2Winner, southGame2Loser, sessionId, westGame1Winner, userKey, westGame1Loser, westGame2Winner, westGame2Loser, objectTitle, eastGame1Winner, displayPage, eastGame1Loser, editPage, eastGame2Winner, userPage, eastGame2Loser, download, midwestGame1Winner, midwestGame1Loser, midwestGame2Winner, midwestGame2Loser, eliteEight FROM SweetSixteen WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -4828,9 +4928,9 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
-      sqlConnection.preparedQuery("SELECT guesserId as pk2, 'guesserId' from Guesser where guesserId=$1 UNION SELECT teamId as pk2, 'southGame1Winner' from Team where teamId=$2 UNION SELECT teamId as pk2, 'southGame1Loser' from Team where teamId=$3 UNION SELECT teamId as pk2, 'southGame2Winner' from Team where teamId=$4 UNION SELECT teamId as pk2, 'southGame2Loser' from Team where teamId=$5 UNION SELECT teamId as pk1, 'westGame1Winner' from Team where teamId=$6 UNION SELECT teamId as pk1, 'westGame1Loser' from Team where teamId=$7 UNION SELECT teamId as pk1, 'westGame2Winner' from Team where teamId=$8 UNION SELECT teamId as pk1, 'westGame2Loser' from Team where teamId=$9 UNION SELECT teamId as pk2, 'eastGame1Winner' from Team where teamId=$10 UNION SELECT teamId as pk2, 'eastGame1Loser' from Team where teamId=$11 UNION SELECT teamId as pk2, 'eastGame2Winner' from Team where teamId=$12 UNION SELECT teamId as pk2, 'eastGame2Loser' from Team where teamId=$13 UNION SELECT teamId as pk2, 'midwestGame1Winner' from Team where teamId=$14 UNION SELECT teamId as pk2, 'midwestGame1Loser' from Team where teamId=$15 UNION SELECT teamId as pk2, 'midwestGame2Winner' from Team where teamId=$16 UNION SELECT teamId as pk2, 'midwestGame2Loser' from Team where teamId=$17")
+      sqlConnection.preparedQuery("SELECT guesserId as pk2, 'guesserId' from Guesser where guesserId=$1 UNION SELECT teamId as pk2, 'southGame1Winner' from Team where teamId=$2 UNION SELECT teamId as pk2, 'southGame1Loser' from Team where teamId=$3 UNION SELECT teamId as pk2, 'southGame2Winner' from Team where teamId=$4 UNION SELECT teamId as pk2, 'southGame2Loser' from Team where teamId=$5 UNION SELECT teamId as pk1, 'westGame1Winner' from Team where teamId=$6 UNION SELECT teamId as pk1, 'westGame1Loser' from Team where teamId=$7 UNION SELECT teamId as pk1, 'westGame2Winner' from Team where teamId=$8 UNION SELECT teamId as pk1, 'westGame2Loser' from Team where teamId=$9 UNION SELECT teamId as pk2, 'eastGame1Winner' from Team where teamId=$10 UNION SELECT teamId as pk2, 'eastGame1Loser' from Team where teamId=$11 UNION SELECT teamId as pk2, 'eastGame2Winner' from Team where teamId=$12 UNION SELECT teamId as pk2, 'eastGame2Loser' from Team where teamId=$13 UNION SELECT teamId as pk2, 'midwestGame1Winner' from Team where teamId=$14 UNION SELECT teamId as pk2, 'midwestGame1Loser' from Team where teamId=$15 UNION SELECT teamId as pk2, 'midwestGame2Winner' from Team where teamId=$16 UNION SELECT teamId as pk2, 'midwestGame2Loser' from Team where teamId=$17 UNION SELECT sweetSixteen as pk2, 'eliteEight' from EliteEight where sweetSixteen=$18")
           .collecting(Collectors.toList())
-          .execute(Tuple.of(o.getGuesserId(), o.getSouthGame1Winner(), o.getSouthGame1Loser(), o.getSouthGame2Winner(), o.getSouthGame2Loser(), o.getWestGame1Winner(), o.getWestGame1Loser(), o.getWestGame2Winner(), o.getWestGame2Loser(), o.getEastGame1Winner(), o.getEastGame1Loser(), o.getEastGame2Winner(), o.getEastGame2Loser(), o.getMidwestGame1Winner(), o.getMidwestGame1Loser(), o.getMidwestGame2Winner(), o.getMidwestGame2Loser())
+          .execute(Tuple.of(o.getGuesserId(), o.getSouthGame1Winner(), o.getSouthGame1Loser(), o.getSouthGame2Winner(), o.getSouthGame2Loser(), o.getWestGame1Winner(), o.getWestGame1Loser(), o.getWestGame2Winner(), o.getWestGame2Loser(), o.getEastGame1Winner(), o.getEastGame1Loser(), o.getEastGame2Winner(), o.getEastGame2Loser(), o.getMidwestGame1Winner(), o.getMidwestGame1Loser(), o.getMidwestGame2Winner(), o.getMidwestGame2Loser(), o.getEliteEight())
           ).onSuccess(result -> {
         try {
           if(result != null) {
@@ -5028,6 +5128,42 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               });
             }));
           }
+
+          if("EliteEight".equals(classSimpleName2) && solrId2 != null) {
+            SearchList<EliteEight> searchList2 = new SearchList<EliteEight>();
+            searchList2.setStore(true);
+            searchList2.q("*:*");
+            searchList2.setC(EliteEight.class);
+            searchList2.fq("solrId:" + solrId2);
+            searchList2.rows(1L);
+            futures.add(Future.future(promise2 -> {
+              searchList2.promiseDeepSearchList(siteRequest).onSuccess(b -> {
+                EliteEight o2 = searchList2.getList().stream().findFirst().orElse(null);
+                if(o2 != null) {
+                  JsonObject params = new JsonObject();
+                  params.put("body", new JsonObject());
+                  params.put("scopes", siteRequest.getScopes());
+                  params.put("cookie", new JsonObject());
+                  params.put("path", new JsonObject());
+                  params.put("query", new JsonObject().put("q", "*:*").put("fq", new JsonArray().add("solrId:" + solrId2)).put("var", new JsonArray().add("refresh:false")));
+                  JsonObject context = new JsonObject().put("params", params).put("user", siteRequest.getUserPrincipal());
+                  JsonObject json = new JsonObject().put("context", context);
+                  eventBus.request("spine-champ-enUS-EliteEight", json, new DeliveryOptions().addHeader("action", "patchEliteEightFuture")).onSuccess(c -> {
+                    JsonObject responseMessage = (JsonObject)c.body();
+                    Integer statusCode = responseMessage.getInteger("statusCode");
+                    if(statusCode.equals(200))
+                      promise2.complete();
+                    else
+                      promise2.fail(new RuntimeException(responseMessage.getString("statusMessage")));
+                  }).onFailure(ex -> {
+                    promise2.fail(ex);
+                  });
+                }
+              }).onFailure(ex -> {
+                promise2.fail(ex);
+              });
+            }));
+          }
         }
 
         CompositeFuture.all(futures).onSuccess(b -> {
@@ -5115,6 +5251,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       o.persistForClass(SweetSixteen.VAR_midwestGame1Loser, SweetSixteen.staticSetMidwestGame1Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_midwestGame1Loser)));
       o.persistForClass(SweetSixteen.VAR_midwestGame2Winner, SweetSixteen.staticSetMidwestGame2Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_midwestGame2Winner)));
       o.persistForClass(SweetSixteen.VAR_midwestGame2Loser, SweetSixteen.staticSetMidwestGame2Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_midwestGame2Loser)));
+      o.persistForClass(SweetSixteen.VAR_eliteEight, SweetSixteen.staticSetEliteEight(siteRequest2, (String)result.get(SweetSixteen.VAR_eliteEight)));
 
       o.promiseDeepForClass((SiteRequest)siteRequest).onSuccess(o2 -> {
         try {

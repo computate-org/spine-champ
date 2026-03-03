@@ -173,6 +173,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       List<String> fls = listTimeZone.getRequest().getFields();
       JsonObject json = new JsonObject();
       JsonArray l = new JsonArray();
+      List<String> scopes = siteRequest.getScopes();
       listTimeZone.getList().stream().forEach(o -> {
         JsonObject json2 = JsonObject.mapFrom(o);
         if(fls.size() > 0) {
@@ -199,15 +200,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       });
       json.put("list", l);
       response200Search(listTimeZone.getRequest(), listTimeZone.getResponse(), json);
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200SearchTimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -304,15 +297,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     try {
       SiteRequest siteRequest = listTimeZone.getSiteRequest_(SiteRequest.class);
       JsonObject json = JsonObject.mapFrom(listTimeZone.getList().stream().findFirst().orElse(null));
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200GETTimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -579,15 +564,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PATCHTimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -802,15 +779,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       JsonObject json = JsonObject.mapFrom(o);
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200POSTTimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -1059,15 +1028,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETETimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -1372,15 +1333,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200PUTImportTimeZone failed. "), ex);
       promise.tryFail(ex);
@@ -2100,15 +2053,7 @@ public class TimeZoneEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
     Promise<ServiceResponse> promise = Promise.promise();
     try {
       JsonObject json = new JsonObject();
-      if(json == null) {
-        String id = siteRequest.getServiceRequest().getParams().getJsonObject("path").getString("id");
-        String m = String.format("%s %s not found", "time zone", id);
-        promise.complete(new ServiceResponse(404
-            , m
-            , Buffer.buffer(new JsonObject().put("message", m).encodePrettily()), null));
-      } else {
-        promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
-      }
+      promise.complete(ServiceResponse.completedWithJson(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily())));
     } catch(Exception ex) {
       LOG.error(String.format("response200DELETEFilterTimeZone failed. "), ex);
       promise.tryFail(ex);

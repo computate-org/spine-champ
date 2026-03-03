@@ -245,9 +245,9 @@ public abstract class SweetSixteenPageGen<DEV> extends SweetSixteenGenPage {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchSweetSixteenPage(entityVar,  siteRequest_, o);
@@ -302,51 +302,6 @@ public abstract class SweetSixteenPageGen<DEV> extends SweetSixteenGenPage {
   public static final String CLASS_AUTH_RESOURCE = "";
 
 
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
-
   public static String displayNameForClass(String var) {
     return SweetSixteenPage.displayNameSweetSixteenPage(var);
   }
@@ -354,71 +309,6 @@ public abstract class SweetSixteenPageGen<DEV> extends SweetSixteenGenPage {
     switch(var) {
     default:
       return SweetSixteenGenPage.displayNameSweetSixteenGenPage(var);
-    }
-  }
-
-  public static String descriptionSweetSixteenPage(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.descriptionSweetSixteenGenPage(var);
-    }
-  }
-
-  public static String classSimpleNameSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.classSimpleNameSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer htmColumnSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.htmColumnSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer htmRowSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.htmRowSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer htmCellSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.htmCellSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer lengthMinSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.lengthMinSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer lengthMaxSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.lengthMaxSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer maxSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.maxSweetSixteenGenPage(var);
-    }
-  }
-
-  public static Integer minSweetSixteenPage(String var) {
-    switch(var) {
-      default:
-        return SweetSixteenGenPage.minSweetSixteenGenPage(var);
     }
   }
 }

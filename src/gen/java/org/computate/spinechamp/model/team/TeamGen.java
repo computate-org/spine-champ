@@ -40,6 +40,8 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
+import org.computate.vertx.search.list.SearchList;
+import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
 
@@ -666,9 +668,39 @@ public abstract class TeamGen<DEV> extends BaseModel {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
+
+  public static Future<Team> fqTeam(SiteRequest siteRequest, String var, Object val) {
+    Promise<Team> promise = Promise.promise();
+    try {
+      if(val == null) {
+        promise.complete();
+      } else {
+        SearchList<Team> searchList = new SearchList<Team>();
+        searchList.setStore(true);
+        searchList.q("*:*");
+        searchList.setC(Team.class);
+        searchList.fq(String.format("%s:", Team.varIndexedTeam(var)) + SearchTool.escapeQueryChars(val.toString()));
+        searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
+          try {
+            promise.complete(searchList.getList().stream().findFirst().orElse(null));
+          } catch(Throwable ex) {
+            LOG.error("Error while querying the team", ex);
+            promise.fail(ex);
+          }
+        }).onFailure(ex -> {
+          LOG.error("Error while querying the team", ex);
+          promise.fail(ex);
+        });
+      }
+    } catch(Throwable ex) {
+      LOG.error("Error while querying the team", ex);
+      promise.fail(ex);
+    }
+    return promise.future();
+  }
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchTeam(entityVar,  siteRequest_, o);
@@ -991,10 +1023,15 @@ public abstract class TeamGen<DEV> extends BaseModel {
     return CLASS_API_ADDRESS_Team;
   }
   public static final String VAR_region = "region";
+  public static final String SET_region = "setRegion";
   public static final String VAR_name = "name";
+  public static final String SET_name = "setName";
   public static final String VAR_abbreviation = "abbreviation";
+  public static final String SET_abbreviation = "setAbbreviation";
   public static final String VAR_displayName = "displayName";
+  public static final String SET_displayName = "setDisplayName";
   public static final String VAR_teamId = "teamId";
+  public static final String SET_teamId = "setTeamId";
 
   public static List<String> varsQForClass() {
     return Team.varsQTeam(new ArrayList<String>());
@@ -1008,6 +1045,10 @@ public abstract class TeamGen<DEV> extends BaseModel {
     return Team.varsFqTeam(new ArrayList<String>());
   }
   public static List<String> varsFqTeam(List<String> vars) {
+    vars.add(VAR_region);
+    vars.add(VAR_name);
+    vars.add(VAR_abbreviation);
+    vars.add(VAR_teamId);
     BaseModel.varsFqBaseModel(vars);
     return vars;
   }
@@ -1047,28 +1088,28 @@ public abstract class TeamGen<DEV> extends BaseModel {
   }
 
   @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
   public String enUSStringFormatUrlEditPageForClass() {
     return "%s/en-us/edit/team/%s";
   }
 
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
+  public static String varJsonForClass(String var, Boolean patch) {
+    return Team.varJsonTeam(var, patch);
   }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
+  public static String varJsonTeam(String var, Boolean patch) {
+    switch(var) {
+    case VAR_region:
+      return patch ? SET_region : VAR_region;
+    case VAR_name:
+      return patch ? SET_name : VAR_name;
+    case VAR_abbreviation:
+      return patch ? SET_abbreviation : VAR_abbreviation;
+    case VAR_displayName:
+      return patch ? SET_displayName : VAR_displayName;
+    case VAR_teamId:
+      return patch ? SET_teamId : VAR_teamId;
+    default:
+      return BaseModel.varJsonBaseModel(var, patch);
+    }
   }
 
   public static String displayNameForClass(String var) {

@@ -40,6 +40,8 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
+import org.computate.vertx.search.list.SearchList;
+import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
 
@@ -532,9 +534,39 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
+
+  public static Future<Guesser> fqGuesser(SiteRequest siteRequest, String var, Object val) {
+    Promise<Guesser> promise = Promise.promise();
+    try {
+      if(val == null) {
+        promise.complete();
+      } else {
+        SearchList<Guesser> searchList = new SearchList<Guesser>();
+        searchList.setStore(true);
+        searchList.q("*:*");
+        searchList.setC(Guesser.class);
+        searchList.fq(String.format("%s:", Guesser.varIndexedGuesser(var)) + SearchTool.escapeQueryChars(val.toString()));
+        searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
+          try {
+            promise.complete(searchList.getList().stream().findFirst().orElse(null));
+          } catch(Throwable ex) {
+            LOG.error("Error while querying the guesser", ex);
+            promise.fail(ex);
+          }
+        }).onFailure(ex -> {
+          LOG.error("Error while querying the guesser", ex);
+          promise.fail(ex);
+        });
+      }
+    } catch(Throwable ex) {
+      LOG.error("Error while querying the guesser", ex);
+      promise.fail(ex);
+    }
+    return promise.future();
+  }
 
   public static Object staticSearchForClass(String entityVar, SiteRequest siteRequest_, Object o) {
     return staticSearchGuesser(entityVar,  siteRequest_, o);
@@ -795,8 +827,11 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     return CLASS_API_ADDRESS_Guesser;
   }
   public static final String VAR_name = "name";
+  public static final String SET_name = "setName";
   public static final String VAR_guesserId = "guesserId";
+  public static final String SET_guesserId = "setGuesserId";
   public static final String VAR_description = "description";
+  public static final String SET_description = "setDescription";
 
   public static List<String> varsQForClass() {
     return Guesser.varsQGuesser(new ArrayList<String>());
@@ -858,19 +893,20 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     return "%s/en-us/edit/guesser/%s";
   }
 
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
+  public static String varJsonForClass(String var, Boolean patch) {
+    return Guesser.varJsonGuesser(var, patch);
   }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
+  public static String varJsonGuesser(String var, Boolean patch) {
+    switch(var) {
+    case VAR_name:
+      return patch ? SET_name : VAR_name;
+    case VAR_guesserId:
+      return patch ? SET_guesserId : VAR_guesserId;
+    case VAR_description:
+      return patch ? SET_description : VAR_description;
+    default:
+      return BaseModel.varJsonBaseModel(var, patch);
+    }
   }
 
   public static String displayNameForClass(String var) {
