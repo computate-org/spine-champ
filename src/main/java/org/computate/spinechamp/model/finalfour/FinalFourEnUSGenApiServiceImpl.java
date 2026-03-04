@@ -711,7 +711,7 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
           case "setEliteEight":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
-                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_finalFour), EliteEight.class, val).onSuccess(o3 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_bracketId), EliteEight.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
                   Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
@@ -719,7 +719,11 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
                     classes.add("EliteEight");
                   }
                   sql(siteRequest).update(FinalFour.class, pk).set(FinalFour.VAR_eliteEight, EliteEight.class, solrId2, val).onSuccess(a -> {
-                    promise2.complete();
+                    sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_finalFour, FinalFour.class, o.getSolrId(), ((EliteEight)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
                   }).onFailure(ex -> {
                     promise2.tryFail(ex);
                   });
@@ -1385,7 +1389,7 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
           case FinalFour.VAR_eliteEight:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
-                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_finalFour), EliteEight.class, val).onSuccess(o3 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_bracketId), EliteEight.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
                   Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
@@ -1393,7 +1397,11 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
                     classes.add("EliteEight");
                   }
                   sql(siteRequest).update(FinalFour.class, pk).set(FinalFour.VAR_eliteEight, EliteEight.class, solrId2, val).onSuccess(a -> {
-                    promise2.complete();
+                    sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_finalFour, FinalFour.class, o.getSolrId(), ((EliteEight)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
                   }).onFailure(ex -> {
                     promise2.tryFail(ex);
                   });

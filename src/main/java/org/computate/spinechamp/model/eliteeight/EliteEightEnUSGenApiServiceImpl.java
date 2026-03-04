@@ -1115,7 +1115,7 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
           case "setFinalFour":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
-                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_eliteEight), FinalFour.class, val).onSuccess(o3 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_bracketId), FinalFour.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
                   Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
@@ -1123,7 +1123,11 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
                     classes.add("FinalFour");
                   }
                   sql(siteRequest).update(EliteEight.class, pk).set(EliteEight.VAR_finalFour, FinalFour.class, solrId2, val).onSuccess(a -> {
-                    promise2.complete();
+                    sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_eliteEight, EliteEight.class, o.getSolrId(), ((FinalFour)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
                   }).onFailure(ex -> {
                     promise2.tryFail(ex);
                   });
@@ -1816,7 +1820,7 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
           case EliteEight.VAR_finalFour:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures2.add(Future.future(promise2 -> {
-                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_eliteEight), FinalFour.class, val).onSuccess(o3 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_bracketId), FinalFour.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
                   Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
@@ -1824,7 +1828,11 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
                     classes.add("FinalFour");
                   }
                   sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_eliteEight, EliteEight.class, o.getSolrId(), val).onSuccess(a -> {
-                    promise2.complete();
+                    sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_eliteEight, EliteEight.class, o.getSolrId(), ((FinalFour)o3).getBracketId()).onSuccess(b -> {
+                      promise2.complete();
+                    }).onFailure(ex -> {
+                      promise2.tryFail(ex);
+                    });
                   }).onFailure(ex -> {
                     promise2.tryFail(ex);
                   });

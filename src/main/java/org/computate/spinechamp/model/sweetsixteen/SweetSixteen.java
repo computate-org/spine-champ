@@ -9,6 +9,7 @@ import org.computate.spinechamp.model.eliteeight.EliteEight;
 import org.computate.vertx.search.list.SearchList;
 
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonObject;
 
 /**
  * Order: 7
@@ -45,6 +46,31 @@ import io.vertx.core.Promise;
  *     SuperAdmin:
  **/
 public class SweetSixteen extends SweetSixteenGen<BaseModel> {
+
+  /**
+   * Ignore: true
+   */
+  protected void _actualSweetSixteenSearch(Promise<SearchList<SweetSixteen>> promise) {
+    SearchList<SweetSixteen> l = new SearchList<>();
+    if(bracketId != null && guesserId != null && year != null) {
+      l.setC(SweetSixteen.class);
+      l.q("*:*");
+      l.fq(String.format("guesserId_docvalues_string:%s", "results"));
+      l.fq(String.format("year_docvalues_int:%s", year));
+      l.setStore(true);
+    }
+    promise.complete(l);
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * DisplayName: Actual Sweet Sixteen bracket
+   * Description: The Sweet Sixteen bracket of this tournament
+   **/
+  protected void _actualSweetSixteen(Wrap<JsonObject> w) {
+    w.o(Optional.ofNullable(actualSweetSixteenSearch.first()).map(o -> JsonObject.mapFrom(o)).orElse(null));
+  }
 
   /**
    * {@inheritDoc}
@@ -103,11 +129,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: South game 1 guess
+   * HtmRowTitleOpen: South game 1
+   * HtmRow: 5
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.southGame1Winner }} wins,  {{ result.actualSweetSixteen.southGame1Loser }} loses
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.southGame1Winner }} wins,  {{ result.actualSweetSixteen.southGame1Loser }} loses
+   *   unknown: Unknown
+   **/
+  protected void _southGame1WinnerGuess(Wrap<String> w) {
+    w.o(southGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame1Winner)).map(o -> o.equals(southGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: South game 1 winner
    * HtmRow: 5
-   * HtmCell: 0
-   * HtmRowTitleOpen: South games
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _southGame1Winner(Wrap<String> w) {
@@ -119,7 +160,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * Persist: true
    * DisplayName: South game 1 loser
    * HtmRow: 5
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _southGame1Loser(Wrap<String> w) {
@@ -128,10 +169,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual South game 2 winner
+   * HtmRowTitleOpen: South game 2
+   * HtmRow: 6
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.southGame2Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.southGame2Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _southGame2WinnerGuess(Wrap<String> w) {
+    w.o(southGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame2Winner)).map(o -> o.equals(southGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: South game 2 winner
-   * HtmRow: 5
-   * HtmCell: 2
+   * HtmRow: 6
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _southGame2Winner(Wrap<String> w) {
@@ -142,8 +199,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: South game 2 loser
-   * HtmRow: 5
-   * HtmCell: 3
+   * HtmRow: 6
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _southGame2Loser(Wrap<String> w) {
@@ -152,11 +209,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual West game 1 winner
+   * HtmRowTitleOpen: West game 1
+   * HtmRow: 7
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.westGame1Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.westGame1Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _westGame1WinnerGuess(Wrap<String> w) {
+    w.o(westGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame1Winner)).map(o -> o.equals(westGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: West game 1 winner
-   * HtmRow: 6
-   * HtmCell: 0
-   * HtmRowTitleOpen: West games
+   * HtmRow: 7
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _westGame1Winner(Wrap<String> w) {
@@ -167,8 +239,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 1 loser
-   * HtmRow: 6
-   * HtmCell: 1
+   * HtmRow: 7
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _westGame1Loser(Wrap<String> w) {
@@ -177,10 +249,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual West game 2 winner
+   * HtmRowTitleOpen: West game 2
+   * HtmRow: 8
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.westGame2Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.westGame2Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _westGame2WinnerGuess(Wrap<String> w) {
+    w.o(westGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame2Winner)).map(o -> o.equals(westGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: West game 2 winner
-   * HtmRow: 6
-   * HtmCell: 2
+   * HtmRow: 8
+   * HtmCell: 0
    * Relate: Team.teamId
    **/
   protected void _westGame2Winner(Wrap<String> w) {
@@ -191,8 +279,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: West game 2 loser
-   * HtmRow: 6
-   * HtmCell: 3
+   * HtmRow: 8
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _westGame2Loser(Wrap<String> w) {
@@ -201,11 +289,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual East game 1 winner
+   * HtmRowTitleOpen: East game 1
+   * HtmRow: 9
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.eastGame1Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.eastGame1Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _eastGame1WinnerGuess(Wrap<String> w) {
+    w.o(eastGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame1Winner)).map(o -> o.equals(eastGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: East game 1 winner
-   * HtmRow: 7
-   * HtmCell: 0
-   * HtmRowTitleOpen: East games
+   * HtmRow: 9
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _eastGame1Winner(Wrap<String> w) {
@@ -216,8 +319,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 1 loser
-   * HtmRow: 7
-   * HtmCell: 1
+   * HtmRow: 9
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _eastGame1Loser(Wrap<String> w) {
@@ -226,10 +329,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual East game 2 winner
+   * HtmRowTitleOpen: East game 2
+   * HtmRow: 10
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.eastGame2Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.eastGame2Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _eastGame2WinnerGuess(Wrap<String> w) {
+    w.o(eastGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame2Winner)).map(o -> o.equals(eastGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: East game 2 winner
-   * HtmRow: 7
-   * HtmCell: 2
+   * HtmRow: 10
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _eastGame2Winner(Wrap<String> w) {
@@ -240,8 +359,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: East game 2 loser
-   * HtmRow: 7
-   * HtmCell: 3
+   * HtmRow: 10
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _eastGame2Loser(Wrap<String> w) {
@@ -250,11 +369,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual Midwest game 1 winner
+   * HtmRowTitleOpen: Midwest game 1
+   * HtmRow: 11
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.midwestGame1Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.midwestGame1Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _midwestGame1WinnerGuess(Wrap<String> w) {
+    w.o(midwestGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame1Winner)).map(o -> o.equals(midwestGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 1 winner
-   * HtmRow: 8
-   * HtmCell: 0
-   * HtmRowTitleOpen: Midwest games
+   * HtmRow: 11
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _midwestGame1Winner(Wrap<String> w) {
@@ -265,8 +399,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 1 loser
-   * HtmRow: 8
-   * HtmCell: 1
+   * HtmRow: 11
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _midwestGame1Loser(Wrap<String> w) {
@@ -275,10 +409,26 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual Midwest game 2 winner
+   * HtmRowTitleOpen: Midwest game 2
+   * HtmRow: 12
+   * HtmCell: 0
+   * Option:
+   *   correct: Correct — {{ result.actualSweetSixteen.midwestGame2Winner }}
+   *   incorrect: Incorrect — {{ result.actualSweetSixteen.midwestGame2Winner }}
+   *   unknown: Unknown
+   **/
+  protected void _midwestGame2WinnerGuess(Wrap<String> w) {
+    w.o(midwestGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame2Winner)).map(o -> o.equals(midwestGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 2 winner
-   * HtmRow: 8
-   * HtmCell: 2
+   * HtmRow: 12
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _midwestGame2Winner(Wrap<String> w) {
@@ -289,8 +439,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 2 loser
-   * HtmRow: 8
-   * HtmCell: 3
+   * HtmRow: 12
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _midwestGame2Loser(Wrap<String> w) {

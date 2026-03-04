@@ -35,6 +35,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
+import org.computate.vertx.search.list.SearchList;
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import java.lang.String;
 import org.computate.spinechamp.model.guesser.Guesser;
 import java.lang.Integer;
@@ -44,7 +47,6 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
-import org.computate.vertx.search.list.SearchList;
 import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
@@ -210,6 +212,122 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/sweet-sixteen";
 
   public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
+
+	//////////////////////////////
+  // actualSweetSixteenSearch //
+	//////////////////////////////
+
+
+  /**
+   *  The entity actualSweetSixteenSearch
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SearchList<SweetSixteen> actualSweetSixteenSearch;
+
+  /**
+   * <br> The entity actualSweetSixteenSearch
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:actualSweetSixteenSearch">Find the entity actualSweetSixteenSearch in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualSweetSixteenSearch(Promise<SearchList<SweetSixteen>> promise);
+
+  public SearchList<SweetSixteen> getActualSweetSixteenSearch() {
+    return actualSweetSixteenSearch;
+  }
+
+  public void setActualSweetSixteenSearch(SearchList<SweetSixteen> actualSweetSixteenSearch) {
+    this.actualSweetSixteenSearch = actualSweetSixteenSearch;
+  }
+  public static SearchList<SweetSixteen> staticSetActualSweetSixteenSearch(SiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SearchList<SweetSixteen>> actualSweetSixteenSearchPromise() {
+    Promise<SearchList<SweetSixteen>> promise = Promise.promise();
+    Promise<SearchList<SweetSixteen>> promise2 = Promise.promise();
+    _actualSweetSixteenSearch(promise2);
+    promise2.future().onSuccess(o -> {
+      if(o != null && actualSweetSixteenSearch == null) {
+        o.promiseDeepForClass(siteRequest_).onSuccess(a -> {
+          setActualSweetSixteenSearch(o);
+          promise.complete(o);
+        }).onFailure(ex -> {
+          promise.fail(ex);
+        });
+      } else {
+        promise.complete(o);
+      }
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+	////////////////////////
+  // actualSweetSixteen //
+	////////////////////////
+
+
+  /**
+   *  The entity actualSweetSixteen
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject actualSweetSixteen;
+
+  /**
+   * <br> The entity actualSweetSixteen
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:actualSweetSixteen">Find the entity actualSweetSixteen in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualSweetSixteen(Wrap<JsonObject> w);
+
+  public JsonObject getActualSweetSixteen() {
+    return actualSweetSixteen;
+  }
+
+  public void setActualSweetSixteen(JsonObject actualSweetSixteen) {
+    this.actualSweetSixteen = actualSweetSixteen;
+  }
+  @JsonIgnore
+  public void setActualSweetSixteen(String o) {
+    this.actualSweetSixteen = SweetSixteen.staticSetActualSweetSixteen(siteRequest_, o);
+  }
+  public static JsonObject staticSetActualSweetSixteen(SiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected SweetSixteen actualSweetSixteenInit() {
+    Wrap<JsonObject> actualSweetSixteenWrap = new Wrap<JsonObject>().var("actualSweetSixteen");
+    if(actualSweetSixteen == null) {
+      _actualSweetSixteen(actualSweetSixteenWrap);
+      Optional.ofNullable(actualSweetSixteenWrap.getO()).ifPresent(o -> {
+        setActualSweetSixteen(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchActualSweetSixteen(SiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrActualSweetSixteen(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqActualSweetSixteen(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchActualSweetSixteen(siteRequest_, SweetSixteen.staticSetActualSweetSixteen(siteRequest_, o)).toString();
+  }
 
 	///////////////
   // guesserId //
@@ -467,6 +585,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return name;
   }
 
+	///////////////////////////
+  // southGame1WinnerGuess //
+	///////////////////////////
+
+
+  /**
+   *  The entity southGame1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String southGame1WinnerGuess;
+
+  /**
+   * <br> The entity southGame1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:southGame1WinnerGuess">Find the entity southGame1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _southGame1WinnerGuess(Wrap<String> w);
+
+  public String getSouthGame1WinnerGuess() {
+    return southGame1WinnerGuess;
+  }
+  public void setSouthGame1WinnerGuess(String o) {
+    this.southGame1WinnerGuess = SweetSixteen.staticSetSouthGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetSouthGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen southGame1WinnerGuessInit() {
+    Wrap<String> southGame1WinnerGuessWrap = new Wrap<String>().var("southGame1WinnerGuess");
+    if(southGame1WinnerGuess == null) {
+      _southGame1WinnerGuess(southGame1WinnerGuessWrap);
+      Optional.ofNullable(southGame1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setSouthGame1WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchSouthGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrSouthGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqSouthGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchSouthGame1WinnerGuess(siteRequest_, SweetSixteen.staticSetSouthGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	//////////////////////
   // southGame1Winner //
 	//////////////////////
@@ -589,6 +761,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String staticJsonSouthGame1Loser(String southGame1Loser) {
     return southGame1Loser;
+  }
+
+	///////////////////////////
+  // southGame2WinnerGuess //
+	///////////////////////////
+
+
+  /**
+   *  The entity southGame2WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String southGame2WinnerGuess;
+
+  /**
+   * <br> The entity southGame2WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:southGame2WinnerGuess">Find the entity southGame2WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _southGame2WinnerGuess(Wrap<String> w);
+
+  public String getSouthGame2WinnerGuess() {
+    return southGame2WinnerGuess;
+  }
+  public void setSouthGame2WinnerGuess(String o) {
+    this.southGame2WinnerGuess = SweetSixteen.staticSetSouthGame2WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetSouthGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen southGame2WinnerGuessInit() {
+    Wrap<String> southGame2WinnerGuessWrap = new Wrap<String>().var("southGame2WinnerGuess");
+    if(southGame2WinnerGuess == null) {
+      _southGame2WinnerGuess(southGame2WinnerGuessWrap);
+      Optional.ofNullable(southGame2WinnerGuessWrap.getO()).ifPresent(o -> {
+        setSouthGame2WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchSouthGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrSouthGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqSouthGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchSouthGame2WinnerGuess(siteRequest_, SweetSixteen.staticSetSouthGame2WinnerGuess(siteRequest_, o)).toString();
   }
 
 	//////////////////////
@@ -715,6 +941,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return southGame2Loser;
   }
 
+	//////////////////////////
+  // westGame1WinnerGuess //
+	//////////////////////////
+
+
+  /**
+   *  The entity westGame1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String westGame1WinnerGuess;
+
+  /**
+   * <br> The entity westGame1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:westGame1WinnerGuess">Find the entity westGame1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _westGame1WinnerGuess(Wrap<String> w);
+
+  public String getWestGame1WinnerGuess() {
+    return westGame1WinnerGuess;
+  }
+  public void setWestGame1WinnerGuess(String o) {
+    this.westGame1WinnerGuess = SweetSixteen.staticSetWestGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetWestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen westGame1WinnerGuessInit() {
+    Wrap<String> westGame1WinnerGuessWrap = new Wrap<String>().var("westGame1WinnerGuess");
+    if(westGame1WinnerGuess == null) {
+      _westGame1WinnerGuess(westGame1WinnerGuessWrap);
+      Optional.ofNullable(westGame1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setWestGame1WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchWestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrWestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqWestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchWestGame1WinnerGuess(siteRequest_, SweetSixteen.staticSetWestGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	/////////////////////
   // westGame1Winner //
 	/////////////////////
@@ -837,6 +1117,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String staticJsonWestGame1Loser(String westGame1Loser) {
     return westGame1Loser;
+  }
+
+	//////////////////////////
+  // westGame2WinnerGuess //
+	//////////////////////////
+
+
+  /**
+   *  The entity westGame2WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String westGame2WinnerGuess;
+
+  /**
+   * <br> The entity westGame2WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:westGame2WinnerGuess">Find the entity westGame2WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _westGame2WinnerGuess(Wrap<String> w);
+
+  public String getWestGame2WinnerGuess() {
+    return westGame2WinnerGuess;
+  }
+  public void setWestGame2WinnerGuess(String o) {
+    this.westGame2WinnerGuess = SweetSixteen.staticSetWestGame2WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetWestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen westGame2WinnerGuessInit() {
+    Wrap<String> westGame2WinnerGuessWrap = new Wrap<String>().var("westGame2WinnerGuess");
+    if(westGame2WinnerGuess == null) {
+      _westGame2WinnerGuess(westGame2WinnerGuessWrap);
+      Optional.ofNullable(westGame2WinnerGuessWrap.getO()).ifPresent(o -> {
+        setWestGame2WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchWestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrWestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqWestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchWestGame2WinnerGuess(siteRequest_, SweetSixteen.staticSetWestGame2WinnerGuess(siteRequest_, o)).toString();
   }
 
 	/////////////////////
@@ -963,6 +1297,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return westGame2Loser;
   }
 
+	//////////////////////////
+  // eastGame1WinnerGuess //
+	//////////////////////////
+
+
+  /**
+   *  The entity eastGame1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String eastGame1WinnerGuess;
+
+  /**
+   * <br> The entity eastGame1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:eastGame1WinnerGuess">Find the entity eastGame1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _eastGame1WinnerGuess(Wrap<String> w);
+
+  public String getEastGame1WinnerGuess() {
+    return eastGame1WinnerGuess;
+  }
+  public void setEastGame1WinnerGuess(String o) {
+    this.eastGame1WinnerGuess = SweetSixteen.staticSetEastGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetEastGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen eastGame1WinnerGuessInit() {
+    Wrap<String> eastGame1WinnerGuessWrap = new Wrap<String>().var("eastGame1WinnerGuess");
+    if(eastGame1WinnerGuess == null) {
+      _eastGame1WinnerGuess(eastGame1WinnerGuessWrap);
+      Optional.ofNullable(eastGame1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setEastGame1WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchEastGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrEastGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqEastGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchEastGame1WinnerGuess(siteRequest_, SweetSixteen.staticSetEastGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	/////////////////////
   // eastGame1Winner //
 	/////////////////////
@@ -1085,6 +1473,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String staticJsonEastGame1Loser(String eastGame1Loser) {
     return eastGame1Loser;
+  }
+
+	//////////////////////////
+  // eastGame2WinnerGuess //
+	//////////////////////////
+
+
+  /**
+   *  The entity eastGame2WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String eastGame2WinnerGuess;
+
+  /**
+   * <br> The entity eastGame2WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:eastGame2WinnerGuess">Find the entity eastGame2WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _eastGame2WinnerGuess(Wrap<String> w);
+
+  public String getEastGame2WinnerGuess() {
+    return eastGame2WinnerGuess;
+  }
+  public void setEastGame2WinnerGuess(String o) {
+    this.eastGame2WinnerGuess = SweetSixteen.staticSetEastGame2WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetEastGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen eastGame2WinnerGuessInit() {
+    Wrap<String> eastGame2WinnerGuessWrap = new Wrap<String>().var("eastGame2WinnerGuess");
+    if(eastGame2WinnerGuess == null) {
+      _eastGame2WinnerGuess(eastGame2WinnerGuessWrap);
+      Optional.ofNullable(eastGame2WinnerGuessWrap.getO()).ifPresent(o -> {
+        setEastGame2WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchEastGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrEastGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqEastGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchEastGame2WinnerGuess(siteRequest_, SweetSixteen.staticSetEastGame2WinnerGuess(siteRequest_, o)).toString();
   }
 
 	/////////////////////
@@ -1211,6 +1653,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return eastGame2Loser;
   }
 
+	/////////////////////////////
+  // midwestGame1WinnerGuess //
+	/////////////////////////////
+
+
+  /**
+   *  The entity midwestGame1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String midwestGame1WinnerGuess;
+
+  /**
+   * <br> The entity midwestGame1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:midwestGame1WinnerGuess">Find the entity midwestGame1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _midwestGame1WinnerGuess(Wrap<String> w);
+
+  public String getMidwestGame1WinnerGuess() {
+    return midwestGame1WinnerGuess;
+  }
+  public void setMidwestGame1WinnerGuess(String o) {
+    this.midwestGame1WinnerGuess = SweetSixteen.staticSetMidwestGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetMidwestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen midwestGame1WinnerGuessInit() {
+    Wrap<String> midwestGame1WinnerGuessWrap = new Wrap<String>().var("midwestGame1WinnerGuess");
+    if(midwestGame1WinnerGuess == null) {
+      _midwestGame1WinnerGuess(midwestGame1WinnerGuessWrap);
+      Optional.ofNullable(midwestGame1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setMidwestGame1WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchMidwestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrMidwestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqMidwestGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchMidwestGame1WinnerGuess(siteRequest_, SweetSixteen.staticSetMidwestGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	////////////////////////
   // midwestGame1Winner //
 	////////////////////////
@@ -1333,6 +1829,60 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String staticJsonMidwestGame1Loser(String midwestGame1Loser) {
     return midwestGame1Loser;
+  }
+
+	/////////////////////////////
+  // midwestGame2WinnerGuess //
+	/////////////////////////////
+
+
+  /**
+   *  The entity midwestGame2WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String midwestGame2WinnerGuess;
+
+  /**
+   * <br> The entity midwestGame2WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:midwestGame2WinnerGuess">Find the entity midwestGame2WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _midwestGame2WinnerGuess(Wrap<String> w);
+
+  public String getMidwestGame2WinnerGuess() {
+    return midwestGame2WinnerGuess;
+  }
+  public void setMidwestGame2WinnerGuess(String o) {
+    this.midwestGame2WinnerGuess = SweetSixteen.staticSetMidwestGame2WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetMidwestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SweetSixteen midwestGame2WinnerGuessInit() {
+    Wrap<String> midwestGame2WinnerGuessWrap = new Wrap<String>().var("midwestGame2WinnerGuess");
+    if(midwestGame2WinnerGuess == null) {
+      _midwestGame2WinnerGuess(midwestGame2WinnerGuessWrap);
+      Optional.ofNullable(midwestGame2WinnerGuessWrap.getO()).ifPresent(o -> {
+        setMidwestGame2WinnerGuess(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static String staticSearchMidwestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrMidwestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqMidwestGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchMidwestGame2WinnerGuess(siteRequest_, SweetSixteen.staticSetMidwestGame2WinnerGuess(siteRequest_, o)).toString();
   }
 
 	////////////////////////
@@ -1550,24 +2100,49 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     Future.future(a -> a.complete()).compose(a -> {
       Promise<Void> promise2 = Promise.promise();
       try {
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      actualSweetSixteenSearchPromise().onSuccess(actualSweetSixteenSearch -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        actualSweetSixteenInit();
         guesserIdInit();
         yearInit();
         bracketIdInit();
         nameInit();
+        southGame1WinnerGuessInit();
         southGame1WinnerInit();
         southGame1LoserInit();
+        southGame2WinnerGuessInit();
         southGame2WinnerInit();
         southGame2LoserInit();
+        westGame1WinnerGuessInit();
         westGame1WinnerInit();
         westGame1LoserInit();
+        westGame2WinnerGuessInit();
         westGame2WinnerInit();
         westGame2LoserInit();
+        eastGame1WinnerGuessInit();
         eastGame1WinnerInit();
         eastGame1LoserInit();
+        eastGame2WinnerGuessInit();
         eastGame2WinnerInit();
         eastGame2LoserInit();
+        midwestGame1WinnerGuessInit();
         midwestGame1WinnerInit();
         midwestGame1LoserInit();
+        midwestGame2WinnerGuessInit();
         midwestGame2WinnerInit();
         midwestGame2LoserInit();
         eliteEightInit();
@@ -1594,6 +2169,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public void siteRequestSweetSixteen(SiteRequest siteRequest_) {
       super.siteRequestBaseModel(siteRequest_);
+    if(actualSweetSixteenSearch != null)
+      actualSweetSixteenSearch.setSiteRequest_(siteRequest_);
   }
 
   public void siteRequestForClass(SiteRequest siteRequest_) {
@@ -1624,6 +2201,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public Object obtainSweetSixteen(String var) {
     SweetSixteen oSweetSixteen = (SweetSixteen)this;
     switch(var) {
+      case "actualSweetSixteenSearch":
+        return oSweetSixteen.actualSweetSixteenSearch;
+      case "actualSweetSixteen":
+        return oSweetSixteen.actualSweetSixteen;
       case "guesserId":
         return oSweetSixteen.guesserId;
       case "year":
@@ -1632,34 +2213,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return oSweetSixteen.bracketId;
       case "name":
         return oSweetSixteen.name;
+      case "southGame1WinnerGuess":
+        return oSweetSixteen.southGame1WinnerGuess;
       case "southGame1Winner":
         return oSweetSixteen.southGame1Winner;
       case "southGame1Loser":
         return oSweetSixteen.southGame1Loser;
+      case "southGame2WinnerGuess":
+        return oSweetSixteen.southGame2WinnerGuess;
       case "southGame2Winner":
         return oSweetSixteen.southGame2Winner;
       case "southGame2Loser":
         return oSweetSixteen.southGame2Loser;
+      case "westGame1WinnerGuess":
+        return oSweetSixteen.westGame1WinnerGuess;
       case "westGame1Winner":
         return oSweetSixteen.westGame1Winner;
       case "westGame1Loser":
         return oSweetSixteen.westGame1Loser;
+      case "westGame2WinnerGuess":
+        return oSweetSixteen.westGame2WinnerGuess;
       case "westGame2Winner":
         return oSweetSixteen.westGame2Winner;
       case "westGame2Loser":
         return oSweetSixteen.westGame2Loser;
+      case "eastGame1WinnerGuess":
+        return oSweetSixteen.eastGame1WinnerGuess;
       case "eastGame1Winner":
         return oSweetSixteen.eastGame1Winner;
       case "eastGame1Loser":
         return oSweetSixteen.eastGame1Loser;
+      case "eastGame2WinnerGuess":
+        return oSweetSixteen.eastGame2WinnerGuess;
       case "eastGame2Winner":
         return oSweetSixteen.eastGame2Winner;
       case "eastGame2Loser":
         return oSweetSixteen.eastGame2Loser;
+      case "midwestGame1WinnerGuess":
+        return oSweetSixteen.midwestGame1WinnerGuess;
       case "midwestGame1Winner":
         return oSweetSixteen.midwestGame1Winner;
       case "midwestGame1Loser":
         return oSweetSixteen.midwestGame1Loser;
+      case "midwestGame2WinnerGuess":
+        return oSweetSixteen.midwestGame2WinnerGuess;
       case "midwestGame2Winner":
         return oSweetSixteen.midwestGame2Winner;
       case "midwestGame2Loser":
@@ -1813,6 +2410,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static Object staticSetSweetSixteen(String entityVar, SiteRequest siteRequest_, String v, SweetSixteen o) {
     switch(entityVar) {
+    case "actualSweetSixteen":
+      return SweetSixteen.staticSetActualSweetSixteen(siteRequest_, v);
     case "guesserId":
       return SweetSixteen.staticSetGuesserId(siteRequest_, v);
     case "year":
@@ -1821,34 +2420,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSetBracketId(siteRequest_, v);
     case "name":
       return SweetSixteen.staticSetName(siteRequest_, v);
+    case "southGame1WinnerGuess":
+      return SweetSixteen.staticSetSouthGame1WinnerGuess(siteRequest_, v);
     case "southGame1Winner":
       return SweetSixteen.staticSetSouthGame1Winner(siteRequest_, v);
     case "southGame1Loser":
       return SweetSixteen.staticSetSouthGame1Loser(siteRequest_, v);
+    case "southGame2WinnerGuess":
+      return SweetSixteen.staticSetSouthGame2WinnerGuess(siteRequest_, v);
     case "southGame2Winner":
       return SweetSixteen.staticSetSouthGame2Winner(siteRequest_, v);
     case "southGame2Loser":
       return SweetSixteen.staticSetSouthGame2Loser(siteRequest_, v);
+    case "westGame1WinnerGuess":
+      return SweetSixteen.staticSetWestGame1WinnerGuess(siteRequest_, v);
     case "westGame1Winner":
       return SweetSixteen.staticSetWestGame1Winner(siteRequest_, v);
     case "westGame1Loser":
       return SweetSixteen.staticSetWestGame1Loser(siteRequest_, v);
+    case "westGame2WinnerGuess":
+      return SweetSixteen.staticSetWestGame2WinnerGuess(siteRequest_, v);
     case "westGame2Winner":
       return SweetSixteen.staticSetWestGame2Winner(siteRequest_, v);
     case "westGame2Loser":
       return SweetSixteen.staticSetWestGame2Loser(siteRequest_, v);
+    case "eastGame1WinnerGuess":
+      return SweetSixteen.staticSetEastGame1WinnerGuess(siteRequest_, v);
     case "eastGame1Winner":
       return SweetSixteen.staticSetEastGame1Winner(siteRequest_, v);
     case "eastGame1Loser":
       return SweetSixteen.staticSetEastGame1Loser(siteRequest_, v);
+    case "eastGame2WinnerGuess":
+      return SweetSixteen.staticSetEastGame2WinnerGuess(siteRequest_, v);
     case "eastGame2Winner":
       return SweetSixteen.staticSetEastGame2Winner(siteRequest_, v);
     case "eastGame2Loser":
       return SweetSixteen.staticSetEastGame2Loser(siteRequest_, v);
+    case "midwestGame1WinnerGuess":
+      return SweetSixteen.staticSetMidwestGame1WinnerGuess(siteRequest_, v);
     case "midwestGame1Winner":
       return SweetSixteen.staticSetMidwestGame1Winner(siteRequest_, v);
     case "midwestGame1Loser":
       return SweetSixteen.staticSetMidwestGame1Loser(siteRequest_, v);
+    case "midwestGame2WinnerGuess":
+      return SweetSixteen.staticSetMidwestGame2WinnerGuess(siteRequest_, v);
     case "midwestGame2Winner":
       return SweetSixteen.staticSetMidwestGame2Winner(siteRequest_, v);
     case "midwestGame2Loser":
@@ -1899,6 +2514,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static Object staticSearchSweetSixteen(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualSweetSixteen":
+      return SweetSixteen.staticSearchActualSweetSixteen(siteRequest_, (JsonObject)o);
     case "guesserId":
       return SweetSixteen.staticSearchGuesserId(siteRequest_, (String)o);
     case "year":
@@ -1907,34 +2524,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchBracketId(siteRequest_, (String)o);
     case "name":
       return SweetSixteen.staticSearchName(siteRequest_, (String)o);
+    case "southGame1WinnerGuess":
+      return SweetSixteen.staticSearchSouthGame1WinnerGuess(siteRequest_, (String)o);
     case "southGame1Winner":
       return SweetSixteen.staticSearchSouthGame1Winner(siteRequest_, (String)o);
     case "southGame1Loser":
       return SweetSixteen.staticSearchSouthGame1Loser(siteRequest_, (String)o);
+    case "southGame2WinnerGuess":
+      return SweetSixteen.staticSearchSouthGame2WinnerGuess(siteRequest_, (String)o);
     case "southGame2Winner":
       return SweetSixteen.staticSearchSouthGame2Winner(siteRequest_, (String)o);
     case "southGame2Loser":
       return SweetSixteen.staticSearchSouthGame2Loser(siteRequest_, (String)o);
+    case "westGame1WinnerGuess":
+      return SweetSixteen.staticSearchWestGame1WinnerGuess(siteRequest_, (String)o);
     case "westGame1Winner":
       return SweetSixteen.staticSearchWestGame1Winner(siteRequest_, (String)o);
     case "westGame1Loser":
       return SweetSixteen.staticSearchWestGame1Loser(siteRequest_, (String)o);
+    case "westGame2WinnerGuess":
+      return SweetSixteen.staticSearchWestGame2WinnerGuess(siteRequest_, (String)o);
     case "westGame2Winner":
       return SweetSixteen.staticSearchWestGame2Winner(siteRequest_, (String)o);
     case "westGame2Loser":
       return SweetSixteen.staticSearchWestGame2Loser(siteRequest_, (String)o);
+    case "eastGame1WinnerGuess":
+      return SweetSixteen.staticSearchEastGame1WinnerGuess(siteRequest_, (String)o);
     case "eastGame1Winner":
       return SweetSixteen.staticSearchEastGame1Winner(siteRequest_, (String)o);
     case "eastGame1Loser":
       return SweetSixteen.staticSearchEastGame1Loser(siteRequest_, (String)o);
+    case "eastGame2WinnerGuess":
+      return SweetSixteen.staticSearchEastGame2WinnerGuess(siteRequest_, (String)o);
     case "eastGame2Winner":
       return SweetSixteen.staticSearchEastGame2Winner(siteRequest_, (String)o);
     case "eastGame2Loser":
       return SweetSixteen.staticSearchEastGame2Loser(siteRequest_, (String)o);
+    case "midwestGame1WinnerGuess":
+      return SweetSixteen.staticSearchMidwestGame1WinnerGuess(siteRequest_, (String)o);
     case "midwestGame1Winner":
       return SweetSixteen.staticSearchMidwestGame1Winner(siteRequest_, (String)o);
     case "midwestGame1Loser":
       return SweetSixteen.staticSearchMidwestGame1Loser(siteRequest_, (String)o);
+    case "midwestGame2WinnerGuess":
+      return SweetSixteen.staticSearchMidwestGame2WinnerGuess(siteRequest_, (String)o);
     case "midwestGame2Winner":
       return SweetSixteen.staticSearchMidwestGame2Winner(siteRequest_, (String)o);
     case "midwestGame2Loser":
@@ -1955,6 +2588,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static String staticSearchStrSweetSixteen(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualSweetSixteen":
+      return SweetSixteen.staticSearchStrActualSweetSixteen(siteRequest_, (String)o);
     case "guesserId":
       return SweetSixteen.staticSearchStrGuesserId(siteRequest_, (String)o);
     case "year":
@@ -1963,34 +2598,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchStrBracketId(siteRequest_, (String)o);
     case "name":
       return SweetSixteen.staticSearchStrName(siteRequest_, (String)o);
+    case "southGame1WinnerGuess":
+      return SweetSixteen.staticSearchStrSouthGame1WinnerGuess(siteRequest_, (String)o);
     case "southGame1Winner":
       return SweetSixteen.staticSearchStrSouthGame1Winner(siteRequest_, (String)o);
     case "southGame1Loser":
       return SweetSixteen.staticSearchStrSouthGame1Loser(siteRequest_, (String)o);
+    case "southGame2WinnerGuess":
+      return SweetSixteen.staticSearchStrSouthGame2WinnerGuess(siteRequest_, (String)o);
     case "southGame2Winner":
       return SweetSixteen.staticSearchStrSouthGame2Winner(siteRequest_, (String)o);
     case "southGame2Loser":
       return SweetSixteen.staticSearchStrSouthGame2Loser(siteRequest_, (String)o);
+    case "westGame1WinnerGuess":
+      return SweetSixteen.staticSearchStrWestGame1WinnerGuess(siteRequest_, (String)o);
     case "westGame1Winner":
       return SweetSixteen.staticSearchStrWestGame1Winner(siteRequest_, (String)o);
     case "westGame1Loser":
       return SweetSixteen.staticSearchStrWestGame1Loser(siteRequest_, (String)o);
+    case "westGame2WinnerGuess":
+      return SweetSixteen.staticSearchStrWestGame2WinnerGuess(siteRequest_, (String)o);
     case "westGame2Winner":
       return SweetSixteen.staticSearchStrWestGame2Winner(siteRequest_, (String)o);
     case "westGame2Loser":
       return SweetSixteen.staticSearchStrWestGame2Loser(siteRequest_, (String)o);
+    case "eastGame1WinnerGuess":
+      return SweetSixteen.staticSearchStrEastGame1WinnerGuess(siteRequest_, (String)o);
     case "eastGame1Winner":
       return SweetSixteen.staticSearchStrEastGame1Winner(siteRequest_, (String)o);
     case "eastGame1Loser":
       return SweetSixteen.staticSearchStrEastGame1Loser(siteRequest_, (String)o);
+    case "eastGame2WinnerGuess":
+      return SweetSixteen.staticSearchStrEastGame2WinnerGuess(siteRequest_, (String)o);
     case "eastGame2Winner":
       return SweetSixteen.staticSearchStrEastGame2Winner(siteRequest_, (String)o);
     case "eastGame2Loser":
       return SweetSixteen.staticSearchStrEastGame2Loser(siteRequest_, (String)o);
+    case "midwestGame1WinnerGuess":
+      return SweetSixteen.staticSearchStrMidwestGame1WinnerGuess(siteRequest_, (String)o);
     case "midwestGame1Winner":
       return SweetSixteen.staticSearchStrMidwestGame1Winner(siteRequest_, (String)o);
     case "midwestGame1Loser":
       return SweetSixteen.staticSearchStrMidwestGame1Loser(siteRequest_, (String)o);
+    case "midwestGame2WinnerGuess":
+      return SweetSixteen.staticSearchStrMidwestGame2WinnerGuess(siteRequest_, (String)o);
     case "midwestGame2Winner":
       return SweetSixteen.staticSearchStrMidwestGame2Winner(siteRequest_, (String)o);
     case "midwestGame2Loser":
@@ -2011,6 +2662,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static String staticSearchFqSweetSixteen(String entityVar, SiteRequest siteRequest_, String o) {
     switch(entityVar) {
+    case "actualSweetSixteen":
+      return SweetSixteen.staticSearchFqActualSweetSixteen(siteRequest_, o);
     case "guesserId":
       return SweetSixteen.staticSearchFqGuesserId(siteRequest_, o);
     case "year":
@@ -2019,34 +2672,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchFqBracketId(siteRequest_, o);
     case "name":
       return SweetSixteen.staticSearchFqName(siteRequest_, o);
+    case "southGame1WinnerGuess":
+      return SweetSixteen.staticSearchFqSouthGame1WinnerGuess(siteRequest_, o);
     case "southGame1Winner":
       return SweetSixteen.staticSearchFqSouthGame1Winner(siteRequest_, o);
     case "southGame1Loser":
       return SweetSixteen.staticSearchFqSouthGame1Loser(siteRequest_, o);
+    case "southGame2WinnerGuess":
+      return SweetSixteen.staticSearchFqSouthGame2WinnerGuess(siteRequest_, o);
     case "southGame2Winner":
       return SweetSixteen.staticSearchFqSouthGame2Winner(siteRequest_, o);
     case "southGame2Loser":
       return SweetSixteen.staticSearchFqSouthGame2Loser(siteRequest_, o);
+    case "westGame1WinnerGuess":
+      return SweetSixteen.staticSearchFqWestGame1WinnerGuess(siteRequest_, o);
     case "westGame1Winner":
       return SweetSixteen.staticSearchFqWestGame1Winner(siteRequest_, o);
     case "westGame1Loser":
       return SweetSixteen.staticSearchFqWestGame1Loser(siteRequest_, o);
+    case "westGame2WinnerGuess":
+      return SweetSixteen.staticSearchFqWestGame2WinnerGuess(siteRequest_, o);
     case "westGame2Winner":
       return SweetSixteen.staticSearchFqWestGame2Winner(siteRequest_, o);
     case "westGame2Loser":
       return SweetSixteen.staticSearchFqWestGame2Loser(siteRequest_, o);
+    case "eastGame1WinnerGuess":
+      return SweetSixteen.staticSearchFqEastGame1WinnerGuess(siteRequest_, o);
     case "eastGame1Winner":
       return SweetSixteen.staticSearchFqEastGame1Winner(siteRequest_, o);
     case "eastGame1Loser":
       return SweetSixteen.staticSearchFqEastGame1Loser(siteRequest_, o);
+    case "eastGame2WinnerGuess":
+      return SweetSixteen.staticSearchFqEastGame2WinnerGuess(siteRequest_, o);
     case "eastGame2Winner":
       return SweetSixteen.staticSearchFqEastGame2Winner(siteRequest_, o);
     case "eastGame2Loser":
       return SweetSixteen.staticSearchFqEastGame2Loser(siteRequest_, o);
+    case "midwestGame1WinnerGuess":
+      return SweetSixteen.staticSearchFqMidwestGame1WinnerGuess(siteRequest_, o);
     case "midwestGame1Winner":
       return SweetSixteen.staticSearchFqMidwestGame1Winner(siteRequest_, o);
     case "midwestGame1Loser":
       return SweetSixteen.staticSearchFqMidwestGame1Loser(siteRequest_, o);
+    case "midwestGame2WinnerGuess":
+      return SweetSixteen.staticSearchFqMidwestGame2WinnerGuess(siteRequest_, o);
     case "midwestGame2Winner":
       return SweetSixteen.staticSearchFqMidwestGame2Winner(siteRequest_, o);
     case "midwestGame2Loser":
@@ -2224,6 +2893,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     saves = Optional.ofNullable((ArrayList<String>)doc.get("saves_docvalues_strings")).orElse(new ArrayList<String>());
     if(saves != null) {
 
+      if(saves.contains("actualSweetSixteen")) {
+        String actualSweetSixteen = (String)doc.get("actualSweetSixteen_docvalues_string");
+        if(actualSweetSixteen != null)
+          oSweetSixteen.setActualSweetSixteen(actualSweetSixteen);
+      }
+
       String guesserId = (String)doc.get("guesserId_docvalues_string");
       if(guesserId != null)
         oSweetSixteen.setGuesserId(guesserId);
@@ -2246,6 +2921,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
           oSweetSixteen.setName(name);
       }
 
+      if(saves.contains("southGame1WinnerGuess")) {
+        String southGame1WinnerGuess = (String)doc.get("southGame1WinnerGuess_docvalues_string");
+        if(southGame1WinnerGuess != null)
+          oSweetSixteen.setSouthGame1WinnerGuess(southGame1WinnerGuess);
+      }
+
       String southGame1Winner = (String)doc.get("southGame1Winner_docvalues_string");
       if(southGame1Winner != null)
         oSweetSixteen.setSouthGame1Winner(southGame1Winner);
@@ -2253,6 +2934,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       String southGame1Loser = (String)doc.get("southGame1Loser_docvalues_string");
       if(southGame1Loser != null)
         oSweetSixteen.setSouthGame1Loser(southGame1Loser);
+
+      if(saves.contains("southGame2WinnerGuess")) {
+        String southGame2WinnerGuess = (String)doc.get("southGame2WinnerGuess_docvalues_string");
+        if(southGame2WinnerGuess != null)
+          oSweetSixteen.setSouthGame2WinnerGuess(southGame2WinnerGuess);
+      }
 
       String southGame2Winner = (String)doc.get("southGame2Winner_docvalues_string");
       if(southGame2Winner != null)
@@ -2262,6 +2949,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       if(southGame2Loser != null)
         oSweetSixteen.setSouthGame2Loser(southGame2Loser);
 
+      if(saves.contains("westGame1WinnerGuess")) {
+        String westGame1WinnerGuess = (String)doc.get("westGame1WinnerGuess_docvalues_string");
+        if(westGame1WinnerGuess != null)
+          oSweetSixteen.setWestGame1WinnerGuess(westGame1WinnerGuess);
+      }
+
       String westGame1Winner = (String)doc.get("westGame1Winner_docvalues_string");
       if(westGame1Winner != null)
         oSweetSixteen.setWestGame1Winner(westGame1Winner);
@@ -2269,6 +2962,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       String westGame1Loser = (String)doc.get("westGame1Loser_docvalues_string");
       if(westGame1Loser != null)
         oSweetSixteen.setWestGame1Loser(westGame1Loser);
+
+      if(saves.contains("westGame2WinnerGuess")) {
+        String westGame2WinnerGuess = (String)doc.get("westGame2WinnerGuess_docvalues_string");
+        if(westGame2WinnerGuess != null)
+          oSweetSixteen.setWestGame2WinnerGuess(westGame2WinnerGuess);
+      }
 
       String westGame2Winner = (String)doc.get("westGame2Winner_docvalues_string");
       if(westGame2Winner != null)
@@ -2278,6 +2977,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       if(westGame2Loser != null)
         oSweetSixteen.setWestGame2Loser(westGame2Loser);
 
+      if(saves.contains("eastGame1WinnerGuess")) {
+        String eastGame1WinnerGuess = (String)doc.get("eastGame1WinnerGuess_docvalues_string");
+        if(eastGame1WinnerGuess != null)
+          oSweetSixteen.setEastGame1WinnerGuess(eastGame1WinnerGuess);
+      }
+
       String eastGame1Winner = (String)doc.get("eastGame1Winner_docvalues_string");
       if(eastGame1Winner != null)
         oSweetSixteen.setEastGame1Winner(eastGame1Winner);
@@ -2285,6 +2990,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       String eastGame1Loser = (String)doc.get("eastGame1Loser_docvalues_string");
       if(eastGame1Loser != null)
         oSweetSixteen.setEastGame1Loser(eastGame1Loser);
+
+      if(saves.contains("eastGame2WinnerGuess")) {
+        String eastGame2WinnerGuess = (String)doc.get("eastGame2WinnerGuess_docvalues_string");
+        if(eastGame2WinnerGuess != null)
+          oSweetSixteen.setEastGame2WinnerGuess(eastGame2WinnerGuess);
+      }
 
       String eastGame2Winner = (String)doc.get("eastGame2Winner_docvalues_string");
       if(eastGame2Winner != null)
@@ -2294,6 +3005,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       if(eastGame2Loser != null)
         oSweetSixteen.setEastGame2Loser(eastGame2Loser);
 
+      if(saves.contains("midwestGame1WinnerGuess")) {
+        String midwestGame1WinnerGuess = (String)doc.get("midwestGame1WinnerGuess_docvalues_string");
+        if(midwestGame1WinnerGuess != null)
+          oSweetSixteen.setMidwestGame1WinnerGuess(midwestGame1WinnerGuess);
+      }
+
       String midwestGame1Winner = (String)doc.get("midwestGame1Winner_docvalues_string");
       if(midwestGame1Winner != null)
         oSweetSixteen.setMidwestGame1Winner(midwestGame1Winner);
@@ -2301,6 +3018,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       String midwestGame1Loser = (String)doc.get("midwestGame1Loser_docvalues_string");
       if(midwestGame1Loser != null)
         oSweetSixteen.setMidwestGame1Loser(midwestGame1Loser);
+
+      if(saves.contains("midwestGame2WinnerGuess")) {
+        String midwestGame2WinnerGuess = (String)doc.get("midwestGame2WinnerGuess_docvalues_string");
+        if(midwestGame2WinnerGuess != null)
+          oSweetSixteen.setMidwestGame2WinnerGuess(midwestGame2WinnerGuess);
+      }
 
       String midwestGame2Winner = (String)doc.get("midwestGame2Winner_docvalues_string");
       if(midwestGame2Winner != null)
@@ -2319,6 +3042,9 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
 
   public void indexSweetSixteen(JsonObject doc) {
+    if(actualSweetSixteen != null) {
+      doc.put("actualSweetSixteen_docvalues_string", actualSweetSixteen.encode());
+    }
     if(guesserId != null) {
       doc.put("guesserId_docvalues_string", guesserId);
     }
@@ -2331,11 +3057,17 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(name != null) {
       doc.put("name_docvalues_string", name);
     }
+    if(southGame1WinnerGuess != null) {
+      doc.put("southGame1WinnerGuess_docvalues_string", southGame1WinnerGuess);
+    }
     if(southGame1Winner != null) {
       doc.put("southGame1Winner_docvalues_string", southGame1Winner);
     }
     if(southGame1Loser != null) {
       doc.put("southGame1Loser_docvalues_string", southGame1Loser);
+    }
+    if(southGame2WinnerGuess != null) {
+      doc.put("southGame2WinnerGuess_docvalues_string", southGame2WinnerGuess);
     }
     if(southGame2Winner != null) {
       doc.put("southGame2Winner_docvalues_string", southGame2Winner);
@@ -2343,11 +3075,17 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(southGame2Loser != null) {
       doc.put("southGame2Loser_docvalues_string", southGame2Loser);
     }
+    if(westGame1WinnerGuess != null) {
+      doc.put("westGame1WinnerGuess_docvalues_string", westGame1WinnerGuess);
+    }
     if(westGame1Winner != null) {
       doc.put("westGame1Winner_docvalues_string", westGame1Winner);
     }
     if(westGame1Loser != null) {
       doc.put("westGame1Loser_docvalues_string", westGame1Loser);
+    }
+    if(westGame2WinnerGuess != null) {
+      doc.put("westGame2WinnerGuess_docvalues_string", westGame2WinnerGuess);
     }
     if(westGame2Winner != null) {
       doc.put("westGame2Winner_docvalues_string", westGame2Winner);
@@ -2355,11 +3093,17 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(westGame2Loser != null) {
       doc.put("westGame2Loser_docvalues_string", westGame2Loser);
     }
+    if(eastGame1WinnerGuess != null) {
+      doc.put("eastGame1WinnerGuess_docvalues_string", eastGame1WinnerGuess);
+    }
     if(eastGame1Winner != null) {
       doc.put("eastGame1Winner_docvalues_string", eastGame1Winner);
     }
     if(eastGame1Loser != null) {
       doc.put("eastGame1Loser_docvalues_string", eastGame1Loser);
+    }
+    if(eastGame2WinnerGuess != null) {
+      doc.put("eastGame2WinnerGuess_docvalues_string", eastGame2WinnerGuess);
     }
     if(eastGame2Winner != null) {
       doc.put("eastGame2Winner_docvalues_string", eastGame2Winner);
@@ -2367,11 +3111,17 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(eastGame2Loser != null) {
       doc.put("eastGame2Loser_docvalues_string", eastGame2Loser);
     }
+    if(midwestGame1WinnerGuess != null) {
+      doc.put("midwestGame1WinnerGuess_docvalues_string", midwestGame1WinnerGuess);
+    }
     if(midwestGame1Winner != null) {
       doc.put("midwestGame1Winner_docvalues_string", midwestGame1Winner);
     }
     if(midwestGame1Loser != null) {
       doc.put("midwestGame1Loser_docvalues_string", midwestGame1Loser);
+    }
+    if(midwestGame2WinnerGuess != null) {
+      doc.put("midwestGame2WinnerGuess_docvalues_string", midwestGame2WinnerGuess);
     }
     if(midwestGame2Winner != null) {
       doc.put("midwestGame2Winner_docvalues_string", midwestGame2Winner);
@@ -2388,6 +3138,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String varStoredSweetSixteen(String entityVar) {
     switch(entityVar) {
+      case "actualSweetSixteen":
+        return "actualSweetSixteen_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
       case "year":
@@ -2396,34 +3148,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "southGame1WinnerGuess":
+        return "southGame1WinnerGuess_docvalues_string";
       case "southGame1Winner":
         return "southGame1Winner_docvalues_string";
       case "southGame1Loser":
         return "southGame1Loser_docvalues_string";
+      case "southGame2WinnerGuess":
+        return "southGame2WinnerGuess_docvalues_string";
       case "southGame2Winner":
         return "southGame2Winner_docvalues_string";
       case "southGame2Loser":
         return "southGame2Loser_docvalues_string";
+      case "westGame1WinnerGuess":
+        return "westGame1WinnerGuess_docvalues_string";
       case "westGame1Winner":
         return "westGame1Winner_docvalues_string";
       case "westGame1Loser":
         return "westGame1Loser_docvalues_string";
+      case "westGame2WinnerGuess":
+        return "westGame2WinnerGuess_docvalues_string";
       case "westGame2Winner":
         return "westGame2Winner_docvalues_string";
       case "westGame2Loser":
         return "westGame2Loser_docvalues_string";
+      case "eastGame1WinnerGuess":
+        return "eastGame1WinnerGuess_docvalues_string";
       case "eastGame1Winner":
         return "eastGame1Winner_docvalues_string";
       case "eastGame1Loser":
         return "eastGame1Loser_docvalues_string";
+      case "eastGame2WinnerGuess":
+        return "eastGame2WinnerGuess_docvalues_string";
       case "eastGame2Winner":
         return "eastGame2Winner_docvalues_string";
       case "eastGame2Loser":
         return "eastGame2Loser_docvalues_string";
+      case "midwestGame1WinnerGuess":
+        return "midwestGame1WinnerGuess_docvalues_string";
       case "midwestGame1Winner":
         return "midwestGame1Winner_docvalues_string";
       case "midwestGame1Loser":
         return "midwestGame1Loser_docvalues_string";
+      case "midwestGame2WinnerGuess":
+        return "midwestGame2WinnerGuess_docvalues_string";
       case "midwestGame2Winner":
         return "midwestGame2Winner_docvalues_string";
       case "midwestGame2Loser":
@@ -2437,6 +3205,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String varIndexedSweetSixteen(String entityVar) {
     switch(entityVar) {
+      case "actualSweetSixteen":
+        return "actualSweetSixteen_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
       case "year":
@@ -2445,34 +3215,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "southGame1WinnerGuess":
+        return "southGame1WinnerGuess_docvalues_string";
       case "southGame1Winner":
         return "southGame1Winner_docvalues_string";
       case "southGame1Loser":
         return "southGame1Loser_docvalues_string";
+      case "southGame2WinnerGuess":
+        return "southGame2WinnerGuess_docvalues_string";
       case "southGame2Winner":
         return "southGame2Winner_docvalues_string";
       case "southGame2Loser":
         return "southGame2Loser_docvalues_string";
+      case "westGame1WinnerGuess":
+        return "westGame1WinnerGuess_docvalues_string";
       case "westGame1Winner":
         return "westGame1Winner_docvalues_string";
       case "westGame1Loser":
         return "westGame1Loser_docvalues_string";
+      case "westGame2WinnerGuess":
+        return "westGame2WinnerGuess_docvalues_string";
       case "westGame2Winner":
         return "westGame2Winner_docvalues_string";
       case "westGame2Loser":
         return "westGame2Loser_docvalues_string";
+      case "eastGame1WinnerGuess":
+        return "eastGame1WinnerGuess_docvalues_string";
       case "eastGame1Winner":
         return "eastGame1Winner_docvalues_string";
       case "eastGame1Loser":
         return "eastGame1Loser_docvalues_string";
+      case "eastGame2WinnerGuess":
+        return "eastGame2WinnerGuess_docvalues_string";
       case "eastGame2Winner":
         return "eastGame2Winner_docvalues_string";
       case "eastGame2Loser":
         return "eastGame2Loser_docvalues_string";
+      case "midwestGame1WinnerGuess":
+        return "midwestGame1WinnerGuess_docvalues_string";
       case "midwestGame1Winner":
         return "midwestGame1Winner_docvalues_string";
       case "midwestGame1Loser":
         return "midwestGame1Loser_docvalues_string";
+      case "midwestGame2WinnerGuess":
+        return "midwestGame2WinnerGuess_docvalues_string";
       case "midwestGame2Winner":
         return "midwestGame2Winner_docvalues_string";
       case "midwestGame2Loser":
@@ -2486,6 +3272,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String searchVarSweetSixteen(String searchVar) {
     switch(searchVar) {
+      case "actualSweetSixteen_docvalues_string":
+        return "actualSweetSixteen";
       case "guesserId_docvalues_string":
         return "guesserId";
       case "year_docvalues_int":
@@ -2494,34 +3282,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "bracketId";
       case "name_docvalues_string":
         return "name";
+      case "southGame1WinnerGuess_docvalues_string":
+        return "southGame1WinnerGuess";
       case "southGame1Winner_docvalues_string":
         return "southGame1Winner";
       case "southGame1Loser_docvalues_string":
         return "southGame1Loser";
+      case "southGame2WinnerGuess_docvalues_string":
+        return "southGame2WinnerGuess";
       case "southGame2Winner_docvalues_string":
         return "southGame2Winner";
       case "southGame2Loser_docvalues_string":
         return "southGame2Loser";
+      case "westGame1WinnerGuess_docvalues_string":
+        return "westGame1WinnerGuess";
       case "westGame1Winner_docvalues_string":
         return "westGame1Winner";
       case "westGame1Loser_docvalues_string":
         return "westGame1Loser";
+      case "westGame2WinnerGuess_docvalues_string":
+        return "westGame2WinnerGuess";
       case "westGame2Winner_docvalues_string":
         return "westGame2Winner";
       case "westGame2Loser_docvalues_string":
         return "westGame2Loser";
+      case "eastGame1WinnerGuess_docvalues_string":
+        return "eastGame1WinnerGuess";
       case "eastGame1Winner_docvalues_string":
         return "eastGame1Winner";
       case "eastGame1Loser_docvalues_string":
         return "eastGame1Loser";
+      case "eastGame2WinnerGuess_docvalues_string":
+        return "eastGame2WinnerGuess";
       case "eastGame2Winner_docvalues_string":
         return "eastGame2Winner";
       case "eastGame2Loser_docvalues_string":
         return "eastGame2Loser";
+      case "midwestGame1WinnerGuess_docvalues_string":
+        return "midwestGame1WinnerGuess";
       case "midwestGame1Winner_docvalues_string":
         return "midwestGame1Winner";
       case "midwestGame1Loser_docvalues_string":
         return "midwestGame1Loser";
+      case "midwestGame2WinnerGuess_docvalues_string":
+        return "midwestGame2WinnerGuess";
       case "midwestGame2Winner_docvalues_string":
         return "midwestGame2Winner";
       case "midwestGame2Loser_docvalues_string":
@@ -2558,24 +3362,33 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     SweetSixteen oSweetSixteen = (SweetSixteen)this;
     SiteRequest siteRequest = oSweetSixteen.getSiteRequest_();
 
+    oSweetSixteen.setActualSweetSixteen(Optional.ofNullable(doc.get("actualSweetSixteen_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setSouthGame1WinnerGuess(Optional.ofNullable(doc.get("southGame1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setSouthGame1Winner(Optional.ofNullable(doc.get("southGame1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setSouthGame1Loser(Optional.ofNullable(doc.get("southGame1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setSouthGame2WinnerGuess(Optional.ofNullable(doc.get("southGame2WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setSouthGame2Winner(Optional.ofNullable(doc.get("southGame2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setSouthGame2Loser(Optional.ofNullable(doc.get("southGame2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setWestGame1WinnerGuess(Optional.ofNullable(doc.get("westGame1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setWestGame1Winner(Optional.ofNullable(doc.get("westGame1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setWestGame1Loser(Optional.ofNullable(doc.get("westGame1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setWestGame2WinnerGuess(Optional.ofNullable(doc.get("westGame2WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setWestGame2Winner(Optional.ofNullable(doc.get("westGame2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setWestGame2Loser(Optional.ofNullable(doc.get("westGame2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setEastGame1WinnerGuess(Optional.ofNullable(doc.get("eastGame1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEastGame1Winner(Optional.ofNullable(doc.get("eastGame1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEastGame1Loser(Optional.ofNullable(doc.get("eastGame1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setEastGame2WinnerGuess(Optional.ofNullable(doc.get("eastGame2WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEastGame2Winner(Optional.ofNullable(doc.get("eastGame2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEastGame2Loser(Optional.ofNullable(doc.get("eastGame2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setMidwestGame1WinnerGuess(Optional.ofNullable(doc.get("midwestGame1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setMidwestGame1Winner(Optional.ofNullable(doc.get("midwestGame1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setMidwestGame1Loser(Optional.ofNullable(doc.get("midwestGame1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setMidwestGame2WinnerGuess(Optional.ofNullable(doc.get("midwestGame2WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setMidwestGame2Winner(Optional.ofNullable(doc.get("midwestGame2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setMidwestGame2Loser(Optional.ofNullable(doc.get("midwestGame2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEliteEight(Optional.ofNullable(doc.get("eliteEight_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -2592,6 +3405,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     Object o = Optional.ofNullable(apiRequest).map(ApiRequest::getOriginal).orElse(null);
     if(o != null && o instanceof SweetSixteen) {
       SweetSixteen original = (SweetSixteen)o;
+      if(!Objects.equals(actualSweetSixteen, original.getActualSweetSixteen()))
+        apiRequest.addVars("actualSweetSixteen");
       if(!Objects.equals(guesserId, original.getGuesserId()))
         apiRequest.addVars("guesserId");
       if(!Objects.equals(year, original.getYear()))
@@ -2600,34 +3415,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         apiRequest.addVars("bracketId");
       if(!Objects.equals(name, original.getName()))
         apiRequest.addVars("name");
+      if(!Objects.equals(southGame1WinnerGuess, original.getSouthGame1WinnerGuess()))
+        apiRequest.addVars("southGame1WinnerGuess");
       if(!Objects.equals(southGame1Winner, original.getSouthGame1Winner()))
         apiRequest.addVars("southGame1Winner");
       if(!Objects.equals(southGame1Loser, original.getSouthGame1Loser()))
         apiRequest.addVars("southGame1Loser");
+      if(!Objects.equals(southGame2WinnerGuess, original.getSouthGame2WinnerGuess()))
+        apiRequest.addVars("southGame2WinnerGuess");
       if(!Objects.equals(southGame2Winner, original.getSouthGame2Winner()))
         apiRequest.addVars("southGame2Winner");
       if(!Objects.equals(southGame2Loser, original.getSouthGame2Loser()))
         apiRequest.addVars("southGame2Loser");
+      if(!Objects.equals(westGame1WinnerGuess, original.getWestGame1WinnerGuess()))
+        apiRequest.addVars("westGame1WinnerGuess");
       if(!Objects.equals(westGame1Winner, original.getWestGame1Winner()))
         apiRequest.addVars("westGame1Winner");
       if(!Objects.equals(westGame1Loser, original.getWestGame1Loser()))
         apiRequest.addVars("westGame1Loser");
+      if(!Objects.equals(westGame2WinnerGuess, original.getWestGame2WinnerGuess()))
+        apiRequest.addVars("westGame2WinnerGuess");
       if(!Objects.equals(westGame2Winner, original.getWestGame2Winner()))
         apiRequest.addVars("westGame2Winner");
       if(!Objects.equals(westGame2Loser, original.getWestGame2Loser()))
         apiRequest.addVars("westGame2Loser");
+      if(!Objects.equals(eastGame1WinnerGuess, original.getEastGame1WinnerGuess()))
+        apiRequest.addVars("eastGame1WinnerGuess");
       if(!Objects.equals(eastGame1Winner, original.getEastGame1Winner()))
         apiRequest.addVars("eastGame1Winner");
       if(!Objects.equals(eastGame1Loser, original.getEastGame1Loser()))
         apiRequest.addVars("eastGame1Loser");
+      if(!Objects.equals(eastGame2WinnerGuess, original.getEastGame2WinnerGuess()))
+        apiRequest.addVars("eastGame2WinnerGuess");
       if(!Objects.equals(eastGame2Winner, original.getEastGame2Winner()))
         apiRequest.addVars("eastGame2Winner");
       if(!Objects.equals(eastGame2Loser, original.getEastGame2Loser()))
         apiRequest.addVars("eastGame2Loser");
+      if(!Objects.equals(midwestGame1WinnerGuess, original.getMidwestGame1WinnerGuess()))
+        apiRequest.addVars("midwestGame1WinnerGuess");
       if(!Objects.equals(midwestGame1Winner, original.getMidwestGame1Winner()))
         apiRequest.addVars("midwestGame1Winner");
       if(!Objects.equals(midwestGame1Loser, original.getMidwestGame1Loser()))
         apiRequest.addVars("midwestGame1Loser");
+      if(!Objects.equals(midwestGame2WinnerGuess, original.getMidwestGame2WinnerGuess()))
+        apiRequest.addVars("midwestGame2WinnerGuess");
       if(!Objects.equals(midwestGame2Winner, original.getMidwestGame2Winner()))
         apiRequest.addVars("midwestGame2Winner");
       if(!Objects.equals(midwestGame2Loser, original.getMidwestGame2Loser()))
@@ -2645,24 +3476,33 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   @Override public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
+    sb.append(Optional.ofNullable(actualSweetSixteen).map(v -> "actualSweetSixteen: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(southGame1WinnerGuess).map(v -> "southGame1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(southGame1Winner).map(v -> "southGame1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(southGame1Loser).map(v -> "southGame1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(southGame2WinnerGuess).map(v -> "southGame2WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(southGame2Winner).map(v -> "southGame2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(southGame2Loser).map(v -> "southGame2Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(westGame1WinnerGuess).map(v -> "westGame1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(westGame1Winner).map(v -> "westGame1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(westGame1Loser).map(v -> "westGame1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(westGame2WinnerGuess).map(v -> "westGame2WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(westGame2Winner).map(v -> "westGame2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(westGame2Loser).map(v -> "westGame2Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(eastGame1WinnerGuess).map(v -> "eastGame1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eastGame1Winner).map(v -> "eastGame1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eastGame1Loser).map(v -> "eastGame1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(eastGame2WinnerGuess).map(v -> "eastGame2WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eastGame2Winner).map(v -> "eastGame2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eastGame2Loser).map(v -> "eastGame2Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(midwestGame1WinnerGuess).map(v -> "midwestGame1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame1Winner).map(v -> "midwestGame1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame1Loser).map(v -> "midwestGame1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(midwestGame2WinnerGuess).map(v -> "midwestGame2WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame2Winner).map(v -> "midwestGame2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame2Loser).map(v -> "midwestGame2Loser: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eliteEight).map(v -> "eliteEight: \"" + v + "\"\n" ).orElse(""));
@@ -2676,6 +3516,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static String getClassApiAddress() {
     return CLASS_API_ADDRESS_SweetSixteen;
   }
+  public static final String VAR_actualSweetSixteenSearch = "actualSweetSixteenSearch";
+  public static final String SET_actualSweetSixteenSearch = "setActualSweetSixteenSearch";
+  public static final String VAR_actualSweetSixteen = "actualSweetSixteen";
+  public static final String SET_actualSweetSixteen = "setActualSweetSixteen";
   public static final String VAR_guesserId = "guesserId";
   public static final String SET_guesserId = "setGuesserId";
   public static final String VAR_year = "year";
@@ -2684,34 +3528,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String SET_bracketId = "setBracketId";
   public static final String VAR_name = "name";
   public static final String SET_name = "setName";
+  public static final String VAR_southGame1WinnerGuess = "southGame1WinnerGuess";
+  public static final String SET_southGame1WinnerGuess = "setSouthGame1WinnerGuess";
   public static final String VAR_southGame1Winner = "southGame1Winner";
   public static final String SET_southGame1Winner = "setSouthGame1Winner";
   public static final String VAR_southGame1Loser = "southGame1Loser";
   public static final String SET_southGame1Loser = "setSouthGame1Loser";
+  public static final String VAR_southGame2WinnerGuess = "southGame2WinnerGuess";
+  public static final String SET_southGame2WinnerGuess = "setSouthGame2WinnerGuess";
   public static final String VAR_southGame2Winner = "southGame2Winner";
   public static final String SET_southGame2Winner = "setSouthGame2Winner";
   public static final String VAR_southGame2Loser = "southGame2Loser";
   public static final String SET_southGame2Loser = "setSouthGame2Loser";
+  public static final String VAR_westGame1WinnerGuess = "westGame1WinnerGuess";
+  public static final String SET_westGame1WinnerGuess = "setWestGame1WinnerGuess";
   public static final String VAR_westGame1Winner = "westGame1Winner";
   public static final String SET_westGame1Winner = "setWestGame1Winner";
   public static final String VAR_westGame1Loser = "westGame1Loser";
   public static final String SET_westGame1Loser = "setWestGame1Loser";
+  public static final String VAR_westGame2WinnerGuess = "westGame2WinnerGuess";
+  public static final String SET_westGame2WinnerGuess = "setWestGame2WinnerGuess";
   public static final String VAR_westGame2Winner = "westGame2Winner";
   public static final String SET_westGame2Winner = "setWestGame2Winner";
   public static final String VAR_westGame2Loser = "westGame2Loser";
   public static final String SET_westGame2Loser = "setWestGame2Loser";
+  public static final String VAR_eastGame1WinnerGuess = "eastGame1WinnerGuess";
+  public static final String SET_eastGame1WinnerGuess = "setEastGame1WinnerGuess";
   public static final String VAR_eastGame1Winner = "eastGame1Winner";
   public static final String SET_eastGame1Winner = "setEastGame1Winner";
   public static final String VAR_eastGame1Loser = "eastGame1Loser";
   public static final String SET_eastGame1Loser = "setEastGame1Loser";
+  public static final String VAR_eastGame2WinnerGuess = "eastGame2WinnerGuess";
+  public static final String SET_eastGame2WinnerGuess = "setEastGame2WinnerGuess";
   public static final String VAR_eastGame2Winner = "eastGame2Winner";
   public static final String SET_eastGame2Winner = "setEastGame2Winner";
   public static final String VAR_eastGame2Loser = "eastGame2Loser";
   public static final String SET_eastGame2Loser = "setEastGame2Loser";
+  public static final String VAR_midwestGame1WinnerGuess = "midwestGame1WinnerGuess";
+  public static final String SET_midwestGame1WinnerGuess = "setMidwestGame1WinnerGuess";
   public static final String VAR_midwestGame1Winner = "midwestGame1Winner";
   public static final String SET_midwestGame1Winner = "setMidwestGame1Winner";
   public static final String VAR_midwestGame1Loser = "midwestGame1Loser";
   public static final String SET_midwestGame1Loser = "setMidwestGame1Loser";
+  public static final String VAR_midwestGame2WinnerGuess = "midwestGame2WinnerGuess";
+  public static final String SET_midwestGame2WinnerGuess = "setMidwestGame2WinnerGuess";
   public static final String VAR_midwestGame2Winner = "midwestGame2Winner";
   public static final String SET_midwestGame2Winner = "setMidwestGame2Winner";
   public static final String VAR_midwestGame2Loser = "midwestGame2Loser";
@@ -2743,24 +3603,34 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return vars;
   }
 
+  public static final String DISPLAY_NAME_actualSweetSixteenSearch = "";
+  public static final String DISPLAY_NAME_actualSweetSixteen = "Actual Sweet Sixteen bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
   public static final String DISPLAY_NAME_year = "year";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
+  public static final String DISPLAY_NAME_southGame1WinnerGuess = "South game 1 guess";
   public static final String DISPLAY_NAME_southGame1Winner = "South game 1 winner";
   public static final String DISPLAY_NAME_southGame1Loser = "South game 1 loser";
+  public static final String DISPLAY_NAME_southGame2WinnerGuess = "Actual South game 2 winner";
   public static final String DISPLAY_NAME_southGame2Winner = "South game 2 winner";
   public static final String DISPLAY_NAME_southGame2Loser = "South game 2 loser";
+  public static final String DISPLAY_NAME_westGame1WinnerGuess = "Actual West game 1 winner";
   public static final String DISPLAY_NAME_westGame1Winner = "West game 1 winner";
   public static final String DISPLAY_NAME_westGame1Loser = "West game 1 loser";
+  public static final String DISPLAY_NAME_westGame2WinnerGuess = "Actual West game 2 winner";
   public static final String DISPLAY_NAME_westGame2Winner = "West game 2 winner";
   public static final String DISPLAY_NAME_westGame2Loser = "West game 2 loser";
+  public static final String DISPLAY_NAME_eastGame1WinnerGuess = "Actual East game 1 winner";
   public static final String DISPLAY_NAME_eastGame1Winner = "East game 1 winner";
   public static final String DISPLAY_NAME_eastGame1Loser = "East game 1 loser";
+  public static final String DISPLAY_NAME_eastGame2WinnerGuess = "Actual East game 2 winner";
   public static final String DISPLAY_NAME_eastGame2Winner = "East game 2 winner";
   public static final String DISPLAY_NAME_eastGame2Loser = "East game 2 loser";
+  public static final String DISPLAY_NAME_midwestGame1WinnerGuess = "Actual Midwest game 1 winner";
   public static final String DISPLAY_NAME_midwestGame1Winner = "Midwest game 1 winner";
   public static final String DISPLAY_NAME_midwestGame1Loser = "Midwest game 1 loser";
+  public static final String DISPLAY_NAME_midwestGame2WinnerGuess = "Actual Midwest game 2 winner";
   public static final String DISPLAY_NAME_midwestGame2Winner = "Midwest game 2 winner";
   public static final String DISPLAY_NAME_midwestGame2Loser = "Midwest game 2 loser";
   public static final String DISPLAY_NAME_eliteEight = "Elite Eight bracket";
@@ -2795,6 +3665,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static String varJsonSweetSixteen(String var, Boolean patch) {
     switch(var) {
+    case VAR_actualSweetSixteenSearch:
+      return patch ? SET_actualSweetSixteenSearch : VAR_actualSweetSixteenSearch;
+    case VAR_actualSweetSixteen:
+      return patch ? SET_actualSweetSixteen : VAR_actualSweetSixteen;
     case VAR_guesserId:
       return patch ? SET_guesserId : VAR_guesserId;
     case VAR_year:
@@ -2803,34 +3677,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return patch ? SET_bracketId : VAR_bracketId;
     case VAR_name:
       return patch ? SET_name : VAR_name;
+    case VAR_southGame1WinnerGuess:
+      return patch ? SET_southGame1WinnerGuess : VAR_southGame1WinnerGuess;
     case VAR_southGame1Winner:
       return patch ? SET_southGame1Winner : VAR_southGame1Winner;
     case VAR_southGame1Loser:
       return patch ? SET_southGame1Loser : VAR_southGame1Loser;
+    case VAR_southGame2WinnerGuess:
+      return patch ? SET_southGame2WinnerGuess : VAR_southGame2WinnerGuess;
     case VAR_southGame2Winner:
       return patch ? SET_southGame2Winner : VAR_southGame2Winner;
     case VAR_southGame2Loser:
       return patch ? SET_southGame2Loser : VAR_southGame2Loser;
+    case VAR_westGame1WinnerGuess:
+      return patch ? SET_westGame1WinnerGuess : VAR_westGame1WinnerGuess;
     case VAR_westGame1Winner:
       return patch ? SET_westGame1Winner : VAR_westGame1Winner;
     case VAR_westGame1Loser:
       return patch ? SET_westGame1Loser : VAR_westGame1Loser;
+    case VAR_westGame2WinnerGuess:
+      return patch ? SET_westGame2WinnerGuess : VAR_westGame2WinnerGuess;
     case VAR_westGame2Winner:
       return patch ? SET_westGame2Winner : VAR_westGame2Winner;
     case VAR_westGame2Loser:
       return patch ? SET_westGame2Loser : VAR_westGame2Loser;
+    case VAR_eastGame1WinnerGuess:
+      return patch ? SET_eastGame1WinnerGuess : VAR_eastGame1WinnerGuess;
     case VAR_eastGame1Winner:
       return patch ? SET_eastGame1Winner : VAR_eastGame1Winner;
     case VAR_eastGame1Loser:
       return patch ? SET_eastGame1Loser : VAR_eastGame1Loser;
+    case VAR_eastGame2WinnerGuess:
+      return patch ? SET_eastGame2WinnerGuess : VAR_eastGame2WinnerGuess;
     case VAR_eastGame2Winner:
       return patch ? SET_eastGame2Winner : VAR_eastGame2Winner;
     case VAR_eastGame2Loser:
       return patch ? SET_eastGame2Loser : VAR_eastGame2Loser;
+    case VAR_midwestGame1WinnerGuess:
+      return patch ? SET_midwestGame1WinnerGuess : VAR_midwestGame1WinnerGuess;
     case VAR_midwestGame1Winner:
       return patch ? SET_midwestGame1Winner : VAR_midwestGame1Winner;
     case VAR_midwestGame1Loser:
       return patch ? SET_midwestGame1Loser : VAR_midwestGame1Loser;
+    case VAR_midwestGame2WinnerGuess:
+      return patch ? SET_midwestGame2WinnerGuess : VAR_midwestGame2WinnerGuess;
     case VAR_midwestGame2Winner:
       return patch ? SET_midwestGame2Winner : VAR_midwestGame2Winner;
     case VAR_midwestGame2Loser:
@@ -2847,6 +3737,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   }
   public static String displayNameSweetSixteen(String var) {
     switch(var) {
+    case VAR_actualSweetSixteenSearch:
+      return DISPLAY_NAME_actualSweetSixteenSearch;
+    case VAR_actualSweetSixteen:
+      return DISPLAY_NAME_actualSweetSixteen;
     case VAR_guesserId:
       return DISPLAY_NAME_guesserId;
     case VAR_year:
@@ -2855,34 +3749,50 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return DISPLAY_NAME_bracketId;
     case VAR_name:
       return DISPLAY_NAME_name;
+    case VAR_southGame1WinnerGuess:
+      return DISPLAY_NAME_southGame1WinnerGuess;
     case VAR_southGame1Winner:
       return DISPLAY_NAME_southGame1Winner;
     case VAR_southGame1Loser:
       return DISPLAY_NAME_southGame1Loser;
+    case VAR_southGame2WinnerGuess:
+      return DISPLAY_NAME_southGame2WinnerGuess;
     case VAR_southGame2Winner:
       return DISPLAY_NAME_southGame2Winner;
     case VAR_southGame2Loser:
       return DISPLAY_NAME_southGame2Loser;
+    case VAR_westGame1WinnerGuess:
+      return DISPLAY_NAME_westGame1WinnerGuess;
     case VAR_westGame1Winner:
       return DISPLAY_NAME_westGame1Winner;
     case VAR_westGame1Loser:
       return DISPLAY_NAME_westGame1Loser;
+    case VAR_westGame2WinnerGuess:
+      return DISPLAY_NAME_westGame2WinnerGuess;
     case VAR_westGame2Winner:
       return DISPLAY_NAME_westGame2Winner;
     case VAR_westGame2Loser:
       return DISPLAY_NAME_westGame2Loser;
+    case VAR_eastGame1WinnerGuess:
+      return DISPLAY_NAME_eastGame1WinnerGuess;
     case VAR_eastGame1Winner:
       return DISPLAY_NAME_eastGame1Winner;
     case VAR_eastGame1Loser:
       return DISPLAY_NAME_eastGame1Loser;
+    case VAR_eastGame2WinnerGuess:
+      return DISPLAY_NAME_eastGame2WinnerGuess;
     case VAR_eastGame2Winner:
       return DISPLAY_NAME_eastGame2Winner;
     case VAR_eastGame2Loser:
       return DISPLAY_NAME_eastGame2Loser;
+    case VAR_midwestGame1WinnerGuess:
+      return DISPLAY_NAME_midwestGame1WinnerGuess;
     case VAR_midwestGame1Winner:
       return DISPLAY_NAME_midwestGame1Winner;
     case VAR_midwestGame1Loser:
       return DISPLAY_NAME_midwestGame1Loser;
+    case VAR_midwestGame2WinnerGuess:
+      return DISPLAY_NAME_midwestGame2WinnerGuess;
     case VAR_midwestGame2Winner:
       return DISPLAY_NAME_midwestGame2Winner;
     case VAR_midwestGame2Loser:
@@ -2898,6 +3808,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(var == null)
       return null;
     switch(var) {
+    case VAR_actualSweetSixteen:
+      return "The Sweet Sixteen bracket of this tournament";
     case VAR_guesserId:
       return "The ID of this guesser";
     case VAR_year:
@@ -2915,6 +3827,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String classSimpleNameSweetSixteen(String var) {
     switch(var) {
+    case VAR_actualSweetSixteenSearch:
+      return "SearchList";
+    case VAR_actualSweetSixteen:
+      return "JsonObject";
     case VAR_guesserId:
       return "String";
     case VAR_year:
@@ -2923,33 +3839,49 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return "String";
     case VAR_name:
       return "String";
+    case VAR_southGame1WinnerGuess:
+      return "String";
     case VAR_southGame1Winner:
       return "String";
     case VAR_southGame1Loser:
+      return "String";
+    case VAR_southGame2WinnerGuess:
       return "String";
     case VAR_southGame2Winner:
       return "String";
     case VAR_southGame2Loser:
       return "String";
+    case VAR_westGame1WinnerGuess:
+      return "String";
     case VAR_westGame1Winner:
       return "String";
     case VAR_westGame1Loser:
+      return "String";
+    case VAR_westGame2WinnerGuess:
       return "String";
     case VAR_westGame2Winner:
       return "String";
     case VAR_westGame2Loser:
       return "String";
+    case VAR_eastGame1WinnerGuess:
+      return "String";
     case VAR_eastGame1Winner:
       return "String";
     case VAR_eastGame1Loser:
+      return "String";
+    case VAR_eastGame2WinnerGuess:
       return "String";
     case VAR_eastGame2Winner:
       return "String";
     case VAR_eastGame2Loser:
       return "String";
+    case VAR_midwestGame1WinnerGuess:
+      return "String";
     case VAR_midwestGame1Winner:
       return "String";
     case VAR_midwestGame1Loser:
+      return "String";
+    case VAR_midwestGame2WinnerGuess:
       return "String";
     case VAR_midwestGame2Winner:
       return "String";
@@ -2979,38 +3911,54 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 3;
     case VAR_year:
       return 3;
+    case VAR_southGame1WinnerGuess:
+      return 5;
     case VAR_southGame1Winner:
       return 5;
     case VAR_southGame1Loser:
       return 5;
+    case VAR_southGame2WinnerGuess:
+      return 6;
     case VAR_southGame2Winner:
-      return 5;
+      return 6;
     case VAR_southGame2Loser:
-      return 5;
+      return 6;
+    case VAR_westGame1WinnerGuess:
+      return 7;
     case VAR_westGame1Winner:
-      return 6;
+      return 7;
     case VAR_westGame1Loser:
-      return 6;
+      return 7;
+    case VAR_westGame2WinnerGuess:
+      return 8;
     case VAR_westGame2Winner:
-      return 6;
+      return 8;
     case VAR_westGame2Loser:
-      return 6;
+      return 8;
+    case VAR_eastGame1WinnerGuess:
+      return 9;
     case VAR_eastGame1Winner:
-      return 7;
+      return 9;
     case VAR_eastGame1Loser:
-      return 7;
+      return 9;
+    case VAR_eastGame2WinnerGuess:
+      return 10;
     case VAR_eastGame2Winner:
-      return 7;
+      return 10;
     case VAR_eastGame2Loser:
-      return 7;
+      return 10;
+    case VAR_midwestGame1WinnerGuess:
+      return 11;
     case VAR_midwestGame1Winner:
-      return 8;
+      return 11;
     case VAR_midwestGame1Loser:
-      return 8;
+      return 11;
+    case VAR_midwestGame2WinnerGuess:
+      return 12;
     case VAR_midwestGame2Winner:
-      return 8;
+      return 12;
     case VAR_midwestGame2Loser:
-      return 8;
+      return 12;
     case VAR_eliteEight:
       return 10;
       default:
@@ -3024,38 +3972,54 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
+    case VAR_southGame1WinnerGuess:
+      return 0;
     case VAR_southGame1Winner:
-      return 0;
+      return 1;
     case VAR_southGame1Loser:
-      return 1;
+      return 2;
+    case VAR_southGame2WinnerGuess:
+      return 0;
     case VAR_southGame2Winner:
-      return 2;
+      return 1;
     case VAR_southGame2Loser:
-      return 3;
+      return 2;
+    case VAR_westGame1WinnerGuess:
+      return 0;
     case VAR_westGame1Winner:
-      return 0;
+      return 1;
     case VAR_westGame1Loser:
-      return 1;
+      return 2;
+    case VAR_westGame2WinnerGuess:
+      return 0;
     case VAR_westGame2Winner:
-      return 2;
+      return 0;
     case VAR_westGame2Loser:
-      return 3;
+      return 1;
+    case VAR_eastGame1WinnerGuess:
+      return 0;
     case VAR_eastGame1Winner:
-      return 0;
+      return 1;
     case VAR_eastGame1Loser:
-      return 1;
-    case VAR_eastGame2Winner:
       return 2;
-    case VAR_eastGame2Loser:
-      return 3;
-    case VAR_midwestGame1Winner:
+    case VAR_eastGame2WinnerGuess:
       return 0;
-    case VAR_midwestGame1Loser:
+    case VAR_eastGame2Winner:
       return 1;
-    case VAR_midwestGame2Winner:
+    case VAR_eastGame2Loser:
       return 2;
+    case VAR_midwestGame1WinnerGuess:
+      return 0;
+    case VAR_midwestGame1Winner:
+      return 1;
+    case VAR_midwestGame1Loser:
+      return 2;
+    case VAR_midwestGame2WinnerGuess:
+      return 0;
+    case VAR_midwestGame2Winner:
+      return 1;
     case VAR_midwestGame2Loser:
-      return 3;
+      return 2;
     case VAR_eliteEight:
       return 0;
       default:
