@@ -569,146 +569,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     return guesserId;
   }
 
-	////////////////////
-  // correctGuesses //
-	////////////////////
-
-
-  /**
-   *  The entity correctGuesses
-   *	 is defined as null before being initialized. 
-   */
-  @JsonProperty
-  @JsonSerialize(using = ToStringSerializer.class)
-  @JsonInclude(Include.NON_NULL)
-  protected Integer correctGuesses;
-
-  /**
-   * <br> The entity correctGuesses
-   *  is defined as null before being initialized. 
-   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
-   * <br>
-   * @param w is for wrapping a value to assign to this entity during initialization. 
-   **/
-  protected abstract void _correctGuesses(Wrap<Integer> w);
-
-  public Integer getCorrectGuesses() {
-    return correctGuesses;
-  }
-
-  public void setCorrectGuesses(Integer correctGuesses) {
-    this.correctGuesses = correctGuesses;
-  }
-  @JsonIgnore
-  public void setCorrectGuesses(String o) {
-    this.correctGuesses = Championship.staticSetCorrectGuesses(siteRequest_, o);
-  }
-  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
-    if(NumberUtils.isParsable(o))
-      return Integer.parseInt(o);
-    return null;
-  }
-  protected Championship correctGuessesInit() {
-    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
-    if(correctGuesses == null) {
-      _correctGuesses(correctGuessesWrap);
-      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
-        setCorrectGuesses(o);
-      });
-    }
-    return (Championship)this;
-  }
-
-  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
-    return o;
-  }
-
-  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
-    return o == null ? null : o.toString();
-  }
-
-  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
-    return Championship.staticSearchCorrectGuesses(siteRequest_, Championship.staticSetCorrectGuesses(siteRequest_, o)).toString();
-  }
-
-  public Integer sqlCorrectGuesses() {
-    return correctGuesses;
-  }
-
-  public static String staticJsonCorrectGuesses(Integer correctGuesses) {
-    return Optional.ofNullable(correctGuesses).map(v -> v.toString()).orElse(null);
-  }
-
-	//////////////////////
-  // incorrectGuesses //
-	//////////////////////
-
-
-  /**
-   *  The entity incorrectGuesses
-   *	 is defined as null before being initialized. 
-   */
-  @JsonProperty
-  @JsonSerialize(using = ToStringSerializer.class)
-  @JsonInclude(Include.NON_NULL)
-  protected Integer incorrectGuesses;
-
-  /**
-   * <br> The entity incorrectGuesses
-   *  is defined as null before being initialized. 
-   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
-   * <br>
-   * @param w is for wrapping a value to assign to this entity during initialization. 
-   **/
-  protected abstract void _incorrectGuesses(Wrap<Integer> w);
-
-  public Integer getIncorrectGuesses() {
-    return incorrectGuesses;
-  }
-
-  public void setIncorrectGuesses(Integer incorrectGuesses) {
-    this.incorrectGuesses = incorrectGuesses;
-  }
-  @JsonIgnore
-  public void setIncorrectGuesses(String o) {
-    this.incorrectGuesses = Championship.staticSetIncorrectGuesses(siteRequest_, o);
-  }
-  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
-    if(NumberUtils.isParsable(o))
-      return Integer.parseInt(o);
-    return null;
-  }
-  protected Championship incorrectGuessesInit() {
-    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
-    if(incorrectGuesses == null) {
-      _incorrectGuesses(incorrectGuessesWrap);
-      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
-        setIncorrectGuesses(o);
-      });
-    }
-    return (Championship)this;
-  }
-
-  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
-    return o;
-  }
-
-  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
-    return o == null ? null : o.toString();
-  }
-
-  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
-    return Championship.staticSearchIncorrectGuesses(siteRequest_, Championship.staticSetIncorrectGuesses(siteRequest_, o)).toString();
-  }
-
-  public Integer sqlIncorrectGuesses() {
-    return incorrectGuesses;
-  }
-
-  public static String staticJsonIncorrectGuesses(Integer incorrectGuesses) {
-    return Optional.ofNullable(incorrectGuesses).map(v -> v.toString()).orElse(null);
-  }
-
 	//////////
   // year //
 	//////////
@@ -1081,6 +941,130 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     return game1Loser;
   }
 
+	////////////////////
+  // correctGuesses //
+	////////////////////
+
+
+  /**
+   *  The entity correctGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer correctGuesses;
+
+  /**
+   * <br> The entity correctGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _correctGuesses(Wrap<Integer> w);
+
+  public Integer getCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public void setCorrectGuesses(Integer correctGuesses) {
+    this.correctGuesses = correctGuesses;
+  }
+  @JsonIgnore
+  public void setCorrectGuesses(String o) {
+    this.correctGuesses = Championship.staticSetCorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected Championship correctGuessesInit() {
+    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
+    if(correctGuesses == null) {
+      _correctGuesses(correctGuessesWrap);
+      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
+        setCorrectGuesses(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchCorrectGuesses(siteRequest_, Championship.staticSetCorrectGuesses(siteRequest_, o)).toString();
+  }
+
+	//////////////////////
+  // incorrectGuesses //
+	//////////////////////
+
+
+  /**
+   *  The entity incorrectGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer incorrectGuesses;
+
+  /**
+   * <br> The entity incorrectGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _incorrectGuesses(Wrap<Integer> w);
+
+  public Integer getIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public void setIncorrectGuesses(Integer incorrectGuesses) {
+    this.incorrectGuesses = incorrectGuesses;
+  }
+  @JsonIgnore
+  public void setIncorrectGuesses(String o) {
+    this.incorrectGuesses = Championship.staticSetIncorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected Championship incorrectGuessesInit() {
+    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
+    if(incorrectGuesses == null) {
+      _incorrectGuesses(incorrectGuessesWrap);
+      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
+        setIncorrectGuesses(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchIncorrectGuesses(siteRequest_, Championship.staticSetIncorrectGuesses(siteRequest_, o)).toString();
+  }
+
   //////////////
   // initDeep //
   //////////////
@@ -1146,14 +1130,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         actualChampionshipInit();
         finalFourInit();
         guesserIdInit();
-        correctGuessesInit();
-        incorrectGuessesInit();
         yearInit();
         bracketIdInit();
         nameInit();
         game1WinnerGuessInit();
         game1WinnerInit();
         game1LoserInit();
+        correctGuessesInit();
+        incorrectGuessesInit();
         promise2.complete();
       } catch(Exception ex) {
         promise2.fail(ex);
@@ -1223,10 +1207,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return oChampionship.finalFour;
       case "guesserId":
         return oChampionship.guesserId;
-      case "correctGuesses":
-        return oChampionship.correctGuesses;
-      case "incorrectGuesses":
-        return oChampionship.incorrectGuesses;
       case "year":
         return oChampionship.year;
       case "bracketId":
@@ -1239,6 +1219,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return oChampionship.game1Winner;
       case "game1Loser":
         return oChampionship.game1Loser;
+      case "correctGuesses":
+        return oChampionship.correctGuesses;
+      case "incorrectGuesses":
+        return oChampionship.incorrectGuesses;
       default:
         return super.obtainBaseModel(var);
     }
@@ -1310,10 +1294,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSetFinalFour(siteRequest_, v);
     case "guesserId":
       return Championship.staticSetGuesserId(siteRequest_, v);
-    case "correctGuesses":
-      return Championship.staticSetCorrectGuesses(siteRequest_, v);
-    case "incorrectGuesses":
-      return Championship.staticSetIncorrectGuesses(siteRequest_, v);
     case "year":
       return Championship.staticSetYear(siteRequest_, v);
     case "bracketId":
@@ -1326,6 +1306,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSetGame1Winner(siteRequest_, v);
     case "game1Loser":
       return Championship.staticSetGame1Loser(siteRequest_, v);
+    case "correctGuesses":
+      return Championship.staticSetCorrectGuesses(siteRequest_, v);
+    case "incorrectGuesses":
+      return Championship.staticSetIncorrectGuesses(siteRequest_, v);
       default:
         return BaseModel.staticSetBaseModel(entityVar,  siteRequest_, v, o);
     }
@@ -1378,10 +1362,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchGuesserId(siteRequest_, (String)o);
-    case "correctGuesses":
-      return Championship.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
-    case "incorrectGuesses":
-      return Championship.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchYear(siteRequest_, (Integer)o);
     case "bracketId":
@@ -1394,6 +1374,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
       return Championship.staticSearchGame1Loser(siteRequest_, (String)o);
+    case "correctGuesses":
+      return Championship.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return Championship.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1416,10 +1400,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchStrFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchStrGuesserId(siteRequest_, (String)o);
-    case "correctGuesses":
-      return Championship.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
-    case "incorrectGuesses":
-      return Championship.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchStrYear(siteRequest_, (Integer)o);
     case "bracketId":
@@ -1432,6 +1412,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchStrGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
       return Championship.staticSearchStrGame1Loser(siteRequest_, (String)o);
+    case "correctGuesses":
+      return Championship.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return Championship.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchStrBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1454,10 +1438,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchFqFinalFour(siteRequest_, o);
     case "guesserId":
       return Championship.staticSearchFqGuesserId(siteRequest_, o);
-    case "correctGuesses":
-      return Championship.staticSearchFqCorrectGuesses(siteRequest_, o);
-    case "incorrectGuesses":
-      return Championship.staticSearchFqIncorrectGuesses(siteRequest_, o);
     case "year":
       return Championship.staticSearchFqYear(siteRequest_, o);
     case "bracketId":
@@ -1470,6 +1450,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchFqGame1Winner(siteRequest_, o);
     case "game1Loser":
       return Championship.staticSearchFqGame1Loser(siteRequest_, o);
+    case "correctGuesses":
+      return Championship.staticSearchFqCorrectGuesses(siteRequest_, o);
+    case "incorrectGuesses":
+      return Championship.staticSearchFqIncorrectGuesses(siteRequest_, o);
       default:
         return BaseModel.staticSearchFqBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1507,22 +1491,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
           setGuesserId((String)val);
         }
         saves.add("guesserId");
-        return val;
-      } else if("correctguesses".equals(varLower)) {
-        if(val instanceof Integer) {
-          setCorrectGuesses((Integer)val);
-        } else {
-          setCorrectGuesses(val == null ? null : val.toString());
-        }
-        saves.add("correctGuesses");
-        return val;
-      } else if("incorrectguesses".equals(varLower)) {
-        if(val instanceof Integer) {
-          setIncorrectGuesses((Integer)val);
-        } else {
-          setIncorrectGuesses(val == null ? null : val.toString());
-        }
-        saves.add("incorrectGuesses");
         return val;
       } else if("year".equals(varLower)) {
         if(val instanceof Integer) {
@@ -1593,18 +1561,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       if(guesserId != null)
         oChampionship.setGuesserId(guesserId);
 
-      if(saves.contains("correctGuesses")) {
-        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
-        if(correctGuesses != null)
-          oChampionship.setCorrectGuesses(correctGuesses);
-      }
-
-      if(saves.contains("incorrectGuesses")) {
-        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
-        if(incorrectGuesses != null)
-          oChampionship.setIncorrectGuesses(incorrectGuesses);
-      }
-
       if(saves.contains("year")) {
         Integer year = (Integer)doc.get("year_docvalues_int");
         if(year != null)
@@ -1636,6 +1592,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       String game1Loser = (String)doc.get("game1Loser_docvalues_string");
       if(game1Loser != null)
         oChampionship.setGame1Loser(game1Loser);
+
+      if(saves.contains("correctGuesses")) {
+        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
+        if(correctGuesses != null)
+          oChampionship.setCorrectGuesses(correctGuesses);
+      }
+
+      if(saves.contains("incorrectGuesses")) {
+        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
+        if(incorrectGuesses != null)
+          oChampionship.setIncorrectGuesses(incorrectGuesses);
+      }
     }
 
     super.populateBaseModel(doc);
@@ -1653,12 +1621,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     }
     if(guesserId != null) {
       doc.put("guesserId_docvalues_string", guesserId);
-    }
-    if(correctGuesses != null) {
-      doc.put("correctGuesses_docvalues_int", correctGuesses);
-    }
-    if(incorrectGuesses != null) {
-      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
     }
     if(year != null) {
       doc.put("year_docvalues_int", year);
@@ -1678,6 +1640,12 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     if(game1Loser != null) {
       doc.put("game1Loser_docvalues_string", game1Loser);
     }
+    if(correctGuesses != null) {
+      doc.put("correctGuesses_docvalues_int", correctGuesses);
+    }
+    if(incorrectGuesses != null) {
+      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
+    }
     super.indexBaseModel(doc);
 
 	}
@@ -1692,10 +1660,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
-      case "correctGuesses":
-        return "correctGuesses_docvalues_int";
-      case "incorrectGuesses":
-        return "incorrectGuesses_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
@@ -1708,6 +1672,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "game1Winner_docvalues_string";
       case "game1Loser":
         return "game1Loser_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varStoredBaseModel(entityVar);
     }
@@ -1719,10 +1687,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
-      case "correctGuesses":
-        return "correctGuesses_docvalues_int";
-      case "incorrectGuesses":
-        return "incorrectGuesses_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
@@ -1735,6 +1699,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "game1Winner_docvalues_string";
       case "game1Loser":
         return "game1Loser_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varIndexedBaseModel(entityVar);
     }
@@ -1746,10 +1714,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour";
       case "guesserId_docvalues_string":
         return "guesserId";
-      case "correctGuesses_docvalues_int":
-        return "correctGuesses";
-      case "incorrectGuesses_docvalues_int":
-        return "incorrectGuesses";
       case "year_docvalues_int":
         return "year";
       case "bracketId_docvalues_string":
@@ -1762,6 +1726,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "game1Winner";
       case "game1Loser_docvalues_string":
         return "game1Loser";
+      case "correctGuesses_docvalues_int":
+        return "correctGuesses";
+      case "incorrectGuesses_docvalues_int":
+        return "incorrectGuesses";
       default:
         return BaseModel.searchVarBaseModel(searchVar);
     }
@@ -1796,14 +1764,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     oChampionship.setActualChampionship(Optional.ofNullable(doc.get("actualChampionship_stored_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setFinalFour(Optional.ofNullable(doc.get("finalFour_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
-    oChampionship.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
-    oChampionship.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGame1WinnerGuess(Optional.ofNullable(doc.get("game1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGame1Winner(Optional.ofNullable(doc.get("game1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGame1Loser(Optional.ofNullable(doc.get("game1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oChampionship.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oChampionship.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
 
     super.storeBaseModel(doc);
   }
@@ -1825,10 +1793,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         apiRequest.addVars("finalFour");
       if(!Objects.equals(guesserId, original.getGuesserId()))
         apiRequest.addVars("guesserId");
-      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
-        apiRequest.addVars("correctGuesses");
-      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
-        apiRequest.addVars("incorrectGuesses");
       if(!Objects.equals(year, original.getYear()))
         apiRequest.addVars("year");
       if(!Objects.equals(bracketId, original.getBracketId()))
@@ -1841,6 +1805,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         apiRequest.addVars("game1Winner");
       if(!Objects.equals(game1Loser, original.getGame1Loser()))
         apiRequest.addVars("game1Loser");
+      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
+        apiRequest.addVars("correctGuesses");
+      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
+        apiRequest.addVars("incorrectGuesses");
       super.apiRequestBaseModel();
     }
   }
@@ -1856,14 +1824,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(actualChampionship).map(v -> "actualChampionship: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(finalFour).map(v -> "finalFour: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
-    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
-    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1WinnerGuess).map(v -> "game1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Winner).map(v -> "game1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Loser).map(v -> "game1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     return sb.toString();
   }
 
@@ -1886,10 +1854,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String SET_finalFour = "setFinalFour";
   public static final String VAR_guesserId = "guesserId";
   public static final String SET_guesserId = "setGuesserId";
-  public static final String VAR_correctGuesses = "correctGuesses";
-  public static final String SET_correctGuesses = "setCorrectGuesses";
-  public static final String VAR_incorrectGuesses = "incorrectGuesses";
-  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
   public static final String VAR_year = "year";
   public static final String SET_year = "setYear";
   public static final String VAR_bracketId = "bracketId";
@@ -1902,6 +1866,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String SET_game1Winner = "setGame1Winner";
   public static final String VAR_game1Loser = "game1Loser";
   public static final String SET_game1Loser = "setGame1Loser";
+  public static final String VAR_correctGuesses = "correctGuesses";
+  public static final String SET_correctGuesses = "setCorrectGuesses";
+  public static final String VAR_incorrectGuesses = "incorrectGuesses";
+  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
 
   public static List<String> varsQForClass() {
     return Championship.varsQChampionship(new ArrayList<String>());
@@ -1933,14 +1901,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_actualChampionship = "Actual Elite Eight bracket";
   public static final String DISPLAY_NAME_finalFour = "Final Four bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
-  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
-  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
   public static final String DISPLAY_NAME_year = "year";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
   public static final String DISPLAY_NAME_game1WinnerGuess = "game 1 guess";
   public static final String DISPLAY_NAME_game1Winner = "game 1 winner";
   public static final String DISPLAY_NAME_game1Loser = "game 1 loser";
+  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
+  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
 
   @Override
   public String idForClass() {
@@ -1984,10 +1952,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return patch ? SET_finalFour : VAR_finalFour;
     case VAR_guesserId:
       return patch ? SET_guesserId : VAR_guesserId;
-    case VAR_correctGuesses:
-      return patch ? SET_correctGuesses : VAR_correctGuesses;
-    case VAR_incorrectGuesses:
-      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     case VAR_year:
       return patch ? SET_year : VAR_year;
     case VAR_bracketId:
@@ -2000,6 +1964,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return patch ? SET_game1Winner : VAR_game1Winner;
     case VAR_game1Loser:
       return patch ? SET_game1Loser : VAR_game1Loser;
+    case VAR_correctGuesses:
+      return patch ? SET_correctGuesses : VAR_correctGuesses;
+    case VAR_incorrectGuesses:
+      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     default:
       return BaseModel.varJsonBaseModel(var, patch);
     }
@@ -2022,10 +1990,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return DISPLAY_NAME_finalFour;
     case VAR_guesserId:
       return DISPLAY_NAME_guesserId;
-    case VAR_correctGuesses:
-      return DISPLAY_NAME_correctGuesses;
-    case VAR_incorrectGuesses:
-      return DISPLAY_NAME_incorrectGuesses;
     case VAR_year:
       return DISPLAY_NAME_year;
     case VAR_bracketId:
@@ -2038,6 +2002,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return DISPLAY_NAME_game1Winner;
     case VAR_game1Loser:
       return DISPLAY_NAME_game1Loser;
+    case VAR_correctGuesses:
+      return DISPLAY_NAME_correctGuesses;
+    case VAR_incorrectGuesses:
+      return DISPLAY_NAME_incorrectGuesses;
     default:
       return BaseModel.displayNameBaseModel(var);
     }
@@ -2055,16 +2023,16 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return "The Final Four bracket of this tournament";
     case VAR_guesserId:
       return "The ID of this guesser";
-    case VAR_correctGuesses:
-      return "The number of correct guesses in this Championship bracket";
-    case VAR_incorrectGuesses:
-      return "The number of incorrect guesses in this Championship bracket";
     case VAR_year:
       return "The year of the tournament";
     case VAR_bracketId:
       return "The ID of this bracket";
     case VAR_name:
       return "The name of this bracket";
+    case VAR_correctGuesses:
+      return "The number of correct guesses in this Championship bracket";
+    case VAR_incorrectGuesses:
+      return "The number of incorrect guesses in this Championship bracket";
       default:
         return BaseModel.descriptionBaseModel(var);
     }
@@ -2084,10 +2052,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return "String";
     case VAR_guesserId:
       return "String";
-    case VAR_correctGuesses:
-      return "Integer";
-    case VAR_incorrectGuesses:
-      return "Integer";
     case VAR_year:
       return "Integer";
     case VAR_bracketId:
@@ -2100,6 +2064,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return "String";
     case VAR_game1Loser:
       return "String";
+    case VAR_correctGuesses:
+      return "Integer";
+    case VAR_incorrectGuesses:
+      return "Integer";
       default:
         return BaseModel.classSimpleNameBaseModel(var);
     }
@@ -2122,10 +2090,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 3;
     case VAR_guesserId:
       return 4;
-    case VAR_correctGuesses:
-      return 4;
-    case VAR_incorrectGuesses:
-      return 4;
     case VAR_year:
       return 4;
     case VAR_game1WinnerGuess:
@@ -2134,6 +2098,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 5;
     case VAR_game1Loser:
       return 5;
+    case VAR_correctGuesses:
+      return 4;
+    case VAR_incorrectGuesses:
+      return 4;
       default:
         return BaseModel.htmRowBaseModel(var);
     }
@@ -2145,10 +2113,6 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 0;
     case VAR_guesserId:
       return 0;
-    case VAR_correctGuesses:
-      return 1;
-    case VAR_incorrectGuesses:
-      return 2;
     case VAR_year:
       return 1;
     case VAR_game1WinnerGuess:
@@ -2157,6 +2121,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 1;
     case VAR_game1Loser:
       return 2;
+    case VAR_correctGuesses:
+      return 2;
+    case VAR_incorrectGuesses:
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

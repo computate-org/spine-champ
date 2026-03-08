@@ -1182,6 +1182,130 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     return championship;
   }
 
+	////////////////////
+  // correctGuesses //
+	////////////////////
+
+
+  /**
+   *  The entity correctGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer correctGuesses;
+
+  /**
+   * <br> The entity correctGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _correctGuesses(Wrap<Integer> w);
+
+  public Integer getCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public void setCorrectGuesses(Integer correctGuesses) {
+    this.correctGuesses = correctGuesses;
+  }
+  @JsonIgnore
+  public void setCorrectGuesses(String o) {
+    this.correctGuesses = FinalFour.staticSetCorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected FinalFour correctGuessesInit() {
+    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
+    if(correctGuesses == null) {
+      _correctGuesses(correctGuessesWrap);
+      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
+        setCorrectGuesses(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchCorrectGuesses(siteRequest_, FinalFour.staticSetCorrectGuesses(siteRequest_, o)).toString();
+  }
+
+	//////////////////////
+  // incorrectGuesses //
+	//////////////////////
+
+
+  /**
+   *  The entity incorrectGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer incorrectGuesses;
+
+  /**
+   * <br> The entity incorrectGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _incorrectGuesses(Wrap<Integer> w);
+
+  public Integer getIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public void setIncorrectGuesses(Integer incorrectGuesses) {
+    this.incorrectGuesses = incorrectGuesses;
+  }
+  @JsonIgnore
+  public void setIncorrectGuesses(String o) {
+    this.incorrectGuesses = FinalFour.staticSetIncorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected FinalFour incorrectGuessesInit() {
+    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
+    if(incorrectGuesses == null) {
+      _incorrectGuesses(incorrectGuessesWrap);
+      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
+        setIncorrectGuesses(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchIncorrectGuesses(siteRequest_, FinalFour.staticSetIncorrectGuesses(siteRequest_, o)).toString();
+  }
+
   //////////////
   // initDeep //
   //////////////
@@ -1257,6 +1381,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         game2WinnerInit();
         game2LoserInit();
         championshipInit();
+        correctGuessesInit();
+        incorrectGuessesInit();
         promise2.complete();
       } catch(Exception ex) {
         promise2.fail(ex);
@@ -1346,6 +1472,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return oFinalFour.game2Loser;
       case "championship":
         return oFinalFour.championship;
+      case "correctGuesses":
+        return oFinalFour.correctGuesses;
+      case "incorrectGuesses":
+        return oFinalFour.incorrectGuesses;
       default:
         return super.obtainBaseModel(var);
     }
@@ -1455,6 +1585,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSetGame2Loser(siteRequest_, v);
     case "championship":
       return FinalFour.staticSetChampionship(siteRequest_, v);
+    case "correctGuesses":
+      return FinalFour.staticSetCorrectGuesses(siteRequest_, v);
+    case "incorrectGuesses":
+      return FinalFour.staticSetIncorrectGuesses(siteRequest_, v);
       default:
         return BaseModel.staticSetBaseModel(entityVar,  siteRequest_, v, o);
     }
@@ -1527,6 +1661,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchGame2Loser(siteRequest_, (String)o);
     case "championship":
       return FinalFour.staticSearchChampionship(siteRequest_, (String)o);
+    case "correctGuesses":
+      return FinalFour.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return FinalFour.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1569,6 +1707,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchStrGame2Loser(siteRequest_, (String)o);
     case "championship":
       return FinalFour.staticSearchStrChampionship(siteRequest_, (String)o);
+    case "correctGuesses":
+      return FinalFour.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return FinalFour.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchStrBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1611,6 +1753,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchFqGame2Loser(siteRequest_, o);
     case "championship":
       return FinalFour.staticSearchFqChampionship(siteRequest_, o);
+    case "correctGuesses":
+      return FinalFour.staticSearchFqCorrectGuesses(siteRequest_, o);
+    case "incorrectGuesses":
+      return FinalFour.staticSearchFqIncorrectGuesses(siteRequest_, o);
       default:
         return BaseModel.staticSearchFqBaseModel(entityVar,  siteRequest_, o);
     }
@@ -1785,6 +1931,18 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       String championship = (String)doc.get("championship_docvalues_string");
       if(championship != null)
         oFinalFour.setChampionship(championship);
+
+      if(saves.contains("correctGuesses")) {
+        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
+        if(correctGuesses != null)
+          oFinalFour.setCorrectGuesses(correctGuesses);
+      }
+
+      if(saves.contains("incorrectGuesses")) {
+        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
+        if(incorrectGuesses != null)
+          oFinalFour.setIncorrectGuesses(incorrectGuesses);
+      }
     }
 
     super.populateBaseModel(doc);
@@ -1833,6 +1991,12 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     if(championship != null) {
       doc.put("championship_docvalues_string", championship);
     }
+    if(correctGuesses != null) {
+      doc.put("correctGuesses_docvalues_int", correctGuesses);
+    }
+    if(incorrectGuesses != null) {
+      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
+    }
     super.indexBaseModel(doc);
 
 	}
@@ -1867,6 +2031,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "game2Loser_docvalues_string";
       case "championship":
         return "championship_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varStoredBaseModel(entityVar);
     }
@@ -1898,6 +2066,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "game2Loser_docvalues_string";
       case "championship":
         return "championship_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varIndexedBaseModel(entityVar);
     }
@@ -1929,6 +2101,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "game2Loser";
       case "championship_docvalues_string":
         return "championship";
+      case "correctGuesses_docvalues_int":
+        return "correctGuesses";
+      case "incorrectGuesses_docvalues_int":
+        return "incorrectGuesses";
       default:
         return BaseModel.searchVarBaseModel(searchVar);
     }
@@ -1973,6 +2149,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     oFinalFour.setGame2Winner(Optional.ofNullable(doc.get("game2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame2Loser(Optional.ofNullable(doc.get("game2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setChampionship(Optional.ofNullable(doc.get("championship_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
 
     super.storeBaseModel(doc);
   }
@@ -2014,6 +2192,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         apiRequest.addVars("game2Loser");
       if(!Objects.equals(championship, original.getChampionship()))
         apiRequest.addVars("championship");
+      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
+        apiRequest.addVars("correctGuesses");
+      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
+        apiRequest.addVars("incorrectGuesses");
       super.apiRequestBaseModel();
     }
   }
@@ -2039,6 +2221,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(game2Winner).map(v -> "game2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game2Loser).map(v -> "game2Loser: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(championship).map(v -> "championship: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     return sb.toString();
   }
 
@@ -2081,6 +2265,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String SET_game2Loser = "setGame2Loser";
   public static final String VAR_championship = "championship";
   public static final String SET_championship = "setChampionship";
+  public static final String VAR_correctGuesses = "correctGuesses";
+  public static final String SET_correctGuesses = "setCorrectGuesses";
+  public static final String VAR_incorrectGuesses = "incorrectGuesses";
+  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
 
   public static List<String> varsQForClass() {
     return FinalFour.varsQFinalFour(new ArrayList<String>());
@@ -2122,6 +2310,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_game2Winner = "game 2 winner";
   public static final String DISPLAY_NAME_game2Loser = "game 2 loser";
   public static final String DISPLAY_NAME_championship = "Championship bracket";
+  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
+  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
 
   @Override
   public String idForClass() {
@@ -2185,6 +2375,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return patch ? SET_game2Loser : VAR_game2Loser;
     case VAR_championship:
       return patch ? SET_championship : VAR_championship;
+    case VAR_correctGuesses:
+      return patch ? SET_correctGuesses : VAR_correctGuesses;
+    case VAR_incorrectGuesses:
+      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     default:
       return BaseModel.varJsonBaseModel(var, patch);
     }
@@ -2227,6 +2421,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return DISPLAY_NAME_game2Loser;
     case VAR_championship:
       return DISPLAY_NAME_championship;
+    case VAR_correctGuesses:
+      return DISPLAY_NAME_correctGuesses;
+    case VAR_incorrectGuesses:
+      return DISPLAY_NAME_incorrectGuesses;
     default:
       return BaseModel.displayNameBaseModel(var);
     }
@@ -2252,6 +2450,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return "The name of this bracket";
     case VAR_championship:
       return "The Championship bracket of this tournament";
+    case VAR_correctGuesses:
+      return "The number of correct guesses in this Championship bracket";
+    case VAR_incorrectGuesses:
+      return "The number of incorrect guesses in this Championship bracket";
       default:
         return BaseModel.descriptionBaseModel(var);
     }
@@ -2291,6 +2493,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return "String";
     case VAR_championship:
       return "String";
+    case VAR_correctGuesses:
+      return "Integer";
+    case VAR_incorrectGuesses:
+      return "Integer";
       default:
         return BaseModel.classSimpleNameBaseModel(var);
     }
@@ -2329,6 +2535,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return 6;
     case VAR_championship:
       return 10;
+    case VAR_correctGuesses:
+      return 4;
+    case VAR_incorrectGuesses:
+      return 4;
       default:
         return BaseModel.htmRowBaseModel(var);
     }
@@ -2356,6 +2566,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return 2;
     case VAR_championship:
       return 0;
+    case VAR_correctGuesses:
+      return 2;
+    case VAR_incorrectGuesses:
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

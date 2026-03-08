@@ -1538,6 +1538,130 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
     return finalFour;
   }
 
+	////////////////////
+  // correctGuesses //
+	////////////////////
+
+
+  /**
+   *  The entity correctGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer correctGuesses;
+
+  /**
+   * <br> The entity correctGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.eliteeight.EliteEight&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _correctGuesses(Wrap<Integer> w);
+
+  public Integer getCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public void setCorrectGuesses(Integer correctGuesses) {
+    this.correctGuesses = correctGuesses;
+  }
+  @JsonIgnore
+  public void setCorrectGuesses(String o) {
+    this.correctGuesses = EliteEight.staticSetCorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected EliteEight correctGuessesInit() {
+    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
+    if(correctGuesses == null) {
+      _correctGuesses(correctGuessesWrap);
+      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
+        setCorrectGuesses(o);
+      });
+    }
+    return (EliteEight)this;
+  }
+
+  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
+    return EliteEight.staticSearchCorrectGuesses(siteRequest_, EliteEight.staticSetCorrectGuesses(siteRequest_, o)).toString();
+  }
+
+	//////////////////////
+  // incorrectGuesses //
+	//////////////////////
+
+
+  /**
+   *  The entity incorrectGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer incorrectGuesses;
+
+  /**
+   * <br> The entity incorrectGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.eliteeight.EliteEight&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _incorrectGuesses(Wrap<Integer> w);
+
+  public Integer getIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public void setIncorrectGuesses(Integer incorrectGuesses) {
+    this.incorrectGuesses = incorrectGuesses;
+  }
+  @JsonIgnore
+  public void setIncorrectGuesses(String o) {
+    this.incorrectGuesses = EliteEight.staticSetIncorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected EliteEight incorrectGuessesInit() {
+    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
+    if(incorrectGuesses == null) {
+      _incorrectGuesses(incorrectGuessesWrap);
+      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
+        setIncorrectGuesses(o);
+      });
+    }
+    return (EliteEight)this;
+  }
+
+  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    return EliteEight.staticSearchIncorrectGuesses(siteRequest_, EliteEight.staticSetIncorrectGuesses(siteRequest_, o)).toString();
+  }
+
   //////////////
   // initDeep //
   //////////////
@@ -1619,6 +1743,8 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         midwestGame1WinnerInit();
         midwestGame1LoserInit();
         finalFourInit();
+        correctGuessesInit();
+        incorrectGuessesInit();
         promise2.complete();
       } catch(Exception ex) {
         promise2.fail(ex);
@@ -1720,6 +1846,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         return oEliteEight.midwestGame1Loser;
       case "finalFour":
         return oEliteEight.finalFour;
+      case "correctGuesses":
+        return oEliteEight.correctGuesses;
+      case "incorrectGuesses":
+        return oEliteEight.incorrectGuesses;
       default:
         return super.obtainBaseModel(var);
     }
@@ -1865,6 +1995,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return EliteEight.staticSetMidwestGame1Loser(siteRequest_, v);
     case "finalFour":
       return EliteEight.staticSetFinalFour(siteRequest_, v);
+    case "correctGuesses":
+      return EliteEight.staticSetCorrectGuesses(siteRequest_, v);
+    case "incorrectGuesses":
+      return EliteEight.staticSetIncorrectGuesses(siteRequest_, v);
       default:
         return BaseModel.staticSetBaseModel(entityVar,  siteRequest_, v, o);
     }
@@ -1949,6 +2083,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return EliteEight.staticSearchMidwestGame1Loser(siteRequest_, (String)o);
     case "finalFour":
       return EliteEight.staticSearchFinalFour(siteRequest_, (String)o);
+    case "correctGuesses":
+      return EliteEight.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return EliteEight.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchBaseModel(entityVar,  siteRequest_, o);
     }
@@ -2003,6 +2141,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return EliteEight.staticSearchStrMidwestGame1Loser(siteRequest_, (String)o);
     case "finalFour":
       return EliteEight.staticSearchStrFinalFour(siteRequest_, (String)o);
+    case "correctGuesses":
+      return EliteEight.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return EliteEight.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchStrBaseModel(entityVar,  siteRequest_, o);
     }
@@ -2057,6 +2199,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return EliteEight.staticSearchFqMidwestGame1Loser(siteRequest_, o);
     case "finalFour":
       return EliteEight.staticSearchFqFinalFour(siteRequest_, o);
+    case "correctGuesses":
+      return EliteEight.staticSearchFqCorrectGuesses(siteRequest_, o);
+    case "incorrectGuesses":
+      return EliteEight.staticSearchFqIncorrectGuesses(siteRequest_, o);
       default:
         return BaseModel.staticSearchFqBaseModel(entityVar,  siteRequest_, o);
     }
@@ -2283,6 +2429,18 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       String finalFour = (String)doc.get("finalFour_docvalues_string");
       if(finalFour != null)
         oEliteEight.setFinalFour(finalFour);
+
+      if(saves.contains("correctGuesses")) {
+        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
+        if(correctGuesses != null)
+          oEliteEight.setCorrectGuesses(correctGuesses);
+      }
+
+      if(saves.contains("incorrectGuesses")) {
+        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
+        if(incorrectGuesses != null)
+          oEliteEight.setIncorrectGuesses(incorrectGuesses);
+      }
     }
 
     super.populateBaseModel(doc);
@@ -2349,6 +2507,12 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
     if(finalFour != null) {
       doc.put("finalFour_docvalues_string", finalFour);
     }
+    if(correctGuesses != null) {
+      doc.put("correctGuesses_docvalues_int", correctGuesses);
+    }
+    if(incorrectGuesses != null) {
+      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
+    }
     super.indexBaseModel(doc);
 
 	}
@@ -2395,6 +2559,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         return "midwestGame1Loser_docvalues_string";
       case "finalFour":
         return "finalFour_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varStoredBaseModel(entityVar);
     }
@@ -2438,6 +2606,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         return "midwestGame1Loser_docvalues_string";
       case "finalFour":
         return "finalFour_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varIndexedBaseModel(entityVar);
     }
@@ -2481,6 +2653,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         return "midwestGame1Loser";
       case "finalFour_docvalues_string":
         return "finalFour";
+      case "correctGuesses_docvalues_int":
+        return "correctGuesses";
+      case "incorrectGuesses_docvalues_int":
+        return "incorrectGuesses";
       default:
         return BaseModel.searchVarBaseModel(searchVar);
     }
@@ -2531,6 +2707,8 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
     oEliteEight.setMidwestGame1Winner(Optional.ofNullable(doc.get("midwestGame1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oEliteEight.setMidwestGame1Loser(Optional.ofNullable(doc.get("midwestGame1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
     oEliteEight.setFinalFour(Optional.ofNullable(doc.get("finalFour_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oEliteEight.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oEliteEight.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
 
     super.storeBaseModel(doc);
   }
@@ -2584,6 +2762,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
         apiRequest.addVars("midwestGame1Loser");
       if(!Objects.equals(finalFour, original.getFinalFour()))
         apiRequest.addVars("finalFour");
+      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
+        apiRequest.addVars("correctGuesses");
+      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
+        apiRequest.addVars("incorrectGuesses");
       super.apiRequestBaseModel();
     }
   }
@@ -2615,6 +2797,8 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(midwestGame1Winner).map(v -> "midwestGame1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame1Loser).map(v -> "midwestGame1Loser: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(finalFour).map(v -> "finalFour: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     return sb.toString();
   }
 
@@ -2669,6 +2853,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
   public static final String SET_midwestGame1Loser = "setMidwestGame1Loser";
   public static final String VAR_finalFour = "finalFour";
   public static final String SET_finalFour = "setFinalFour";
+  public static final String VAR_correctGuesses = "correctGuesses";
+  public static final String SET_correctGuesses = "setCorrectGuesses";
+  public static final String VAR_incorrectGuesses = "incorrectGuesses";
+  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
 
   public static List<String> varsQForClass() {
     return EliteEight.varsQEliteEight(new ArrayList<String>());
@@ -2716,6 +2904,8 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_midwestGame1Winner = "Midwest game 1 winner";
   public static final String DISPLAY_NAME_midwestGame1Loser = "Midwest game 1 loser";
   public static final String DISPLAY_NAME_finalFour = "Final Four bracket";
+  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
+  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
 
   @Override
   public String idForClass() {
@@ -2791,6 +2981,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return patch ? SET_midwestGame1Loser : VAR_midwestGame1Loser;
     case VAR_finalFour:
       return patch ? SET_finalFour : VAR_finalFour;
+    case VAR_correctGuesses:
+      return patch ? SET_correctGuesses : VAR_correctGuesses;
+    case VAR_incorrectGuesses:
+      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     default:
       return BaseModel.varJsonBaseModel(var, patch);
     }
@@ -2845,6 +3039,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return DISPLAY_NAME_midwestGame1Loser;
     case VAR_finalFour:
       return DISPLAY_NAME_finalFour;
+    case VAR_correctGuesses:
+      return DISPLAY_NAME_correctGuesses;
+    case VAR_incorrectGuesses:
+      return DISPLAY_NAME_incorrectGuesses;
     default:
       return BaseModel.displayNameBaseModel(var);
     }
@@ -2870,6 +3068,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return "The name of this bracket";
     case VAR_finalFour:
       return "The Final Four bracket of this tournament";
+    case VAR_correctGuesses:
+      return "The number of correct guesses in this Championship bracket";
+    case VAR_incorrectGuesses:
+      return "The number of incorrect guesses in this Championship bracket";
       default:
         return BaseModel.descriptionBaseModel(var);
     }
@@ -2921,6 +3123,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return "String";
     case VAR_finalFour:
       return "String";
+    case VAR_correctGuesses:
+      return "Integer";
+    case VAR_incorrectGuesses:
+      return "Integer";
       default:
         return BaseModel.classSimpleNameBaseModel(var);
     }
@@ -2971,6 +3177,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return 8;
     case VAR_finalFour:
       return 10;
+    case VAR_correctGuesses:
+      return 4;
+    case VAR_incorrectGuesses:
+      return 4;
       default:
         return BaseModel.htmRowBaseModel(var);
     }
@@ -3010,6 +3220,10 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
       return 2;
     case VAR_finalFour:
       return 0;
+    case VAR_correctGuesses:
+      return 2;
+    case VAR_incorrectGuesses:
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

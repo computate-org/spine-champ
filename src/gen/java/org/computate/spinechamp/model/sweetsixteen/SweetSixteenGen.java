@@ -2071,6 +2071,130 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return eliteEight;
   }
 
+	////////////////////
+  // correctGuesses //
+	////////////////////
+
+
+  /**
+   *  The entity correctGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer correctGuesses;
+
+  /**
+   * <br> The entity correctGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _correctGuesses(Wrap<Integer> w);
+
+  public Integer getCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public void setCorrectGuesses(Integer correctGuesses) {
+    this.correctGuesses = correctGuesses;
+  }
+  @JsonIgnore
+  public void setCorrectGuesses(String o) {
+    this.correctGuesses = SweetSixteen.staticSetCorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected SweetSixteen correctGuessesInit() {
+    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
+    if(correctGuesses == null) {
+      _correctGuesses(correctGuessesWrap);
+      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
+        setCorrectGuesses(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchCorrectGuesses(siteRequest_, SweetSixteen.staticSetCorrectGuesses(siteRequest_, o)).toString();
+  }
+
+	//////////////////////
+  // incorrectGuesses //
+	//////////////////////
+
+
+  /**
+   *  The entity incorrectGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer incorrectGuesses;
+
+  /**
+   * <br> The entity incorrectGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _incorrectGuesses(Wrap<Integer> w);
+
+  public Integer getIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public void setIncorrectGuesses(Integer incorrectGuesses) {
+    this.incorrectGuesses = incorrectGuesses;
+  }
+  @JsonIgnore
+  public void setIncorrectGuesses(String o) {
+    this.incorrectGuesses = SweetSixteen.staticSetIncorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected SweetSixteen incorrectGuessesInit() {
+    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
+    if(incorrectGuesses == null) {
+      _incorrectGuesses(incorrectGuessesWrap);
+      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
+        setIncorrectGuesses(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchIncorrectGuesses(siteRequest_, SweetSixteen.staticSetIncorrectGuesses(siteRequest_, o)).toString();
+  }
+
   //////////////
   // initDeep //
   //////////////
@@ -2146,6 +2270,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         midwestGame2WinnerInit();
         midwestGame2LoserInit();
         eliteEightInit();
+        correctGuessesInit();
+        incorrectGuessesInit();
         promise2.complete();
       } catch(Exception ex) {
         promise2.fail(ex);
@@ -2263,6 +2389,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return oSweetSixteen.midwestGame2Loser;
       case "eliteEight":
         return oSweetSixteen.eliteEight;
+      case "correctGuesses":
+        return oSweetSixteen.correctGuesses;
+      case "incorrectGuesses":
+        return oSweetSixteen.incorrectGuesses;
       default:
         return super.obtainBaseModel(var);
     }
@@ -2470,6 +2600,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSetMidwestGame2Loser(siteRequest_, v);
     case "eliteEight":
       return SweetSixteen.staticSetEliteEight(siteRequest_, v);
+    case "correctGuesses":
+      return SweetSixteen.staticSetCorrectGuesses(siteRequest_, v);
+    case "incorrectGuesses":
+      return SweetSixteen.staticSetIncorrectGuesses(siteRequest_, v);
       default:
         return BaseModel.staticSetBaseModel(entityVar,  siteRequest_, v, o);
     }
@@ -2574,6 +2708,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchMidwestGame2Loser(siteRequest_, (String)o);
     case "eliteEight":
       return SweetSixteen.staticSearchEliteEight(siteRequest_, (String)o);
+    case "correctGuesses":
+      return SweetSixteen.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return SweetSixteen.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchBaseModel(entityVar,  siteRequest_, o);
     }
@@ -2648,6 +2786,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchStrMidwestGame2Loser(siteRequest_, (String)o);
     case "eliteEight":
       return SweetSixteen.staticSearchStrEliteEight(siteRequest_, (String)o);
+    case "correctGuesses":
+      return SweetSixteen.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return SweetSixteen.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
       default:
         return BaseModel.staticSearchStrBaseModel(entityVar,  siteRequest_, o);
     }
@@ -2722,6 +2864,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchFqMidwestGame2Loser(siteRequest_, o);
     case "eliteEight":
       return SweetSixteen.staticSearchFqEliteEight(siteRequest_, o);
+    case "correctGuesses":
+      return SweetSixteen.staticSearchFqCorrectGuesses(siteRequest_, o);
+    case "incorrectGuesses":
+      return SweetSixteen.staticSearchFqIncorrectGuesses(siteRequest_, o);
       default:
         return BaseModel.staticSearchFqBaseModel(entityVar,  siteRequest_, o);
     }
@@ -3036,6 +3182,18 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       String eliteEight = (String)doc.get("eliteEight_docvalues_string");
       if(eliteEight != null)
         oSweetSixteen.setEliteEight(eliteEight);
+
+      if(saves.contains("correctGuesses")) {
+        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
+        if(correctGuesses != null)
+          oSweetSixteen.setCorrectGuesses(correctGuesses);
+      }
+
+      if(saves.contains("incorrectGuesses")) {
+        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
+        if(incorrectGuesses != null)
+          oSweetSixteen.setIncorrectGuesses(incorrectGuesses);
+      }
     }
 
     super.populateBaseModel(doc);
@@ -3132,6 +3290,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(eliteEight != null) {
       doc.put("eliteEight_docvalues_string", eliteEight);
     }
+    if(correctGuesses != null) {
+      doc.put("correctGuesses_docvalues_int", correctGuesses);
+    }
+    if(incorrectGuesses != null) {
+      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
+    }
     super.indexBaseModel(doc);
 
 	}
@@ -3198,6 +3362,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "midwestGame2Loser_docvalues_string";
       case "eliteEight":
         return "eliteEight_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varStoredBaseModel(entityVar);
     }
@@ -3263,6 +3431,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "midwestGame2Loser_docvalues_string";
       case "eliteEight":
         return "eliteEight_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       default:
         return BaseModel.varIndexedBaseModel(entityVar);
     }
@@ -3328,6 +3500,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "midwestGame2Loser";
       case "eliteEight_docvalues_string":
         return "eliteEight";
+      case "correctGuesses_docvalues_int":
+        return "correctGuesses";
+      case "incorrectGuesses_docvalues_int":
+        return "incorrectGuesses";
       default:
         return BaseModel.searchVarBaseModel(searchVar);
     }
@@ -3388,6 +3564,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     oSweetSixteen.setMidwestGame2Winner(Optional.ofNullable(doc.get("midwestGame2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setMidwestGame2Loser(Optional.ofNullable(doc.get("midwestGame2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setEliteEight(Optional.ofNullable(doc.get("eliteEight_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
 
     super.storeBaseModel(doc);
   }
@@ -3461,6 +3639,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         apiRequest.addVars("midwestGame2Loser");
       if(!Objects.equals(eliteEight, original.getEliteEight()))
         apiRequest.addVars("eliteEight");
+      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
+        apiRequest.addVars("correctGuesses");
+      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
+        apiRequest.addVars("incorrectGuesses");
       super.apiRequestBaseModel();
     }
   }
@@ -3502,6 +3684,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(midwestGame2Winner).map(v -> "midwestGame2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(midwestGame2Loser).map(v -> "midwestGame2Loser: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(eliteEight).map(v -> "eliteEight: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     return sb.toString();
   }
 
@@ -3574,6 +3758,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String SET_midwestGame2Loser = "setMidwestGame2Loser";
   public static final String VAR_eliteEight = "eliteEight";
   public static final String SET_eliteEight = "setEliteEight";
+  public static final String VAR_correctGuesses = "correctGuesses";
+  public static final String SET_correctGuesses = "setCorrectGuesses";
+  public static final String VAR_incorrectGuesses = "incorrectGuesses";
+  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
 
   public static List<String> varsQForClass() {
     return SweetSixteen.varsQSweetSixteen(new ArrayList<String>());
@@ -3630,6 +3818,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_midwestGame2Winner = "Midwest game 2 winner";
   public static final String DISPLAY_NAME_midwestGame2Loser = "Midwest game 2 loser";
   public static final String DISPLAY_NAME_eliteEight = "Elite Eight bracket";
+  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
+  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
 
   @Override
   public String idForClass() {
@@ -3723,6 +3913,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return patch ? SET_midwestGame2Loser : VAR_midwestGame2Loser;
     case VAR_eliteEight:
       return patch ? SET_eliteEight : VAR_eliteEight;
+    case VAR_correctGuesses:
+      return patch ? SET_correctGuesses : VAR_correctGuesses;
+    case VAR_incorrectGuesses:
+      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     default:
       return BaseModel.varJsonBaseModel(var, patch);
     }
@@ -3795,6 +3989,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return DISPLAY_NAME_midwestGame2Loser;
     case VAR_eliteEight:
       return DISPLAY_NAME_eliteEight;
+    case VAR_correctGuesses:
+      return DISPLAY_NAME_correctGuesses;
+    case VAR_incorrectGuesses:
+      return DISPLAY_NAME_incorrectGuesses;
     default:
       return BaseModel.displayNameBaseModel(var);
     }
@@ -3816,6 +4014,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return "The name of this bracket";
     case VAR_eliteEight:
       return "The Elite Eight bracket of this tournament";
+    case VAR_correctGuesses:
+      return "The number of correct guesses in this Championship bracket";
+    case VAR_incorrectGuesses:
+      return "The number of incorrect guesses in this Championship bracket";
       default:
         return BaseModel.descriptionBaseModel(var);
     }
@@ -3885,6 +4087,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return "String";
     case VAR_eliteEight:
       return "String";
+    case VAR_correctGuesses:
+      return "Integer";
+    case VAR_incorrectGuesses:
+      return "Integer";
       default:
         return BaseModel.classSimpleNameBaseModel(var);
     }
@@ -3957,6 +4163,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 12;
     case VAR_eliteEight:
       return 20;
+    case VAR_correctGuesses:
+      return 4;
+    case VAR_incorrectGuesses:
+      return 4;
       default:
         return BaseModel.htmRowBaseModel(var);
     }
@@ -4018,6 +4228,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 2;
     case VAR_eliteEight:
       return 0;
+    case VAR_correctGuesses:
+      return 2;
+    case VAR_incorrectGuesses:
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

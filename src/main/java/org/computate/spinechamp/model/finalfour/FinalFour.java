@@ -263,4 +263,41 @@ public class FinalFour extends FinalFourGen<BaseModel> {
    **/
   protected void _championship(Wrap<String> w) {
   }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * DisplayName: correct guesses
+   * Description: The number of correct guesses in this Championship bracket
+   * HtmRow: 4
+   * HtmCell: 2
+   **/
+  protected void _correctGuesses(Wrap<Integer> w) {
+    Integer correct = 0;
+    Integer incorrect = 0;
+
+    if(Optional.ofNullable(game1WinnerGuess).map(guess -> guess.startsWith("Correct")).orElse(false))
+      correct++;
+    else if(Optional.ofNullable(game1WinnerGuess).map(guess -> guess.startsWith("Incorrect")).orElse(false))
+      incorrect++;
+
+    if(Optional.ofNullable(game2WinnerGuess).map(guess -> guess.startsWith("Correct")).orElse(false))
+      correct++;
+    else if(Optional.ofNullable(game2WinnerGuess).map(guess -> guess.startsWith("Incorrect")).orElse(false))
+      incorrect++;
+
+    setIncorrectGuesses(incorrect);
+    w.o(correct);
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * DisplayName: incorrect guesses
+   * Description: The number of incorrect guesses in this Championship bracket
+   * HtmRow: 4
+   * HtmCell: 3
+   **/
+  protected void _incorrectGuesses(Wrap<Integer> w) {
+  }
 }
