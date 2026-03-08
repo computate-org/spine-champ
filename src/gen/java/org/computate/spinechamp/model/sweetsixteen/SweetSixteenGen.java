@@ -2894,7 +2894,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(saves != null) {
 
       if(saves.contains("actualSweetSixteen")) {
-        String actualSweetSixteen = (String)doc.get("actualSweetSixteen_docvalues_string");
+        String actualSweetSixteen = (String)doc.get("actualSweetSixteen_stored_string");
         if(actualSweetSixteen != null)
           oSweetSixteen.setActualSweetSixteen(actualSweetSixteen);
       }
@@ -3043,7 +3043,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public void indexSweetSixteen(JsonObject doc) {
     if(actualSweetSixteen != null) {
-      doc.put("actualSweetSixteen_docvalues_string", actualSweetSixteen.encode());
+      doc.put("actualSweetSixteen_stored_string", actualSweetSixteen.toString());
     }
     if(guesserId != null) {
       doc.put("guesserId_docvalues_string", guesserId);
@@ -3139,7 +3139,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static String varStoredSweetSixteen(String entityVar) {
     switch(entityVar) {
       case "actualSweetSixteen":
-        return "actualSweetSixteen_docvalues_string";
+        return "actualSweetSixteen_stored_string";
       case "guesserId":
         return "guesserId_docvalues_string";
       case "year":
@@ -3205,8 +3205,6 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String varIndexedSweetSixteen(String entityVar) {
     switch(entityVar) {
-      case "actualSweetSixteen":
-        return "actualSweetSixteen_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
       case "year":
@@ -3272,8 +3270,6 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
 
   public static String searchVarSweetSixteen(String searchVar) {
     switch(searchVar) {
-      case "actualSweetSixteen_docvalues_string":
-        return "actualSweetSixteen";
       case "guesserId_docvalues_string":
         return "guesserId";
       case "year_docvalues_int":
@@ -3362,7 +3358,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     SweetSixteen oSweetSixteen = (SweetSixteen)this;
     SiteRequest siteRequest = oSweetSixteen.getSiteRequest_();
 
-    oSweetSixteen.setActualSweetSixteen(Optional.ofNullable(doc.get("actualSweetSixteen_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setActualSweetSixteen(Optional.ofNullable(doc.get("actualSweetSixteen_stored_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -3960,7 +3956,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     case VAR_midwestGame2Loser:
       return 12;
     case VAR_eliteEight:
-      return 10;
+      return 20;
       default:
         return BaseModel.htmRowBaseModel(var);
     }

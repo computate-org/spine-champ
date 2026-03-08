@@ -64,7 +64,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
 
   /**
    * {@inheritDoc}
-   * DocValues: true
+   * Stored: true
    * DisplayName: Actual Sweet Sixteen bracket
    * Description: The Sweet Sixteen bracket of this tournament
    **/
@@ -133,13 +133,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: South game 1
    * HtmRow: 5
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.southGame1Winner }} wins,  {{ result.actualSweetSixteen.southGame1Loser }} loses
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.southGame1Winner }} wins,  {{ result.actualSweetSixteen.southGame1Loser }} loses
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _southGame1WinnerGuess(Wrap<String> w) {
-    w.o(southGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame1Winner)).map(o -> o.equals(southGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = southGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame1Winner)).map(o -> o.equals(southGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame1Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -173,13 +176,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: South game 2
    * HtmRow: 6
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.southGame2Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.southGame2Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _southGame2WinnerGuess(Wrap<String> w) {
-    w.o(southGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame2Winner)).map(o -> o.equals(southGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = southGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_southGame2Winner)).map(o -> o.equals(southGame2Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame2Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame2Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -213,13 +219,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: West game 1
    * HtmRow: 7
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.westGame1Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.westGame1Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _westGame1WinnerGuess(Wrap<String> w) {
-    w.o(westGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame1Winner)).map(o -> o.equals(westGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = westGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame1Winner)).map(o -> o.equals(westGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame1Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -253,13 +262,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: West game 2
    * HtmRow: 8
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.westGame2Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.westGame2Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _westGame2WinnerGuess(Wrap<String> w) {
-    w.o(westGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame2Winner)).map(o -> o.equals(westGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = westGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_westGame2Winner)).map(o -> o.equals(westGame2Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame2Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame2Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -293,13 +305,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: East game 1
    * HtmRow: 9
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.eastGame1Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.eastGame1Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _eastGame1WinnerGuess(Wrap<String> w) {
-    w.o(eastGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame1Winner)).map(o -> o.equals(eastGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = eastGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame1Winner)).map(o -> o.equals(eastGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame1Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -333,13 +348,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: East game 2
    * HtmRow: 10
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.eastGame2Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.eastGame2Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _eastGame2WinnerGuess(Wrap<String> w) {
-    w.o(eastGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame2Winner)).map(o -> o.equals(eastGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = eastGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_eastGame2Winner)).map(o -> o.equals(eastGame2Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame2Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame2Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -373,13 +391,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: Midwest game 1
    * HtmRow: 11
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.midwestGame1Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.midwestGame1Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _midwestGame1WinnerGuess(Wrap<String> w) {
-    w.o(midwestGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame1Winner)).map(o -> o.equals(midwestGame1Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = midwestGame1Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame1Winner)).map(o -> o.equals(midwestGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame1Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -413,13 +434,16 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmRowTitleOpen: Midwest game 2
    * HtmRow: 12
    * HtmCell: 0
-   * Option:
-   *   correct: Correct — {{ result.actualSweetSixteen.midwestGame2Winner }}
-   *   incorrect: Incorrect — {{ result.actualSweetSixteen.midwestGame2Winner }}
-   *   unknown: Unknown
+   * Modify: false
    **/
   protected void _midwestGame2WinnerGuess(Wrap<String> w) {
-    w.o(midwestGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame2Winner)).map(o -> o.equals(midwestGame2Winner) ? "correct" : "incorrect").orElse("unknown"));
+    String val = midwestGame2Winner == null ? "unknown" : Optional.ofNullable(actualSweetSixteen).map(o -> o.getString(SweetSixteen.VAR_midwestGame2Winner)).map(o -> o.equals(midwestGame2Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame2Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame2Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame2Loser")).orElse("")));
+    else 
+      w.o("Unknown");
   }
 
   /**
@@ -452,7 +476,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * Persist: true
    * DisplayName: Elite Eight bracket
    * Description: The Elite Eight bracket of this tournament
-   * HtmRow: 10
+   * HtmRow: 20
    * HtmCell: 0
    * HtmRowTitleOpen: later tournaments
    * Relate: EliteEight.sweetSixteen

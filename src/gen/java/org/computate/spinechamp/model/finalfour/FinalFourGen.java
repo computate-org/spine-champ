@@ -35,8 +35,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.String;
+import org.computate.vertx.search.list.SearchList;
 import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import java.lang.String;
 import org.computate.spinechamp.model.guesser.Guesser;
 import java.lang.Integer;
 import org.computate.spinechamp.model.team.Team;
@@ -45,7 +48,6 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
-import org.computate.vertx.search.list.SearchList;
 import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
@@ -211,6 +213,238 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/final-four";
 
   public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
+
+	////////////////////////////
+  // actualEliteEightSearch //
+	////////////////////////////
+
+
+  /**
+   *  The entity actualEliteEightSearch
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SearchList<EliteEight> actualEliteEightSearch;
+
+  /**
+   * <br> The entity actualEliteEightSearch
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:actualEliteEightSearch">Find the entity actualEliteEightSearch in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualEliteEightSearch(Promise<SearchList<EliteEight>> promise);
+
+  public SearchList<EliteEight> getActualEliteEightSearch() {
+    return actualEliteEightSearch;
+  }
+
+  public void setActualEliteEightSearch(SearchList<EliteEight> actualEliteEightSearch) {
+    this.actualEliteEightSearch = actualEliteEightSearch;
+  }
+  public static SearchList<EliteEight> staticSetActualEliteEightSearch(SiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SearchList<EliteEight>> actualEliteEightSearchPromise() {
+    Promise<SearchList<EliteEight>> promise = Promise.promise();
+    Promise<SearchList<EliteEight>> promise2 = Promise.promise();
+    _actualEliteEightSearch(promise2);
+    promise2.future().onSuccess(o -> {
+      if(o != null && actualEliteEightSearch == null) {
+        o.promiseDeepForClass(siteRequest_).onSuccess(a -> {
+          setActualEliteEightSearch(o);
+          promise.complete(o);
+        }).onFailure(ex -> {
+          promise.fail(ex);
+        });
+      } else {
+        promise.complete(o);
+      }
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+	//////////////////////
+  // actualEliteEight //
+	//////////////////////
+
+
+  /**
+   *  The entity actualEliteEight
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject actualEliteEight;
+
+  /**
+   * <br> The entity actualEliteEight
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:actualEliteEight">Find the entity actualEliteEight in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualEliteEight(Wrap<JsonObject> w);
+
+  public JsonObject getActualEliteEight() {
+    return actualEliteEight;
+  }
+
+  public void setActualEliteEight(JsonObject actualEliteEight) {
+    this.actualEliteEight = actualEliteEight;
+  }
+  @JsonIgnore
+  public void setActualEliteEight(String o) {
+    this.actualEliteEight = FinalFour.staticSetActualEliteEight(siteRequest_, o);
+  }
+  public static JsonObject staticSetActualEliteEight(SiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected FinalFour actualEliteEightInit() {
+    Wrap<JsonObject> actualEliteEightWrap = new Wrap<JsonObject>().var("actualEliteEight");
+    if(actualEliteEight == null) {
+      _actualEliteEight(actualEliteEightWrap);
+      Optional.ofNullable(actualEliteEightWrap.getO()).ifPresent(o -> {
+        setActualEliteEight(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static String staticSearchActualEliteEight(SiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrActualEliteEight(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqActualEliteEight(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchActualEliteEight(siteRequest_, FinalFour.staticSetActualEliteEight(siteRequest_, o)).toString();
+  }
+
+	///////////////////////////
+  // actualFinalFourSearch //
+	///////////////////////////
+
+
+  /**
+   *  The entity actualFinalFourSearch
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SearchList<FinalFour> actualFinalFourSearch;
+
+  /**
+   * <br> The entity actualFinalFourSearch
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:actualFinalFourSearch">Find the entity actualFinalFourSearch in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualFinalFourSearch(Promise<SearchList<FinalFour>> promise);
+
+  public SearchList<FinalFour> getActualFinalFourSearch() {
+    return actualFinalFourSearch;
+  }
+
+  public void setActualFinalFourSearch(SearchList<FinalFour> actualFinalFourSearch) {
+    this.actualFinalFourSearch = actualFinalFourSearch;
+  }
+  public static SearchList<FinalFour> staticSetActualFinalFourSearch(SiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SearchList<FinalFour>> actualFinalFourSearchPromise() {
+    Promise<SearchList<FinalFour>> promise = Promise.promise();
+    Promise<SearchList<FinalFour>> promise2 = Promise.promise();
+    _actualFinalFourSearch(promise2);
+    promise2.future().onSuccess(o -> {
+      if(o != null && actualFinalFourSearch == null) {
+        o.promiseDeepForClass(siteRequest_).onSuccess(a -> {
+          setActualFinalFourSearch(o);
+          promise.complete(o);
+        }).onFailure(ex -> {
+          promise.fail(ex);
+        });
+      } else {
+        promise.complete(o);
+      }
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+	/////////////////////
+  // actualFinalFour //
+	/////////////////////
+
+
+  /**
+   *  The entity actualFinalFour
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject actualFinalFour;
+
+  /**
+   * <br> The entity actualFinalFour
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:actualFinalFour">Find the entity actualFinalFour in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualFinalFour(Wrap<JsonObject> w);
+
+  public JsonObject getActualFinalFour() {
+    return actualFinalFour;
+  }
+
+  public void setActualFinalFour(JsonObject actualFinalFour) {
+    this.actualFinalFour = actualFinalFour;
+  }
+  @JsonIgnore
+  public void setActualFinalFour(String o) {
+    this.actualFinalFour = FinalFour.staticSetActualFinalFour(siteRequest_, o);
+  }
+  public static JsonObject staticSetActualFinalFour(SiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected FinalFour actualFinalFourInit() {
+    Wrap<JsonObject> actualFinalFourWrap = new Wrap<JsonObject>().var("actualFinalFour");
+    if(actualFinalFour == null) {
+      _actualFinalFour(actualFinalFourWrap);
+      Optional.ofNullable(actualFinalFourWrap.getO()).ifPresent(o -> {
+        setActualFinalFour(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static String staticSearchActualFinalFour(SiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrActualFinalFour(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqActualFinalFour(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchActualFinalFour(siteRequest_, FinalFour.staticSetActualFinalFour(siteRequest_, o)).toString();
+  }
 
 	////////////////
   // eliteEight //
@@ -530,6 +764,60 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     return name;
   }
 
+	//////////////////////
+  // game1WinnerGuess //
+	//////////////////////
+
+
+  /**
+   *  The entity game1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String game1WinnerGuess;
+
+  /**
+   * <br> The entity game1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:game1WinnerGuess">Find the entity game1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _game1WinnerGuess(Wrap<String> w);
+
+  public String getGame1WinnerGuess() {
+    return game1WinnerGuess;
+  }
+  public void setGame1WinnerGuess(String o) {
+    this.game1WinnerGuess = FinalFour.staticSetGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected FinalFour game1WinnerGuessInit() {
+    Wrap<String> game1WinnerGuessWrap = new Wrap<String>().var("game1WinnerGuess");
+    if(game1WinnerGuess == null) {
+      _game1WinnerGuess(game1WinnerGuessWrap);
+      Optional.ofNullable(game1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setGame1WinnerGuess(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static String staticSearchGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchGame1WinnerGuess(siteRequest_, FinalFour.staticSetGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	/////////////////
   // game1Winner //
 	/////////////////
@@ -652,6 +940,60 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
 
   public static String staticJsonGame1Loser(String game1Loser) {
     return game1Loser;
+  }
+
+	//////////////////////
+  // game2WinnerGuess //
+	//////////////////////
+
+
+  /**
+   *  The entity game2WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String game2WinnerGuess;
+
+  /**
+   * <br> The entity game2WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:game2WinnerGuess">Find the entity game2WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _game2WinnerGuess(Wrap<String> w);
+
+  public String getGame2WinnerGuess() {
+    return game2WinnerGuess;
+  }
+  public void setGame2WinnerGuess(String o) {
+    this.game2WinnerGuess = FinalFour.staticSetGame2WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected FinalFour game2WinnerGuessInit() {
+    Wrap<String> game2WinnerGuessWrap = new Wrap<String>().var("game2WinnerGuess");
+    if(game2WinnerGuess == null) {
+      _game2WinnerGuess(game2WinnerGuessWrap);
+      Optional.ofNullable(game2WinnerGuessWrap.getO()).ifPresent(o -> {
+        setGame2WinnerGuess(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static String staticSearchGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqGame2WinnerGuess(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchGame2WinnerGuess(siteRequest_, FinalFour.staticSetGame2WinnerGuess(siteRequest_, o)).toString();
   }
 
 	/////////////////
@@ -869,13 +1211,49 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     Future.future(a -> a.complete()).compose(a -> {
       Promise<Void> promise2 = Promise.promise();
       try {
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      actualEliteEightSearchPromise().onSuccess(actualEliteEightSearch -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        actualEliteEightInit();
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      actualFinalFourSearchPromise().onSuccess(actualFinalFourSearch -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        actualFinalFourInit();
         eliteEightInit();
         guesserIdInit();
         yearInit();
         bracketIdInit();
         nameInit();
+        game1WinnerGuessInit();
         game1WinnerInit();
         game1LoserInit();
+        game2WinnerGuessInit();
         game2WinnerInit();
         game2LoserInit();
         championshipInit();
@@ -902,6 +1280,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
 
   public void siteRequestFinalFour(SiteRequest siteRequest_) {
       super.siteRequestBaseModel(siteRequest_);
+    if(actualEliteEightSearch != null)
+      actualEliteEightSearch.setSiteRequest_(siteRequest_);
+    if(actualFinalFourSearch != null)
+      actualFinalFourSearch.setSiteRequest_(siteRequest_);
   }
 
   public void siteRequestForClass(SiteRequest siteRequest_) {
@@ -932,6 +1314,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public Object obtainFinalFour(String var) {
     FinalFour oFinalFour = (FinalFour)this;
     switch(var) {
+      case "actualEliteEightSearch":
+        return oFinalFour.actualEliteEightSearch;
+      case "actualEliteEight":
+        return oFinalFour.actualEliteEight;
+      case "actualFinalFourSearch":
+        return oFinalFour.actualFinalFourSearch;
+      case "actualFinalFour":
+        return oFinalFour.actualFinalFour;
       case "eliteEight":
         return oFinalFour.eliteEight;
       case "guesserId":
@@ -942,10 +1332,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return oFinalFour.bracketId;
       case "name":
         return oFinalFour.name;
+      case "game1WinnerGuess":
+        return oFinalFour.game1WinnerGuess;
       case "game1Winner":
         return oFinalFour.game1Winner;
       case "game1Loser":
         return oFinalFour.game1Loser;
+      case "game2WinnerGuess":
+        return oFinalFour.game2WinnerGuess;
       case "game2Winner":
         return oFinalFour.game2Winner;
       case "game2Loser":
@@ -1033,6 +1427,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static Object staticSetFinalFour(String entityVar, SiteRequest siteRequest_, String v, FinalFour o) {
     switch(entityVar) {
+    case "actualEliteEight":
+      return FinalFour.staticSetActualEliteEight(siteRequest_, v);
+    case "actualFinalFour":
+      return FinalFour.staticSetActualFinalFour(siteRequest_, v);
     case "eliteEight":
       return FinalFour.staticSetEliteEight(siteRequest_, v);
     case "guesserId":
@@ -1043,10 +1441,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSetBracketId(siteRequest_, v);
     case "name":
       return FinalFour.staticSetName(siteRequest_, v);
+    case "game1WinnerGuess":
+      return FinalFour.staticSetGame1WinnerGuess(siteRequest_, v);
     case "game1Winner":
       return FinalFour.staticSetGame1Winner(siteRequest_, v);
     case "game1Loser":
       return FinalFour.staticSetGame1Loser(siteRequest_, v);
+    case "game2WinnerGuess":
+      return FinalFour.staticSetGame2WinnerGuess(siteRequest_, v);
     case "game2Winner":
       return FinalFour.staticSetGame2Winner(siteRequest_, v);
     case "game2Loser":
@@ -1097,6 +1499,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static Object staticSearchFinalFour(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualEliteEight":
+      return FinalFour.staticSearchActualEliteEight(siteRequest_, (JsonObject)o);
+    case "actualFinalFour":
+      return FinalFour.staticSearchActualFinalFour(siteRequest_, (JsonObject)o);
     case "eliteEight":
       return FinalFour.staticSearchEliteEight(siteRequest_, (String)o);
     case "guesserId":
@@ -1107,10 +1513,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchBracketId(siteRequest_, (String)o);
     case "name":
       return FinalFour.staticSearchName(siteRequest_, (String)o);
+    case "game1WinnerGuess":
+      return FinalFour.staticSearchGame1WinnerGuess(siteRequest_, (String)o);
     case "game1Winner":
       return FinalFour.staticSearchGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
       return FinalFour.staticSearchGame1Loser(siteRequest_, (String)o);
+    case "game2WinnerGuess":
+      return FinalFour.staticSearchGame2WinnerGuess(siteRequest_, (String)o);
     case "game2Winner":
       return FinalFour.staticSearchGame2Winner(siteRequest_, (String)o);
     case "game2Loser":
@@ -1131,6 +1541,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static String staticSearchStrFinalFour(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualEliteEight":
+      return FinalFour.staticSearchStrActualEliteEight(siteRequest_, (String)o);
+    case "actualFinalFour":
+      return FinalFour.staticSearchStrActualFinalFour(siteRequest_, (String)o);
     case "eliteEight":
       return FinalFour.staticSearchStrEliteEight(siteRequest_, (String)o);
     case "guesserId":
@@ -1141,10 +1555,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchStrBracketId(siteRequest_, (String)o);
     case "name":
       return FinalFour.staticSearchStrName(siteRequest_, (String)o);
+    case "game1WinnerGuess":
+      return FinalFour.staticSearchStrGame1WinnerGuess(siteRequest_, (String)o);
     case "game1Winner":
       return FinalFour.staticSearchStrGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
       return FinalFour.staticSearchStrGame1Loser(siteRequest_, (String)o);
+    case "game2WinnerGuess":
+      return FinalFour.staticSearchStrGame2WinnerGuess(siteRequest_, (String)o);
     case "game2Winner":
       return FinalFour.staticSearchStrGame2Winner(siteRequest_, (String)o);
     case "game2Loser":
@@ -1165,6 +1583,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static String staticSearchFqFinalFour(String entityVar, SiteRequest siteRequest_, String o) {
     switch(entityVar) {
+    case "actualEliteEight":
+      return FinalFour.staticSearchFqActualEliteEight(siteRequest_, o);
+    case "actualFinalFour":
+      return FinalFour.staticSearchFqActualFinalFour(siteRequest_, o);
     case "eliteEight":
       return FinalFour.staticSearchFqEliteEight(siteRequest_, o);
     case "guesserId":
@@ -1175,10 +1597,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchFqBracketId(siteRequest_, o);
     case "name":
       return FinalFour.staticSearchFqName(siteRequest_, o);
+    case "game1WinnerGuess":
+      return FinalFour.staticSearchFqGame1WinnerGuess(siteRequest_, o);
     case "game1Winner":
       return FinalFour.staticSearchFqGame1Winner(siteRequest_, o);
     case "game1Loser":
       return FinalFour.staticSearchFqGame1Loser(siteRequest_, o);
+    case "game2WinnerGuess":
+      return FinalFour.staticSearchFqGame2WinnerGuess(siteRequest_, o);
     case "game2Winner":
       return FinalFour.staticSearchFqGame2Winner(siteRequest_, o);
     case "game2Loser":
@@ -1290,6 +1716,18 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     saves = Optional.ofNullable((ArrayList<String>)doc.get("saves_docvalues_strings")).orElse(new ArrayList<String>());
     if(saves != null) {
 
+      if(saves.contains("actualEliteEight")) {
+        String actualEliteEight = (String)doc.get("actualEliteEight_stored_string");
+        if(actualEliteEight != null)
+          oFinalFour.setActualEliteEight(actualEliteEight);
+      }
+
+      if(saves.contains("actualFinalFour")) {
+        String actualFinalFour = (String)doc.get("actualFinalFour_stored_string");
+        if(actualFinalFour != null)
+          oFinalFour.setActualFinalFour(actualFinalFour);
+      }
+
       String eliteEight = (String)doc.get("eliteEight_docvalues_string");
       if(eliteEight != null)
         oFinalFour.setEliteEight(eliteEight);
@@ -1316,6 +1754,12 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
           oFinalFour.setName(name);
       }
 
+      if(saves.contains("game1WinnerGuess")) {
+        String game1WinnerGuess = (String)doc.get("game1WinnerGuess_docvalues_string");
+        if(game1WinnerGuess != null)
+          oFinalFour.setGame1WinnerGuess(game1WinnerGuess);
+      }
+
       String game1Winner = (String)doc.get("game1Winner_docvalues_string");
       if(game1Winner != null)
         oFinalFour.setGame1Winner(game1Winner);
@@ -1323,6 +1767,12 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       String game1Loser = (String)doc.get("game1Loser_docvalues_string");
       if(game1Loser != null)
         oFinalFour.setGame1Loser(game1Loser);
+
+      if(saves.contains("game2WinnerGuess")) {
+        String game2WinnerGuess = (String)doc.get("game2WinnerGuess_docvalues_string");
+        if(game2WinnerGuess != null)
+          oFinalFour.setGame2WinnerGuess(game2WinnerGuess);
+      }
 
       String game2Winner = (String)doc.get("game2Winner_docvalues_string");
       if(game2Winner != null)
@@ -1341,6 +1791,12 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
 
   public void indexFinalFour(JsonObject doc) {
+    if(actualEliteEight != null) {
+      doc.put("actualEliteEight_stored_string", actualEliteEight.toString());
+    }
+    if(actualFinalFour != null) {
+      doc.put("actualFinalFour_stored_string", actualFinalFour.toString());
+    }
     if(eliteEight != null) {
       doc.put("eliteEight_docvalues_string", eliteEight);
     }
@@ -1356,11 +1812,17 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     if(name != null) {
       doc.put("name_docvalues_string", name);
     }
+    if(game1WinnerGuess != null) {
+      doc.put("game1WinnerGuess_docvalues_string", game1WinnerGuess);
+    }
     if(game1Winner != null) {
       doc.put("game1Winner_docvalues_string", game1Winner);
     }
     if(game1Loser != null) {
       doc.put("game1Loser_docvalues_string", game1Loser);
+    }
+    if(game2WinnerGuess != null) {
+      doc.put("game2WinnerGuess_docvalues_string", game2WinnerGuess);
     }
     if(game2Winner != null) {
       doc.put("game2Winner_docvalues_string", game2Winner);
@@ -1377,6 +1839,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
 
   public static String varStoredFinalFour(String entityVar) {
     switch(entityVar) {
+      case "actualEliteEight":
+        return "actualEliteEight_stored_string";
+      case "actualFinalFour":
+        return "actualFinalFour_stored_string";
       case "eliteEight":
         return "eliteEight_docvalues_string";
       case "guesserId":
@@ -1387,10 +1853,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "game1WinnerGuess":
+        return "game1WinnerGuess_docvalues_string";
       case "game1Winner":
         return "game1Winner_docvalues_string";
       case "game1Loser":
         return "game1Loser_docvalues_string";
+      case "game2WinnerGuess":
+        return "game2WinnerGuess_docvalues_string";
       case "game2Winner":
         return "game2Winner_docvalues_string";
       case "game2Loser":
@@ -1414,10 +1884,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "game1WinnerGuess":
+        return "game1WinnerGuess_docvalues_string";
       case "game1Winner":
         return "game1Winner_docvalues_string";
       case "game1Loser":
         return "game1Loser_docvalues_string";
+      case "game2WinnerGuess":
+        return "game2WinnerGuess_docvalues_string";
       case "game2Winner":
         return "game2Winner_docvalues_string";
       case "game2Loser":
@@ -1441,10 +1915,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "bracketId";
       case "name_docvalues_string":
         return "name";
+      case "game1WinnerGuess_docvalues_string":
+        return "game1WinnerGuess";
       case "game1Winner_docvalues_string":
         return "game1Winner";
       case "game1Loser_docvalues_string":
         return "game1Loser";
+      case "game2WinnerGuess_docvalues_string":
+        return "game2WinnerGuess";
       case "game2Winner_docvalues_string":
         return "game2Winner";
       case "game2Loser_docvalues_string":
@@ -1481,13 +1959,17 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     FinalFour oFinalFour = (FinalFour)this;
     SiteRequest siteRequest = oFinalFour.getSiteRequest_();
 
+    oFinalFour.setActualEliteEight(Optional.ofNullable(doc.get("actualEliteEight_stored_string")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setActualFinalFour(Optional.ofNullable(doc.get("actualFinalFour_stored_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setEliteEight(Optional.ofNullable(doc.get("eliteEight_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oFinalFour.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setGame1WinnerGuess(Optional.ofNullable(doc.get("game1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame1Winner(Optional.ofNullable(doc.get("game1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame1Loser(Optional.ofNullable(doc.get("game1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setGame2WinnerGuess(Optional.ofNullable(doc.get("game2WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame2Winner(Optional.ofNullable(doc.get("game2Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame2Loser(Optional.ofNullable(doc.get("game2Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setChampionship(Optional.ofNullable(doc.get("championship_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -1504,6 +1986,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     Object o = Optional.ofNullable(apiRequest).map(ApiRequest::getOriginal).orElse(null);
     if(o != null && o instanceof FinalFour) {
       FinalFour original = (FinalFour)o;
+      if(!Objects.equals(actualEliteEight, original.getActualEliteEight()))
+        apiRequest.addVars("actualEliteEight");
+      if(!Objects.equals(actualFinalFour, original.getActualFinalFour()))
+        apiRequest.addVars("actualFinalFour");
       if(!Objects.equals(eliteEight, original.getEliteEight()))
         apiRequest.addVars("eliteEight");
       if(!Objects.equals(guesserId, original.getGuesserId()))
@@ -1514,10 +2000,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         apiRequest.addVars("bracketId");
       if(!Objects.equals(name, original.getName()))
         apiRequest.addVars("name");
+      if(!Objects.equals(game1WinnerGuess, original.getGame1WinnerGuess()))
+        apiRequest.addVars("game1WinnerGuess");
       if(!Objects.equals(game1Winner, original.getGame1Winner()))
         apiRequest.addVars("game1Winner");
       if(!Objects.equals(game1Loser, original.getGame1Loser()))
         apiRequest.addVars("game1Loser");
+      if(!Objects.equals(game2WinnerGuess, original.getGame2WinnerGuess()))
+        apiRequest.addVars("game2WinnerGuess");
       if(!Objects.equals(game2Winner, original.getGame2Winner()))
         apiRequest.addVars("game2Winner");
       if(!Objects.equals(game2Loser, original.getGame2Loser()))
@@ -1535,13 +2025,17 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   @Override public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
+    sb.append(Optional.ofNullable(actualEliteEight).map(v -> "actualEliteEight: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(actualFinalFour).map(v -> "actualFinalFour: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(eliteEight).map(v -> "eliteEight: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(game1WinnerGuess).map(v -> "game1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Winner).map(v -> "game1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Loser).map(v -> "game1Loser: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(game2WinnerGuess).map(v -> "game2WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game2Winner).map(v -> "game2Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game2Loser).map(v -> "game2Loser: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(championship).map(v -> "championship: \"" + v + "\"\n" ).orElse(""));
@@ -1555,6 +2049,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static String getClassApiAddress() {
     return CLASS_API_ADDRESS_FinalFour;
   }
+  public static final String VAR_actualEliteEightSearch = "actualEliteEightSearch";
+  public static final String SET_actualEliteEightSearch = "setActualEliteEightSearch";
+  public static final String VAR_actualEliteEight = "actualEliteEight";
+  public static final String SET_actualEliteEight = "setActualEliteEight";
+  public static final String VAR_actualFinalFourSearch = "actualFinalFourSearch";
+  public static final String SET_actualFinalFourSearch = "setActualFinalFourSearch";
+  public static final String VAR_actualFinalFour = "actualFinalFour";
+  public static final String SET_actualFinalFour = "setActualFinalFour";
   public static final String VAR_eliteEight = "eliteEight";
   public static final String SET_eliteEight = "setEliteEight";
   public static final String VAR_guesserId = "guesserId";
@@ -1565,10 +2067,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String SET_bracketId = "setBracketId";
   public static final String VAR_name = "name";
   public static final String SET_name = "setName";
+  public static final String VAR_game1WinnerGuess = "game1WinnerGuess";
+  public static final String SET_game1WinnerGuess = "setGame1WinnerGuess";
   public static final String VAR_game1Winner = "game1Winner";
   public static final String SET_game1Winner = "setGame1Winner";
   public static final String VAR_game1Loser = "game1Loser";
   public static final String SET_game1Loser = "setGame1Loser";
+  public static final String VAR_game2WinnerGuess = "game2WinnerGuess";
+  public static final String SET_game2WinnerGuess = "setGame2WinnerGuess";
   public static final String VAR_game2Winner = "game2Winner";
   public static final String SET_game2Winner = "setGame2Winner";
   public static final String VAR_game2Loser = "game2Loser";
@@ -1600,13 +2106,19 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     return vars;
   }
 
+  public static final String DISPLAY_NAME_actualEliteEightSearch = "";
+  public static final String DISPLAY_NAME_actualEliteEight = "Actual Elite Eight bracket";
+  public static final String DISPLAY_NAME_actualFinalFourSearch = "";
+  public static final String DISPLAY_NAME_actualFinalFour = "Actual Sweet Sixteen bracket";
   public static final String DISPLAY_NAME_eliteEight = "Elite eight bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
   public static final String DISPLAY_NAME_year = "year";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
+  public static final String DISPLAY_NAME_game1WinnerGuess = "game 1 guess";
   public static final String DISPLAY_NAME_game1Winner = "game 1 winner";
   public static final String DISPLAY_NAME_game1Loser = "game 1 loser";
+  public static final String DISPLAY_NAME_game2WinnerGuess = "game 2 guess";
   public static final String DISPLAY_NAME_game2Winner = "game 2 winner";
   public static final String DISPLAY_NAME_game2Loser = "game 2 loser";
   public static final String DISPLAY_NAME_championship = "Championship bracket";
@@ -1641,6 +2153,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static String varJsonFinalFour(String var, Boolean patch) {
     switch(var) {
+    case VAR_actualEliteEightSearch:
+      return patch ? SET_actualEliteEightSearch : VAR_actualEliteEightSearch;
+    case VAR_actualEliteEight:
+      return patch ? SET_actualEliteEight : VAR_actualEliteEight;
+    case VAR_actualFinalFourSearch:
+      return patch ? SET_actualFinalFourSearch : VAR_actualFinalFourSearch;
+    case VAR_actualFinalFour:
+      return patch ? SET_actualFinalFour : VAR_actualFinalFour;
     case VAR_eliteEight:
       return patch ? SET_eliteEight : VAR_eliteEight;
     case VAR_guesserId:
@@ -1651,10 +2171,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return patch ? SET_bracketId : VAR_bracketId;
     case VAR_name:
       return patch ? SET_name : VAR_name;
+    case VAR_game1WinnerGuess:
+      return patch ? SET_game1WinnerGuess : VAR_game1WinnerGuess;
     case VAR_game1Winner:
       return patch ? SET_game1Winner : VAR_game1Winner;
     case VAR_game1Loser:
       return patch ? SET_game1Loser : VAR_game1Loser;
+    case VAR_game2WinnerGuess:
+      return patch ? SET_game2WinnerGuess : VAR_game2WinnerGuess;
     case VAR_game2Winner:
       return patch ? SET_game2Winner : VAR_game2Winner;
     case VAR_game2Loser:
@@ -1671,6 +2195,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   }
   public static String displayNameFinalFour(String var) {
     switch(var) {
+    case VAR_actualEliteEightSearch:
+      return DISPLAY_NAME_actualEliteEightSearch;
+    case VAR_actualEliteEight:
+      return DISPLAY_NAME_actualEliteEight;
+    case VAR_actualFinalFourSearch:
+      return DISPLAY_NAME_actualFinalFourSearch;
+    case VAR_actualFinalFour:
+      return DISPLAY_NAME_actualFinalFour;
     case VAR_eliteEight:
       return DISPLAY_NAME_eliteEight;
     case VAR_guesserId:
@@ -1681,10 +2213,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return DISPLAY_NAME_bracketId;
     case VAR_name:
       return DISPLAY_NAME_name;
+    case VAR_game1WinnerGuess:
+      return DISPLAY_NAME_game1WinnerGuess;
     case VAR_game1Winner:
       return DISPLAY_NAME_game1Winner;
     case VAR_game1Loser:
       return DISPLAY_NAME_game1Loser;
+    case VAR_game2WinnerGuess:
+      return DISPLAY_NAME_game2WinnerGuess;
     case VAR_game2Winner:
       return DISPLAY_NAME_game2Winner;
     case VAR_game2Loser:
@@ -1700,6 +2236,10 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     if(var == null)
       return null;
     switch(var) {
+    case VAR_actualEliteEight:
+      return "The Elite Eight bracket of this tournament";
+    case VAR_actualFinalFour:
+      return "The Sweet Sixteen bracket of this tournament";
     case VAR_eliteEight:
       return "The Elite Eight bracket of this tournament";
     case VAR_guesserId:
@@ -1719,6 +2259,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
 
   public static String classSimpleNameFinalFour(String var) {
     switch(var) {
+    case VAR_actualEliteEightSearch:
+      return "SearchList";
+    case VAR_actualEliteEight:
+      return "JsonObject";
+    case VAR_actualFinalFourSearch:
+      return "SearchList";
+    case VAR_actualFinalFour:
+      return "JsonObject";
     case VAR_eliteEight:
       return "String";
     case VAR_guesserId:
@@ -1729,9 +2277,13 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return "String";
     case VAR_name:
       return "String";
+    case VAR_game1WinnerGuess:
+      return "String";
     case VAR_game1Winner:
       return "String";
     case VAR_game1Loser:
+      return "String";
+    case VAR_game2WinnerGuess:
       return "String";
     case VAR_game2Winner:
       return "String";
@@ -1758,15 +2310,19 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static Integer htmRowFinalFour(String var) {
     switch(var) {
     case VAR_eliteEight:
-      return 10;
+      return 3;
     case VAR_guesserId:
       return 4;
     case VAR_year:
       return 4;
+    case VAR_game1WinnerGuess:
+      return 5;
     case VAR_game1Winner:
       return 5;
     case VAR_game1Loser:
       return 5;
+    case VAR_game2WinnerGuess:
+      return 6;
     case VAR_game2Winner:
       return 6;
     case VAR_game2Loser:
@@ -1786,14 +2342,18 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
+    case VAR_game1WinnerGuess:
+      return 0;
     case VAR_game1Winner:
-      return 0;
+      return 1;
     case VAR_game1Loser:
-      return 1;
-    case VAR_game2Winner:
+      return 2;
+    case VAR_game2WinnerGuess:
       return 0;
-    case VAR_game2Loser:
+    case VAR_game2Winner:
       return 1;
+    case VAR_game2Loser:
+      return 2;
     case VAR_championship:
       return 0;
       default:

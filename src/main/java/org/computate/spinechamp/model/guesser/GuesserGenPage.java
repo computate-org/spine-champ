@@ -2,6 +2,7 @@ package org.computate.spinechamp.model.guesser;
 
 import org.computate.spinechamp.model.guesser.Guesser;
 import java.lang.String;
+import java.util.List;
 import org.computate.spinechamp.page.PageLayout;
 import org.computate.spinechamp.request.SiteRequest;
 import org.computate.spinechamp.user.SiteUser;
@@ -26,7 +27,6 @@ import java.net.URLDecoder;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Map;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;

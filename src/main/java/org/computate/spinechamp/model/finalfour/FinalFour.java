@@ -10,6 +10,7 @@ import org.computate.spinechamp.model.eliteeight.EliteEight;
 import org.computate.vertx.search.list.SearchList;
 
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonObject;
 
 /**
  * Order: 9
@@ -46,12 +47,62 @@ import io.vertx.core.Promise;
 public class FinalFour extends FinalFourGen<BaseModel> {
 
   /**
+   * Ignore: true
+   */
+  protected void _actualEliteEightSearch(Promise<SearchList<EliteEight>> promise) {
+    SearchList<EliteEight> l = new SearchList<>();
+    if(bracketId != null && guesserId != null && year != null) {
+      l.setC(EliteEight.class);
+      l.q("*:*");
+      l.fq(String.format("guesserId_docvalues_string:%s", "results"));
+      l.fq(String.format("year_docvalues_int:%s", year));
+      l.setStore(true);
+    }
+    promise.complete(l);
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: Actual Elite Eight bracket
+   * Description: The Elite Eight bracket of this tournament
+   **/
+  protected void _actualEliteEight(Wrap<JsonObject> w) {
+    w.o(Optional.ofNullable(actualEliteEightSearch.first()).map(o -> JsonObject.mapFrom(o)).orElse(null));
+  }
+
+  /**
+   * Ignore: true
+   */
+  protected void _actualFinalFourSearch(Promise<SearchList<FinalFour>> promise) {
+    SearchList<FinalFour> l = new SearchList<>();
+    if(bracketId != null && guesserId != null && year != null) {
+      l.setC(FinalFour.class);
+      l.q("*:*");
+      l.fq(String.format("guesserId_docvalues_string:%s", "results"));
+      l.fq(String.format("year_docvalues_int:%s", year));
+      l.setStore(true);
+    }
+    promise.complete(l);
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: Actual Sweet Sixteen bracket
+   * Description: The Sweet Sixteen bracket of this tournament
+   **/
+  protected void _actualFinalFour(Wrap<JsonObject> w) {
+    w.o(Optional.ofNullable(actualFinalFourSearch.first()).map(o -> JsonObject.mapFrom(o)).orElse(null));
+  }
+
+  /**
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
    * DisplayName: Elite eight bracket
    * Description: The Elite Eight bracket of this tournament
-   * HtmRow: 10
+   * HtmRow: 3
    * HtmCell: 0
    * HtmRowTitleOpen: earlier tournaments
    * Relate: EliteEight.finalFour
@@ -116,11 +167,29 @@ public class FinalFour extends FinalFourGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: game 1 guess
+   * HtmRowTitleOpen: game 1
+   * HtmRow: 5
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _game1WinnerGuess(Wrap<String> w) {
+    String val = game1Winner == null ? "unknown" : Optional.ofNullable(actualFinalFour).map(o -> o.getString(FinalFour.VAR_game1Winner)).map(o -> o.equals(game1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualFinalFour).map(p -> p.getString("game1Winner")).orElse(""), Optional.ofNullable(actualFinalFour).map(p -> p.getString("game1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualFinalFour).map(p -> p.getString("game1Winner")).orElse(""), Optional.ofNullable(actualFinalFour).map(p -> p.getString("game1Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualEliteEight).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("westGame1Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: game 1 winner
    * HtmRow: 5
-   * HtmCell: 0
-   * HtmRowTitleOpen: game 1
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _game1Winner(Wrap<String> w) {
@@ -132,7 +201,7 @@ public class FinalFour extends FinalFourGen<BaseModel> {
    * Persist: true
    * DisplayName: game 1 loser
    * HtmRow: 5
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _game1Loser(Wrap<String> w) {
@@ -141,11 +210,29 @@ public class FinalFour extends FinalFourGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: game 2 guess
+   * HtmRowTitleOpen: game 2
+   * HtmRow: 6
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _game2WinnerGuess(Wrap<String> w) {
+    String val = game2Winner == null ? "unknown" : Optional.ofNullable(actualFinalFour).map(o -> o.getString(FinalFour.VAR_game2Winner)).map(o -> o.equals(game2Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualFinalFour).map(p -> p.getString("game2Winner")).orElse(""), Optional.ofNullable(actualFinalFour).map(p -> p.getString("game2Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualFinalFour).map(p -> p.getString("game2Winner")).orElse(""), Optional.ofNullable(actualFinalFour).map(p -> p.getString("game2Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualEliteEight).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("midwestGame1Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: game 2 winner
    * HtmRow: 6
-   * HtmCell: 0
-   * HtmRowTitleOpen: game 2
+   * HtmCell: 1
    * Relate: Team.teamId
    **/
   protected void _game2Winner(Wrap<String> w) {
@@ -157,7 +244,7 @@ public class FinalFour extends FinalFourGen<BaseModel> {
    * Persist: true
    * DisplayName: game 2 loser
    * HtmRow: 6
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _game2Loser(Wrap<String> w) {

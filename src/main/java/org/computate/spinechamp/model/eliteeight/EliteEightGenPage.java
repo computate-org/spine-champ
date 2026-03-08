@@ -1,6 +1,9 @@
 package org.computate.spinechamp.model.eliteeight;
 
 import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.vertx.search.list.SearchList;
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import io.vertx.core.json.JsonObject;
 import java.lang.String;
 import java.lang.Integer;
 import org.computate.spinechamp.page.PageLayout;
@@ -9,7 +12,6 @@ import org.computate.spinechamp.user.SiteUser;
 import java.io.IOException;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
-import org.computate.vertx.search.list.SearchList;
 import org.computate.search.wrap.Wrap;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -20,7 +22,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Locale;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.core.json.JsonArray;
 import java.net.URLDecoder;

@@ -708,6 +708,22 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
 
       for(String entityVar : methodNames) {
         switch(entityVar) {
+          case "setCreated":
+              o2.setCreated(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(FinalFour.VAR_created + "=$" + num);
+              num++;
+              bParams.add(o2.sqlCreated());
+            break;
+          case "setArchived":
+              o2.setArchived(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(FinalFour.VAR_archived + "=$" + num);
+              num++;
+              bParams.add(o2.sqlArchived());
+            break;
           case "setEliteEight":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -776,14 +792,6 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case "setCreated":
-              o2.setCreated(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(FinalFour.VAR_created + "=$" + num);
-              num++;
-              bParams.add(o2.sqlCreated());
-            break;
           case "setYear":
               o2.setYear(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -800,13 +808,13 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               num++;
               bParams.add(o2.sqlBracketId());
             break;
-          case "setArchived":
-              o2.setArchived(jsonObject.getString(entityVar));
+          case "setSessionId":
+              o2.setSessionId(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(FinalFour.VAR_archived + "=$" + num);
+              bSql.append(FinalFour.VAR_sessionId + "=$" + num);
               num++;
-              bParams.add(o2.sqlArchived());
+              bParams.add(o2.sqlSessionId());
             break;
           case "setName":
               o2.setName(jsonObject.getString(entityVar));
@@ -815,6 +823,14 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               bSql.append(FinalFour.VAR_name + "=$" + num);
               num++;
               bParams.add(o2.sqlName());
+            break;
+          case "setUserKey":
+              o2.setUserKey(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(FinalFour.VAR_userKey + "=$" + num);
+              num++;
+              bParams.add(o2.sqlUserKey());
             break;
           case "setGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -880,6 +896,22 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
+          case "setObjectTitle":
+              o2.setObjectTitle(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(FinalFour.VAR_objectTitle + "=$" + num);
+              num++;
+              bParams.add(o2.sqlObjectTitle());
+            break;
+          case "setDisplayPage":
+              o2.setDisplayPage(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(FinalFour.VAR_displayPage + "=$" + num);
+              num++;
+              bParams.add(o2.sqlDisplayPage());
+            break;
           case "setGame2Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -912,13 +944,13 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case "setSessionId":
-              o2.setSessionId(jsonObject.getString(entityVar));
+          case "setEditPage":
+              o2.setEditPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(FinalFour.VAR_sessionId + "=$" + num);
+              bSql.append(FinalFour.VAR_editPage + "=$" + num);
               num++;
-              bParams.add(o2.sqlSessionId());
+              bParams.add(o2.sqlEditPage());
             break;
           case "setGame2Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -952,13 +984,13 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case "setUserKey":
-              o2.setUserKey(jsonObject.getString(entityVar));
+          case "setUserPage":
+              o2.setUserPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(FinalFour.VAR_userKey + "=$" + num);
+              bSql.append(FinalFour.VAR_userPage + "=$" + num);
               num++;
-              bParams.add(o2.sqlUserKey());
+              bParams.add(o2.sqlUserPage());
             break;
           case "setChampionship":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -995,38 +1027,6 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
                 });
               }));
             });
-            break;
-          case "setObjectTitle":
-              o2.setObjectTitle(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(FinalFour.VAR_objectTitle + "=$" + num);
-              num++;
-              bParams.add(o2.sqlObjectTitle());
-            break;
-          case "setDisplayPage":
-              o2.setDisplayPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(FinalFour.VAR_displayPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlDisplayPage());
-            break;
-          case "setEditPage":
-              o2.setEditPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(FinalFour.VAR_editPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlEditPage());
-            break;
-          case "setUserPage":
-              o2.setUserPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(FinalFour.VAR_userPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlUserPage());
             break;
           case "setDownload":
               o2.setDownload(jsonObject.getString(entityVar));
@@ -1386,6 +1386,24 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
         Set<String> entityVars = jsonObject.fieldNames();
         for(String entityVar : entityVars) {
           switch(entityVar) {
+          case FinalFour.VAR_created:
+            o2.setCreated(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(FinalFour.VAR_created + "=$" + num);
+            num++;
+            bParams.add(o2.sqlCreated());
+            break;
+          case FinalFour.VAR_archived:
+            o2.setArchived(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(FinalFour.VAR_archived + "=$" + num);
+            num++;
+            bParams.add(o2.sqlArchived());
+            break;
           case FinalFour.VAR_eliteEight:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -1432,15 +1450,6 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case FinalFour.VAR_created:
-            o2.setCreated(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(FinalFour.VAR_created + "=$" + num);
-            num++;
-            bParams.add(o2.sqlCreated());
-            break;
           case FinalFour.VAR_year:
             o2.setYear(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1459,14 +1468,14 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
             num++;
             bParams.add(o2.sqlBracketId());
             break;
-          case FinalFour.VAR_archived:
-            o2.setArchived(jsonObject.getString(entityVar));
+          case FinalFour.VAR_sessionId:
+            o2.setSessionId(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(FinalFour.VAR_archived + "=$" + num);
+            bSql.append(FinalFour.VAR_sessionId + "=$" + num);
             num++;
-            bParams.add(o2.sqlArchived());
+            bParams.add(o2.sqlSessionId());
             break;
           case FinalFour.VAR_name:
             o2.setName(jsonObject.getString(entityVar));
@@ -1476,6 +1485,15 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
             bSql.append(FinalFour.VAR_name + "=$" + num);
             num++;
             bParams.add(o2.sqlName());
+            break;
+          case FinalFour.VAR_userKey:
+            o2.setUserKey(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(FinalFour.VAR_userKey + "=$" + num);
+            num++;
+            bParams.add(o2.sqlUserKey());
             break;
           case FinalFour.VAR_game1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1519,6 +1537,24 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
+          case FinalFour.VAR_objectTitle:
+            o2.setObjectTitle(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(FinalFour.VAR_objectTitle + "=$" + num);
+            num++;
+            bParams.add(o2.sqlObjectTitle());
+            break;
+          case FinalFour.VAR_displayPage:
+            o2.setDisplayPage(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(FinalFour.VAR_displayPage + "=$" + num);
+            num++;
+            bParams.add(o2.sqlDisplayPage());
+            break;
           case FinalFour.VAR_game2Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -1540,14 +1576,14 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case FinalFour.VAR_sessionId:
-            o2.setSessionId(jsonObject.getString(entityVar));
+          case FinalFour.VAR_editPage:
+            o2.setEditPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(FinalFour.VAR_sessionId + "=$" + num);
+            bSql.append(FinalFour.VAR_editPage + "=$" + num);
             num++;
-            bParams.add(o2.sqlSessionId());
+            bParams.add(o2.sqlEditPage());
             break;
           case FinalFour.VAR_game2Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1570,14 +1606,14 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
               }));
             });
             break;
-          case FinalFour.VAR_userKey:
-            o2.setUserKey(jsonObject.getString(entityVar));
+          case FinalFour.VAR_userPage:
+            o2.setUserPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(FinalFour.VAR_userKey + "=$" + num);
+            bSql.append(FinalFour.VAR_userPage + "=$" + num);
             num++;
-            bParams.add(o2.sqlUserKey());
+            bParams.add(o2.sqlUserPage());
             break;
           case FinalFour.VAR_championship:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1603,42 +1639,6 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
                 });
               }));
             });
-            break;
-          case FinalFour.VAR_objectTitle:
-            o2.setObjectTitle(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(FinalFour.VAR_objectTitle + "=$" + num);
-            num++;
-            bParams.add(o2.sqlObjectTitle());
-            break;
-          case FinalFour.VAR_displayPage:
-            o2.setDisplayPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(FinalFour.VAR_displayPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlDisplayPage());
-            break;
-          case FinalFour.VAR_editPage:
-            o2.setEditPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(FinalFour.VAR_editPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlEditPage());
-            break;
-          case FinalFour.VAR_userPage:
-            o2.setUserPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(FinalFour.VAR_userPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlUserPage());
             break;
           case FinalFour.VAR_download:
             o2.setDownload(jsonObject.getString(entityVar));
@@ -3846,7 +3846,7 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT eliteEight, guesserId, created, year, bracketId, archived, name, game1Winner, game1Loser, game2Winner, sessionId, game2Loser, userKey, championship, objectTitle, displayPage, editPage, userPage, download FROM FinalFour WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT created, archived, eliteEight, guesserId, year, bracketId, sessionId, name, userKey, game1Winner, game1Loser, objectTitle, displayPage, game2Winner, editPage, game2Loser, userPage, championship, download FROM FinalFour WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -3891,7 +3891,7 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
-      sqlConnection.preparedQuery("SELECT finalFour as pk2, 'eliteEight' from EliteEight where finalFour=$1 UNION SELECT guesserId as pk2, 'guesserId' from Guesser where guesserId=$2 UNION SELECT teamId as pk2, 'game1Winner' from Team where teamId=$3 UNION SELECT teamId as pk2, 'game1Loser' from Team where teamId=$4 UNION SELECT teamId as pk2, 'game2Winner' from Team where teamId=$5 UNION SELECT teamId as pk2, 'game2Loser' from Team where teamId=$6 UNION SELECT finalFour as pk2, 'championship' from Championship where finalFour=$7")
+      sqlConnection.preparedQuery("SELECT finalFour as pk2, 'eliteEight' FROM EliteEight WHERE finalFour=$1 UNION SELECT guesserId as pk2, 'guesserId' FROM Guesser WHERE guesserId=$2 UNION SELECT teamId as pk2, 'game1Winner' FROM Team WHERE teamId=$3 UNION SELECT teamId as pk2, 'game1Loser' FROM Team WHERE teamId=$4 UNION SELECT teamId as pk2, 'game2Winner' FROM Team WHERE teamId=$5 UNION SELECT teamId as pk2, 'game2Loser' FROM Team WHERE teamId=$6 UNION SELECT finalFour as pk2, 'championship' FROM Championship WHERE finalFour=$7")
           .collecting(Collectors.toList())
           .execute(Tuple.of(o.getEliteEight(), o.getGuesserId(), o.getGame1Winner(), o.getGame1Loser(), o.getGame2Winner(), o.getGame2Loser(), o.getChampionship())
           ).onSuccess(result -> {
@@ -4221,24 +4221,24 @@ public class FinalFourEnUSGenApiServiceImpl extends BaseApiServiceImpl implement
       FinalFour o = new FinalFour();
       o.setSiteRequest_((SiteRequest)siteRequest);
 
+      o.persistForClass(FinalFour.VAR_created, FinalFour.staticSetCreated(siteRequest2, (String)result.get(FinalFour.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
+      o.persistForClass(FinalFour.VAR_archived, FinalFour.staticSetArchived(siteRequest2, (String)result.get(FinalFour.VAR_archived)));
       o.persistForClass(FinalFour.VAR_eliteEight, FinalFour.staticSetEliteEight(siteRequest2, (String)result.get(FinalFour.VAR_eliteEight)));
       o.persistForClass(FinalFour.VAR_guesserId, FinalFour.staticSetGuesserId(siteRequest2, (String)result.get(FinalFour.VAR_guesserId)));
-      o.persistForClass(FinalFour.VAR_created, FinalFour.staticSetCreated(siteRequest2, (String)result.get(FinalFour.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
       o.persistForClass(FinalFour.VAR_year, FinalFour.staticSetYear(siteRequest2, (String)result.get(FinalFour.VAR_year)));
       o.persistForClass(FinalFour.VAR_bracketId, FinalFour.staticSetBracketId(siteRequest2, (String)result.get(FinalFour.VAR_bracketId)));
-      o.persistForClass(FinalFour.VAR_archived, FinalFour.staticSetArchived(siteRequest2, (String)result.get(FinalFour.VAR_archived)));
+      o.persistForClass(FinalFour.VAR_sessionId, FinalFour.staticSetSessionId(siteRequest2, (String)result.get(FinalFour.VAR_sessionId)));
       o.persistForClass(FinalFour.VAR_name, FinalFour.staticSetName(siteRequest2, (String)result.get(FinalFour.VAR_name)));
+      o.persistForClass(FinalFour.VAR_userKey, FinalFour.staticSetUserKey(siteRequest2, (String)result.get(FinalFour.VAR_userKey)));
       o.persistForClass(FinalFour.VAR_game1Winner, FinalFour.staticSetGame1Winner(siteRequest2, (String)result.get(FinalFour.VAR_game1Winner)));
       o.persistForClass(FinalFour.VAR_game1Loser, FinalFour.staticSetGame1Loser(siteRequest2, (String)result.get(FinalFour.VAR_game1Loser)));
-      o.persistForClass(FinalFour.VAR_game2Winner, FinalFour.staticSetGame2Winner(siteRequest2, (String)result.get(FinalFour.VAR_game2Winner)));
-      o.persistForClass(FinalFour.VAR_sessionId, FinalFour.staticSetSessionId(siteRequest2, (String)result.get(FinalFour.VAR_sessionId)));
-      o.persistForClass(FinalFour.VAR_game2Loser, FinalFour.staticSetGame2Loser(siteRequest2, (String)result.get(FinalFour.VAR_game2Loser)));
-      o.persistForClass(FinalFour.VAR_userKey, FinalFour.staticSetUserKey(siteRequest2, (String)result.get(FinalFour.VAR_userKey)));
-      o.persistForClass(FinalFour.VAR_championship, FinalFour.staticSetChampionship(siteRequest2, (String)result.get(FinalFour.VAR_championship)));
       o.persistForClass(FinalFour.VAR_objectTitle, FinalFour.staticSetObjectTitle(siteRequest2, (String)result.get(FinalFour.VAR_objectTitle)));
       o.persistForClass(FinalFour.VAR_displayPage, FinalFour.staticSetDisplayPage(siteRequest2, (String)result.get(FinalFour.VAR_displayPage)));
+      o.persistForClass(FinalFour.VAR_game2Winner, FinalFour.staticSetGame2Winner(siteRequest2, (String)result.get(FinalFour.VAR_game2Winner)));
       o.persistForClass(FinalFour.VAR_editPage, FinalFour.staticSetEditPage(siteRequest2, (String)result.get(FinalFour.VAR_editPage)));
+      o.persistForClass(FinalFour.VAR_game2Loser, FinalFour.staticSetGame2Loser(siteRequest2, (String)result.get(FinalFour.VAR_game2Loser)));
       o.persistForClass(FinalFour.VAR_userPage, FinalFour.staticSetUserPage(siteRequest2, (String)result.get(FinalFour.VAR_userPage)));
+      o.persistForClass(FinalFour.VAR_championship, FinalFour.staticSetChampionship(siteRequest2, (String)result.get(FinalFour.VAR_championship)));
       o.persistForClass(FinalFour.VAR_download, FinalFour.staticSetDownload(siteRequest2, (String)result.get(FinalFour.VAR_download)));
 
       o.promiseDeepForClass((SiteRequest)siteRequest).onSuccess(o2 -> {

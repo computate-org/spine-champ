@@ -10,6 +10,7 @@ import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
 import org.computate.vertx.search.list.SearchList;
 
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonObject;
 
 /**
  * Order: 8
@@ -44,6 +45,56 @@ import io.vertx.core.Promise;
  *     SuperAdmin:
  **/
 public class EliteEight extends EliteEightGen<BaseModel> {
+
+  /**
+   * Ignore: true
+   */
+  protected void _actualSweetSixteenSearch(Promise<SearchList<SweetSixteen>> promise) {
+    SearchList<SweetSixteen> l = new SearchList<>();
+    if(bracketId != null && guesserId != null && year != null) {
+      l.setC(SweetSixteen.class);
+      l.q("*:*");
+      l.fq(String.format("guesserId_docvalues_string:%s", "results"));
+      l.fq(String.format("year_docvalues_int:%s", year));
+      l.setStore(true);
+    }
+    promise.complete(l);
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: Actual Sweet Sixteen bracket
+   * Description: The Sweet Sixteen bracket of this tournament
+   **/
+  protected void _actualSweetSixteen(Wrap<JsonObject> w) {
+    w.o(Optional.ofNullable(actualSweetSixteenSearch.first()).map(o -> JsonObject.mapFrom(o)).orElse(null));
+  }
+
+  /**
+   * Ignore: true
+   */
+  protected void _actualEliteEightSearch(Promise<SearchList<EliteEight>> promise) {
+    SearchList<EliteEight> l = new SearchList<>();
+    if(bracketId != null && guesserId != null && year != null) {
+      l.setC(EliteEight.class);
+      l.q("*:*");
+      l.fq(String.format("guesserId_docvalues_string:%s", "results"));
+      l.fq(String.format("year_docvalues_int:%s", year));
+      l.setStore(true);
+    }
+    promise.complete(l);
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: Actual Elite Eight bracket
+   * Description: The Elite Eight bracket of this tournament
+   **/
+  protected void _actualEliteEight(Wrap<JsonObject> w) {
+    w.o(Optional.ofNullable(actualEliteEightSearch.first()).map(o -> JsonObject.mapFrom(o)).orElse(null));
+  }
 
   /**
    * {@inheritDoc}
@@ -116,10 +167,29 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: South game 1 guess
+   * HtmRowTitleOpen: South game 1
+   * HtmRow: 5
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _southGame1WinnerGuess(Wrap<String> w) {
+    String val = southGame1Winner == null ? "unknown" : Optional.ofNullable(actualEliteEight).map(o -> o.getString(EliteEight.VAR_southGame1Winner)).map(o -> o.equals(southGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("southGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("southGame1Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("southGame2Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: South game 1 winner
    * HtmRow: 5
-   * HtmCell: 0
+   * HtmCell: 1
    * HtmRowTitleOpen: South games
    * Relate: Team.teamId
    **/
@@ -132,7 +202,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Persist: true
    * DisplayName: South game 1 loser
    * HtmRow: 5
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _southGame1Loser(Wrap<String> w) {
@@ -141,10 +211,29 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual West game 1 winner
+   * HtmRowTitleOpen: West game 1
+   * HtmRow: 6
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _westGame1WinnerGuess(Wrap<String> w) {
+    String val = westGame1Winner == null ? "unknown" : Optional.ofNullable(actualEliteEight).map(o -> o.getString(EliteEight.VAR_westGame1Winner)).map(o -> o.equals(westGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("westGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("westGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("westGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("westGame1Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("westGame2Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: West game 1 winner
    * HtmRow: 6
-   * HtmCell: 0
+   * HtmCell: 1
    * HtmRowTitleOpen: West games
    * Relate: Team.teamId
    **/
@@ -157,7 +246,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Persist: true
    * DisplayName: West game 1 loser
    * HtmRow: 6
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _westGame1Loser(Wrap<String> w) {
@@ -166,10 +255,29 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual East game 1 winner
+   * HtmRowTitleOpen: East game 1
+   * HtmRow: 7
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _eastGame1WinnerGuess(Wrap<String> w) {
+    String val = eastGame1Winner == null ? "unknown" : Optional.ofNullable(actualEliteEight).map(o -> o.getString(EliteEight.VAR_eastGame1Winner)).map(o -> o.equals(eastGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("eastGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("eastGame1Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("eastGame2Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: East game 1 winner
    * HtmRow: 7
-   * HtmCell: 0
+   * HtmCell: 1
    * HtmRowTitleOpen: East games
    * Relate: Team.teamId
    **/
@@ -182,7 +290,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Persist: true
    * DisplayName: East game 1 loser
    * HtmRow: 7
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _eastGame1Loser(Wrap<String> w) {
@@ -191,10 +299,29 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
+   * DisplayName: Actual Midwest game 1 winner
+   * HtmRowTitleOpen: Midwest game 1
+   * HtmRow: 8
+   * HtmCell: 0
+   * Modify: false
+   **/
+  protected void _midwestGame1WinnerGuess(Wrap<String> w) {
+    String val = midwestGame1Winner == null ? "unknown" : Optional.ofNullable(actualEliteEight).map(o -> o.getString(EliteEight.VAR_midwestGame1Winner)).map(o -> o.equals(midwestGame1Winner) ? "correct" : "incorrect").orElse("unknown");
+    if("correct".equals(val))
+      w.o(String.format("Correct — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("midwestGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("midwestGame1Loser")).orElse("")));
+    else if("incorrect".equals(val))
+      w.o(String.format("Incorrect — %s wins, %s loses", Optional.ofNullable(actualEliteEight).map(p -> p.getString("midwestGame1Winner")).orElse(""), Optional.ofNullable(actualEliteEight).map(p -> p.getString("midwestGame1Loser")).orElse("")));
+    else 
+      w.o(String.format("Choose between %s or %s", Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame1Winner")).orElse(""), Optional.ofNullable(actualSweetSixteen).map(p -> p.getString("midwestGame2Winner")).orElse("")));
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
    * Persist: true
    * DisplayName: Midwest game 1 winner
    * HtmRow: 8
-   * HtmCell: 0
+   * HtmCell: 1
    * HtmRowTitleOpen: Midwest games
    * Relate: Team.teamId
    **/
@@ -207,7 +334,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Persist: true
    * DisplayName: Midwest game 1 loser
    * HtmRow: 8
-   * HtmCell: 1
+   * HtmCell: 2
    * Relate: Team.teamId
    **/
   protected void _midwestGame1Loser(Wrap<String> w) {

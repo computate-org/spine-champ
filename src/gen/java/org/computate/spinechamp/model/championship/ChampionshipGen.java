@@ -35,8 +35,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.String;
+import org.computate.vertx.search.list.SearchList;
 import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
+import org.computate.spinechamp.model.championship.Championship;
+import java.lang.String;
 import org.computate.spinechamp.model.guesser.Guesser;
 import java.lang.Integer;
 import org.computate.spinechamp.model.team.Team;
@@ -44,7 +47,6 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
-import org.computate.vertx.search.list.SearchList;
 import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
@@ -211,6 +213,238 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
 
   public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
 
+	///////////////////////////
+  // actualFinalFourSearch //
+	///////////////////////////
+
+
+  /**
+   *  The entity actualFinalFourSearch
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SearchList<FinalFour> actualFinalFourSearch;
+
+  /**
+   * <br> The entity actualFinalFourSearch
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:actualFinalFourSearch">Find the entity actualFinalFourSearch in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualFinalFourSearch(Promise<SearchList<FinalFour>> promise);
+
+  public SearchList<FinalFour> getActualFinalFourSearch() {
+    return actualFinalFourSearch;
+  }
+
+  public void setActualFinalFourSearch(SearchList<FinalFour> actualFinalFourSearch) {
+    this.actualFinalFourSearch = actualFinalFourSearch;
+  }
+  public static SearchList<FinalFour> staticSetActualFinalFourSearch(SiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SearchList<FinalFour>> actualFinalFourSearchPromise() {
+    Promise<SearchList<FinalFour>> promise = Promise.promise();
+    Promise<SearchList<FinalFour>> promise2 = Promise.promise();
+    _actualFinalFourSearch(promise2);
+    promise2.future().onSuccess(o -> {
+      if(o != null && actualFinalFourSearch == null) {
+        o.promiseDeepForClass(siteRequest_).onSuccess(a -> {
+          setActualFinalFourSearch(o);
+          promise.complete(o);
+        }).onFailure(ex -> {
+          promise.fail(ex);
+        });
+      } else {
+        promise.complete(o);
+      }
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+	/////////////////////
+  // actualFinalFour //
+	/////////////////////
+
+
+  /**
+   *  The entity actualFinalFour
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject actualFinalFour;
+
+  /**
+   * <br> The entity actualFinalFour
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:actualFinalFour">Find the entity actualFinalFour in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualFinalFour(Wrap<JsonObject> w);
+
+  public JsonObject getActualFinalFour() {
+    return actualFinalFour;
+  }
+
+  public void setActualFinalFour(JsonObject actualFinalFour) {
+    this.actualFinalFour = actualFinalFour;
+  }
+  @JsonIgnore
+  public void setActualFinalFour(String o) {
+    this.actualFinalFour = Championship.staticSetActualFinalFour(siteRequest_, o);
+  }
+  public static JsonObject staticSetActualFinalFour(SiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected Championship actualFinalFourInit() {
+    Wrap<JsonObject> actualFinalFourWrap = new Wrap<JsonObject>().var("actualFinalFour");
+    if(actualFinalFour == null) {
+      _actualFinalFour(actualFinalFourWrap);
+      Optional.ofNullable(actualFinalFourWrap.getO()).ifPresent(o -> {
+        setActualFinalFour(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static String staticSearchActualFinalFour(SiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrActualFinalFour(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqActualFinalFour(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchActualFinalFour(siteRequest_, Championship.staticSetActualFinalFour(siteRequest_, o)).toString();
+  }
+
+	//////////////////////////////
+  // actualChampionshipSearch //
+	//////////////////////////////
+
+
+  /**
+   *  The entity actualChampionshipSearch
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SearchList<Championship> actualChampionshipSearch;
+
+  /**
+   * <br> The entity actualChampionshipSearch
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:actualChampionshipSearch">Find the entity actualChampionshipSearch in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualChampionshipSearch(Promise<SearchList<Championship>> promise);
+
+  public SearchList<Championship> getActualChampionshipSearch() {
+    return actualChampionshipSearch;
+  }
+
+  public void setActualChampionshipSearch(SearchList<Championship> actualChampionshipSearch) {
+    this.actualChampionshipSearch = actualChampionshipSearch;
+  }
+  public static SearchList<Championship> staticSetActualChampionshipSearch(SiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SearchList<Championship>> actualChampionshipSearchPromise() {
+    Promise<SearchList<Championship>> promise = Promise.promise();
+    Promise<SearchList<Championship>> promise2 = Promise.promise();
+    _actualChampionshipSearch(promise2);
+    promise2.future().onSuccess(o -> {
+      if(o != null && actualChampionshipSearch == null) {
+        o.promiseDeepForClass(siteRequest_).onSuccess(a -> {
+          setActualChampionshipSearch(o);
+          promise.complete(o);
+        }).onFailure(ex -> {
+          promise.fail(ex);
+        });
+      } else {
+        promise.complete(o);
+      }
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+	////////////////////////
+  // actualChampionship //
+	////////////////////////
+
+
+  /**
+   *  The entity actualChampionship
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject actualChampionship;
+
+  /**
+   * <br> The entity actualChampionship
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:actualChampionship">Find the entity actualChampionship in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _actualChampionship(Wrap<JsonObject> w);
+
+  public JsonObject getActualChampionship() {
+    return actualChampionship;
+  }
+
+  public void setActualChampionship(JsonObject actualChampionship) {
+    this.actualChampionship = actualChampionship;
+  }
+  @JsonIgnore
+  public void setActualChampionship(String o) {
+    this.actualChampionship = Championship.staticSetActualChampionship(siteRequest_, o);
+  }
+  public static JsonObject staticSetActualChampionship(SiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected Championship actualChampionshipInit() {
+    Wrap<JsonObject> actualChampionshipWrap = new Wrap<JsonObject>().var("actualChampionship");
+    if(actualChampionship == null) {
+      _actualChampionship(actualChampionshipWrap);
+      Optional.ofNullable(actualChampionshipWrap.getO()).ifPresent(o -> {
+        setActualChampionship(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static String staticSearchActualChampionship(SiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrActualChampionship(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqActualChampionship(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchActualChampionship(siteRequest_, Championship.staticSetActualChampionship(siteRequest_, o)).toString();
+  }
+
 	///////////////
   // finalFour //
 	///////////////
@@ -333,6 +567,146 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
 
   public static String staticJsonGuesserId(String guesserId) {
     return guesserId;
+  }
+
+	////////////////////
+  // correctGuesses //
+	////////////////////
+
+
+  /**
+   *  The entity correctGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer correctGuesses;
+
+  /**
+   * <br> The entity correctGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:correctGuesses">Find the entity correctGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _correctGuesses(Wrap<Integer> w);
+
+  public Integer getCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public void setCorrectGuesses(Integer correctGuesses) {
+    this.correctGuesses = correctGuesses;
+  }
+  @JsonIgnore
+  public void setCorrectGuesses(String o) {
+    this.correctGuesses = Championship.staticSetCorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetCorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected Championship correctGuessesInit() {
+    Wrap<Integer> correctGuessesWrap = new Wrap<Integer>().var("correctGuesses");
+    if(correctGuesses == null) {
+      _correctGuesses(correctGuessesWrap);
+      Optional.ofNullable(correctGuessesWrap.getO()).ifPresent(o -> {
+        setCorrectGuesses(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static Integer staticSearchCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrCorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqCorrectGuesses(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchCorrectGuesses(siteRequest_, Championship.staticSetCorrectGuesses(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlCorrectGuesses() {
+    return correctGuesses;
+  }
+
+  public static String staticJsonCorrectGuesses(Integer correctGuesses) {
+    return Optional.ofNullable(correctGuesses).map(v -> v.toString()).orElse(null);
+  }
+
+	//////////////////////
+  // incorrectGuesses //
+	//////////////////////
+
+
+  /**
+   *  The entity incorrectGuesses
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer incorrectGuesses;
+
+  /**
+   * <br> The entity incorrectGuesses
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:incorrectGuesses">Find the entity incorrectGuesses in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _incorrectGuesses(Wrap<Integer> w);
+
+  public Integer getIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public void setIncorrectGuesses(Integer incorrectGuesses) {
+    this.incorrectGuesses = incorrectGuesses;
+  }
+  @JsonIgnore
+  public void setIncorrectGuesses(String o) {
+    this.incorrectGuesses = Championship.staticSetIncorrectGuesses(siteRequest_, o);
+  }
+  public static Integer staticSetIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected Championship incorrectGuessesInit() {
+    Wrap<Integer> incorrectGuessesWrap = new Wrap<Integer>().var("incorrectGuesses");
+    if(incorrectGuesses == null) {
+      _incorrectGuesses(incorrectGuessesWrap);
+      Optional.ofNullable(incorrectGuessesWrap.getO()).ifPresent(o -> {
+        setIncorrectGuesses(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static Integer staticSearchIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrIncorrectGuesses(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqIncorrectGuesses(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchIncorrectGuesses(siteRequest_, Championship.staticSetIncorrectGuesses(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlIncorrectGuesses() {
+    return incorrectGuesses;
+  }
+
+  public static String staticJsonIncorrectGuesses(Integer incorrectGuesses) {
+    return Optional.ofNullable(incorrectGuesses).map(v -> v.toString()).orElse(null);
   }
 
 	//////////
@@ -529,6 +903,60 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     return name;
   }
 
+	//////////////////////
+  // game1WinnerGuess //
+	//////////////////////
+
+
+  /**
+   *  The entity game1WinnerGuess
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String game1WinnerGuess;
+
+  /**
+   * <br> The entity game1WinnerGuess
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:game1WinnerGuess">Find the entity game1WinnerGuess in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _game1WinnerGuess(Wrap<String> w);
+
+  public String getGame1WinnerGuess() {
+    return game1WinnerGuess;
+  }
+  public void setGame1WinnerGuess(String o) {
+    this.game1WinnerGuess = Championship.staticSetGame1WinnerGuess(siteRequest_, o);
+  }
+  public static String staticSetGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected Championship game1WinnerGuessInit() {
+    Wrap<String> game1WinnerGuessWrap = new Wrap<String>().var("game1WinnerGuess");
+    if(game1WinnerGuess == null) {
+      _game1WinnerGuess(game1WinnerGuessWrap);
+      Optional.ofNullable(game1WinnerGuessWrap.getO()).ifPresent(o -> {
+        setGame1WinnerGuess(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static String staticSearchGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqGame1WinnerGuess(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchGame1WinnerGuess(siteRequest_, Championship.staticSetGame1WinnerGuess(siteRequest_, o)).toString();
+  }
+
 	/////////////////
   // game1Winner //
 	/////////////////
@@ -682,11 +1110,48 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     Future.future(a -> a.complete()).compose(a -> {
       Promise<Void> promise2 = Promise.promise();
       try {
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      actualFinalFourSearchPromise().onSuccess(actualFinalFourSearch -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        actualFinalFourInit();
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      actualChampionshipSearchPromise().onSuccess(actualChampionshipSearch -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        actualChampionshipInit();
         finalFourInit();
         guesserIdInit();
+        correctGuessesInit();
+        incorrectGuessesInit();
         yearInit();
         bracketIdInit();
         nameInit();
+        game1WinnerGuessInit();
         game1WinnerInit();
         game1LoserInit();
         promise2.complete();
@@ -712,6 +1177,10 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
 
   public void siteRequestChampionship(SiteRequest siteRequest_) {
       super.siteRequestBaseModel(siteRequest_);
+    if(actualFinalFourSearch != null)
+      actualFinalFourSearch.setSiteRequest_(siteRequest_);
+    if(actualChampionshipSearch != null)
+      actualChampionshipSearch.setSiteRequest_(siteRequest_);
   }
 
   public void siteRequestForClass(SiteRequest siteRequest_) {
@@ -742,16 +1211,30 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public Object obtainChampionship(String var) {
     Championship oChampionship = (Championship)this;
     switch(var) {
+      case "actualFinalFourSearch":
+        return oChampionship.actualFinalFourSearch;
+      case "actualFinalFour":
+        return oChampionship.actualFinalFour;
+      case "actualChampionshipSearch":
+        return oChampionship.actualChampionshipSearch;
+      case "actualChampionship":
+        return oChampionship.actualChampionship;
       case "finalFour":
         return oChampionship.finalFour;
       case "guesserId":
         return oChampionship.guesserId;
+      case "correctGuesses":
+        return oChampionship.correctGuesses;
+      case "incorrectGuesses":
+        return oChampionship.incorrectGuesses;
       case "year":
         return oChampionship.year;
       case "bracketId":
         return oChampionship.bracketId;
       case "name":
         return oChampionship.name;
+      case "game1WinnerGuess":
+        return oChampionship.game1WinnerGuess;
       case "game1Winner":
         return oChampionship.game1Winner;
       case "game1Loser":
@@ -819,16 +1302,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static Object staticSetChampionship(String entityVar, SiteRequest siteRequest_, String v, Championship o) {
     switch(entityVar) {
+    case "actualFinalFour":
+      return Championship.staticSetActualFinalFour(siteRequest_, v);
+    case "actualChampionship":
+      return Championship.staticSetActualChampionship(siteRequest_, v);
     case "finalFour":
       return Championship.staticSetFinalFour(siteRequest_, v);
     case "guesserId":
       return Championship.staticSetGuesserId(siteRequest_, v);
+    case "correctGuesses":
+      return Championship.staticSetCorrectGuesses(siteRequest_, v);
+    case "incorrectGuesses":
+      return Championship.staticSetIncorrectGuesses(siteRequest_, v);
     case "year":
       return Championship.staticSetYear(siteRequest_, v);
     case "bracketId":
       return Championship.staticSetBracketId(siteRequest_, v);
     case "name":
       return Championship.staticSetName(siteRequest_, v);
+    case "game1WinnerGuess":
+      return Championship.staticSetGame1WinnerGuess(siteRequest_, v);
     case "game1Winner":
       return Championship.staticSetGame1Winner(siteRequest_, v);
     case "game1Loser":
@@ -877,16 +1370,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static Object staticSearchChampionship(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualFinalFour":
+      return Championship.staticSearchActualFinalFour(siteRequest_, (JsonObject)o);
+    case "actualChampionship":
+      return Championship.staticSearchActualChampionship(siteRequest_, (JsonObject)o);
     case "finalFour":
       return Championship.staticSearchFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchGuesserId(siteRequest_, (String)o);
+    case "correctGuesses":
+      return Championship.staticSearchCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return Championship.staticSearchIncorrectGuesses(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchYear(siteRequest_, (Integer)o);
     case "bracketId":
       return Championship.staticSearchBracketId(siteRequest_, (String)o);
     case "name":
       return Championship.staticSearchName(siteRequest_, (String)o);
+    case "game1WinnerGuess":
+      return Championship.staticSearchGame1WinnerGuess(siteRequest_, (String)o);
     case "game1Winner":
       return Championship.staticSearchGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
@@ -905,16 +1408,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static String staticSearchStrChampionship(String entityVar, SiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "actualFinalFour":
+      return Championship.staticSearchStrActualFinalFour(siteRequest_, (String)o);
+    case "actualChampionship":
+      return Championship.staticSearchStrActualChampionship(siteRequest_, (String)o);
     case "finalFour":
       return Championship.staticSearchStrFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchStrGuesserId(siteRequest_, (String)o);
+    case "correctGuesses":
+      return Championship.staticSearchStrCorrectGuesses(siteRequest_, (Integer)o);
+    case "incorrectGuesses":
+      return Championship.staticSearchStrIncorrectGuesses(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchStrYear(siteRequest_, (Integer)o);
     case "bracketId":
       return Championship.staticSearchStrBracketId(siteRequest_, (String)o);
     case "name":
       return Championship.staticSearchStrName(siteRequest_, (String)o);
+    case "game1WinnerGuess":
+      return Championship.staticSearchStrGame1WinnerGuess(siteRequest_, (String)o);
     case "game1Winner":
       return Championship.staticSearchStrGame1Winner(siteRequest_, (String)o);
     case "game1Loser":
@@ -933,16 +1446,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static String staticSearchFqChampionship(String entityVar, SiteRequest siteRequest_, String o) {
     switch(entityVar) {
+    case "actualFinalFour":
+      return Championship.staticSearchFqActualFinalFour(siteRequest_, o);
+    case "actualChampionship":
+      return Championship.staticSearchFqActualChampionship(siteRequest_, o);
     case "finalFour":
       return Championship.staticSearchFqFinalFour(siteRequest_, o);
     case "guesserId":
       return Championship.staticSearchFqGuesserId(siteRequest_, o);
+    case "correctGuesses":
+      return Championship.staticSearchFqCorrectGuesses(siteRequest_, o);
+    case "incorrectGuesses":
+      return Championship.staticSearchFqIncorrectGuesses(siteRequest_, o);
     case "year":
       return Championship.staticSearchFqYear(siteRequest_, o);
     case "bracketId":
       return Championship.staticSearchFqBracketId(siteRequest_, o);
     case "name":
       return Championship.staticSearchFqName(siteRequest_, o);
+    case "game1WinnerGuess":
+      return Championship.staticSearchFqGame1WinnerGuess(siteRequest_, o);
     case "game1Winner":
       return Championship.staticSearchFqGame1Winner(siteRequest_, o);
     case "game1Loser":
@@ -984,6 +1507,22 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
           setGuesserId((String)val);
         }
         saves.add("guesserId");
+        return val;
+      } else if("correctguesses".equals(varLower)) {
+        if(val instanceof Integer) {
+          setCorrectGuesses((Integer)val);
+        } else {
+          setCorrectGuesses(val == null ? null : val.toString());
+        }
+        saves.add("correctGuesses");
+        return val;
+      } else if("incorrectguesses".equals(varLower)) {
+        if(val instanceof Integer) {
+          setIncorrectGuesses((Integer)val);
+        } else {
+          setIncorrectGuesses(val == null ? null : val.toString());
+        }
+        saves.add("incorrectGuesses");
         return val;
       } else if("year".equals(varLower)) {
         if(val instanceof Integer) {
@@ -1034,6 +1573,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     saves = Optional.ofNullable((ArrayList<String>)doc.get("saves_docvalues_strings")).orElse(new ArrayList<String>());
     if(saves != null) {
 
+      if(saves.contains("actualFinalFour")) {
+        String actualFinalFour = (String)doc.get("actualFinalFour_stored_string");
+        if(actualFinalFour != null)
+          oChampionship.setActualFinalFour(actualFinalFour);
+      }
+
+      if(saves.contains("actualChampionship")) {
+        String actualChampionship = (String)doc.get("actualChampionship_stored_string");
+        if(actualChampionship != null)
+          oChampionship.setActualChampionship(actualChampionship);
+      }
+
       String finalFour = (String)doc.get("finalFour_docvalues_string");
       if(finalFour != null)
         oChampionship.setFinalFour(finalFour);
@@ -1041,6 +1592,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       String guesserId = (String)doc.get("guesserId_docvalues_string");
       if(guesserId != null)
         oChampionship.setGuesserId(guesserId);
+
+      if(saves.contains("correctGuesses")) {
+        Integer correctGuesses = (Integer)doc.get("correctGuesses_docvalues_int");
+        if(correctGuesses != null)
+          oChampionship.setCorrectGuesses(correctGuesses);
+      }
+
+      if(saves.contains("incorrectGuesses")) {
+        Integer incorrectGuesses = (Integer)doc.get("incorrectGuesses_docvalues_int");
+        if(incorrectGuesses != null)
+          oChampionship.setIncorrectGuesses(incorrectGuesses);
+      }
 
       if(saves.contains("year")) {
         Integer year = (Integer)doc.get("year_docvalues_int");
@@ -1060,6 +1623,12 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
           oChampionship.setName(name);
       }
 
+      if(saves.contains("game1WinnerGuess")) {
+        String game1WinnerGuess = (String)doc.get("game1WinnerGuess_docvalues_string");
+        if(game1WinnerGuess != null)
+          oChampionship.setGame1WinnerGuess(game1WinnerGuess);
+      }
+
       String game1Winner = (String)doc.get("game1Winner_docvalues_string");
       if(game1Winner != null)
         oChampionship.setGame1Winner(game1Winner);
@@ -1073,11 +1642,23 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
 
   public void indexChampionship(JsonObject doc) {
+    if(actualFinalFour != null) {
+      doc.put("actualFinalFour_stored_string", actualFinalFour.toString());
+    }
+    if(actualChampionship != null) {
+      doc.put("actualChampionship_stored_string", actualChampionship.toString());
+    }
     if(finalFour != null) {
       doc.put("finalFour_docvalues_string", finalFour);
     }
     if(guesserId != null) {
       doc.put("guesserId_docvalues_string", guesserId);
+    }
+    if(correctGuesses != null) {
+      doc.put("correctGuesses_docvalues_int", correctGuesses);
+    }
+    if(incorrectGuesses != null) {
+      doc.put("incorrectGuesses_docvalues_int", incorrectGuesses);
     }
     if(year != null) {
       doc.put("year_docvalues_int", year);
@@ -1087,6 +1668,9 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     }
     if(name != null) {
       doc.put("name_docvalues_string", name);
+    }
+    if(game1WinnerGuess != null) {
+      doc.put("game1WinnerGuess_docvalues_string", game1WinnerGuess);
     }
     if(game1Winner != null) {
       doc.put("game1Winner_docvalues_string", game1Winner);
@@ -1100,16 +1684,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
 
   public static String varStoredChampionship(String entityVar) {
     switch(entityVar) {
+      case "actualFinalFour":
+        return "actualFinalFour_stored_string";
+      case "actualChampionship":
+        return "actualChampionship_stored_string";
       case "finalFour":
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "game1WinnerGuess":
+        return "game1WinnerGuess_docvalues_string";
       case "game1Winner":
         return "game1Winner_docvalues_string";
       case "game1Loser":
@@ -1125,12 +1719,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
+      case "correctGuesses":
+        return "correctGuesses_docvalues_int";
+      case "incorrectGuesses":
+        return "incorrectGuesses_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
         return "bracketId_docvalues_string";
       case "name":
         return "name_docvalues_string";
+      case "game1WinnerGuess":
+        return "game1WinnerGuess_docvalues_string";
       case "game1Winner":
         return "game1Winner_docvalues_string";
       case "game1Loser":
@@ -1146,12 +1746,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour";
       case "guesserId_docvalues_string":
         return "guesserId";
+      case "correctGuesses_docvalues_int":
+        return "correctGuesses";
+      case "incorrectGuesses_docvalues_int":
+        return "incorrectGuesses";
       case "year_docvalues_int":
         return "year";
       case "bracketId_docvalues_string":
         return "bracketId";
       case "name_docvalues_string":
         return "name";
+      case "game1WinnerGuess_docvalues_string":
+        return "game1WinnerGuess";
       case "game1Winner_docvalues_string":
         return "game1Winner";
       case "game1Loser_docvalues_string":
@@ -1186,11 +1792,16 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     Championship oChampionship = (Championship)this;
     SiteRequest siteRequest = oChampionship.getSiteRequest_();
 
+    oChampionship.setActualFinalFour(Optional.ofNullable(doc.get("actualFinalFour_stored_string")).map(v -> v.toString()).orElse(null));
+    oChampionship.setActualChampionship(Optional.ofNullable(doc.get("actualChampionship_stored_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setFinalFour(Optional.ofNullable(doc.get("finalFour_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oChampionship.setCorrectGuesses(Optional.ofNullable(doc.get("correctGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oChampionship.setIncorrectGuesses(Optional.ofNullable(doc.get("incorrectGuesses_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oChampionship.setGame1WinnerGuess(Optional.ofNullable(doc.get("game1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGame1Winner(Optional.ofNullable(doc.get("game1Winner_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGame1Loser(Optional.ofNullable(doc.get("game1Loser_docvalues_string")).map(v -> v.toString()).orElse(null));
 
@@ -1206,16 +1817,26 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     Object o = Optional.ofNullable(apiRequest).map(ApiRequest::getOriginal).orElse(null);
     if(o != null && o instanceof Championship) {
       Championship original = (Championship)o;
+      if(!Objects.equals(actualFinalFour, original.getActualFinalFour()))
+        apiRequest.addVars("actualFinalFour");
+      if(!Objects.equals(actualChampionship, original.getActualChampionship()))
+        apiRequest.addVars("actualChampionship");
       if(!Objects.equals(finalFour, original.getFinalFour()))
         apiRequest.addVars("finalFour");
       if(!Objects.equals(guesserId, original.getGuesserId()))
         apiRequest.addVars("guesserId");
+      if(!Objects.equals(correctGuesses, original.getCorrectGuesses()))
+        apiRequest.addVars("correctGuesses");
+      if(!Objects.equals(incorrectGuesses, original.getIncorrectGuesses()))
+        apiRequest.addVars("incorrectGuesses");
       if(!Objects.equals(year, original.getYear()))
         apiRequest.addVars("year");
       if(!Objects.equals(bracketId, original.getBracketId()))
         apiRequest.addVars("bracketId");
       if(!Objects.equals(name, original.getName()))
         apiRequest.addVars("name");
+      if(!Objects.equals(game1WinnerGuess, original.getGame1WinnerGuess()))
+        apiRequest.addVars("game1WinnerGuess");
       if(!Objects.equals(game1Winner, original.getGame1Winner()))
         apiRequest.addVars("game1Winner");
       if(!Objects.equals(game1Loser, original.getGame1Loser()))
@@ -1231,11 +1852,16 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   @Override public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
+    sb.append(Optional.ofNullable(actualFinalFour).map(v -> "actualFinalFour: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(actualChampionship).map(v -> "actualChampionship: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(finalFour).map(v -> "finalFour: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(correctGuesses).map(v -> "correctGuesses: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(incorrectGuesses).map(v -> "incorrectGuesses: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(game1WinnerGuess).map(v -> "game1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Winner).map(v -> "game1Winner: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1Loser).map(v -> "game1Loser: \"" + v + "\"\n" ).orElse(""));
     return sb.toString();
@@ -1248,16 +1874,30 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static String getClassApiAddress() {
     return CLASS_API_ADDRESS_Championship;
   }
+  public static final String VAR_actualFinalFourSearch = "actualFinalFourSearch";
+  public static final String SET_actualFinalFourSearch = "setActualFinalFourSearch";
+  public static final String VAR_actualFinalFour = "actualFinalFour";
+  public static final String SET_actualFinalFour = "setActualFinalFour";
+  public static final String VAR_actualChampionshipSearch = "actualChampionshipSearch";
+  public static final String SET_actualChampionshipSearch = "setActualChampionshipSearch";
+  public static final String VAR_actualChampionship = "actualChampionship";
+  public static final String SET_actualChampionship = "setActualChampionship";
   public static final String VAR_finalFour = "finalFour";
   public static final String SET_finalFour = "setFinalFour";
   public static final String VAR_guesserId = "guesserId";
   public static final String SET_guesserId = "setGuesserId";
+  public static final String VAR_correctGuesses = "correctGuesses";
+  public static final String SET_correctGuesses = "setCorrectGuesses";
+  public static final String VAR_incorrectGuesses = "incorrectGuesses";
+  public static final String SET_incorrectGuesses = "setIncorrectGuesses";
   public static final String VAR_year = "year";
   public static final String SET_year = "setYear";
   public static final String VAR_bracketId = "bracketId";
   public static final String SET_bracketId = "setBracketId";
   public static final String VAR_name = "name";
   public static final String SET_name = "setName";
+  public static final String VAR_game1WinnerGuess = "game1WinnerGuess";
+  public static final String SET_game1WinnerGuess = "setGame1WinnerGuess";
   public static final String VAR_game1Winner = "game1Winner";
   public static final String SET_game1Winner = "setGame1Winner";
   public static final String VAR_game1Loser = "game1Loser";
@@ -1287,11 +1927,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     return vars;
   }
 
+  public static final String DISPLAY_NAME_actualFinalFourSearch = "";
+  public static final String DISPLAY_NAME_actualFinalFour = "Actual Sweet Sixteen bracket";
+  public static final String DISPLAY_NAME_actualChampionshipSearch = "";
+  public static final String DISPLAY_NAME_actualChampionship = "Actual Elite Eight bracket";
   public static final String DISPLAY_NAME_finalFour = "Final Four bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
+  public static final String DISPLAY_NAME_correctGuesses = "correct guesses";
+  public static final String DISPLAY_NAME_incorrectGuesses = "incorrect guesses";
   public static final String DISPLAY_NAME_year = "year";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
+  public static final String DISPLAY_NAME_game1WinnerGuess = "game 1 guess";
   public static final String DISPLAY_NAME_game1Winner = "game 1 winner";
   public static final String DISPLAY_NAME_game1Loser = "game 1 loser";
 
@@ -1325,16 +1972,30 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static String varJsonChampionship(String var, Boolean patch) {
     switch(var) {
+    case VAR_actualFinalFourSearch:
+      return patch ? SET_actualFinalFourSearch : VAR_actualFinalFourSearch;
+    case VAR_actualFinalFour:
+      return patch ? SET_actualFinalFour : VAR_actualFinalFour;
+    case VAR_actualChampionshipSearch:
+      return patch ? SET_actualChampionshipSearch : VAR_actualChampionshipSearch;
+    case VAR_actualChampionship:
+      return patch ? SET_actualChampionship : VAR_actualChampionship;
     case VAR_finalFour:
       return patch ? SET_finalFour : VAR_finalFour;
     case VAR_guesserId:
       return patch ? SET_guesserId : VAR_guesserId;
+    case VAR_correctGuesses:
+      return patch ? SET_correctGuesses : VAR_correctGuesses;
+    case VAR_incorrectGuesses:
+      return patch ? SET_incorrectGuesses : VAR_incorrectGuesses;
     case VAR_year:
       return patch ? SET_year : VAR_year;
     case VAR_bracketId:
       return patch ? SET_bracketId : VAR_bracketId;
     case VAR_name:
       return patch ? SET_name : VAR_name;
+    case VAR_game1WinnerGuess:
+      return patch ? SET_game1WinnerGuess : VAR_game1WinnerGuess;
     case VAR_game1Winner:
       return patch ? SET_game1Winner : VAR_game1Winner;
     case VAR_game1Loser:
@@ -1349,16 +2010,30 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   }
   public static String displayNameChampionship(String var) {
     switch(var) {
+    case VAR_actualFinalFourSearch:
+      return DISPLAY_NAME_actualFinalFourSearch;
+    case VAR_actualFinalFour:
+      return DISPLAY_NAME_actualFinalFour;
+    case VAR_actualChampionshipSearch:
+      return DISPLAY_NAME_actualChampionshipSearch;
+    case VAR_actualChampionship:
+      return DISPLAY_NAME_actualChampionship;
     case VAR_finalFour:
       return DISPLAY_NAME_finalFour;
     case VAR_guesserId:
       return DISPLAY_NAME_guesserId;
+    case VAR_correctGuesses:
+      return DISPLAY_NAME_correctGuesses;
+    case VAR_incorrectGuesses:
+      return DISPLAY_NAME_incorrectGuesses;
     case VAR_year:
       return DISPLAY_NAME_year;
     case VAR_bracketId:
       return DISPLAY_NAME_bracketId;
     case VAR_name:
       return DISPLAY_NAME_name;
+    case VAR_game1WinnerGuess:
+      return DISPLAY_NAME_game1WinnerGuess;
     case VAR_game1Winner:
       return DISPLAY_NAME_game1Winner;
     case VAR_game1Loser:
@@ -1372,10 +2047,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     if(var == null)
       return null;
     switch(var) {
+    case VAR_actualFinalFour:
+      return "The Sweet Sixteen bracket of this tournament";
+    case VAR_actualChampionship:
+      return "The Elite Eight bracket of this tournament";
     case VAR_finalFour:
       return "The Final Four bracket of this tournament";
     case VAR_guesserId:
       return "The ID of this guesser";
+    case VAR_correctGuesses:
+      return "The number of correct guesses in this Championship bracket";
+    case VAR_incorrectGuesses:
+      return "The number of incorrect guesses in this Championship bracket";
     case VAR_year:
       return "The year of the tournament";
     case VAR_bracketId:
@@ -1389,15 +2072,29 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
 
   public static String classSimpleNameChampionship(String var) {
     switch(var) {
+    case VAR_actualFinalFourSearch:
+      return "SearchList";
+    case VAR_actualFinalFour:
+      return "JsonObject";
+    case VAR_actualChampionshipSearch:
+      return "SearchList";
+    case VAR_actualChampionship:
+      return "JsonObject";
     case VAR_finalFour:
       return "String";
     case VAR_guesserId:
       return "String";
+    case VAR_correctGuesses:
+      return "Integer";
+    case VAR_incorrectGuesses:
+      return "Integer";
     case VAR_year:
       return "Integer";
     case VAR_bracketId:
       return "String";
     case VAR_name:
+      return "String";
+    case VAR_game1WinnerGuess:
       return "String";
     case VAR_game1Winner:
       return "String";
@@ -1425,8 +2122,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 3;
     case VAR_guesserId:
       return 4;
+    case VAR_correctGuesses:
+      return 4;
+    case VAR_incorrectGuesses:
+      return 4;
     case VAR_year:
       return 4;
+    case VAR_game1WinnerGuess:
+      return 5;
     case VAR_game1Winner:
       return 5;
     case VAR_game1Loser:
@@ -1442,12 +2145,18 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 0;
     case VAR_guesserId:
       return 0;
+    case VAR_correctGuesses:
+      return 1;
+    case VAR_incorrectGuesses:
+      return 2;
     case VAR_year:
       return 1;
-    case VAR_game1Winner:
+    case VAR_game1WinnerGuess:
       return 0;
-    case VAR_game1Loser:
+    case VAR_game1Winner:
       return 1;
+    case VAR_game1Loser:
+      return 2;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

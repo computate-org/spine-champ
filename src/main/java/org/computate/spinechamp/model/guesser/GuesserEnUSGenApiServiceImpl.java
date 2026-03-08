@@ -1,5 +1,13 @@
 package org.computate.spinechamp.model.guesser;
 
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSApiServiceImpl;
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.finalfour.FinalFourEnUSApiServiceImpl;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.spinechamp.model.championship.ChampionshipEnUSApiServiceImpl;
+import org.computate.spinechamp.model.championship.Championship;
 import org.computate.spinechamp.request.SiteRequest;
 import org.computate.spinechamp.user.SiteUser;
 import org.computate.vertx.api.ApiRequest;
@@ -135,6 +143,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "GET"));
         webClient.post(
@@ -297,6 +307,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "GET"));
         webClient.post(
@@ -397,6 +409,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "PATCH"));
         webClient.post(
@@ -720,6 +734,106 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
               num++;
               bParams.add(o2.sqlDescription());
             break;
+          case "setSweetSixteenBrackets":
+            JsonArray setSweetSixteenBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            setSweetSixteenBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            Optional.ofNullable(o.getSweetSixteenBrackets()).orElse(Arrays.asList()).stream().filter(oVal -> oVal != null && !setSweetSixteenBracketsValues.contains(oVal.toString())).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).setToNull(SweetSixteen.VAR_guesserId, Guesser.class, solrId2).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addAllSweetSixteenBrackets":
+            JsonArray addAllSweetSixteenBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            addAllSweetSixteenBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addSweetSixteenBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "removeSweetSixteenBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  sql(siteRequest).update(SweetSixteen.class, pk2).setToNull(SweetSixteen.VAR_guesserId, Guesser.class, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           case "setArchived":
               o2.setArchived(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -727,6 +841,306 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
               bSql.append(Guesser.VAR_archived + "=$" + num);
               num++;
               bParams.add(o2.sqlArchived());
+            break;
+          case "setEliteEightBrackets":
+            JsonArray setEliteEightBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            setEliteEightBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            Optional.ofNullable(o.getEliteEightBrackets()).orElse(Arrays.asList()).stream().filter(oVal -> oVal != null && !setEliteEightBracketsValues.contains(oVal.toString())).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).setToNull(EliteEight.VAR_guesserId, Guesser.class, solrId2).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addAllEliteEightBrackets":
+            JsonArray addAllEliteEightBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            addAllEliteEightBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addEliteEightBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "removeEliteEightBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  sql(siteRequest).update(EliteEight.class, pk2).setToNull(EliteEight.VAR_guesserId, Guesser.class, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "setFinalFourBrackets":
+            JsonArray setFinalFourBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            setFinalFourBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            Optional.ofNullable(o.getFinalFourBrackets()).orElse(Arrays.asList()).stream().filter(oVal -> oVal != null && !setFinalFourBracketsValues.contains(oVal.toString())).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).setToNull(FinalFour.VAR_guesserId, Guesser.class, solrId2).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addAllFinalFourBrackets":
+            JsonArray addAllFinalFourBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            addAllFinalFourBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addFinalFourBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "removeFinalFourBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  sql(siteRequest).update(FinalFour.class, pk2).setToNull(FinalFour.VAR_guesserId, Guesser.class, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "setChampionshipBrackets":
+            JsonArray setChampionshipBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            setChampionshipBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            Optional.ofNullable(o.getChampionshipBrackets()).orElse(Arrays.asList()).stream().filter(oVal -> oVal != null && !setChampionshipBracketsValues.contains(oVal.toString())).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).setToNull(Championship.VAR_guesserId, Guesser.class, solrId2).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addAllChampionshipBrackets":
+            JsonArray addAllChampionshipBracketsValues = Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray());
+            addAllChampionshipBracketsValues.stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "addChampionshipBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case "removeChampionshipBrackets":
+            Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  sql(siteRequest).update(Championship.class, pk2).setToNull(Championship.VAR_guesserId, Guesser.class, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
             break;
           case "setSessionId":
               o2.setSessionId(jsonObject.getString(entityVar));
@@ -855,6 +1269,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "POST"));
         webClient.post(
@@ -1168,6 +1584,27 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
             num++;
             bParams.add(o2.sqlDescription());
             break;
+          case Guesser.VAR_sweetSixteenBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           case Guesser.VAR_archived:
             o2.setArchived(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1176,6 +1613,69 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
             bSql.append(Guesser.VAR_archived + "=$" + num);
             num++;
             bParams.add(o2.sqlArchived());
+            break;
+          case Guesser.VAR_eliteEightBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_finalFourBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_championshipBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, o.getSolrId(), val).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
             break;
           case Guesser.VAR_sessionId:
             o2.setSessionId(jsonObject.getString(entityVar));
@@ -1310,6 +1810,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "DELETE"));
         webClient.post(
@@ -1592,6 +2094,90 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         Set<String> entityVars = jsonObject.fieldNames();
         for(String entityVar : entityVars) {
           switch(entityVar) {
+          case Guesser.VAR_sweetSixteenBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_eliteEightBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_finalFourBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_championshipBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           }
         }
       }
@@ -1659,6 +2245,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "PUT"));
         webClient.post(
@@ -1981,6 +2569,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "GET"));
         webClient.post(
@@ -2236,6 +2826,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "GET"));
         webClient.post(
@@ -2492,6 +3084,8 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "PATCH"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "GET"));
         form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "DELETE"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "Admin"));
+        form.add("permission", String.format("%s#%s", Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(guesserId != null)
           form.add("permission", String.format("%s#%s", guesserId, "DELETE"));
         webClient.post(
@@ -2774,6 +3368,90 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         Set<String> entityVars = jsonObject.fieldNames();
         for(String entityVar : entityVars) {
           switch(entityVar) {
+          case Guesser.VAR_sweetSixteenBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(SweetSixteen.varIndexedSweetSixteen(SweetSixteen.VAR_guesserId), SweetSixteen.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("SweetSixteen");
+                  }
+                  sql(siteRequest).update(SweetSixteen.class, pk2).set(SweetSixteen.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_eliteEightBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(EliteEight.varIndexedEliteEight(EliteEight.VAR_guesserId), EliteEight.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("EliteEight");
+                  }
+                  sql(siteRequest).update(EliteEight.class, pk2).set(EliteEight.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_finalFourBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(FinalFour.varIndexedFinalFour(FinalFour.VAR_guesserId), FinalFour.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("FinalFour");
+                  }
+                  sql(siteRequest).update(FinalFour.class, pk2).set(FinalFour.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
+          case Guesser.VAR_championshipBrackets:
+            Optional.ofNullable(jsonObject.getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(oVal -> oVal.toString()).forEach(val -> {
+              futures2.add(Future.future(promise2 -> {
+                searchModel(siteRequest).query(Championship.varIndexedChampionship(Championship.VAR_guesserId), Championship.class, val).onSuccess(o3 -> {
+                  String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
+                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
+                  if(solrId2 != null) {
+                    solrIds.add(solrId2);
+                    classes.add("Championship");
+                  }
+                  sql(siteRequest).update(Championship.class, pk2).set(Championship.VAR_guesserId, Guesser.class, null, null).onSuccess(a -> {
+                    promise2.complete();
+                  }).onFailure(ex -> {
+                    promise2.tryFail(ex);
+                  });
+                }).onFailure(ex -> {
+                  promise2.tryFail(ex);
+                });
+              }));
+            });
+            break;
           }
         }
       }
@@ -3147,7 +3825,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT name, guesserId, created, description, archived, sessionId, userKey, objectTitle, displayPage, editPage, userPage, download FROM Guesser WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT name, guesserId, created, description, sweetSixteenBrackets, archived, eliteEightBrackets, finalFourBrackets, championshipBrackets, sessionId, userKey, objectTitle, displayPage, editPage, userPage, download FROM Guesser WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -3294,6 +3972,150 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
         for(int i=0; i < solrIds.size(); i++) {
           String solrId2 = solrIds.get(i);
           String classSimpleName2 = classes.get(i);
+
+          if("SweetSixteen".equals(classSimpleName2) && solrId2 != null) {
+            SearchList<SweetSixteen> searchList2 = new SearchList<SweetSixteen>();
+            searchList2.setStore(true);
+            searchList2.q("*:*");
+            searchList2.setC(SweetSixteen.class);
+            searchList2.fq("solrId:" + solrId2);
+            searchList2.rows(1L);
+            futures.add(Future.future(promise2 -> {
+              searchList2.promiseDeepSearchList(siteRequest).onSuccess(b -> {
+                SweetSixteen o2 = searchList2.getList().stream().findFirst().orElse(null);
+                if(o2 != null) {
+                  JsonObject params = new JsonObject();
+                  params.put("body", new JsonObject());
+                  params.put("scopes", siteRequest.getScopes());
+                  params.put("cookie", new JsonObject());
+                  params.put("path", new JsonObject());
+                  params.put("query", new JsonObject().put("q", "*:*").put("fq", new JsonArray().add("solrId:" + solrId2)).put("var", new JsonArray().add("refresh:false")));
+                  JsonObject context = new JsonObject().put("params", params).put("user", siteRequest.getUserPrincipal());
+                  JsonObject json = new JsonObject().put("context", context);
+                  eventBus.request("spine-champ-enUS-SweetSixteen", json, new DeliveryOptions().addHeader("action", "patchSweetSixteenFuture")).onSuccess(c -> {
+                    JsonObject responseMessage = (JsonObject)c.body();
+                    Integer statusCode = responseMessage.getInteger("statusCode");
+                    if(statusCode.equals(200))
+                      promise2.complete();
+                    else
+                      promise2.fail(new RuntimeException(responseMessage.getString("statusMessage")));
+                  }).onFailure(ex -> {
+                    promise2.fail(ex);
+                  });
+                }
+              }).onFailure(ex -> {
+                promise2.fail(ex);
+              });
+            }));
+          }
+
+          if("EliteEight".equals(classSimpleName2) && solrId2 != null) {
+            SearchList<EliteEight> searchList2 = new SearchList<EliteEight>();
+            searchList2.setStore(true);
+            searchList2.q("*:*");
+            searchList2.setC(EliteEight.class);
+            searchList2.fq("solrId:" + solrId2);
+            searchList2.rows(1L);
+            futures.add(Future.future(promise2 -> {
+              searchList2.promiseDeepSearchList(siteRequest).onSuccess(b -> {
+                EliteEight o2 = searchList2.getList().stream().findFirst().orElse(null);
+                if(o2 != null) {
+                  JsonObject params = new JsonObject();
+                  params.put("body", new JsonObject());
+                  params.put("scopes", siteRequest.getScopes());
+                  params.put("cookie", new JsonObject());
+                  params.put("path", new JsonObject());
+                  params.put("query", new JsonObject().put("q", "*:*").put("fq", new JsonArray().add("solrId:" + solrId2)).put("var", new JsonArray().add("refresh:false")));
+                  JsonObject context = new JsonObject().put("params", params).put("user", siteRequest.getUserPrincipal());
+                  JsonObject json = new JsonObject().put("context", context);
+                  eventBus.request("spine-champ-enUS-EliteEight", json, new DeliveryOptions().addHeader("action", "patchEliteEightFuture")).onSuccess(c -> {
+                    JsonObject responseMessage = (JsonObject)c.body();
+                    Integer statusCode = responseMessage.getInteger("statusCode");
+                    if(statusCode.equals(200))
+                      promise2.complete();
+                    else
+                      promise2.fail(new RuntimeException(responseMessage.getString("statusMessage")));
+                  }).onFailure(ex -> {
+                    promise2.fail(ex);
+                  });
+                }
+              }).onFailure(ex -> {
+                promise2.fail(ex);
+              });
+            }));
+          }
+
+          if("FinalFour".equals(classSimpleName2) && solrId2 != null) {
+            SearchList<FinalFour> searchList2 = new SearchList<FinalFour>();
+            searchList2.setStore(true);
+            searchList2.q("*:*");
+            searchList2.setC(FinalFour.class);
+            searchList2.fq("solrId:" + solrId2);
+            searchList2.rows(1L);
+            futures.add(Future.future(promise2 -> {
+              searchList2.promiseDeepSearchList(siteRequest).onSuccess(b -> {
+                FinalFour o2 = searchList2.getList().stream().findFirst().orElse(null);
+                if(o2 != null) {
+                  JsonObject params = new JsonObject();
+                  params.put("body", new JsonObject());
+                  params.put("scopes", siteRequest.getScopes());
+                  params.put("cookie", new JsonObject());
+                  params.put("path", new JsonObject());
+                  params.put("query", new JsonObject().put("q", "*:*").put("fq", new JsonArray().add("solrId:" + solrId2)).put("var", new JsonArray().add("refresh:false")));
+                  JsonObject context = new JsonObject().put("params", params).put("user", siteRequest.getUserPrincipal());
+                  JsonObject json = new JsonObject().put("context", context);
+                  eventBus.request("spine-champ-enUS-FinalFour", json, new DeliveryOptions().addHeader("action", "patchFinalFourFuture")).onSuccess(c -> {
+                    JsonObject responseMessage = (JsonObject)c.body();
+                    Integer statusCode = responseMessage.getInteger("statusCode");
+                    if(statusCode.equals(200))
+                      promise2.complete();
+                    else
+                      promise2.fail(new RuntimeException(responseMessage.getString("statusMessage")));
+                  }).onFailure(ex -> {
+                    promise2.fail(ex);
+                  });
+                }
+              }).onFailure(ex -> {
+                promise2.fail(ex);
+              });
+            }));
+          }
+
+          if("Championship".equals(classSimpleName2) && solrId2 != null) {
+            SearchList<Championship> searchList2 = new SearchList<Championship>();
+            searchList2.setStore(true);
+            searchList2.q("*:*");
+            searchList2.setC(Championship.class);
+            searchList2.fq("solrId:" + solrId2);
+            searchList2.rows(1L);
+            futures.add(Future.future(promise2 -> {
+              searchList2.promiseDeepSearchList(siteRequest).onSuccess(b -> {
+                Championship o2 = searchList2.getList().stream().findFirst().orElse(null);
+                if(o2 != null) {
+                  JsonObject params = new JsonObject();
+                  params.put("body", new JsonObject());
+                  params.put("scopes", siteRequest.getScopes());
+                  params.put("cookie", new JsonObject());
+                  params.put("path", new JsonObject());
+                  params.put("query", new JsonObject().put("q", "*:*").put("fq", new JsonArray().add("solrId:" + solrId2)).put("var", new JsonArray().add("refresh:false")));
+                  JsonObject context = new JsonObject().put("params", params).put("user", siteRequest.getUserPrincipal());
+                  JsonObject json = new JsonObject().put("context", context);
+                  eventBus.request("spine-champ-enUS-Championship", json, new DeliveryOptions().addHeader("action", "patchChampionshipFuture")).onSuccess(c -> {
+                    JsonObject responseMessage = (JsonObject)c.body();
+                    Integer statusCode = responseMessage.getInteger("statusCode");
+                    if(statusCode.equals(200))
+                      promise2.complete();
+                    else
+                      promise2.fail(new RuntimeException(responseMessage.getString("statusMessage")));
+                  }).onFailure(ex -> {
+                    promise2.fail(ex);
+                  });
+                }
+              }).onFailure(ex -> {
+                promise2.fail(ex);
+              });
+            }));
+          }
         }
 
         CompositeFuture.all(futures).onSuccess(b -> {
@@ -3356,7 +4178,11 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       o.persistForClass(Guesser.VAR_guesserId, Guesser.staticSetGuesserId(siteRequest2, (String)result.get(Guesser.VAR_guesserId)));
       o.persistForClass(Guesser.VAR_created, Guesser.staticSetCreated(siteRequest2, (String)result.get(Guesser.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
       o.persistForClass(Guesser.VAR_description, Guesser.staticSetDescription(siteRequest2, (String)result.get(Guesser.VAR_description)));
+      o.persistForClass(Guesser.VAR_sweetSixteenBrackets, Guesser.staticSetSweetSixteenBrackets(siteRequest2, (String)result.get(Guesser.VAR_sweetSixteenBrackets)));
       o.persistForClass(Guesser.VAR_archived, Guesser.staticSetArchived(siteRequest2, (String)result.get(Guesser.VAR_archived)));
+      o.persistForClass(Guesser.VAR_eliteEightBrackets, Guesser.staticSetEliteEightBrackets(siteRequest2, (String)result.get(Guesser.VAR_eliteEightBrackets)));
+      o.persistForClass(Guesser.VAR_finalFourBrackets, Guesser.staticSetFinalFourBrackets(siteRequest2, (String)result.get(Guesser.VAR_finalFourBrackets)));
+      o.persistForClass(Guesser.VAR_championshipBrackets, Guesser.staticSetChampionshipBrackets(siteRequest2, (String)result.get(Guesser.VAR_championshipBrackets)));
       o.persistForClass(Guesser.VAR_sessionId, Guesser.staticSetSessionId(siteRequest2, (String)result.get(Guesser.VAR_sessionId)));
       o.persistForClass(Guesser.VAR_userKey, Guesser.staticSetUserKey(siteRequest2, (String)result.get(Guesser.VAR_userKey)));
       o.persistForClass(Guesser.VAR_objectTitle, Guesser.staticSetObjectTitle(siteRequest2, (String)result.get(Guesser.VAR_objectTitle)));

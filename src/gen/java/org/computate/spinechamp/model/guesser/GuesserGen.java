@@ -36,10 +36,14 @@ import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.String;
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import io.vertx.core.json.JsonArray;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.spinechamp.model.championship.Championship;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
-import io.vertx.core.json.JsonArray;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.search.tool.SearchTool;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -393,6 +397,354 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     return description;
   }
 
+	//////////////////////////
+  // sweetSixteenBrackets //
+	//////////////////////////
+
+
+  /**
+   *  The entity sweetSixteenBrackets
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<String> sweetSixteenBrackets = new ArrayList<String>();
+
+  /**
+   * <br> The entity sweetSixteenBrackets
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.guesser.Guesser&fq=entiteVar_enUS_indexed_string:sweetSixteenBrackets">Find the entity sweetSixteenBrackets in Solr</a>
+   * <br>
+   * @param w is the entity already constructed. 
+   **/
+  protected abstract void _sweetSixteenBrackets(List<String> w);
+
+  public List<String> getSweetSixteenBrackets() {
+    return sweetSixteenBrackets;
+  }
+
+  public void setSweetSixteenBrackets(List<String> sweetSixteenBrackets) {
+    this.sweetSixteenBrackets = sweetSixteenBrackets;
+  }
+  @JsonIgnore
+  public void setSweetSixteenBrackets(String o) {
+    String l = Guesser.staticSetSweetSixteenBrackets(siteRequest_, o);
+    if(l != null)
+      addSweetSixteenBrackets(l);
+  }
+  public static String staticSetSweetSixteenBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  public Guesser addSweetSixteenBrackets(String...objects) {
+    for(String o : objects) {
+      addSweetSixteenBrackets(o);
+    }
+    return (Guesser)this;
+  }
+  public Guesser addSweetSixteenBrackets(String o) {
+    if(o != null)
+      this.sweetSixteenBrackets.add(o);
+    return (Guesser)this;
+  }
+  @JsonIgnore
+  public void setSweetSixteenBrackets(JsonArray objects) {
+    sweetSixteenBrackets.clear();
+    if(objects == null)
+      return;
+    for(int i = 0; i < objects.size(); i++) {
+      String o = objects.getString(i);
+      addSweetSixteenBrackets(o);
+    }
+  }
+  protected Guesser sweetSixteenBracketsInit() {
+    _sweetSixteenBrackets(sweetSixteenBrackets);
+    return (Guesser)this;
+  }
+
+  public static String staticSearchSweetSixteenBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrSweetSixteenBrackets(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqSweetSixteenBrackets(SiteRequest siteRequest_, String o) {
+    return Guesser.staticSearchSweetSixteenBrackets(siteRequest_, Guesser.staticSetSweetSixteenBrackets(siteRequest_, o)).toString();
+  }
+
+  public String[] sqlSweetSixteenBrackets() {
+    return sweetSixteenBrackets.stream().map(v -> (String)v).toArray(String[]::new);
+  }
+
+  public static JsonArray staticJsonSweetSixteenBrackets(List<String> sweetSixteenBrackets) {
+    JsonArray a = new JsonArray();
+    sweetSixteenBrackets.stream().forEach(v -> a.add(v.toString()));
+    return a;
+  }
+
+	////////////////////////
+  // eliteEightBrackets //
+	////////////////////////
+
+
+  /**
+   *  The entity eliteEightBrackets
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<String> eliteEightBrackets = new ArrayList<String>();
+
+  /**
+   * <br> The entity eliteEightBrackets
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.guesser.Guesser&fq=entiteVar_enUS_indexed_string:eliteEightBrackets">Find the entity eliteEightBrackets in Solr</a>
+   * <br>
+   * @param w is the entity already constructed. 
+   **/
+  protected abstract void _eliteEightBrackets(List<String> w);
+
+  public List<String> getEliteEightBrackets() {
+    return eliteEightBrackets;
+  }
+
+  public void setEliteEightBrackets(List<String> eliteEightBrackets) {
+    this.eliteEightBrackets = eliteEightBrackets;
+  }
+  @JsonIgnore
+  public void setEliteEightBrackets(String o) {
+    String l = Guesser.staticSetEliteEightBrackets(siteRequest_, o);
+    if(l != null)
+      addEliteEightBrackets(l);
+  }
+  public static String staticSetEliteEightBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  public Guesser addEliteEightBrackets(String...objects) {
+    for(String o : objects) {
+      addEliteEightBrackets(o);
+    }
+    return (Guesser)this;
+  }
+  public Guesser addEliteEightBrackets(String o) {
+    if(o != null)
+      this.eliteEightBrackets.add(o);
+    return (Guesser)this;
+  }
+  @JsonIgnore
+  public void setEliteEightBrackets(JsonArray objects) {
+    eliteEightBrackets.clear();
+    if(objects == null)
+      return;
+    for(int i = 0; i < objects.size(); i++) {
+      String o = objects.getString(i);
+      addEliteEightBrackets(o);
+    }
+  }
+  protected Guesser eliteEightBracketsInit() {
+    _eliteEightBrackets(eliteEightBrackets);
+    return (Guesser)this;
+  }
+
+  public static String staticSearchEliteEightBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrEliteEightBrackets(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqEliteEightBrackets(SiteRequest siteRequest_, String o) {
+    return Guesser.staticSearchEliteEightBrackets(siteRequest_, Guesser.staticSetEliteEightBrackets(siteRequest_, o)).toString();
+  }
+
+  public String[] sqlEliteEightBrackets() {
+    return eliteEightBrackets.stream().map(v -> (String)v).toArray(String[]::new);
+  }
+
+  public static JsonArray staticJsonEliteEightBrackets(List<String> eliteEightBrackets) {
+    JsonArray a = new JsonArray();
+    eliteEightBrackets.stream().forEach(v -> a.add(v.toString()));
+    return a;
+  }
+
+	///////////////////////
+  // finalFourBrackets //
+	///////////////////////
+
+
+  /**
+   *  The entity finalFourBrackets
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<String> finalFourBrackets = new ArrayList<String>();
+
+  /**
+   * <br> The entity finalFourBrackets
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.guesser.Guesser&fq=entiteVar_enUS_indexed_string:finalFourBrackets">Find the entity finalFourBrackets in Solr</a>
+   * <br>
+   * @param w is the entity already constructed. 
+   **/
+  protected abstract void _finalFourBrackets(List<String> w);
+
+  public List<String> getFinalFourBrackets() {
+    return finalFourBrackets;
+  }
+
+  public void setFinalFourBrackets(List<String> finalFourBrackets) {
+    this.finalFourBrackets = finalFourBrackets;
+  }
+  @JsonIgnore
+  public void setFinalFourBrackets(String o) {
+    String l = Guesser.staticSetFinalFourBrackets(siteRequest_, o);
+    if(l != null)
+      addFinalFourBrackets(l);
+  }
+  public static String staticSetFinalFourBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  public Guesser addFinalFourBrackets(String...objects) {
+    for(String o : objects) {
+      addFinalFourBrackets(o);
+    }
+    return (Guesser)this;
+  }
+  public Guesser addFinalFourBrackets(String o) {
+    if(o != null)
+      this.finalFourBrackets.add(o);
+    return (Guesser)this;
+  }
+  @JsonIgnore
+  public void setFinalFourBrackets(JsonArray objects) {
+    finalFourBrackets.clear();
+    if(objects == null)
+      return;
+    for(int i = 0; i < objects.size(); i++) {
+      String o = objects.getString(i);
+      addFinalFourBrackets(o);
+    }
+  }
+  protected Guesser finalFourBracketsInit() {
+    _finalFourBrackets(finalFourBrackets);
+    return (Guesser)this;
+  }
+
+  public static String staticSearchFinalFourBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrFinalFourBrackets(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqFinalFourBrackets(SiteRequest siteRequest_, String o) {
+    return Guesser.staticSearchFinalFourBrackets(siteRequest_, Guesser.staticSetFinalFourBrackets(siteRequest_, o)).toString();
+  }
+
+  public String[] sqlFinalFourBrackets() {
+    return finalFourBrackets.stream().map(v -> (String)v).toArray(String[]::new);
+  }
+
+  public static JsonArray staticJsonFinalFourBrackets(List<String> finalFourBrackets) {
+    JsonArray a = new JsonArray();
+    finalFourBrackets.stream().forEach(v -> a.add(v.toString()));
+    return a;
+  }
+
+	//////////////////////////
+  // championshipBrackets //
+	//////////////////////////
+
+
+  /**
+   *  The entity championshipBrackets
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<String> championshipBrackets = new ArrayList<String>();
+
+  /**
+   * <br> The entity championshipBrackets
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.guesser.Guesser&fq=entiteVar_enUS_indexed_string:championshipBrackets">Find the entity championshipBrackets in Solr</a>
+   * <br>
+   * @param w is the entity already constructed. 
+   **/
+  protected abstract void _championshipBrackets(List<String> w);
+
+  public List<String> getChampionshipBrackets() {
+    return championshipBrackets;
+  }
+
+  public void setChampionshipBrackets(List<String> championshipBrackets) {
+    this.championshipBrackets = championshipBrackets;
+  }
+  @JsonIgnore
+  public void setChampionshipBrackets(String o) {
+    String l = Guesser.staticSetChampionshipBrackets(siteRequest_, o);
+    if(l != null)
+      addChampionshipBrackets(l);
+  }
+  public static String staticSetChampionshipBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+  public Guesser addChampionshipBrackets(String...objects) {
+    for(String o : objects) {
+      addChampionshipBrackets(o);
+    }
+    return (Guesser)this;
+  }
+  public Guesser addChampionshipBrackets(String o) {
+    if(o != null)
+      this.championshipBrackets.add(o);
+    return (Guesser)this;
+  }
+  @JsonIgnore
+  public void setChampionshipBrackets(JsonArray objects) {
+    championshipBrackets.clear();
+    if(objects == null)
+      return;
+    for(int i = 0; i < objects.size(); i++) {
+      String o = objects.getString(i);
+      addChampionshipBrackets(o);
+    }
+  }
+  protected Guesser championshipBracketsInit() {
+    _championshipBrackets(championshipBrackets);
+    return (Guesser)this;
+  }
+
+  public static String staticSearchChampionshipBrackets(SiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrChampionshipBrackets(SiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqChampionshipBrackets(SiteRequest siteRequest_, String o) {
+    return Guesser.staticSearchChampionshipBrackets(siteRequest_, Guesser.staticSetChampionshipBrackets(siteRequest_, o)).toString();
+  }
+
+  public String[] sqlChampionshipBrackets() {
+    return championshipBrackets.stream().map(v -> (String)v).toArray(String[]::new);
+  }
+
+  public static JsonArray staticJsonChampionshipBrackets(List<String> championshipBrackets) {
+    JsonArray a = new JsonArray();
+    championshipBrackets.stream().forEach(v -> a.add(v.toString()));
+    return a;
+  }
+
   //////////////
   // initDeep //
   //////////////
@@ -425,6 +777,10 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         nameInit();
         guesserIdInit();
         descriptionInit();
+        sweetSixteenBracketsInit();
+        eliteEightBracketsInit();
+        finalFourBracketsInit();
+        championshipBracketsInit();
         promise2.complete();
       } catch(Exception ex) {
         promise2.fail(ex);
@@ -484,6 +840,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         return oGuesser.guesserId;
       case "description":
         return oGuesser.description;
+      case "sweetSixteenBrackets":
+        return oGuesser.sweetSixteenBrackets;
+      case "eliteEightBrackets":
+        return oGuesser.eliteEightBrackets;
+      case "finalFourBrackets":
+        return oGuesser.finalFourBrackets;
+      case "championshipBrackets":
+        return oGuesser.championshipBrackets;
       default:
         return super.obtainBaseModel(var);
     }
@@ -509,6 +873,26 @@ public abstract class GuesserGen<DEV> extends BaseModel {
   public Object relateGuesser(String var, Object val) {
     Guesser oGuesser = (Guesser)this;
     switch(var) {
+      case "sweetSixteenBrackets":
+        oGuesser.addSweetSixteenBrackets((String)val);
+        if(!saves.contains("sweetSixteenBrackets"))
+          saves.add("sweetSixteenBrackets");
+        return val;
+      case "eliteEightBrackets":
+        oGuesser.addEliteEightBrackets((String)val);
+        if(!saves.contains("eliteEightBrackets"))
+          saves.add("eliteEightBrackets");
+        return val;
+      case "finalFourBrackets":
+        oGuesser.addFinalFourBrackets((String)val);
+        if(!saves.contains("finalFourBrackets"))
+          saves.add("finalFourBrackets");
+        return val;
+      case "championshipBrackets":
+        oGuesser.addChampionshipBrackets((String)val);
+        if(!saves.contains("championshipBrackets"))
+          saves.add("championshipBrackets");
+        return val;
       default:
         return super.relateBaseModel(var, val);
     }
@@ -529,6 +913,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return Guesser.staticSetGuesserId(siteRequest_, v);
     case "description":
       return Guesser.staticSetDescription(siteRequest_, v);
+    case "sweetSixteenBrackets":
+      return Guesser.staticSetSweetSixteenBrackets(siteRequest_, v);
+    case "eliteEightBrackets":
+      return Guesser.staticSetEliteEightBrackets(siteRequest_, v);
+    case "finalFourBrackets":
+      return Guesser.staticSetFinalFourBrackets(siteRequest_, v);
+    case "championshipBrackets":
+      return Guesser.staticSetChampionshipBrackets(siteRequest_, v);
       default:
         return BaseModel.staticSetBaseModel(entityVar,  siteRequest_, v, o);
     }
@@ -579,6 +971,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return Guesser.staticSearchGuesserId(siteRequest_, (String)o);
     case "description":
       return Guesser.staticSearchDescription(siteRequest_, (String)o);
+    case "sweetSixteenBrackets":
+      return Guesser.staticSearchSweetSixteenBrackets(siteRequest_, (String)o);
+    case "eliteEightBrackets":
+      return Guesser.staticSearchEliteEightBrackets(siteRequest_, (String)o);
+    case "finalFourBrackets":
+      return Guesser.staticSearchFinalFourBrackets(siteRequest_, (String)o);
+    case "championshipBrackets":
+      return Guesser.staticSearchChampionshipBrackets(siteRequest_, (String)o);
       default:
         return BaseModel.staticSearchBaseModel(entityVar,  siteRequest_, o);
     }
@@ -599,6 +999,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return Guesser.staticSearchStrGuesserId(siteRequest_, (String)o);
     case "description":
       return Guesser.staticSearchStrDescription(siteRequest_, (String)o);
+    case "sweetSixteenBrackets":
+      return Guesser.staticSearchStrSweetSixteenBrackets(siteRequest_, (String)o);
+    case "eliteEightBrackets":
+      return Guesser.staticSearchStrEliteEightBrackets(siteRequest_, (String)o);
+    case "finalFourBrackets":
+      return Guesser.staticSearchStrFinalFourBrackets(siteRequest_, (String)o);
+    case "championshipBrackets":
+      return Guesser.staticSearchStrChampionshipBrackets(siteRequest_, (String)o);
       default:
         return BaseModel.staticSearchStrBaseModel(entityVar,  siteRequest_, o);
     }
@@ -619,6 +1027,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return Guesser.staticSearchFqGuesserId(siteRequest_, o);
     case "description":
       return Guesser.staticSearchFqDescription(siteRequest_, o);
+    case "sweetSixteenBrackets":
+      return Guesser.staticSearchFqSweetSixteenBrackets(siteRequest_, o);
+    case "eliteEightBrackets":
+      return Guesser.staticSearchFqEliteEightBrackets(siteRequest_, o);
+    case "finalFourBrackets":
+      return Guesser.staticSearchFqFinalFourBrackets(siteRequest_, o);
+    case "championshipBrackets":
+      return Guesser.staticSearchFqChampionshipBrackets(siteRequest_, o);
       default:
         return BaseModel.staticSearchFqBaseModel(entityVar,  siteRequest_, o);
     }
@@ -663,6 +1079,54 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         }
         saves.add("description");
         return val;
+      } else if("sweetsixteenbrackets".equals(varLower)) {
+        if(val instanceof List<?>) {
+          ((List<String>)val).stream().forEach(v -> addSweetSixteenBrackets(v));
+        } else if(val instanceof String[]) {
+          Arrays.asList((String[])val).stream().forEach(v -> addSweetSixteenBrackets((String)v));
+        } else if(val instanceof JsonArray) {
+          ((JsonArray)val).stream().forEach(v -> addSweetSixteenBrackets(staticSetSweetSixteenBrackets(siteRequest_, v.toString())));
+        }
+        if(!saves.contains("sweetSixteenBrackets")) {
+          saves.add("sweetSixteenBrackets");
+        }
+        return val;
+      } else if("eliteeightbrackets".equals(varLower)) {
+        if(val instanceof List<?>) {
+          ((List<String>)val).stream().forEach(v -> addEliteEightBrackets(v));
+        } else if(val instanceof String[]) {
+          Arrays.asList((String[])val).stream().forEach(v -> addEliteEightBrackets((String)v));
+        } else if(val instanceof JsonArray) {
+          ((JsonArray)val).stream().forEach(v -> addEliteEightBrackets(staticSetEliteEightBrackets(siteRequest_, v.toString())));
+        }
+        if(!saves.contains("eliteEightBrackets")) {
+          saves.add("eliteEightBrackets");
+        }
+        return val;
+      } else if("finalfourbrackets".equals(varLower)) {
+        if(val instanceof List<?>) {
+          ((List<String>)val).stream().forEach(v -> addFinalFourBrackets(v));
+        } else if(val instanceof String[]) {
+          Arrays.asList((String[])val).stream().forEach(v -> addFinalFourBrackets((String)v));
+        } else if(val instanceof JsonArray) {
+          ((JsonArray)val).stream().forEach(v -> addFinalFourBrackets(staticSetFinalFourBrackets(siteRequest_, v.toString())));
+        }
+        if(!saves.contains("finalFourBrackets")) {
+          saves.add("finalFourBrackets");
+        }
+        return val;
+      } else if("championshipbrackets".equals(varLower)) {
+        if(val instanceof List<?>) {
+          ((List<String>)val).stream().forEach(v -> addChampionshipBrackets(v));
+        } else if(val instanceof String[]) {
+          Arrays.asList((String[])val).stream().forEach(v -> addChampionshipBrackets((String)v));
+        } else if(val instanceof JsonArray) {
+          ((JsonArray)val).stream().forEach(v -> addChampionshipBrackets(staticSetChampionshipBrackets(siteRequest_, v.toString())));
+        }
+        if(!saves.contains("championshipBrackets")) {
+          saves.add("championshipBrackets");
+        }
+        return val;
     } else {
       return super.persistBaseModel(var, val);
     }
@@ -697,6 +1161,22 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         if(description != null)
           oGuesser.setDescription(description);
       }
+
+      List<String> sweetSixteenBrackets = (List<String>)doc.get("sweetSixteenBrackets_docvalues_strings");
+      if(sweetSixteenBrackets != null)
+        oGuesser.sweetSixteenBrackets.addAll(sweetSixteenBrackets);
+
+      List<String> eliteEightBrackets = (List<String>)doc.get("eliteEightBrackets_docvalues_strings");
+      if(eliteEightBrackets != null)
+        oGuesser.eliteEightBrackets.addAll(eliteEightBrackets);
+
+      List<String> finalFourBrackets = (List<String>)doc.get("finalFourBrackets_docvalues_strings");
+      if(finalFourBrackets != null)
+        oGuesser.finalFourBrackets.addAll(finalFourBrackets);
+
+      List<String> championshipBrackets = (List<String>)doc.get("championshipBrackets_docvalues_strings");
+      if(championshipBrackets != null)
+        oGuesser.championshipBrackets.addAll(championshipBrackets);
     }
 
     super.populateBaseModel(doc);
@@ -712,6 +1192,34 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     if(description != null) {
       doc.put("description_docvalues_string", description);
     }
+    if(sweetSixteenBrackets != null) {
+      JsonArray l = new JsonArray();
+      doc.put("sweetSixteenBrackets_docvalues_strings", l);
+      for(String o : sweetSixteenBrackets) {
+        l.add(Guesser.staticSearchSweetSixteenBrackets(siteRequest_, o));
+      }
+    }
+    if(eliteEightBrackets != null) {
+      JsonArray l = new JsonArray();
+      doc.put("eliteEightBrackets_docvalues_strings", l);
+      for(String o : eliteEightBrackets) {
+        l.add(Guesser.staticSearchEliteEightBrackets(siteRequest_, o));
+      }
+    }
+    if(finalFourBrackets != null) {
+      JsonArray l = new JsonArray();
+      doc.put("finalFourBrackets_docvalues_strings", l);
+      for(String o : finalFourBrackets) {
+        l.add(Guesser.staticSearchFinalFourBrackets(siteRequest_, o));
+      }
+    }
+    if(championshipBrackets != null) {
+      JsonArray l = new JsonArray();
+      doc.put("championshipBrackets_docvalues_strings", l);
+      for(String o : championshipBrackets) {
+        l.add(Guesser.staticSearchChampionshipBrackets(siteRequest_, o));
+      }
+    }
     super.indexBaseModel(doc);
 
 	}
@@ -724,6 +1232,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "description":
         return "description_docvalues_string";
+      case "sweetSixteenBrackets":
+        return "sweetSixteenBrackets_docvalues_strings";
+      case "eliteEightBrackets":
+        return "eliteEightBrackets_docvalues_strings";
+      case "finalFourBrackets":
+        return "finalFourBrackets_docvalues_strings";
+      case "championshipBrackets":
+        return "championshipBrackets_docvalues_strings";
       default:
         return BaseModel.varStoredBaseModel(entityVar);
     }
@@ -737,6 +1253,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "description":
         return "description_docvalues_string";
+      case "sweetSixteenBrackets":
+        return "sweetSixteenBrackets_docvalues_strings";
+      case "eliteEightBrackets":
+        return "eliteEightBrackets_docvalues_strings";
+      case "finalFourBrackets":
+        return "finalFourBrackets_docvalues_strings";
+      case "championshipBrackets":
+        return "championshipBrackets_docvalues_strings";
       default:
         return BaseModel.varIndexedBaseModel(entityVar);
     }
@@ -750,6 +1274,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         return "guesserId";
       case "description_docvalues_string":
         return "description";
+      case "sweetSixteenBrackets_docvalues_strings":
+        return "sweetSixteenBrackets";
+      case "eliteEightBrackets_docvalues_strings":
+        return "eliteEightBrackets";
+      case "finalFourBrackets_docvalues_strings":
+        return "finalFourBrackets";
+      case "championshipBrackets_docvalues_strings":
+        return "championshipBrackets";
       default:
         return BaseModel.searchVarBaseModel(searchVar);
     }
@@ -783,6 +1315,18 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     oGuesser.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
     oGuesser.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oGuesser.setDescription(Optional.ofNullable(doc.get("description_docvalues_string")).map(v -> v.toString()).orElse(null));
+    Optional.ofNullable((List<?>)doc.get("sweetSixteenBrackets_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
+      oGuesser.addSweetSixteenBrackets(Guesser.staticSetSweetSixteenBrackets(siteRequest, v.toString()));
+    });
+    Optional.ofNullable((List<?>)doc.get("eliteEightBrackets_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
+      oGuesser.addEliteEightBrackets(Guesser.staticSetEliteEightBrackets(siteRequest, v.toString()));
+    });
+    Optional.ofNullable((List<?>)doc.get("finalFourBrackets_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
+      oGuesser.addFinalFourBrackets(Guesser.staticSetFinalFourBrackets(siteRequest, v.toString()));
+    });
+    Optional.ofNullable((List<?>)doc.get("championshipBrackets_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
+      oGuesser.addChampionshipBrackets(Guesser.staticSetChampionshipBrackets(siteRequest, v.toString()));
+    });
 
     super.storeBaseModel(doc);
   }
@@ -802,6 +1346,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         apiRequest.addVars("guesserId");
       if(!Objects.equals(description, original.getDescription()))
         apiRequest.addVars("description");
+      if(!Objects.equals(sweetSixteenBrackets, original.getSweetSixteenBrackets()))
+        apiRequest.addVars("sweetSixteenBrackets");
+      if(!Objects.equals(eliteEightBrackets, original.getEliteEightBrackets()))
+        apiRequest.addVars("eliteEightBrackets");
+      if(!Objects.equals(finalFourBrackets, original.getFinalFourBrackets()))
+        apiRequest.addVars("finalFourBrackets");
+      if(!Objects.equals(championshipBrackets, original.getChampionshipBrackets()))
+        apiRequest.addVars("championshipBrackets");
       super.apiRequestBaseModel();
     }
   }
@@ -816,6 +1368,10 @@ public abstract class GuesserGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(description).map(v -> "description: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(sweetSixteenBrackets).map(v -> "sweetSixteenBrackets: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(eliteEightBrackets).map(v -> "eliteEightBrackets: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(finalFourBrackets).map(v -> "finalFourBrackets: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(championshipBrackets).map(v -> "championshipBrackets: " + v + "\n").orElse(""));
     return sb.toString();
   }
 
@@ -832,6 +1388,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
   public static final String SET_guesserId = "setGuesserId";
   public static final String VAR_description = "description";
   public static final String SET_description = "setDescription";
+  public static final String VAR_sweetSixteenBrackets = "sweetSixteenBrackets";
+  public static final String SET_sweetSixteenBrackets = "setSweetSixteenBrackets";
+  public static final String VAR_eliteEightBrackets = "eliteEightBrackets";
+  public static final String SET_eliteEightBrackets = "setEliteEightBrackets";
+  public static final String VAR_finalFourBrackets = "finalFourBrackets";
+  public static final String SET_finalFourBrackets = "setFinalFourBrackets";
+  public static final String VAR_championshipBrackets = "championshipBrackets";
+  public static final String SET_championshipBrackets = "setChampionshipBrackets";
 
   public static List<String> varsQForClass() {
     return Guesser.varsQGuesser(new ArrayList<String>());
@@ -862,6 +1426,10 @@ public abstract class GuesserGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_name = "guesser name";
   public static final String DISPLAY_NAME_guesserId = "guesser ID";
   public static final String DISPLAY_NAME_description = "description";
+  public static final String DISPLAY_NAME_sweetSixteenBrackets = "Sweet Sixteen brackets";
+  public static final String DISPLAY_NAME_eliteEightBrackets = "Elite Eight brackets";
+  public static final String DISPLAY_NAME_finalFourBrackets = "Final Four brackets";
+  public static final String DISPLAY_NAME_championshipBrackets = "Championship brackets";
 
   @Override
   public String idForClass() {
@@ -904,6 +1472,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return patch ? SET_guesserId : VAR_guesserId;
     case VAR_description:
       return patch ? SET_description : VAR_description;
+    case VAR_sweetSixteenBrackets:
+      return patch ? SET_sweetSixteenBrackets : VAR_sweetSixteenBrackets;
+    case VAR_eliteEightBrackets:
+      return patch ? SET_eliteEightBrackets : VAR_eliteEightBrackets;
+    case VAR_finalFourBrackets:
+      return patch ? SET_finalFourBrackets : VAR_finalFourBrackets;
+    case VAR_championshipBrackets:
+      return patch ? SET_championshipBrackets : VAR_championshipBrackets;
     default:
       return BaseModel.varJsonBaseModel(var, patch);
     }
@@ -920,6 +1496,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return DISPLAY_NAME_guesserId;
     case VAR_description:
       return DISPLAY_NAME_description;
+    case VAR_sweetSixteenBrackets:
+      return DISPLAY_NAME_sweetSixteenBrackets;
+    case VAR_eliteEightBrackets:
+      return DISPLAY_NAME_eliteEightBrackets;
+    case VAR_finalFourBrackets:
+      return DISPLAY_NAME_finalFourBrackets;
+    case VAR_championshipBrackets:
+      return DISPLAY_NAME_championshipBrackets;
     default:
       return BaseModel.displayNameBaseModel(var);
     }
@@ -935,6 +1519,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return "The ID of this guesser";
     case VAR_description:
       return "A description of this guesser";
+    case VAR_sweetSixteenBrackets:
+      return "The Sweet Sixteen brackets of this guesser";
+    case VAR_eliteEightBrackets:
+      return "The Elite Eight brackets of this guesser";
+    case VAR_finalFourBrackets:
+      return "The Final Four brackets of this guesser";
+    case VAR_championshipBrackets:
+      return "The Championship brackets of this guesser";
       default:
         return BaseModel.descriptionBaseModel(var);
     }
@@ -948,6 +1540,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return "String";
     case VAR_description:
       return "String";
+    case VAR_sweetSixteenBrackets:
+      return "List";
+    case VAR_eliteEightBrackets:
+      return "List";
+    case VAR_finalFourBrackets:
+      return "List";
+    case VAR_championshipBrackets:
+      return "List";
       default:
         return BaseModel.classSimpleNameBaseModel(var);
     }
@@ -970,6 +1570,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return 3;
     case VAR_description:
       return 3;
+    case VAR_sweetSixteenBrackets:
+      return 20;
+    case VAR_eliteEightBrackets:
+      return 20;
+    case VAR_finalFourBrackets:
+      return 20;
+    case VAR_championshipBrackets:
+      return 20;
       default:
         return BaseModel.htmRowBaseModel(var);
     }
@@ -981,6 +1589,14 @@ public abstract class GuesserGen<DEV> extends BaseModel {
       return 1;
     case VAR_description:
       return 4;
+    case VAR_sweetSixteenBrackets:
+      return 0;
+    case VAR_eliteEightBrackets:
+      return 1;
+    case VAR_finalFourBrackets:
+      return 2;
+    case VAR_championshipBrackets:
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

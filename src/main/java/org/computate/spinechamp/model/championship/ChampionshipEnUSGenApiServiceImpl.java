@@ -702,6 +702,22 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
 
       for(String entityVar : methodNames) {
         switch(entityVar) {
+          case "setCreated":
+              o2.setCreated(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_created + "=$" + num);
+              num++;
+              bParams.add(o2.sqlCreated());
+            break;
+          case "setArchived":
+              o2.setArchived(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_archived + "=$" + num);
+              num++;
+              bParams.add(o2.sqlArchived());
+            break;
           case "setFinalFour":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -770,13 +786,29 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case "setCreated":
-              o2.setCreated(jsonObject.getString(entityVar));
+          case "setCorrectGuesses":
+              o2.setCorrectGuesses(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(Championship.VAR_created + "=$" + num);
+              bSql.append(Championship.VAR_correctGuesses + "=$" + num);
               num++;
-              bParams.add(o2.sqlCreated());
+              bParams.add(o2.sqlCorrectGuesses());
+            break;
+          case "setIncorrectGuesses":
+              o2.setIncorrectGuesses(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_incorrectGuesses + "=$" + num);
+              num++;
+              bParams.add(o2.sqlIncorrectGuesses());
+            break;
+          case "setSessionId":
+              o2.setSessionId(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_sessionId + "=$" + num);
+              num++;
+              bParams.add(o2.sqlSessionId());
             break;
           case "setYear":
               o2.setYear(jsonObject.getString(entityVar));
@@ -786,6 +818,14 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               num++;
               bParams.add(o2.sqlYear());
             break;
+          case "setUserKey":
+              o2.setUserKey(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_userKey + "=$" + num);
+              num++;
+              bParams.add(o2.sqlUserKey());
+            break;
           case "setBracketId":
               o2.setBracketId(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -794,14 +834,6 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               num++;
               bParams.add(o2.sqlBracketId());
             break;
-          case "setArchived":
-              o2.setArchived(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(Championship.VAR_archived + "=$" + num);
-              num++;
-              bParams.add(o2.sqlArchived());
-            break;
           case "setName":
               o2.setName(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -809,6 +841,14 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               bSql.append(Championship.VAR_name + "=$" + num);
               num++;
               bParams.add(o2.sqlName());
+            break;
+          case "setObjectTitle":
+              o2.setObjectTitle(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_objectTitle + "=$" + num);
+              num++;
+              bParams.add(o2.sqlObjectTitle());
             break;
           case "setGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -842,6 +882,14 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
+          case "setDisplayPage":
+              o2.setDisplayPage(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(Championship.VAR_displayPage + "=$" + num);
+              num++;
+              bParams.add(o2.sqlDisplayPage());
+            break;
           case "setGame1Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -873,38 +921,6 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
-            break;
-          case "setSessionId":
-              o2.setSessionId(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(Championship.VAR_sessionId + "=$" + num);
-              num++;
-              bParams.add(o2.sqlSessionId());
-            break;
-          case "setUserKey":
-              o2.setUserKey(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(Championship.VAR_userKey + "=$" + num);
-              num++;
-              bParams.add(o2.sqlUserKey());
-            break;
-          case "setObjectTitle":
-              o2.setObjectTitle(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(Championship.VAR_objectTitle + "=$" + num);
-              num++;
-              bParams.add(o2.sqlObjectTitle());
-            break;
-          case "setDisplayPage":
-              o2.setDisplayPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(Championship.VAR_displayPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlDisplayPage());
             break;
           case "setEditPage":
               o2.setEditPage(jsonObject.getString(entityVar));
@@ -1280,6 +1296,24 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         Set<String> entityVars = jsonObject.fieldNames();
         for(String entityVar : entityVars) {
           switch(entityVar) {
+          case Championship.VAR_created:
+            o2.setCreated(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_created + "=$" + num);
+            num++;
+            bParams.add(o2.sqlCreated());
+            break;
+          case Championship.VAR_archived:
+            o2.setArchived(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_archived + "=$" + num);
+            num++;
+            bParams.add(o2.sqlArchived());
+            break;
           case Championship.VAR_finalFour:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures2.add(Future.future(promise2 -> {
@@ -1326,14 +1360,32 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case Championship.VAR_created:
-            o2.setCreated(jsonObject.getString(entityVar));
+          case Championship.VAR_correctGuesses:
+            o2.setCorrectGuesses(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(Championship.VAR_created + "=$" + num);
+            bSql.append(Championship.VAR_correctGuesses + "=$" + num);
             num++;
-            bParams.add(o2.sqlCreated());
+            bParams.add(o2.sqlCorrectGuesses());
+            break;
+          case Championship.VAR_incorrectGuesses:
+            o2.setIncorrectGuesses(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_incorrectGuesses + "=$" + num);
+            num++;
+            bParams.add(o2.sqlIncorrectGuesses());
+            break;
+          case Championship.VAR_sessionId:
+            o2.setSessionId(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_sessionId + "=$" + num);
+            num++;
+            bParams.add(o2.sqlSessionId());
             break;
           case Championship.VAR_year:
             o2.setYear(jsonObject.getString(entityVar));
@@ -1344,6 +1396,15 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             num++;
             bParams.add(o2.sqlYear());
             break;
+          case Championship.VAR_userKey:
+            o2.setUserKey(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_userKey + "=$" + num);
+            num++;
+            bParams.add(o2.sqlUserKey());
+            break;
           case Championship.VAR_bracketId:
             o2.setBracketId(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1353,15 +1414,6 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             num++;
             bParams.add(o2.sqlBracketId());
             break;
-          case Championship.VAR_archived:
-            o2.setArchived(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(Championship.VAR_archived + "=$" + num);
-            num++;
-            bParams.add(o2.sqlArchived());
-            break;
           case Championship.VAR_name:
             o2.setName(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1370,6 +1422,15 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             bSql.append(Championship.VAR_name + "=$" + num);
             num++;
             bParams.add(o2.sqlName());
+            break;
+          case Championship.VAR_objectTitle:
+            o2.setObjectTitle(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_objectTitle + "=$" + num);
+            num++;
+            bParams.add(o2.sqlObjectTitle());
             break;
           case Championship.VAR_game1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1392,6 +1453,15 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
+          case Championship.VAR_displayPage:
+            o2.setDisplayPage(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(Championship.VAR_displayPage + "=$" + num);
+            num++;
+            bParams.add(o2.sqlDisplayPage());
+            break;
           case Championship.VAR_game1Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -1412,42 +1482,6 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
-            break;
-          case Championship.VAR_sessionId:
-            o2.setSessionId(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(Championship.VAR_sessionId + "=$" + num);
-            num++;
-            bParams.add(o2.sqlSessionId());
-            break;
-          case Championship.VAR_userKey:
-            o2.setUserKey(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(Championship.VAR_userKey + "=$" + num);
-            num++;
-            bParams.add(o2.sqlUserKey());
-            break;
-          case Championship.VAR_objectTitle:
-            o2.setObjectTitle(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(Championship.VAR_objectTitle + "=$" + num);
-            num++;
-            bParams.add(o2.sqlObjectTitle());
-            break;
-          case Championship.VAR_displayPage:
-            o2.setDisplayPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(Championship.VAR_displayPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlDisplayPage());
             break;
           case Championship.VAR_editPage:
             o2.setEditPage(jsonObject.getString(entityVar));
@@ -3555,7 +3589,7 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT finalFour, guesserId, created, year, bracketId, archived, name, game1Winner, game1Loser, sessionId, userKey, objectTitle, displayPage, editPage, userPage, download FROM Championship WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT created, archived, finalFour, guesserId, correctGuesses, incorrectGuesses, sessionId, year, userKey, bracketId, name, objectTitle, game1Winner, displayPage, game1Loser, editPage, userPage, download FROM Championship WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -3600,7 +3634,7 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
     try {
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
-      sqlConnection.preparedQuery("SELECT championship as pk1, 'finalFour' from FinalFour where championship=$1 UNION SELECT guesserId as pk2, 'guesserId' from Guesser where guesserId=$2 UNION SELECT teamId as pk2, 'game1Winner' from Team where teamId=$3 UNION SELECT teamId as pk2, 'game1Loser' from Team where teamId=$4")
+      sqlConnection.preparedQuery("SELECT championship as pk1, 'finalFour' FROM FinalFour WHERE championship=$1 UNION SELECT guesserId as pk2, 'guesserId' FROM Guesser WHERE guesserId=$2 UNION SELECT teamId as pk2, 'game1Winner' FROM Team WHERE teamId=$3 UNION SELECT teamId as pk2, 'game1Loser' FROM Team WHERE teamId=$4")
           .collecting(Collectors.toList())
           .execute(Tuple.of(o.getFinalFour(), o.getGuesserId(), o.getGame1Winner(), o.getGame1Loser())
           ).onSuccess(result -> {
@@ -3894,19 +3928,21 @@ public class ChampionshipEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       Championship o = new Championship();
       o.setSiteRequest_((SiteRequest)siteRequest);
 
+      o.persistForClass(Championship.VAR_created, Championship.staticSetCreated(siteRequest2, (String)result.get(Championship.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
+      o.persistForClass(Championship.VAR_archived, Championship.staticSetArchived(siteRequest2, (String)result.get(Championship.VAR_archived)));
       o.persistForClass(Championship.VAR_finalFour, Championship.staticSetFinalFour(siteRequest2, (String)result.get(Championship.VAR_finalFour)));
       o.persistForClass(Championship.VAR_guesserId, Championship.staticSetGuesserId(siteRequest2, (String)result.get(Championship.VAR_guesserId)));
-      o.persistForClass(Championship.VAR_created, Championship.staticSetCreated(siteRequest2, (String)result.get(Championship.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
-      o.persistForClass(Championship.VAR_year, Championship.staticSetYear(siteRequest2, (String)result.get(Championship.VAR_year)));
-      o.persistForClass(Championship.VAR_bracketId, Championship.staticSetBracketId(siteRequest2, (String)result.get(Championship.VAR_bracketId)));
-      o.persistForClass(Championship.VAR_archived, Championship.staticSetArchived(siteRequest2, (String)result.get(Championship.VAR_archived)));
-      o.persistForClass(Championship.VAR_name, Championship.staticSetName(siteRequest2, (String)result.get(Championship.VAR_name)));
-      o.persistForClass(Championship.VAR_game1Winner, Championship.staticSetGame1Winner(siteRequest2, (String)result.get(Championship.VAR_game1Winner)));
-      o.persistForClass(Championship.VAR_game1Loser, Championship.staticSetGame1Loser(siteRequest2, (String)result.get(Championship.VAR_game1Loser)));
+      o.persistForClass(Championship.VAR_correctGuesses, Championship.staticSetCorrectGuesses(siteRequest2, (String)result.get(Championship.VAR_correctGuesses)));
+      o.persistForClass(Championship.VAR_incorrectGuesses, Championship.staticSetIncorrectGuesses(siteRequest2, (String)result.get(Championship.VAR_incorrectGuesses)));
       o.persistForClass(Championship.VAR_sessionId, Championship.staticSetSessionId(siteRequest2, (String)result.get(Championship.VAR_sessionId)));
+      o.persistForClass(Championship.VAR_year, Championship.staticSetYear(siteRequest2, (String)result.get(Championship.VAR_year)));
       o.persistForClass(Championship.VAR_userKey, Championship.staticSetUserKey(siteRequest2, (String)result.get(Championship.VAR_userKey)));
+      o.persistForClass(Championship.VAR_bracketId, Championship.staticSetBracketId(siteRequest2, (String)result.get(Championship.VAR_bracketId)));
+      o.persistForClass(Championship.VAR_name, Championship.staticSetName(siteRequest2, (String)result.get(Championship.VAR_name)));
       o.persistForClass(Championship.VAR_objectTitle, Championship.staticSetObjectTitle(siteRequest2, (String)result.get(Championship.VAR_objectTitle)));
+      o.persistForClass(Championship.VAR_game1Winner, Championship.staticSetGame1Winner(siteRequest2, (String)result.get(Championship.VAR_game1Winner)));
       o.persistForClass(Championship.VAR_displayPage, Championship.staticSetDisplayPage(siteRequest2, (String)result.get(Championship.VAR_displayPage)));
+      o.persistForClass(Championship.VAR_game1Loser, Championship.staticSetGame1Loser(siteRequest2, (String)result.get(Championship.VAR_game1Loser)));
       o.persistForClass(Championship.VAR_editPage, Championship.staticSetEditPage(siteRequest2, (String)result.get(Championship.VAR_editPage)));
       o.persistForClass(Championship.VAR_userPage, Championship.staticSetUserPage(siteRequest2, (String)result.get(Championship.VAR_userPage)));
       o.persistForClass(Championship.VAR_download, Championship.staticSetDownload(siteRequest2, (String)result.get(Championship.VAR_download)));

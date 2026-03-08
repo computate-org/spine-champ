@@ -372,6 +372,7 @@ public class MainVerticle extends MainVerticleGen<AbstractVerticle> {
               apiTeam.authorizeGroupData(authToken, Team.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
                   .onSuccess(q4 -> {
                 apiGuesser.authorizeGroupData(authToken, Guesser.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
+                    .compose(q5 -> apiGuesser.authorizeGroupData(authToken, Guesser.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))
                     .onSuccess(q5 -> {
                   apiSweetSixteen.authorizeGroupData(authToken, SweetSixteen.CLASS_AUTH_RESOURCE, "Admin", new String[] { "POST", "PATCH", "GET", "DELETE" })
                       .compose(q6 -> apiSweetSixteen.authorizeGroupData(authToken, SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin", new String[] { "POST", "PATCH", "GET", "DELETE", "Admin", "SuperAdmin" }))

@@ -9563,6 +9563,22 @@ components:
                     type: string
                   description:
                     type: string
+                  sweetSixteenBrackets:
+                    type: array
+                    items:
+                      type: string
+                  eliteEightBrackets:
+                    type: array
+                    items:
+                      type: string
+                  finalFourBrackets:
+                    type: array
+                    items:
+                      type: string
+                  championshipBrackets:
+                    type: array
+                    items:
+                      type: string
     PATCHGuesserRequest:
       allOf:
         - type: object
@@ -9588,6 +9604,74 @@ components:
               type: string
             removeAllDescription:
               type: string
+            setSweetSixteenBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeSweetSixteenBrackets:
+              type: string
+            removeAllSweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            addSweetSixteenBrackets:
+              type: string
+            addAllSweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            setEliteEightBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeEliteEightBrackets:
+              type: string
+            removeAllEliteEightBrackets:
+              type: array
+              items:
+                type: string
+            addEliteEightBrackets:
+              type: string
+            addAllEliteEightBrackets:
+              type: array
+              items:
+                type: string
+            setFinalFourBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeFinalFourBrackets:
+              type: string
+            removeAllFinalFourBrackets:
+              type: array
+              items:
+                type: string
+            addFinalFourBrackets:
+              type: string
+            addAllFinalFourBrackets:
+              type: array
+              items:
+                type: string
+            setChampionshipBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeChampionshipBrackets:
+              type: string
+            removeAllChampionshipBrackets:
+              type: array
+              items:
+                type: string
+            addChampionshipBrackets:
+              type: string
+            addAllChampionshipBrackets:
+              type: array
+              items:
+                type: string
     PATCHGuesserResponse:
       allOf:
         - type: object
@@ -9613,6 +9697,74 @@ components:
               type: string
             removeAllDescription:
               type: string
+            setSweetSixteenBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeSweetSixteenBrackets:
+              type: string
+            removeAllSweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            addSweetSixteenBrackets:
+              type: string
+            addAllSweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            setEliteEightBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeEliteEightBrackets:
+              type: string
+            removeAllEliteEightBrackets:
+              type: array
+              items:
+                type: string
+            addEliteEightBrackets:
+              type: string
+            addAllEliteEightBrackets:
+              type: array
+              items:
+                type: string
+            setFinalFourBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeFinalFourBrackets:
+              type: string
+            removeAllFinalFourBrackets:
+              type: array
+              items:
+                type: string
+            addFinalFourBrackets:
+              type: string
+            addAllFinalFourBrackets:
+              type: array
+              items:
+                type: string
+            setChampionshipBrackets:
+              type: array
+              nullable: true
+              items:
+                type: string
+            removeChampionshipBrackets:
+              type: string
+            removeAllChampionshipBrackets:
+              type: array
+              items:
+                type: string
+            addChampionshipBrackets:
+              type: string
+            addAllChampionshipBrackets:
+              type: array
+              items:
+                type: string
     POSTGuesserRequest:
       allOf:
         - type: object
@@ -9623,6 +9775,22 @@ components:
               type: string
             description:
               type: string
+            sweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            eliteEightBrackets:
+              type: array
+              items:
+                type: string
+            finalFourBrackets:
+              type: array
+              items:
+                type: string
+            championshipBrackets:
+              type: array
+              items:
+                type: string
     POSTGuesserResponse:
       allOf:
         - type: object
@@ -9633,6 +9801,22 @@ components:
               type: string
             description:
               type: string
+            sweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            eliteEightBrackets:
+              type: array
+              items:
+                type: string
+            finalFourBrackets:
+              type: array
+              items:
+                type: string
+            championshipBrackets:
+              type: array
+              items:
+                type: string
     DELETEFilterGuesserResponse:
       allOf:
         - type: object
@@ -9643,6 +9827,22 @@ components:
               type: string
             description:
               type: string
+            sweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            eliteEightBrackets:
+              type: array
+              items:
+                type: string
+            finalFourBrackets:
+              type: array
+              items:
+                type: string
+            championshipBrackets:
+              type: array
+              items:
+                type: string
     PUTImportGuesserRequest:
       allOf:
         - type: object
@@ -9658,6 +9858,22 @@ components:
                     type: string
                   description:
                     type: string
+                  sweetSixteenBrackets:
+                    type: array
+                    items:
+                      type: string
+                  eliteEightBrackets:
+                    type: array
+                    items:
+                      type: string
+                  finalFourBrackets:
+                    type: array
+                    items:
+                      type: string
+                  championshipBrackets:
+                    type: array
+                    items:
+                      type: string
     PUTImportGuesserResponse:
       allOf:
         - type: object
@@ -9668,6 +9884,22 @@ components:
                     type: string
                   description:
                     type: string
+                  sweetSixteenBrackets:
+                    type: array
+                    items:
+                      type: string
+                  eliteEightBrackets:
+                    type: array
+                    items:
+                      type: string
+                  finalFourBrackets:
+                    type: array
+                    items:
+                      type: string
+                  championshipBrackets:
+                    type: array
+                    items:
+                      type: string
     GETGuesserResponse:
       allOf:
         - type: object
@@ -9678,6 +9910,22 @@ components:
               type: string
             description:
               type: string
+            sweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            eliteEightBrackets:
+              type: array
+              items:
+                type: string
+            finalFourBrackets:
+              type: array
+              items:
+                type: string
+            championshipBrackets:
+              type: array
+              items:
+                type: string
     DELETEGuesserResponse:
       allOf:
         - type: object
@@ -9688,6 +9936,22 @@ components:
               type: string
             description:
               type: string
+            sweetSixteenBrackets:
+              type: array
+              items:
+                type: string
+            eliteEightBrackets:
+              type: array
+              items:
+                type: string
+            finalFourBrackets:
+              type: array
+              items:
+                type: string
+            championshipBrackets:
+              type: array
+              items:
+                type: string
     EditPageGuesserResponse:
       allOf:
         - type: string
@@ -9712,6 +9976,8 @@ components:
               items:
                 type: object
                 properties:
+                  actualSweetSixteen:
+                    type: object
                   guesserId:
                     type: string
                   year:
@@ -9720,33 +9986,49 @@ components:
                     type: string
                   name:
                     type: string
+                  southGame1WinnerGuess:
+                    type: string
                   southGame1Winner:
                     type: string
                   southGame1Loser:
+                    type: string
+                  southGame2WinnerGuess:
                     type: string
                   southGame2Winner:
                     type: string
                   southGame2Loser:
                     type: string
+                  westGame1WinnerGuess:
+                    type: string
                   westGame1Winner:
                     type: string
                   westGame1Loser:
+                    type: string
+                  westGame2WinnerGuess:
                     type: string
                   westGame2Winner:
                     type: string
                   westGame2Loser:
                     type: string
+                  eastGame1WinnerGuess:
+                    type: string
                   eastGame1Winner:
                     type: string
                   eastGame1Loser:
+                    type: string
+                  eastGame2WinnerGuess:
                     type: string
                   eastGame2Winner:
                     type: string
                   eastGame2Loser:
                     type: string
+                  midwestGame1WinnerGuess:
+                    type: string
                   midwestGame1Winner:
                     type: string
                   midwestGame1Loser:
+                    type: string
+                  midwestGame2WinnerGuess:
                     type: string
                   midwestGame2Winner:
                     type: string
@@ -9758,6 +10040,13 @@ components:
       allOf:
         - type: object
           properties:
+            setActualSweetSixteen:
+              type: object
+              nullable: true
+            removeActualSweetSixteen:
+              type: object
+            removeAllActualSweetSixteen:
+              type: object
             setGuesserId:
               type: string
               nullable: true
@@ -9786,6 +10075,13 @@ components:
               type: string
             removeAllName:
               type: string
+            setSouthGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeSouthGame1WinnerGuess:
+              type: string
+            removeAllSouthGame1WinnerGuess:
+              type: string
             setSouthGame1Winner:
               type: string
               nullable: true
@@ -9799,6 +10095,13 @@ components:
             removeSouthGame1Loser:
               type: string
             removeAllSouthGame1Loser:
+              type: string
+            setSouthGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeSouthGame2WinnerGuess:
+              type: string
+            removeAllSouthGame2WinnerGuess:
               type: string
             setSouthGame2Winner:
               type: string
@@ -9814,6 +10117,13 @@ components:
               type: string
             removeAllSouthGame2Loser:
               type: string
+            setWestGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeWestGame1WinnerGuess:
+              type: string
+            removeAllWestGame1WinnerGuess:
+              type: string
             setWestGame1Winner:
               type: string
               nullable: true
@@ -9827,6 +10137,13 @@ components:
             removeWestGame1Loser:
               type: string
             removeAllWestGame1Loser:
+              type: string
+            setWestGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeWestGame2WinnerGuess:
+              type: string
+            removeAllWestGame2WinnerGuess:
               type: string
             setWestGame2Winner:
               type: string
@@ -9842,6 +10159,13 @@ components:
               type: string
             removeAllWestGame2Loser:
               type: string
+            setEastGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeEastGame1WinnerGuess:
+              type: string
+            removeAllEastGame1WinnerGuess:
+              type: string
             setEastGame1Winner:
               type: string
               nullable: true
@@ -9855,6 +10179,13 @@ components:
             removeEastGame1Loser:
               type: string
             removeAllEastGame1Loser:
+              type: string
+            setEastGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeEastGame2WinnerGuess:
+              type: string
+            removeAllEastGame2WinnerGuess:
               type: string
             setEastGame2Winner:
               type: string
@@ -9870,6 +10201,13 @@ components:
               type: string
             removeAllEastGame2Loser:
               type: string
+            setMidwestGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeMidwestGame1WinnerGuess:
+              type: string
+            removeAllMidwestGame1WinnerGuess:
+              type: string
             setMidwestGame1Winner:
               type: string
               nullable: true
@@ -9883,6 +10221,13 @@ components:
             removeMidwestGame1Loser:
               type: string
             removeAllMidwestGame1Loser:
+              type: string
+            setMidwestGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeMidwestGame2WinnerGuess:
+              type: string
+            removeAllMidwestGame2WinnerGuess:
               type: string
             setMidwestGame2Winner:
               type: string
@@ -9909,6 +10254,13 @@ components:
       allOf:
         - type: object
           properties:
+            setActualSweetSixteen:
+              type: object
+              nullable: true
+            removeActualSweetSixteen:
+              type: object
+            removeAllActualSweetSixteen:
+              type: object
             setGuesserId:
               type: string
               nullable: true
@@ -9937,6 +10289,13 @@ components:
               type: string
             removeAllName:
               type: string
+            setSouthGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeSouthGame1WinnerGuess:
+              type: string
+            removeAllSouthGame1WinnerGuess:
+              type: string
             setSouthGame1Winner:
               type: string
               nullable: true
@@ -9950,6 +10309,13 @@ components:
             removeSouthGame1Loser:
               type: string
             removeAllSouthGame1Loser:
+              type: string
+            setSouthGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeSouthGame2WinnerGuess:
+              type: string
+            removeAllSouthGame2WinnerGuess:
               type: string
             setSouthGame2Winner:
               type: string
@@ -9965,6 +10331,13 @@ components:
               type: string
             removeAllSouthGame2Loser:
               type: string
+            setWestGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeWestGame1WinnerGuess:
+              type: string
+            removeAllWestGame1WinnerGuess:
+              type: string
             setWestGame1Winner:
               type: string
               nullable: true
@@ -9978,6 +10351,13 @@ components:
             removeWestGame1Loser:
               type: string
             removeAllWestGame1Loser:
+              type: string
+            setWestGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeWestGame2WinnerGuess:
+              type: string
+            removeAllWestGame2WinnerGuess:
               type: string
             setWestGame2Winner:
               type: string
@@ -9993,6 +10373,13 @@ components:
               type: string
             removeAllWestGame2Loser:
               type: string
+            setEastGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeEastGame1WinnerGuess:
+              type: string
+            removeAllEastGame1WinnerGuess:
+              type: string
             setEastGame1Winner:
               type: string
               nullable: true
@@ -10006,6 +10393,13 @@ components:
             removeEastGame1Loser:
               type: string
             removeAllEastGame1Loser:
+              type: string
+            setEastGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeEastGame2WinnerGuess:
+              type: string
+            removeAllEastGame2WinnerGuess:
               type: string
             setEastGame2Winner:
               type: string
@@ -10021,6 +10415,13 @@ components:
               type: string
             removeAllEastGame2Loser:
               type: string
+            setMidwestGame1WinnerGuess:
+              type: string
+              nullable: true
+            removeMidwestGame1WinnerGuess:
+              type: string
+            removeAllMidwestGame1WinnerGuess:
+              type: string
             setMidwestGame1Winner:
               type: string
               nullable: true
@@ -10034,6 +10435,13 @@ components:
             removeMidwestGame1Loser:
               type: string
             removeAllMidwestGame1Loser:
+              type: string
+            setMidwestGame2WinnerGuess:
+              type: string
+              nullable: true
+            removeMidwestGame2WinnerGuess:
+              type: string
+            removeAllMidwestGame2WinnerGuess:
               type: string
             setMidwestGame2Winner:
               type: string
@@ -10060,6 +10468,8 @@ components:
       allOf:
         - type: object
           properties:
+            actualSweetSixteen:
+              type: object
             guesserId:
               type: string
             year:
@@ -10068,33 +10478,49 @@ components:
               type: string
             name:
               type: string
+            southGame1WinnerGuess:
+              type: string
             southGame1Winner:
               type: string
             southGame1Loser:
+              type: string
+            southGame2WinnerGuess:
               type: string
             southGame2Winner:
               type: string
             southGame2Loser:
               type: string
+            westGame1WinnerGuess:
+              type: string
             westGame1Winner:
               type: string
             westGame1Loser:
+              type: string
+            westGame2WinnerGuess:
               type: string
             westGame2Winner:
               type: string
             westGame2Loser:
               type: string
+            eastGame1WinnerGuess:
+              type: string
             eastGame1Winner:
               type: string
             eastGame1Loser:
+              type: string
+            eastGame2WinnerGuess:
               type: string
             eastGame2Winner:
               type: string
             eastGame2Loser:
               type: string
+            midwestGame1WinnerGuess:
+              type: string
             midwestGame1Winner:
               type: string
             midwestGame1Loser:
+              type: string
+            midwestGame2WinnerGuess:
               type: string
             midwestGame2Winner:
               type: string
@@ -10106,6 +10532,8 @@ components:
       allOf:
         - type: object
           properties:
+            actualSweetSixteen:
+              type: object
             guesserId:
               type: string
             year:
@@ -10114,33 +10542,49 @@ components:
               type: string
             name:
               type: string
+            southGame1WinnerGuess:
+              type: string
             southGame1Winner:
               type: string
             southGame1Loser:
+              type: string
+            southGame2WinnerGuess:
               type: string
             southGame2Winner:
               type: string
             southGame2Loser:
               type: string
+            westGame1WinnerGuess:
+              type: string
             westGame1Winner:
               type: string
             westGame1Loser:
+              type: string
+            westGame2WinnerGuess:
               type: string
             westGame2Winner:
               type: string
             westGame2Loser:
               type: string
+            eastGame1WinnerGuess:
+              type: string
             eastGame1Winner:
               type: string
             eastGame1Loser:
+              type: string
+            eastGame2WinnerGuess:
               type: string
             eastGame2Winner:
               type: string
             eastGame2Loser:
               type: string
+            midwestGame1WinnerGuess:
+              type: string
             midwestGame1Winner:
               type: string
             midwestGame1Loser:
+              type: string
+            midwestGame2WinnerGuess:
               type: string
             midwestGame2Winner:
               type: string
@@ -10152,6 +10596,8 @@ components:
       allOf:
         - type: object
           properties:
+            actualSweetSixteen:
+              type: object
             guesserId:
               type: string
             year:
@@ -10160,33 +10606,49 @@ components:
               type: string
             name:
               type: string
+            southGame1WinnerGuess:
+              type: string
             southGame1Winner:
               type: string
             southGame1Loser:
+              type: string
+            southGame2WinnerGuess:
               type: string
             southGame2Winner:
               type: string
             southGame2Loser:
               type: string
+            westGame1WinnerGuess:
+              type: string
             westGame1Winner:
               type: string
             westGame1Loser:
+              type: string
+            westGame2WinnerGuess:
               type: string
             westGame2Winner:
               type: string
             westGame2Loser:
               type: string
+            eastGame1WinnerGuess:
+              type: string
             eastGame1Winner:
               type: string
             eastGame1Loser:
+              type: string
+            eastGame2WinnerGuess:
               type: string
             eastGame2Winner:
               type: string
             eastGame2Loser:
               type: string
+            midwestGame1WinnerGuess:
+              type: string
             midwestGame1Winner:
               type: string
             midwestGame1Loser:
+              type: string
+            midwestGame2WinnerGuess:
               type: string
             midwestGame2Winner:
               type: string
@@ -10203,6 +10665,8 @@ components:
               items:
                 type: object
                 properties:
+                  actualSweetSixteen:
+                    type: object
                   guesserId:
                     type: string
                   year:
@@ -10211,33 +10675,49 @@ components:
                     type: string
                   name:
                     type: string
+                  southGame1WinnerGuess:
+                    type: string
                   southGame1Winner:
                     type: string
                   southGame1Loser:
+                    type: string
+                  southGame2WinnerGuess:
                     type: string
                   southGame2Winner:
                     type: string
                   southGame2Loser:
                     type: string
+                  westGame1WinnerGuess:
+                    type: string
                   westGame1Winner:
                     type: string
                   westGame1Loser:
+                    type: string
+                  westGame2WinnerGuess:
                     type: string
                   westGame2Winner:
                     type: string
                   westGame2Loser:
                     type: string
+                  eastGame1WinnerGuess:
+                    type: string
                   eastGame1Winner:
                     type: string
                   eastGame1Loser:
+                    type: string
+                  eastGame2WinnerGuess:
                     type: string
                   eastGame2Winner:
                     type: string
                   eastGame2Loser:
                     type: string
+                  midwestGame1WinnerGuess:
+                    type: string
                   midwestGame1Winner:
                     type: string
                   midwestGame1Loser:
+                    type: string
+                  midwestGame2WinnerGuess:
                     type: string
                   midwestGame2Winner:
                     type: string
@@ -10249,6 +10729,8 @@ components:
       allOf:
         - type: object
           properties:
+                  actualSweetSixteen:
+                    type: object
                   guesserId:
                     type: string
                   year:
@@ -10257,33 +10739,49 @@ components:
                     type: string
                   name:
                     type: string
+                  southGame1WinnerGuess:
+                    type: string
                   southGame1Winner:
                     type: string
                   southGame1Loser:
+                    type: string
+                  southGame2WinnerGuess:
                     type: string
                   southGame2Winner:
                     type: string
                   southGame2Loser:
                     type: string
+                  westGame1WinnerGuess:
+                    type: string
                   westGame1Winner:
                     type: string
                   westGame1Loser:
+                    type: string
+                  westGame2WinnerGuess:
                     type: string
                   westGame2Winner:
                     type: string
                   westGame2Loser:
                     type: string
+                  eastGame1WinnerGuess:
+                    type: string
                   eastGame1Winner:
                     type: string
                   eastGame1Loser:
+                    type: string
+                  eastGame2WinnerGuess:
                     type: string
                   eastGame2Winner:
                     type: string
                   eastGame2Loser:
                     type: string
+                  midwestGame1WinnerGuess:
+                    type: string
                   midwestGame1Winner:
                     type: string
                   midwestGame1Loser:
+                    type: string
+                  midwestGame2WinnerGuess:
                     type: string
                   midwestGame2Winner:
                     type: string
@@ -10295,6 +10793,8 @@ components:
       allOf:
         - type: object
           properties:
+            actualSweetSixteen:
+              type: object
             guesserId:
               type: string
             year:
@@ -10303,33 +10803,49 @@ components:
               type: string
             name:
               type: string
+            southGame1WinnerGuess:
+              type: string
             southGame1Winner:
               type: string
             southGame1Loser:
+              type: string
+            southGame2WinnerGuess:
               type: string
             southGame2Winner:
               type: string
             southGame2Loser:
               type: string
+            westGame1WinnerGuess:
+              type: string
             westGame1Winner:
               type: string
             westGame1Loser:
+              type: string
+            westGame2WinnerGuess:
               type: string
             westGame2Winner:
               type: string
             westGame2Loser:
               type: string
+            eastGame1WinnerGuess:
+              type: string
             eastGame1Winner:
               type: string
             eastGame1Loser:
+              type: string
+            eastGame2WinnerGuess:
               type: string
             eastGame2Winner:
               type: string
             eastGame2Loser:
               type: string
+            midwestGame1WinnerGuess:
+              type: string
             midwestGame1Winner:
               type: string
             midwestGame1Loser:
+              type: string
+            midwestGame2WinnerGuess:
               type: string
             midwestGame2Winner:
               type: string
@@ -10341,6 +10857,8 @@ components:
       allOf:
         - type: object
           properties:
+            actualSweetSixteen:
+              type: object
             guesserId:
               type: string
             year:
@@ -10349,33 +10867,49 @@ components:
               type: string
             name:
               type: string
+            southGame1WinnerGuess:
+              type: string
             southGame1Winner:
               type: string
             southGame1Loser:
+              type: string
+            southGame2WinnerGuess:
               type: string
             southGame2Winner:
               type: string
             southGame2Loser:
               type: string
+            westGame1WinnerGuess:
+              type: string
             westGame1Winner:
               type: string
             westGame1Loser:
+              type: string
+            westGame2WinnerGuess:
               type: string
             westGame2Winner:
               type: string
             westGame2Loser:
               type: string
+            eastGame1WinnerGuess:
+              type: string
             eastGame1Winner:
               type: string
             eastGame1Loser:
+              type: string
+            eastGame2WinnerGuess:
               type: string
             eastGame2Winner:
               type: string
             eastGame2Loser:
               type: string
+            midwestGame1WinnerGuess:
+              type: string
             midwestGame1Winner:
               type: string
             midwestGame1Loser:
+              type: string
+            midwestGame2WinnerGuess:
               type: string
             midwestGame2Winner:
               type: string
