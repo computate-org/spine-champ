@@ -9,6 +9,7 @@ import org.computate.spinechamp.model.eliteeight.EliteEight;
 import org.computate.vertx.search.list.SearchList;
 
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -491,6 +492,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * Description: The number of correct guesses in this Championship bracket
    * HtmRow: 4
    * HtmCell: 2
+   * Modify: false
    **/
   protected void _correctGuesses(Wrap<Integer> w) {
     Integer correct = 0;
@@ -547,7 +549,34 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * Description: The number of incorrect guesses in this Championship bracket
    * HtmRow: 4
    * HtmCell: 3
+   * Modify: false
    **/
   protected void _incorrectGuesses(Wrap<Integer> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: correct guesses
+   * Description: A chart of the number of correct guesses in this Championship bracket
+   * HtmRow: 3
+   * HtmCell: 2
+   * Modify: false
+   * wa-pie-chart:
+   * div:
+   *   class: wa-stack
+   **/
+  protected void _correctGuessesChart(Wrap<JsonObject> w) {
+    w.o(new JsonObject()
+      .put("data", new JsonObject()
+        .put("labels", new JsonArray().add("correct").add("incorrect"))
+        .put("datasets", new JsonArray()
+          .add(new JsonObject()
+            .put("label", "guesses")
+            .put("data", new JsonArray().add(correctGuesses).add(incorrectGuesses))
+          )
+        )
+      )
+    );
   }
 }

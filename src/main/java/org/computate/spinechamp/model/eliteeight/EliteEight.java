@@ -361,6 +361,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Description: The number of correct guesses in this Championship bracket
    * HtmRow: 4
    * HtmCell: 2
+   * Modify: false
    **/
   protected void _correctGuesses(Wrap<Integer> w) {
     Integer correct = 0;
@@ -397,6 +398,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * Description: The number of incorrect guesses in this Championship bracket
    * HtmRow: 4
    * HtmCell: 3
+   * Modify: false
    **/
   protected void _incorrectGuesses(Wrap<Integer> w) {
   }
