@@ -563,7 +563,7 @@ public class EliteEightGenPage extends EliteEightGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-thin fa-basketball-hoop\"></i>");
+      c.o("<i class=\"{{ FONTAWESOME_STYLE }} fa-basketball-hoop\"></i>");
   }
 
   protected void _pageUriEliteEight(Wrap<String> c) {

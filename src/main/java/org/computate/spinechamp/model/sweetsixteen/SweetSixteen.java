@@ -17,7 +17,7 @@ import io.vertx.core.json.JsonObject;
  * SqlOrder: 10
  * Description: A predicted tournament with 16 teams. 
  * AName: a sweet sixteen bracket
- * Icon: <i class="fa-thin fa-basketball"></i>
+ * Icon: <i class="{{ FONTAWESOME_STYLE }} fa-basketball"></i>
  * MenuDetails: sports brackets
  * MenuDetailsOpen: true
  *

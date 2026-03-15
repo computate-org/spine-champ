@@ -561,7 +561,7 @@ public class GuesserGenPage extends GuesserGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-thin fa-person\"></i>");
+      c.o("<i class=\"{{ FONTAWESOME_STYLE }} fa-person\"></i>");
   }
 
   protected void _pageUriGuesser(Wrap<String> c) {

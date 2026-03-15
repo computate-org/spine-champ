@@ -17,7 +17,7 @@ import io.vertx.core.json.JsonObject;
  * SqlOrder: 9
  * Description: A predicted tournament with 8 teams. 
  * AName: an elite eight bracket
- * Icon: <i class="fa-thin fa-basketball-hoop"></i>
+ * Icon: <i class="{{ FONTAWESOME_STYLE }} fa-basketball-hoop"></i>
  *
  * SearchPageUri: /en-us/search/elite-eight
  * EditPageUri: /en-us/edit/elite-eight/{bracketId}

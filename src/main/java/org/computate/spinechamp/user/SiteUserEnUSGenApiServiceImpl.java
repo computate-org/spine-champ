@@ -652,14 +652,6 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
               num++;
               bParams.add(o2.sqlUserProfileUrl());
             break;
-          case "setSeeArchived":
-              o2.setSeeArchived(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(SiteUser.VAR_seeArchived + "=$" + num);
-              num++;
-              bParams.add(o2.sqlSeeArchived());
-            break;
           case "setSessionId":
               o2.setSessionId(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -667,6 +659,14 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
               bSql.append(SiteUser.VAR_sessionId + "=$" + num);
               num++;
               bParams.add(o2.sqlSessionId());
+            break;
+          case "setSeeArchived":
+              o2.setSeeArchived(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SiteUser.VAR_seeArchived + "=$" + num);
+              num++;
+              bParams.add(o2.sqlSeeArchived());
             break;
           case "setUserKey":
               o2.setUserKey(jsonObject.getString(entityVar));
@@ -700,14 +700,6 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
               num++;
               bParams.add(o2.sqlSiteTheme());
             break;
-          case "setCustomerProfileId":
-              o2.setCustomerProfileId(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(SiteUser.VAR_customerProfileId + "=$" + num);
-              num++;
-              bParams.add(o2.sqlCustomerProfileId());
-            break;
           case "setObjectTitle":
               o2.setObjectTitle(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -715,6 +707,14 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
               bSql.append(SiteUser.VAR_objectTitle + "=$" + num);
               num++;
               bParams.add(o2.sqlObjectTitle());
+            break;
+          case "setCustomerProfileId":
+              o2.setCustomerProfileId(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SiteUser.VAR_customerProfileId + "=$" + num);
+              num++;
+              bParams.add(o2.sqlCustomerProfileId());
             break;
           case "setDisplayPage":
               o2.setDisplayPage(jsonObject.getString(entityVar));
@@ -1184,15 +1184,6 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
             num++;
             bParams.add(o2.sqlUserProfileUrl());
             break;
-          case SiteUser.VAR_seeArchived:
-            o2.setSeeArchived(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(SiteUser.VAR_seeArchived + "=$" + num);
-            num++;
-            bParams.add(o2.sqlSeeArchived());
-            break;
           case SiteUser.VAR_sessionId:
             o2.setSessionId(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1201,6 +1192,15 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
             bSql.append(SiteUser.VAR_sessionId + "=$" + num);
             num++;
             bParams.add(o2.sqlSessionId());
+            break;
+          case SiteUser.VAR_seeArchived:
+            o2.setSeeArchived(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SiteUser.VAR_seeArchived + "=$" + num);
+            num++;
+            bParams.add(o2.sqlSeeArchived());
             break;
           case SiteUser.VAR_userKey:
             o2.setUserKey(jsonObject.getString(entityVar));
@@ -1238,15 +1238,6 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
             num++;
             bParams.add(o2.sqlSiteTheme());
             break;
-          case SiteUser.VAR_customerProfileId:
-            o2.setCustomerProfileId(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(SiteUser.VAR_customerProfileId + "=$" + num);
-            num++;
-            bParams.add(o2.sqlCustomerProfileId());
-            break;
           case SiteUser.VAR_objectTitle:
             o2.setObjectTitle(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1255,6 +1246,15 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
             bSql.append(SiteUser.VAR_objectTitle + "=$" + num);
             num++;
             bParams.add(o2.sqlObjectTitle());
+            break;
+          case SiteUser.VAR_customerProfileId:
+            o2.setCustomerProfileId(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SiteUser.VAR_customerProfileId + "=$" + num);
+            num++;
+            bParams.add(o2.sqlCustomerProfileId());
             break;
           case SiteUser.VAR_displayPage:
             o2.setDisplayPage(jsonObject.getString(entityVar));
@@ -1982,7 +1982,7 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT userId, created, userName, userEmail, archived, userFirstName, userLastName, userFullName, userProfileUrl, seeArchived, sessionId, userKey, displayName, siteFontSize, siteTheme, customerProfileId, objectTitle, displayPage, editPage, userPage, download FROM SiteUser WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT userId, created, userName, userEmail, archived, userFirstName, userLastName, userFullName, userProfileUrl, sessionId, seeArchived, userKey, displayName, siteFontSize, siteTheme, objectTitle, customerProfileId, displayPage, editPage, userPage, download FROM SiteUser WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -2161,14 +2161,14 @@ public class SiteUserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements
       o.persistForClass(SiteUser.VAR_userLastName, SiteUser.staticSetUserLastName(siteRequest2, (String)result.get(SiteUser.VAR_userLastName)));
       o.persistForClass(SiteUser.VAR_userFullName, SiteUser.staticSetUserFullName(siteRequest2, (String)result.get(SiteUser.VAR_userFullName)));
       o.persistForClass(SiteUser.VAR_userProfileUrl, SiteUser.staticSetUserProfileUrl(siteRequest2, (String)result.get(SiteUser.VAR_userProfileUrl)));
-      o.persistForClass(SiteUser.VAR_seeArchived, SiteUser.staticSetSeeArchived(siteRequest2, (String)result.get(SiteUser.VAR_seeArchived)));
       o.persistForClass(SiteUser.VAR_sessionId, SiteUser.staticSetSessionId(siteRequest2, (String)result.get(SiteUser.VAR_sessionId)));
+      o.persistForClass(SiteUser.VAR_seeArchived, SiteUser.staticSetSeeArchived(siteRequest2, (String)result.get(SiteUser.VAR_seeArchived)));
       o.persistForClass(SiteUser.VAR_userKey, SiteUser.staticSetUserKey(siteRequest2, (String)result.get(SiteUser.VAR_userKey)));
       o.persistForClass(SiteUser.VAR_displayName, SiteUser.staticSetDisplayName(siteRequest2, (String)result.get(SiteUser.VAR_displayName)));
       o.persistForClass(SiteUser.VAR_siteFontSize, SiteUser.staticSetSiteFontSize(siteRequest2, (String)result.get(SiteUser.VAR_siteFontSize)));
       o.persistForClass(SiteUser.VAR_siteTheme, SiteUser.staticSetSiteTheme(siteRequest2, (String)result.get(SiteUser.VAR_siteTheme)));
-      o.persistForClass(SiteUser.VAR_customerProfileId, SiteUser.staticSetCustomerProfileId(siteRequest2, (String)result.get(SiteUser.VAR_customerProfileId)));
       o.persistForClass(SiteUser.VAR_objectTitle, SiteUser.staticSetObjectTitle(siteRequest2, (String)result.get(SiteUser.VAR_objectTitle)));
+      o.persistForClass(SiteUser.VAR_customerProfileId, SiteUser.staticSetCustomerProfileId(siteRequest2, (String)result.get(SiteUser.VAR_customerProfileId)));
       o.persistForClass(SiteUser.VAR_displayPage, SiteUser.staticSetDisplayPage(siteRequest2, (String)result.get(SiteUser.VAR_displayPage)));
       o.persistForClass(SiteUser.VAR_editPage, SiteUser.staticSetEditPage(siteRequest2, (String)result.get(SiteUser.VAR_editPage)));
       o.persistForClass(SiteUser.VAR_userPage, SiteUser.staticSetUserPage(siteRequest2, (String)result.get(SiteUser.VAR_userPage)));

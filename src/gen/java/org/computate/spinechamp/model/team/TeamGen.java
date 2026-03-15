@@ -206,7 +206,7 @@ public abstract class TeamGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUri = "/en-us/api/team";
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/team";
 
-  public static final String Icon = "<i class=\"fa-thin fa-person-basketball\"></i>";
+  public static final String Icon = "<i class=\"{{ FONTAWESOME_STYLE }} fa-person-basketball\"></i>";
 
 	////////////
   // region //

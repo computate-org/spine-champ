@@ -563,7 +563,7 @@ public class FinalFourGenPage extends FinalFourGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-thin fa-person-basketball\"></i>");
+      c.o("<i class=\"{{ FONTAWESOME_STYLE }} fa-person-basketball\"></i>");
   }
 
   protected void _pageUriFinalFour(Wrap<String> c) {

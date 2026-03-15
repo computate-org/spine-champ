@@ -563,7 +563,7 @@ public class ChampionshipGenPage extends ChampionshipGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-thin fa-court-sport\"></i>");
+      c.o("<i class=\"{{ FONTAWESOME_STYLE }} fa-court-sport\"></i>");
   }
 
   protected void _pageUriChampionship(Wrap<String> c) {

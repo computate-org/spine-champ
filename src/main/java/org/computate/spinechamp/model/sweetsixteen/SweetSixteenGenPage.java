@@ -562,7 +562,7 @@ public class SweetSixteenGenPage extends SweetSixteenGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-thin fa-basketball\"></i>");
+      c.o("<i class=\"{{ FONTAWESOME_STYLE }} fa-basketball\"></i>");
   }
 
   protected void _pageUriSweetSixteen(Wrap<String> c) {

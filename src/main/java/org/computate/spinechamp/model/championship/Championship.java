@@ -16,7 +16,7 @@ import io.vertx.core.json.JsonObject;
  * SqlOrder: 7
  * Description: A predicted tournament with 2 teams. 
  * AName: a championship bracket
- * Icon: <i class="fa-thin fa-court-sport"></i>
+ * Icon: <i class="{{ FONTAWESOME_STYLE }} fa-court-sport"></i>
  *
  * SearchPageUri: /en-us/search/championship
  * EditPageUri: /en-us/edit/championship/{bracketId}
