@@ -87,7 +87,6 @@ public class Guesser extends GuesserGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * Persist: true
    * DisplayName: Sweet Sixteen brackets
    * Description: The Sweet Sixteen brackets of this guesser
    * HtmRow: 20
@@ -101,7 +100,6 @@ public class Guesser extends GuesserGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * Persist: true
    * DisplayName: Elite Eight brackets
    * Description: The Elite Eight brackets of this guesser
    * HtmRow: 20
@@ -114,7 +112,6 @@ public class Guesser extends GuesserGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * Persist: true
    * DisplayName: Final Four brackets
    * Description: The Final Four brackets of this guesser
    * HtmRow: 20
@@ -127,7 +124,6 @@ public class Guesser extends GuesserGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * Persist: true
    * DisplayName: Championship brackets
    * Description: The Championship brackets of this guesser
    * HtmRow: 20

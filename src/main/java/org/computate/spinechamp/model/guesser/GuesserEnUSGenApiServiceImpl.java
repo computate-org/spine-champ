@@ -3824,7 +3824,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT name, guesserId, created, description, sweetSixteenBrackets, archived, eliteEightBrackets, finalFourBrackets, championshipBrackets, sessionId, userKey, objectTitle, displayPage, editPage, userPage, download FROM Guesser WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT name, guesserId, created, description, archived, sessionId, userKey, objectTitle, displayPage, editPage, userPage, download FROM Guesser WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -4177,11 +4177,7 @@ public class GuesserEnUSGenApiServiceImpl extends BaseApiServiceImpl implements 
       o.persistForClass(Guesser.VAR_guesserId, Guesser.staticSetGuesserId(siteRequest2, (String)result.get(Guesser.VAR_guesserId)));
       o.persistForClass(Guesser.VAR_created, Guesser.staticSetCreated(siteRequest2, (String)result.get(Guesser.VAR_created), Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))));
       o.persistForClass(Guesser.VAR_description, Guesser.staticSetDescription(siteRequest2, (String)result.get(Guesser.VAR_description)));
-      o.persistForClass(Guesser.VAR_sweetSixteenBrackets, Guesser.staticSetSweetSixteenBrackets(siteRequest2, (String)result.get(Guesser.VAR_sweetSixteenBrackets)));
       o.persistForClass(Guesser.VAR_archived, Guesser.staticSetArchived(siteRequest2, (String)result.get(Guesser.VAR_archived)));
-      o.persistForClass(Guesser.VAR_eliteEightBrackets, Guesser.staticSetEliteEightBrackets(siteRequest2, (String)result.get(Guesser.VAR_eliteEightBrackets)));
-      o.persistForClass(Guesser.VAR_finalFourBrackets, Guesser.staticSetFinalFourBrackets(siteRequest2, (String)result.get(Guesser.VAR_finalFourBrackets)));
-      o.persistForClass(Guesser.VAR_championshipBrackets, Guesser.staticSetChampionshipBrackets(siteRequest2, (String)result.get(Guesser.VAR_championshipBrackets)));
       o.persistForClass(Guesser.VAR_sessionId, Guesser.staticSetSessionId(siteRequest2, (String)result.get(Guesser.VAR_sessionId)));
       o.persistForClass(Guesser.VAR_userKey, Guesser.staticSetUserKey(siteRequest2, (String)result.get(Guesser.VAR_userKey)));
       o.persistForClass(Guesser.VAR_objectTitle, Guesser.staticSetObjectTitle(siteRequest2, (String)result.get(Guesser.VAR_objectTitle)));

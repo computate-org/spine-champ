@@ -1080,54 +1080,6 @@ public abstract class GuesserGen<DEV> extends BaseModel {
         }
         saves.add("description");
         return val;
-      } else if("sweetsixteenbrackets".equals(varLower)) {
-        if(val instanceof List<?>) {
-          ((List<String>)val).stream().forEach(v -> addSweetSixteenBrackets(v));
-        } else if(val instanceof String[]) {
-          Arrays.asList((String[])val).stream().forEach(v -> addSweetSixteenBrackets((String)v));
-        } else if(val instanceof JsonArray) {
-          ((JsonArray)val).stream().forEach(v -> addSweetSixteenBrackets(staticSetSweetSixteenBrackets(siteRequest_, v.toString())));
-        }
-        if(!saves.contains("sweetSixteenBrackets")) {
-          saves.add("sweetSixteenBrackets");
-        }
-        return val;
-      } else if("eliteeightbrackets".equals(varLower)) {
-        if(val instanceof List<?>) {
-          ((List<String>)val).stream().forEach(v -> addEliteEightBrackets(v));
-        } else if(val instanceof String[]) {
-          Arrays.asList((String[])val).stream().forEach(v -> addEliteEightBrackets((String)v));
-        } else if(val instanceof JsonArray) {
-          ((JsonArray)val).stream().forEach(v -> addEliteEightBrackets(staticSetEliteEightBrackets(siteRequest_, v.toString())));
-        }
-        if(!saves.contains("eliteEightBrackets")) {
-          saves.add("eliteEightBrackets");
-        }
-        return val;
-      } else if("finalfourbrackets".equals(varLower)) {
-        if(val instanceof List<?>) {
-          ((List<String>)val).stream().forEach(v -> addFinalFourBrackets(v));
-        } else if(val instanceof String[]) {
-          Arrays.asList((String[])val).stream().forEach(v -> addFinalFourBrackets((String)v));
-        } else if(val instanceof JsonArray) {
-          ((JsonArray)val).stream().forEach(v -> addFinalFourBrackets(staticSetFinalFourBrackets(siteRequest_, v.toString())));
-        }
-        if(!saves.contains("finalFourBrackets")) {
-          saves.add("finalFourBrackets");
-        }
-        return val;
-      } else if("championshipbrackets".equals(varLower)) {
-        if(val instanceof List<?>) {
-          ((List<String>)val).stream().forEach(v -> addChampionshipBrackets(v));
-        } else if(val instanceof String[]) {
-          Arrays.asList((String[])val).stream().forEach(v -> addChampionshipBrackets((String)v));
-        } else if(val instanceof JsonArray) {
-          ((JsonArray)val).stream().forEach(v -> addChampionshipBrackets(staticSetChampionshipBrackets(siteRequest_, v.toString())));
-        }
-        if(!saves.contains("championshipBrackets")) {
-          saves.add("championshipBrackets");
-        }
-        return val;
     } else {
       return super.persistBaseModel(var, val);
     }
