@@ -35,6 +35,12 @@ import io.vertx.sqlclient.RowStream;
 
 import org.computate.spinechamp.config.ConfigKeys;
 import org.computate.spinechamp.request.SiteRequest;
+import org.computate.spinechamp.model.team.Team;
+import org.computate.spinechamp.model.guesser.Guesser;
+import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.finalfour.FinalFour;
+import org.computate.spinechamp.model.championship.Championship;
 
 
 /**
@@ -201,17 +207,29 @@ public class DbToSolrSync extends DbToSolrSyncGen<AbstractVerticle> {
       pgOptions.setDatabase(config.getString(ConfigKeys.DATABASE_DATABASE));
       pgOptions.setUser(config.getString(ConfigKeys.DATABASE_USERNAME));
       pgOptions.setPassword(config.getString(ConfigKeys.DATABASE_PASSWORD));
-      pgOptions.setIdleTimeout(Integer.parseInt(config.getString(ConfigKeys.DATABASE_MAX_IDLE_TIME)));
-      pgOptions.setIdleTimeoutUnit(TimeUnit.SECONDS);
-      pgOptions.setConnectTimeout(Integer.parseInt(config.getString(ConfigKeys.DATABASE_CONNECT_TIMEOUT)));
+      // pgOptions.setIdleTimeout(Integer.parseInt(config.getString(ConfigKeys.DATABASE_MAX_IDLE_TIME)));
+      // pgOptions.setIdleTimeoutUnit(TimeUnit.SECONDS);
+      // pgOptions.setConnectTimeout(Integer.parseInt(config.getString(ConfigKeys.DATABASE_CONNECT_TIMEOUT)));
 
       PoolOptions poolOptions = new PoolOptions();
       poolOptions.setMaxSize(Integer.parseInt(config.getString(ConfigKeys.DATABASE_MAX_POOL_SIZE)));
       poolOptions.setMaxWaitQueueSize(Integer.parseInt(config.getString(ConfigKeys.DATABASE_MAX_WAIT_QUEUE_SIZE)));
 
       Pool pgPool = PgBuilder.pool().connectingTo(pgOptions).with(poolOptions).using(vertx).build();
-      LOG.info(dbToSolrSyncComplete);
-      promise.complete();
+      dbToSolrSyncRecord(vertx, config, pgPool, Team.CLASS_SIMPLE_NAME).onSuccess(q1 -> {
+        dbToSolrSyncRecord(vertx, config, pgPool, Guesser.CLASS_SIMPLE_NAME).onSuccess(q2 -> {
+          dbToSolrSyncRecord(vertx, config, pgPool, SweetSixteen.CLASS_SIMPLE_NAME).onSuccess(q3 -> {
+            dbToSolrSyncRecord(vertx, config, pgPool, EliteEight.CLASS_SIMPLE_NAME).onSuccess(q4 -> {
+              dbToSolrSyncRecord(vertx, config, pgPool, FinalFour.CLASS_SIMPLE_NAME).onSuccess(q5 -> {
+                dbToSolrSyncRecord(vertx, config, pgPool, Championship.CLASS_SIMPLE_NAME).onSuccess(q6 -> {
+                  LOG.info(dbToSolrSyncComplete);
+                  promise.complete();
+                }).onFailure(ex -> promise.fail(ex));
+              }).onFailure(ex -> promise.fail(ex));
+            }).onFailure(ex -> promise.fail(ex));
+          }).onFailure(ex -> promise.fail(ex));
+        }).onFailure(ex -> promise.fail(ex));
+      }).onFailure(ex -> promise.fail(ex));
     } catch (Exception ex) {
       LOG.error("Could not initialize the database schema.", ex);
       promise.fail(ex);

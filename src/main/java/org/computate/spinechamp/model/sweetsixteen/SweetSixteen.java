@@ -563,6 +563,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * HtmCell: 2
    * Modify: false
    * wa-pie-chart:
+   *   style: "height: 200px; "
    * div:
    *   class: wa-stack
    **/

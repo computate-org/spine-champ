@@ -48,7 +48,6 @@ import java.util.Objects;
 import io.vertx.core.WorkerExecutor;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.EventBus;
-import io.vertx.pgclient.PgPool;
 import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.mqtt.MqttClient;
@@ -69,6 +68,7 @@ import org.computate.search.response.solr.SolrResponse.StatsField;
 import java.util.stream.Collectors;
 import io.vertx.core.json.Json;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import java.security.Principal;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import java.io.PrintWriter;
@@ -124,7 +124,6 @@ import io.vertx.ext.auth.authorization.RoleBasedAuthorization;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.HttpResponse;
-import io.vertx.ext.web.client.predicate.ResponsePredicate;
 import java.util.HashMap;
 import io.vertx.ext.auth.User;
 import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
@@ -174,7 +173,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "GET"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "GET"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -338,7 +337,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "GET"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "GET"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -440,7 +439,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "PATCH"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "PATCH"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -743,7 +742,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Guesser.varIndexedGuesser(Guesser.VAR_guesserId), Guesser.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Guesser");
@@ -807,7 +805,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -847,7 +844,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -887,7 +883,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -919,7 +914,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -967,7 +961,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1007,7 +1000,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1055,7 +1047,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1087,7 +1078,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1119,7 +1109,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1151,7 +1140,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1183,7 +1171,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1215,7 +1202,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1247,7 +1233,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1279,7 +1264,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1311,7 +1295,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1343,7 +1326,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1480,7 +1462,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "POST"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "POST"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -1770,7 +1752,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Guesser.varIndexedGuesser(Guesser.VAR_guesserId), Guesser.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Guesser");
@@ -1827,7 +1808,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1857,7 +1837,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1887,7 +1866,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1908,7 +1886,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1947,7 +1924,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -1977,7 +1953,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2016,7 +1991,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2037,7 +2011,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2058,7 +2031,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2079,7 +2051,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2100,7 +2071,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2121,7 +2091,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2142,7 +2111,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2163,7 +2131,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2184,7 +2151,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2205,7 +2171,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               futures1.add(Future.future(promise2 -> {
                 searchModel(siteRequest).query(Team.varIndexedTeam(Team.VAR_teamId), Team.class, val).onSuccess(o3 -> {
                   String solrId2 = Optional.ofNullable(o3).map(o4 -> o4.getSolrId()).filter(solrId3 -> !solrIds.contains(solrId3)).orElse(null);
-                  Long pk2 = Optional.ofNullable(o3).map(o4 -> o4.getPk()).orElse(null);
                   if(solrId2 != null) {
                     solrIds.add(solrId2);
                     classes.add("Team");
@@ -2319,7 +2284,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "DELETE"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "DELETE"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -3030,7 +2995,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "PUT"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "PUT"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -3354,7 +3319,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "GET"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "GET"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -3611,7 +3576,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "GET"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "GET"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
               , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
@@ -3869,7 +3834,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "Admin"));
         form.add("permission", String.format("%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, "SuperAdmin"));
         if(bracketId != null)
-          form.add("permission", String.format("%s#%s", bracketId, "DELETE"));
+          form.add("permission", String.format("%s-%s#%s", SweetSixteen.CLASS_AUTH_RESOURCE, bracketId, "DELETE"));
         webClient.post(
             config.getInteger(ComputateConfigKeys.AUTH_PORT)
             , config.getString(ComputateConfigKeys.AUTH_HOST_NAME)

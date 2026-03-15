@@ -48,12 +48,12 @@ import org.computate.spinechamp.model.team.TeamEnUSGenApiService;
 import org.computate.spinechamp.model.guesser.Guesser;
 import org.computate.spinechamp.model.guesser.GuesserEnUSApiServiceImpl;
 import org.computate.spinechamp.model.guesser.GuesserEnUSGenApiService;
-import org.computate.spinechamp.model.eliteeight.EliteEight;
-import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
-import org.computate.spinechamp.model.eliteeight.EliteEightEnUSGenApiService;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteen;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSApiServiceImpl;
 import org.computate.spinechamp.model.sweetsixteen.SweetSixteenEnUSGenApiService;
+import org.computate.spinechamp.model.eliteeight.EliteEight;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSApiServiceImpl;
+import org.computate.spinechamp.model.eliteeight.EliteEightEnUSGenApiService;
 import org.computate.spinechamp.model.finalfour.FinalFour;
 import org.computate.spinechamp.model.finalfour.FinalFourEnUSApiServiceImpl;
 import org.computate.spinechamp.model.finalfour.FinalFourEnUSGenApiService;
@@ -91,11 +91,9 @@ import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.api.trace.Tracer;
 import io.vertx.ext.auth.authentication.TokenCredentials;
 import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
-import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.mail.MailClient;
 import io.vertx.ext.mail.MailConfig;
 import io.vertx.ext.web.client.WebClient;
-import io.vertx.ext.web.client.predicate.ResponsePredicate;
 import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.netty.handler.codec.mqtt.MqttQoS;
@@ -154,7 +152,7 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
   private JsonObject i18n;
 
   /**
-   * A io.vertx.ext.jdbc.JDBCClient for connecting to the relational database PostgreSQL. 
+   * A JDBC client for connecting to the relational database PostgreSQL. 
    **/
   private Pool pgPool;
 
@@ -184,10 +182,10 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
     this.sdkMeterProvider = sdkMeterProvider;
   }
 
-  /**	
-   *	This is called by Vert.x when the verticle instance is deployed. 
-   *	Initialize a new site context object for storing information about the entire site in English. 
-   *	Setup the startPromise to handle the configuration steps and starting the server. 
+  /**
+   * This is called by Vert.x when the verticle instance is deployed. 
+   * Initialize a new site context object for storing information about the entire site in English. 
+   * Setup the startPromise to handle the configuration steps and starting the server. 
    **/
   @Override()
   public void start(Promise<Void> startPromise) throws Exception, Exception {
@@ -279,7 +277,7 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
     return promise.future();
   }
 
-  /**	
+  /**
    **/
   private Future<Void> configureWebClient() {
     Promise<Void> promise = Promise.promise();
@@ -296,7 +294,7 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
     return promise.future();
   }
 
-  /**	
+  /**
    * 
    * Val.ConnectionError.enUS: Could not open the database client connection. 
    * Val.ConnectionSuccess.enUS: The database client connection was successful. 
@@ -304,10 +302,10 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
    * Val.InitError.enUS: Could not initialize the database tables. 
    * Val.InitSuccess.enUS: The database was initialized successfully. 
    * 
-   *	Configure shared database connections across the cluster for massive scaling of the application. 
-   *	Return a promise that configures a shared database client connection. 
-   *	Load the database configuration into a shared io.vertx.ext.jdbc.JDBCClient for a scalable, clustered datasource connection pool. 
-   *	Initialize the database tables if not already created for the first time. 
+   * Configure shared database connections across the cluster for massive scaling of the application. 
+   * Return a promise that configures a shared database client connection. 
+   * Load the database configuration into a shared JDBC client for a scalable, clustered datasource connection pool. 
+   * Initialize the database tables if not already created for the first time. 
    **/
   private Future<Void> configureData() {
     Promise<Void> promise = Promise.promise();
@@ -320,9 +318,9 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
       pgOptions.setDatabase(config().getString(ConfigKeys.DATABASE_DATABASE));
       pgOptions.setUser(config().getString(ConfigKeys.DATABASE_USERNAME));
       pgOptions.setPassword(config().getString(ConfigKeys.DATABASE_PASSWORD));
-      pgOptions.setIdleTimeout(Integer.parseInt(config().getString(ConfigKeys.DATABASE_MAX_IDLE_TIME)));
-      pgOptions.setIdleTimeoutUnit(TimeUnit.HOURS);
-      pgOptions.setConnectTimeout(Integer.parseInt(config().getString(ConfigKeys.DATABASE_CONNECT_TIMEOUT)));
+      // pgOptions.setIdleTimeout(Integer.parseInt(config().getString(ConfigKeys.DATABASE_MAX_IDLE_TIME)));
+      // pgOptions.setIdleTimeoutUnit(TimeUnit.HOURS);
+      // pgOptions.setConnectTimeout(Integer.parseInt(config().getString(ConfigKeys.DATABASE_CONNECT_TIMEOUT)));
 
       PoolOptions poolOptions = new PoolOptions();
       poolOptions.setMaxSize(jdbcMaxPoolSize);
@@ -345,12 +343,12 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
     return promise.future();
   }
 
-  /**	
+  /**
    * Val.Fail.enUS: Could not configure the shared worker executor. 
    * Val.Complete.enUS: The shared worker executor "{}" was configured successfully. 
    * 
-   *	Configure a shared worker executor for running blocking tasks in the background. 
-   *	Return a promise that configures the shared worker executor. 
+   * Configure a shared worker executor for running blocking tasks in the background. 
+   * Return a promise that configures the shared worker executor. 
    **/
   private Future<Void> configureSharedWorkerExecutor() {
     Promise<Void> promise = Promise.promise();
@@ -424,7 +422,7 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
    * Description: Import initial data
    * Val.Skip.enUS: The data import is disabled. 
    **/
-  private Future<Void> importData() {
+  public Future<Void> importData() {
     Promise<Void> promise = Promise.promise();
     if(Boolean.valueOf(config().getString(ConfigKeys.ENABLE_IMPORT_DATA))) {
       SiteRequest siteRequest = new SiteRequest();
@@ -442,33 +440,33 @@ public class WorkerVerticle extends WorkerVerticleGen<AbstractVerticle> {
       initializeApiService(apiTeam);
       GuesserEnUSApiServiceImpl apiGuesser = new GuesserEnUSApiServiceImpl();
       initializeApiService(apiGuesser);
-      EliteEightEnUSApiServiceImpl apiEliteEight = new EliteEightEnUSApiServiceImpl();
-      initializeApiService(apiEliteEight);
       SweetSixteenEnUSApiServiceImpl apiSweetSixteen = new SweetSixteenEnUSApiServiceImpl();
       initializeApiService(apiSweetSixteen);
+      EliteEightEnUSApiServiceImpl apiEliteEight = new EliteEightEnUSApiServiceImpl();
+      initializeApiService(apiEliteEight);
       FinalFourEnUSApiServiceImpl apiFinalFour = new FinalFourEnUSApiServiceImpl();
       initializeApiService(apiFinalFour);
       ChampionshipEnUSApiServiceImpl apiChampionship = new ChampionshipEnUSApiServiceImpl();
       initializeApiService(apiChampionship);
 
-			apiTimeZone.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, TimeZone.CLASS_CANONICAL_NAME, TimeZone.CLASS_SIMPLE_NAME, TimeZone.CLASS_API_ADDRESS_TimeZone, TimeZone.CLASS_AUTH_RESOURCE, "id", "userPage", "download").onSuccess(q1 -> {
-				apiSitePage.importTimer(Paths.get(templatePath, "/en-us/view/article"), vertx, siteRequest, SitePage.CLASS_CANONICAL_NAME, SitePage.CLASS_SIMPLE_NAME, SitePage.CLASS_API_ADDRESS_SitePage, SitePage.CLASS_AUTH_RESOURCE, "pageId", "userPage", "download").onSuccess(q2 -> {
-					apiTeam.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Team.CLASS_CANONICAL_NAME, Team.CLASS_SIMPLE_NAME, Team.CLASS_API_ADDRESS_Team, Team.CLASS_AUTH_RESOURCE, "teamId", "userPage", "download").onSuccess(q3 -> {
-						apiGuesser.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Guesser.CLASS_CANONICAL_NAME, Guesser.CLASS_SIMPLE_NAME, Guesser.CLASS_API_ADDRESS_Guesser, Guesser.CLASS_AUTH_RESOURCE, "guesserId", "userPage", "download").onSuccess(q4 -> {
-							apiEliteEight.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, EliteEight.CLASS_CANONICAL_NAME, EliteEight.CLASS_SIMPLE_NAME, EliteEight.CLASS_API_ADDRESS_EliteEight, EliteEight.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q5 -> {
-								apiSweetSixteen.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, SweetSixteen.CLASS_CANONICAL_NAME, SweetSixteen.CLASS_SIMPLE_NAME, SweetSixteen.CLASS_API_ADDRESS_SweetSixteen, SweetSixteen.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q6 -> {
-									apiFinalFour.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, FinalFour.CLASS_CANONICAL_NAME, FinalFour.CLASS_SIMPLE_NAME, FinalFour.CLASS_API_ADDRESS_FinalFour, FinalFour.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q7 -> {
-										apiChampionship.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Championship.CLASS_CANONICAL_NAME, Championship.CLASS_SIMPLE_NAME, Championship.CLASS_API_ADDRESS_Championship, Championship.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q8 -> {
-											LOG.info("data import complete");
-											promise.complete();
-										}).onFailure(ex -> promise.fail(ex));
-									}).onFailure(ex -> promise.fail(ex));
-								}).onFailure(ex -> promise.fail(ex));
-							}).onFailure(ex -> promise.fail(ex));
-						}).onFailure(ex -> promise.fail(ex));
-					}).onFailure(ex -> promise.fail(ex));
-				}).onFailure(ex -> promise.fail(ex));
-			}).onFailure(ex -> promise.fail(ex));
+      apiTimeZone.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, TimeZone.CLASS_CANONICAL_NAME, TimeZone.CLASS_SIMPLE_NAME, TimeZone.CLASS_API_ADDRESS_TimeZone, TimeZone.CLASS_AUTH_RESOURCE, "id", "userPage", "download").onSuccess(q1 -> {
+        apiSitePage.importTimer(Paths.get(templatePath, "/en-us/view/article"), vertx, siteRequest, SitePage.CLASS_CANONICAL_NAME, SitePage.CLASS_SIMPLE_NAME, SitePage.CLASS_API_ADDRESS_SitePage, SitePage.CLASS_AUTH_RESOURCE, "pageId", "userPage", "download").onSuccess(q2 -> {
+          apiTeam.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Team.CLASS_CANONICAL_NAME, Team.CLASS_SIMPLE_NAME, Team.CLASS_API_ADDRESS_Team, Team.CLASS_AUTH_RESOURCE, "teamId", "userPage", "download").onSuccess(q3 -> {
+            apiGuesser.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Guesser.CLASS_CANONICAL_NAME, Guesser.CLASS_SIMPLE_NAME, Guesser.CLASS_API_ADDRESS_Guesser, Guesser.CLASS_AUTH_RESOURCE, "guesserId", "userPage", "download").onSuccess(q4 -> {
+              apiSweetSixteen.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, SweetSixteen.CLASS_CANONICAL_NAME, SweetSixteen.CLASS_SIMPLE_NAME, SweetSixteen.CLASS_API_ADDRESS_SweetSixteen, SweetSixteen.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q5 -> {
+                apiEliteEight.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, EliteEight.CLASS_CANONICAL_NAME, EliteEight.CLASS_SIMPLE_NAME, EliteEight.CLASS_API_ADDRESS_EliteEight, EliteEight.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q6 -> {
+                  apiFinalFour.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, FinalFour.CLASS_CANONICAL_NAME, FinalFour.CLASS_SIMPLE_NAME, FinalFour.CLASS_API_ADDRESS_FinalFour, FinalFour.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q7 -> {
+                    apiChampionship.importTimer(Paths.get(templatePath, "TODO"), vertx, siteRequest, Championship.CLASS_CANONICAL_NAME, Championship.CLASS_SIMPLE_NAME, Championship.CLASS_API_ADDRESS_Championship, Championship.CLASS_AUTH_RESOURCE, "bracketId", "userPage", "download").onSuccess(q8 -> {
+                      LOG.info("data import complete");
+                      promise.complete();
+                    }).onFailure(ex -> promise.fail(ex));
+                  }).onFailure(ex -> promise.fail(ex));
+                }).onFailure(ex -> promise.fail(ex));
+              }).onFailure(ex -> promise.fail(ex));
+            }).onFailure(ex -> promise.fail(ex));
+          }).onFailure(ex -> promise.fail(ex));
+        }).onFailure(ex -> promise.fail(ex));
+      }).onFailure(ex -> promise.fail(ex));
     }
     else {
       LOG.info(importDataSkip);
