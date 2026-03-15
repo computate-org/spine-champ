@@ -7,9 +7,7 @@ import org.computate.spinechamp.model.BaseModel;
  * Order: 5
  * Description: A sports team. 
  * AName: a team
- * Icon: <i class="fa-regular fa-buildings"></i>
- * MenuDetails: teams
- * MenuDetailsOpen: true
+ * Icon: <i class="fa-thin fa-person-basketball"></i>
  *
  * SearchPageUri: /en-us/search/team
  * EditPageUri: /en-us/edit/team/{teamId}

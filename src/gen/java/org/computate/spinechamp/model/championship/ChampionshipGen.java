@@ -212,7 +212,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUri = "/en-us/api/championship";
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/championship";
 
-  public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
+  public static final String Icon = "<i class=\"fa-thin fa-court-sport\"></i>";
 
 	///////////////////////////
   // actualFinalFourSearch //

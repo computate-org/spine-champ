@@ -561,7 +561,7 @@ public class TeamGenPage extends TeamGenPageGen<PageLayout> {
 
   @Override
   protected void _classIcon(Wrap<String> c) {
-      c.o("<i class=\"fa-regular fa-buildings\"></i>");
+      c.o("<i class=\"fa-thin fa-person-basketball\"></i>");
   }
 
   protected void _pageUriTeam(Wrap<String> c) {

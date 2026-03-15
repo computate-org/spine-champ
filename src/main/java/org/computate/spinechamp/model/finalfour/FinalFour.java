@@ -17,7 +17,7 @@ import io.vertx.core.json.JsonObject;
  * SqlOrder: 8
  * Description: A predicted tournament with 4 teams. 
  * AName: a final four bracket
- * Icon: <i class="fa-regular fa-buildings"></i>
+ * Icon: <i class="fa-thin fa-person-basketball"></i>
  *
  * SearchPageUri: /en-us/search/final-four
  * EditPageUri: /en-us/edit/final-four/{bracketId}

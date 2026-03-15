@@ -9,9 +9,7 @@ import org.computate.spinechamp.model.BaseModel;
  * Order: 6
  * Description: a person guessing on a tournament. 
  * AName: a guesser
- * Icon: <i class="fa-regular fa-buildings"></i>
- * MenuDetails: guessers
- * MenuDetailsOpen: true
+ * Icon: <i class="fa-thin fa-person"></i>
  *
  * SearchPageUri: /en-us/search/guesser
  * EditPageUri: /en-us/edit/guesser/{guesserId}

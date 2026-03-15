@@ -212,7 +212,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUri = "/en-us/api/sweet-sixteen";
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/sweet-sixteen";
 
-  public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
+  public static final String Icon = "<i class=\"fa-thin fa-basketball\"></i>";
 
 	//////////////////////////////
   // actualSweetSixteenSearch //

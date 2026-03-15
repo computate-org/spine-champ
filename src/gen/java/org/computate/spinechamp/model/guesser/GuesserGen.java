@@ -210,7 +210,7 @@ public abstract class GuesserGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUri = "/en-us/api/guesser";
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/guesser";
 
-  public static final String Icon = "<i class=\"fa-regular fa-buildings\"></i>";
+  public static final String Icon = "<i class=\"fa-thin fa-person\"></i>";
 
 	//////////
   // name //
