@@ -641,6 +641,76 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     return Optional.ofNullable(year).map(v -> v.toString()).orElse(null);
   }
 
+	////////////////////
+  // freeThrowsMade //
+	////////////////////
+
+
+  /**
+   *  The entity freeThrowsMade
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer freeThrowsMade;
+
+  /**
+   * <br> The entity freeThrowsMade
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.finalfour.FinalFour&fq=entiteVar_enUS_indexed_string:freeThrowsMade">Find the entity freeThrowsMade in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _freeThrowsMade(Wrap<Integer> w);
+
+  public Integer getFreeThrowsMade() {
+    return freeThrowsMade;
+  }
+
+  public void setFreeThrowsMade(Integer freeThrowsMade) {
+    this.freeThrowsMade = freeThrowsMade;
+  }
+  @JsonIgnore
+  public void setFreeThrowsMade(String o) {
+    this.freeThrowsMade = FinalFour.staticSetFreeThrowsMade(siteRequest_, o);
+  }
+  public static Integer staticSetFreeThrowsMade(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected FinalFour freeThrowsMadeInit() {
+    Wrap<Integer> freeThrowsMadeWrap = new Wrap<Integer>().var("freeThrowsMade");
+    if(freeThrowsMade == null) {
+      _freeThrowsMade(freeThrowsMadeWrap);
+      Optional.ofNullable(freeThrowsMadeWrap.getO()).ifPresent(o -> {
+        setFreeThrowsMade(o);
+      });
+    }
+    return (FinalFour)this;
+  }
+
+  public static Integer staticSearchFreeThrowsMade(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrFreeThrowsMade(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqFreeThrowsMade(SiteRequest siteRequest_, String o) {
+    return FinalFour.staticSearchFreeThrowsMade(siteRequest_, FinalFour.staticSetFreeThrowsMade(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlFreeThrowsMade() {
+    return freeThrowsMade;
+  }
+
+  public static String staticJsonFreeThrowsMade(Integer freeThrowsMade) {
+    return Optional.ofNullable(freeThrowsMade).map(v -> v.toString()).orElse(null);
+  }
+
 	///////////////
   // bracketId //
 	///////////////
@@ -1373,6 +1443,7 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         eliteEightInit();
         guesserIdInit();
         yearInit();
+        freeThrowsMadeInit();
         bracketIdInit();
         nameInit();
         game1WinnerGuessInit();
@@ -1455,6 +1526,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return oFinalFour.guesserId;
       case "year":
         return oFinalFour.year;
+      case "freeThrowsMade":
+        return oFinalFour.freeThrowsMade;
       case "bracketId":
         return oFinalFour.bracketId;
       case "name":
@@ -1568,6 +1641,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSetGuesserId(siteRequest_, v);
     case "year":
       return FinalFour.staticSetYear(siteRequest_, v);
+    case "freeThrowsMade":
+      return FinalFour.staticSetFreeThrowsMade(siteRequest_, v);
     case "bracketId":
       return FinalFour.staticSetBracketId(siteRequest_, v);
     case "name":
@@ -1644,6 +1719,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchGuesserId(siteRequest_, (String)o);
     case "year":
       return FinalFour.staticSearchYear(siteRequest_, (Integer)o);
+    case "freeThrowsMade":
+      return FinalFour.staticSearchFreeThrowsMade(siteRequest_, (Integer)o);
     case "bracketId":
       return FinalFour.staticSearchBracketId(siteRequest_, (String)o);
     case "name":
@@ -1690,6 +1767,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchStrGuesserId(siteRequest_, (String)o);
     case "year":
       return FinalFour.staticSearchStrYear(siteRequest_, (Integer)o);
+    case "freeThrowsMade":
+      return FinalFour.staticSearchStrFreeThrowsMade(siteRequest_, (Integer)o);
     case "bracketId":
       return FinalFour.staticSearchStrBracketId(siteRequest_, (String)o);
     case "name":
@@ -1736,6 +1815,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return FinalFour.staticSearchFqGuesserId(siteRequest_, o);
     case "year":
       return FinalFour.staticSearchFqYear(siteRequest_, o);
+    case "freeThrowsMade":
+      return FinalFour.staticSearchFqFreeThrowsMade(siteRequest_, o);
     case "bracketId":
       return FinalFour.staticSearchFqBracketId(siteRequest_, o);
     case "name":
@@ -1803,6 +1884,14 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
           setYear(val == null ? null : val.toString());
         }
         saves.add("year");
+        return val;
+      } else if("freethrowsmade".equals(varLower)) {
+        if(val instanceof Integer) {
+          setFreeThrowsMade((Integer)val);
+        } else {
+          setFreeThrowsMade(val == null ? null : val.toString());
+        }
+        saves.add("freeThrowsMade");
         return val;
       } else if("bracketid".equals(varLower)) {
         if(val instanceof String) {
@@ -1889,6 +1978,12 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
           oFinalFour.setYear(year);
       }
 
+      if(saves.contains("freeThrowsMade")) {
+        Integer freeThrowsMade = (Integer)doc.get("freeThrowsMade_docvalues_int");
+        if(freeThrowsMade != null)
+          oFinalFour.setFreeThrowsMade(freeThrowsMade);
+      }
+
       if(saves.contains("bracketId")) {
         String bracketId = (String)doc.get("bracketId_docvalues_string");
         if(bracketId != null)
@@ -1965,6 +2060,9 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     if(year != null) {
       doc.put("year_docvalues_int", year);
     }
+    if(freeThrowsMade != null) {
+      doc.put("freeThrowsMade_docvalues_int", freeThrowsMade);
+    }
     if(bracketId != null) {
       doc.put("bracketId_docvalues_string", bracketId);
     }
@@ -2014,6 +2112,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "year":
         return "year_docvalues_int";
+      case "freeThrowsMade":
+        return "freeThrowsMade_docvalues_int";
       case "bracketId":
         return "bracketId_docvalues_string";
       case "name":
@@ -2049,6 +2149,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "year":
         return "year_docvalues_int";
+      case "freeThrowsMade":
+        return "freeThrowsMade_docvalues_int";
       case "bracketId":
         return "bracketId_docvalues_string";
       case "name":
@@ -2084,6 +2186,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         return "guesserId";
       case "year_docvalues_int":
         return "year";
+      case "freeThrowsMade_docvalues_int":
+        return "freeThrowsMade";
       case "bracketId_docvalues_string":
         return "bracketId";
       case "name_docvalues_string":
@@ -2141,6 +2245,7 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     oFinalFour.setEliteEight(Optional.ofNullable(doc.get("eliteEight_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oFinalFour.setFreeThrowsMade(Optional.ofNullable(doc.get("freeThrowsMade_docvalues_int")).map(v -> v.toString()).orElse(null));
     oFinalFour.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
     oFinalFour.setGame1WinnerGuess(Optional.ofNullable(doc.get("game1WinnerGuess_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -2175,6 +2280,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
         apiRequest.addVars("guesserId");
       if(!Objects.equals(year, original.getYear()))
         apiRequest.addVars("year");
+      if(!Objects.equals(freeThrowsMade, original.getFreeThrowsMade()))
+        apiRequest.addVars("freeThrowsMade");
       if(!Objects.equals(bracketId, original.getBracketId()))
         apiRequest.addVars("bracketId");
       if(!Objects.equals(name, original.getName()))
@@ -2213,6 +2320,7 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(eliteEight).map(v -> "eliteEight: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(freeThrowsMade).map(v -> "freeThrowsMade: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(game1WinnerGuess).map(v -> "game1WinnerGuess: \"" + v + "\"\n" ).orElse(""));
@@ -2248,6 +2356,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String SET_guesserId = "setGuesserId";
   public static final String VAR_year = "year";
   public static final String SET_year = "setYear";
+  public static final String VAR_freeThrowsMade = "freeThrowsMade";
+  public static final String SET_freeThrowsMade = "setFreeThrowsMade";
   public static final String VAR_bracketId = "bracketId";
   public static final String SET_bracketId = "setBracketId";
   public static final String VAR_name = "name";
@@ -2302,6 +2412,7 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_eliteEight = "Elite eight bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
   public static final String DISPLAY_NAME_year = "year";
+  public static final String DISPLAY_NAME_freeThrowsMade = "free throws made";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
   public static final String DISPLAY_NAME_game1WinnerGuess = "game 1 guess";
@@ -2358,6 +2469,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return patch ? SET_guesserId : VAR_guesserId;
     case VAR_year:
       return patch ? SET_year : VAR_year;
+    case VAR_freeThrowsMade:
+      return patch ? SET_freeThrowsMade : VAR_freeThrowsMade;
     case VAR_bracketId:
       return patch ? SET_bracketId : VAR_bracketId;
     case VAR_name:
@@ -2404,6 +2517,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return DISPLAY_NAME_guesserId;
     case VAR_year:
       return DISPLAY_NAME_year;
+    case VAR_freeThrowsMade:
+      return DISPLAY_NAME_freeThrowsMade;
     case VAR_bracketId:
       return DISPLAY_NAME_bracketId;
     case VAR_name:
@@ -2445,6 +2560,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return "The ID of this guesser";
     case VAR_year:
       return "The year of the tournament";
+    case VAR_freeThrowsMade:
+      return "The number of free throws the guesser made. ";
     case VAR_bracketId:
       return "The ID of this bracket";
     case VAR_name:
@@ -2475,6 +2592,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     case VAR_guesserId:
       return "String";
     case VAR_year:
+      return "Integer";
+    case VAR_freeThrowsMade:
       return "Integer";
     case VAR_bracketId:
       return "String";
@@ -2509,6 +2628,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
+    case VAR_freeThrowsMade:
+      return 2;
       default:
         return BaseModel.htmColumnBaseModel(var);
     }
@@ -2521,6 +2642,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
     case VAR_guesserId:
       return 4;
     case VAR_year:
+      return 4;
+    case VAR_freeThrowsMade:
       return 4;
     case VAR_game1WinnerGuess:
       return 5;
@@ -2553,6 +2676,8 @@ public abstract class FinalFourGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
+    case VAR_freeThrowsMade:
+      return 2;
     case VAR_game1WinnerGuess:
       return 0;
     case VAR_game1Winner:

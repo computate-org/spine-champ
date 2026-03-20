@@ -8440,6 +8440,8 @@ components:
                     type: string
                   guesserId:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   year:
                     type: string
                   bracketId:
@@ -8487,6 +8489,13 @@ components:
             removeGuesserId:
               type: string
             removeAllGuesserId:
+              type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
               type: string
             setYear:
               type: string
@@ -8576,6 +8585,13 @@ components:
               type: string
             removeAllGuesserId:
               type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
+              type: string
             setYear:
               type: string
               nullable: true
@@ -8644,6 +8660,8 @@ components:
               type: string
             guesserId:
               type: string
+            freeThrowsMade:
+              type: string
             year:
               type: string
             bracketId:
@@ -8672,6 +8690,8 @@ components:
               type: string
             guesserId:
               type: string
+            freeThrowsMade:
+              type: string
             year:
               type: string
             bracketId:
@@ -8699,6 +8719,8 @@ components:
             finalFour:
               type: string
             guesserId:
+              type: string
+            freeThrowsMade:
               type: string
             year:
               type: string
@@ -8733,6 +8755,8 @@ components:
                     type: string
                   guesserId:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   year:
                     type: string
                   bracketId:
@@ -8760,6 +8784,8 @@ components:
                   finalFour:
                     type: string
                   guesserId:
+                    type: string
+                  freeThrowsMade:
                     type: string
                   year:
                     type: string
@@ -8789,6 +8815,8 @@ components:
               type: string
             guesserId:
               type: string
+            freeThrowsMade:
+              type: string
             year:
               type: string
             bracketId:
@@ -8816,6 +8844,8 @@ components:
             finalFour:
               type: string
             guesserId:
+              type: string
+            freeThrowsMade:
               type: string
             year:
               type: string
@@ -8866,6 +8896,8 @@ components:
                   guesserId:
                     type: string
                   year:
+                    type: string
+                  freeThrowsMade:
                     type: string
                   bracketId:
                     type: string
@@ -8939,6 +8971,13 @@ components:
             removeYear:
               type: string
             removeAllYear:
+              type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
               type: string
             setBracketId:
               type: string
@@ -9098,6 +9137,13 @@ components:
               type: string
             removeAllYear:
               type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
+              type: string
             setBracketId:
               type: string
               nullable: true
@@ -9231,6 +9277,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -9279,6 +9327,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -9326,6 +9376,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string
@@ -9380,6 +9432,8 @@ components:
                     type: string
                   year:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   bracketId:
                     type: string
                   name:
@@ -9427,6 +9481,8 @@ components:
                   guesserId:
                     type: string
                   year:
+                    type: string
+                  freeThrowsMade:
                     type: string
                   bracketId:
                     type: string
@@ -9476,6 +9532,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -9523,6 +9581,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string
@@ -9592,6 +9652,8 @@ components:
                     type: string
                   year:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   bracketId:
                     type: string
                   name:
@@ -9652,6 +9714,13 @@ components:
             removeYear:
               type: string
             removeAllYear:
+              type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
               type: string
             setBracketId:
               type: string
@@ -9769,6 +9838,13 @@ components:
               type: string
             removeAllYear:
               type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
+              type: string
             setBracketId:
               type: string
               nullable: true
@@ -9860,6 +9936,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -9896,6 +9974,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -9931,6 +10011,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string
@@ -9973,6 +10055,8 @@ components:
                     type: string
                   year:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   bracketId:
                     type: string
                   name:
@@ -10008,6 +10092,8 @@ components:
                   guesserId:
                     type: string
                   year:
+                    type: string
+                  freeThrowsMade:
                     type: string
                   bracketId:
                     type: string
@@ -10045,6 +10131,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -10080,6 +10168,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string
@@ -10552,6 +10642,8 @@ components:
                     type: string
                   year:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   bracketId:
                     type: string
                   name:
@@ -10636,6 +10728,13 @@ components:
             removeYear:
               type: string
             removeAllYear:
+              type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
               type: string
             setBracketId:
               type: string
@@ -10872,6 +10971,13 @@ components:
               type: string
             removeAllYear:
               type: string
+            setFreeThrowsMade:
+              type: string
+              nullable: true
+            removeFreeThrowsMade:
+              type: string
+            removeAllFreeThrowsMade:
+              type: string
             setBracketId:
               type: string
               nullable: true
@@ -11092,6 +11198,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -11162,6 +11270,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -11231,6 +11341,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string
@@ -11307,6 +11419,8 @@ components:
                     type: string
                   year:
                     type: string
+                  freeThrowsMade:
+                    type: string
                   bracketId:
                     type: string
                   name:
@@ -11376,6 +11490,8 @@ components:
                   guesserId:
                     type: string
                   year:
+                    type: string
+                  freeThrowsMade:
                     type: string
                   bracketId:
                     type: string
@@ -11447,6 +11563,8 @@ components:
               type: string
             year:
               type: string
+            freeThrowsMade:
+              type: string
             bracketId:
               type: string
             name:
@@ -11516,6 +11634,8 @@ components:
             guesserId:
               type: string
             year:
+              type: string
+            freeThrowsMade:
               type: string
             bracketId:
               type: string

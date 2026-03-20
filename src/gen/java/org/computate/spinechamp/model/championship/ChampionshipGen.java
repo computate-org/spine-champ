@@ -570,6 +570,76 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     return guesserId;
   }
 
+	////////////////////
+  // freeThrowsMade //
+	////////////////////
+
+
+  /**
+   *  The entity freeThrowsMade
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer freeThrowsMade;
+
+  /**
+   * <br> The entity freeThrowsMade
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.championship.Championship&fq=entiteVar_enUS_indexed_string:freeThrowsMade">Find the entity freeThrowsMade in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _freeThrowsMade(Wrap<Integer> w);
+
+  public Integer getFreeThrowsMade() {
+    return freeThrowsMade;
+  }
+
+  public void setFreeThrowsMade(Integer freeThrowsMade) {
+    this.freeThrowsMade = freeThrowsMade;
+  }
+  @JsonIgnore
+  public void setFreeThrowsMade(String o) {
+    this.freeThrowsMade = Championship.staticSetFreeThrowsMade(siteRequest_, o);
+  }
+  public static Integer staticSetFreeThrowsMade(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected Championship freeThrowsMadeInit() {
+    Wrap<Integer> freeThrowsMadeWrap = new Wrap<Integer>().var("freeThrowsMade");
+    if(freeThrowsMade == null) {
+      _freeThrowsMade(freeThrowsMadeWrap);
+      Optional.ofNullable(freeThrowsMadeWrap.getO()).ifPresent(o -> {
+        setFreeThrowsMade(o);
+      });
+    }
+    return (Championship)this;
+  }
+
+  public static Integer staticSearchFreeThrowsMade(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrFreeThrowsMade(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqFreeThrowsMade(SiteRequest siteRequest_, String o) {
+    return Championship.staticSearchFreeThrowsMade(siteRequest_, Championship.staticSetFreeThrowsMade(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlFreeThrowsMade() {
+    return freeThrowsMade;
+  }
+
+  public static String staticJsonFreeThrowsMade(Integer freeThrowsMade) {
+    return Optional.ofNullable(freeThrowsMade).map(v -> v.toString()).orElse(null);
+  }
+
 	//////////
   // year //
 	//////////
@@ -1131,6 +1201,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         actualChampionshipInit();
         finalFourInit();
         guesserIdInit();
+        freeThrowsMadeInit();
         yearInit();
         bracketIdInit();
         nameInit();
@@ -1208,6 +1279,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return oChampionship.finalFour;
       case "guesserId":
         return oChampionship.guesserId;
+      case "freeThrowsMade":
+        return oChampionship.freeThrowsMade;
       case "year":
         return oChampionship.year;
       case "bracketId":
@@ -1295,6 +1368,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSetFinalFour(siteRequest_, v);
     case "guesserId":
       return Championship.staticSetGuesserId(siteRequest_, v);
+    case "freeThrowsMade":
+      return Championship.staticSetFreeThrowsMade(siteRequest_, v);
     case "year":
       return Championship.staticSetYear(siteRequest_, v);
     case "bracketId":
@@ -1363,6 +1438,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchGuesserId(siteRequest_, (String)o);
+    case "freeThrowsMade":
+      return Championship.staticSearchFreeThrowsMade(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchYear(siteRequest_, (Integer)o);
     case "bracketId":
@@ -1401,6 +1478,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchStrFinalFour(siteRequest_, (String)o);
     case "guesserId":
       return Championship.staticSearchStrGuesserId(siteRequest_, (String)o);
+    case "freeThrowsMade":
+      return Championship.staticSearchStrFreeThrowsMade(siteRequest_, (Integer)o);
     case "year":
       return Championship.staticSearchStrYear(siteRequest_, (Integer)o);
     case "bracketId":
@@ -1439,6 +1518,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return Championship.staticSearchFqFinalFour(siteRequest_, o);
     case "guesserId":
       return Championship.staticSearchFqGuesserId(siteRequest_, o);
+    case "freeThrowsMade":
+      return Championship.staticSearchFqFreeThrowsMade(siteRequest_, o);
     case "year":
       return Championship.staticSearchFqYear(siteRequest_, o);
     case "bracketId":
@@ -1492,6 +1573,14 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
           setGuesserId((String)val);
         }
         saves.add("guesserId");
+        return val;
+      } else if("freethrowsmade".equals(varLower)) {
+        if(val instanceof Integer) {
+          setFreeThrowsMade((Integer)val);
+        } else {
+          setFreeThrowsMade(val == null ? null : val.toString());
+        }
+        saves.add("freeThrowsMade");
         return val;
       } else if("year".equals(varLower)) {
         if(val instanceof Integer) {
@@ -1562,6 +1651,12 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       if(guesserId != null)
         oChampionship.setGuesserId(guesserId);
 
+      if(saves.contains("freeThrowsMade")) {
+        Integer freeThrowsMade = (Integer)doc.get("freeThrowsMade_docvalues_int");
+        if(freeThrowsMade != null)
+          oChampionship.setFreeThrowsMade(freeThrowsMade);
+      }
+
       if(saves.contains("year")) {
         Integer year = (Integer)doc.get("year_docvalues_int");
         if(year != null)
@@ -1623,6 +1718,9 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     if(guesserId != null) {
       doc.put("guesserId_docvalues_string", guesserId);
     }
+    if(freeThrowsMade != null) {
+      doc.put("freeThrowsMade_docvalues_int", freeThrowsMade);
+    }
     if(year != null) {
       doc.put("year_docvalues_int", year);
     }
@@ -1661,6 +1759,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
+      case "freeThrowsMade":
+        return "freeThrowsMade_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
@@ -1688,6 +1788,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour_docvalues_string";
       case "guesserId":
         return "guesserId_docvalues_string";
+      case "freeThrowsMade":
+        return "freeThrowsMade_docvalues_int";
       case "year":
         return "year_docvalues_int";
       case "bracketId":
@@ -1715,6 +1817,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         return "finalFour";
       case "guesserId_docvalues_string":
         return "guesserId";
+      case "freeThrowsMade_docvalues_int":
+        return "freeThrowsMade";
       case "year_docvalues_int":
         return "year";
       case "bracketId_docvalues_string":
@@ -1765,6 +1869,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     oChampionship.setActualChampionship(Optional.ofNullable(doc.get("actualChampionship_stored_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setFinalFour(Optional.ofNullable(doc.get("finalFour_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
+    oChampionship.setFreeThrowsMade(Optional.ofNullable(doc.get("freeThrowsMade_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
     oChampionship.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oChampionship.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -1794,6 +1899,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
         apiRequest.addVars("finalFour");
       if(!Objects.equals(guesserId, original.getGuesserId()))
         apiRequest.addVars("guesserId");
+      if(!Objects.equals(freeThrowsMade, original.getFreeThrowsMade()))
+        apiRequest.addVars("freeThrowsMade");
       if(!Objects.equals(year, original.getYear()))
         apiRequest.addVars("year");
       if(!Objects.equals(bracketId, original.getBracketId()))
@@ -1825,6 +1932,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(actualChampionship).map(v -> "actualChampionship: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(finalFour).map(v -> "finalFour: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
+    sb.append(Optional.ofNullable(freeThrowsMade).map(v -> "freeThrowsMade: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
@@ -1855,6 +1963,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String SET_finalFour = "setFinalFour";
   public static final String VAR_guesserId = "guesserId";
   public static final String SET_guesserId = "setGuesserId";
+  public static final String VAR_freeThrowsMade = "freeThrowsMade";
+  public static final String SET_freeThrowsMade = "setFreeThrowsMade";
   public static final String VAR_year = "year";
   public static final String SET_year = "setYear";
   public static final String VAR_bracketId = "bracketId";
@@ -1902,6 +2012,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_actualChampionship = "Actual Elite Eight bracket";
   public static final String DISPLAY_NAME_finalFour = "Final Four bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
+  public static final String DISPLAY_NAME_freeThrowsMade = "free throws made";
   public static final String DISPLAY_NAME_year = "year";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
@@ -1953,6 +2064,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return patch ? SET_finalFour : VAR_finalFour;
     case VAR_guesserId:
       return patch ? SET_guesserId : VAR_guesserId;
+    case VAR_freeThrowsMade:
+      return patch ? SET_freeThrowsMade : VAR_freeThrowsMade;
     case VAR_year:
       return patch ? SET_year : VAR_year;
     case VAR_bracketId:
@@ -1991,6 +2104,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return DISPLAY_NAME_finalFour;
     case VAR_guesserId:
       return DISPLAY_NAME_guesserId;
+    case VAR_freeThrowsMade:
+      return DISPLAY_NAME_freeThrowsMade;
     case VAR_year:
       return DISPLAY_NAME_year;
     case VAR_bracketId:
@@ -2024,6 +2139,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return "The Final Four bracket of this tournament";
     case VAR_guesserId:
       return "The ID of this guesser";
+    case VAR_freeThrowsMade:
+      return "The number of free throws the guesser made. ";
     case VAR_year:
       return "The year of the tournament";
     case VAR_bracketId:
@@ -2053,6 +2170,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return "String";
     case VAR_guesserId:
       return "String";
+    case VAR_freeThrowsMade:
+      return "Integer";
     case VAR_year:
       return "Integer";
     case VAR_bracketId:
@@ -2078,6 +2197,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     switch(var) {
     case VAR_guesserId:
       return 0;
+    case VAR_freeThrowsMade:
+      return 2;
     case VAR_year:
       return 1;
       default:
@@ -2090,6 +2211,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
     case VAR_finalFour:
       return 3;
     case VAR_guesserId:
+      return 4;
+    case VAR_freeThrowsMade:
       return 4;
     case VAR_year:
       return 4;
@@ -2114,6 +2237,8 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
       return 0;
     case VAR_guesserId:
       return 0;
+    case VAR_freeThrowsMade:
+      return 2;
     case VAR_year:
       return 1;
     case VAR_game1WinnerGuess:

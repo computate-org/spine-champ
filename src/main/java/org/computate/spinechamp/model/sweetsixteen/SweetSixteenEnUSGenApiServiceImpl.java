@@ -784,6 +784,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               num++;
               bParams.add(o2.sqlArchived());
             break;
+          case "setFreeThrowsMade":
+              o2.setFreeThrowsMade(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SweetSixteen.VAR_freeThrowsMade + "=$" + num);
+              num++;
+              bParams.add(o2.sqlFreeThrowsMade());
+            break;
           case "setBracketId":
               o2.setBracketId(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -799,6 +807,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               bSql.append(SweetSixteen.VAR_name + "=$" + num);
               num++;
               bParams.add(o2.sqlName());
+            break;
+          case "setSessionId":
+              o2.setSessionId(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SweetSixteen.VAR_sessionId + "=$" + num);
+              num++;
+              bParams.add(o2.sqlSessionId());
             break;
           case "setSouthGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -831,13 +847,13 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case "setSessionId":
-              o2.setSessionId(jsonObject.getString(entityVar));
+          case "setUserKey":
+              o2.setUserKey(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(SweetSixteen.VAR_sessionId + "=$" + num);
+              bSql.append(SweetSixteen.VAR_userKey + "=$" + num);
               num++;
-              bParams.add(o2.sqlSessionId());
+              bParams.add(o2.sqlUserKey());
             break;
           case "setSouthGame1Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -870,14 +886,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case "setUserKey":
-              o2.setUserKey(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(SweetSixteen.VAR_userKey + "=$" + num);
-              num++;
-              bParams.add(o2.sqlUserKey());
-            break;
           case "setSouthGame2Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -908,6 +916,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
+            break;
+          case "setObjectTitle":
+              o2.setObjectTitle(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SweetSixteen.VAR_objectTitle + "=$" + num);
+              num++;
+              bParams.add(o2.sqlObjectTitle());
             break;
           case "setSouthGame2Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -940,14 +956,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case "setObjectTitle":
-              o2.setObjectTitle(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(SweetSixteen.VAR_objectTitle + "=$" + num);
-              num++;
-              bParams.add(o2.sqlObjectTitle());
-            break;
           case "setDisplayPage":
               o2.setDisplayPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -955,6 +963,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               bSql.append(SweetSixteen.VAR_displayPage + "=$" + num);
               num++;
               bParams.add(o2.sqlDisplayPage());
+            break;
+          case "setEditPage":
+              o2.setEditPage(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(SweetSixteen.VAR_editPage + "=$" + num);
+              num++;
+              bParams.add(o2.sqlEditPage());
             break;
           case "setWestGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -987,13 +1003,13 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case "setEditPage":
-              o2.setEditPage(jsonObject.getString(entityVar));
+          case "setUserPage":
+              o2.setUserPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(SweetSixteen.VAR_editPage + "=$" + num);
+              bSql.append(SweetSixteen.VAR_userPage + "=$" + num);
               num++;
-              bParams.add(o2.sqlEditPage());
+              bParams.add(o2.sqlUserPage());
             break;
           case "setWestGame1Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1025,14 +1041,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
-            break;
-          case "setUserPage":
-              o2.setUserPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(SweetSixteen.VAR_userPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlUserPage());
             break;
           case "setDownload":
               o2.setDownload(jsonObject.getString(entityVar));
@@ -1785,6 +1793,15 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             num++;
             bParams.add(o2.sqlArchived());
             break;
+          case SweetSixteen.VAR_freeThrowsMade:
+            o2.setFreeThrowsMade(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SweetSixteen.VAR_freeThrowsMade + "=$" + num);
+            num++;
+            bParams.add(o2.sqlFreeThrowsMade());
+            break;
           case SweetSixteen.VAR_bracketId:
             o2.setBracketId(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1802,6 +1819,15 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             bSql.append(SweetSixteen.VAR_name + "=$" + num);
             num++;
             bParams.add(o2.sqlName());
+            break;
+          case SweetSixteen.VAR_sessionId:
+            o2.setSessionId(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SweetSixteen.VAR_sessionId + "=$" + num);
+            num++;
+            bParams.add(o2.sqlSessionId());
             break;
           case SweetSixteen.VAR_southGame1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1823,14 +1849,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case SweetSixteen.VAR_sessionId:
-            o2.setSessionId(jsonObject.getString(entityVar));
+          case SweetSixteen.VAR_userKey:
+            o2.setUserKey(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(SweetSixteen.VAR_sessionId + "=$" + num);
+            bSql.append(SweetSixteen.VAR_userKey + "=$" + num);
             num++;
-            bParams.add(o2.sqlSessionId());
+            bParams.add(o2.sqlUserKey());
             break;
           case SweetSixteen.VAR_southGame1Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1852,15 +1878,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case SweetSixteen.VAR_userKey:
-            o2.setUserKey(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(SweetSixteen.VAR_userKey + "=$" + num);
-            num++;
-            bParams.add(o2.sqlUserKey());
-            break;
           case SweetSixteen.VAR_southGame2Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -1880,6 +1897,15 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
+            break;
+          case SweetSixteen.VAR_objectTitle:
+            o2.setObjectTitle(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SweetSixteen.VAR_objectTitle + "=$" + num);
+            num++;
+            bParams.add(o2.sqlObjectTitle());
             break;
           case SweetSixteen.VAR_southGame2Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1901,15 +1927,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case SweetSixteen.VAR_objectTitle:
-            o2.setObjectTitle(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(SweetSixteen.VAR_objectTitle + "=$" + num);
-            num++;
-            bParams.add(o2.sqlObjectTitle());
-            break;
           case SweetSixteen.VAR_displayPage:
             o2.setDisplayPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1918,6 +1935,15 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
             bSql.append(SweetSixteen.VAR_displayPage + "=$" + num);
             num++;
             bParams.add(o2.sqlDisplayPage());
+            break;
+          case SweetSixteen.VAR_editPage:
+            o2.setEditPage(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(SweetSixteen.VAR_editPage + "=$" + num);
+            num++;
+            bParams.add(o2.sqlEditPage());
             break;
           case SweetSixteen.VAR_westGame1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1939,14 +1965,14 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
               }));
             });
             break;
-          case SweetSixteen.VAR_editPage:
-            o2.setEditPage(jsonObject.getString(entityVar));
+          case SweetSixteen.VAR_userPage:
+            o2.setUserPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(SweetSixteen.VAR_editPage + "=$" + num);
+            bSql.append(SweetSixteen.VAR_userPage + "=$" + num);
             num++;
-            bParams.add(o2.sqlEditPage());
+            bParams.add(o2.sqlUserPage());
             break;
           case SweetSixteen.VAR_westGame1Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1967,15 +1993,6 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
                 });
               }));
             });
-            break;
-          case SweetSixteen.VAR_userPage:
-            o2.setUserPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(SweetSixteen.VAR_userPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlUserPage());
             break;
           case SweetSixteen.VAR_download:
             o2.setDownload(jsonObject.getString(entityVar));
@@ -4848,7 +4865,7 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT created, guesserId, year, archived, bracketId, name, southGame1Winner, sessionId, southGame1Loser, userKey, southGame2Winner, southGame2Loser, objectTitle, displayPage, westGame1Winner, editPage, westGame1Loser, userPage, download, westGame2Winner, westGame2Loser, eastGame1Winner, eastGame1Loser, eastGame2Winner, eastGame2Loser, midwestGame1Winner, midwestGame1Loser, midwestGame2Winner, midwestGame2Loser, eliteEight FROM SweetSixteen WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT created, guesserId, year, archived, freeThrowsMade, bracketId, name, sessionId, southGame1Winner, userKey, southGame1Loser, southGame2Winner, objectTitle, southGame2Loser, displayPage, editPage, westGame1Winner, userPage, westGame1Loser, download, westGame2Winner, westGame2Loser, eastGame1Winner, eastGame1Loser, eastGame2Winner, eastGame2Loser, midwestGame1Winner, midwestGame1Loser, midwestGame2Winner, midwestGame2Loser, eliteEight FROM SweetSixteen WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -5191,20 +5208,21 @@ public class SweetSixteenEnUSGenApiServiceImpl extends BaseApiServiceImpl implem
       o.persistForClass(SweetSixteen.VAR_guesserId, SweetSixteen.staticSetGuesserId(siteRequest2, (String)result.get(SweetSixteen.VAR_guesserId)));
       o.persistForClass(SweetSixteen.VAR_year, SweetSixteen.staticSetYear(siteRequest2, (String)result.get(SweetSixteen.VAR_year)));
       o.persistForClass(SweetSixteen.VAR_archived, SweetSixteen.staticSetArchived(siteRequest2, (String)result.get(SweetSixteen.VAR_archived)));
+      o.persistForClass(SweetSixteen.VAR_freeThrowsMade, SweetSixteen.staticSetFreeThrowsMade(siteRequest2, (String)result.get(SweetSixteen.VAR_freeThrowsMade)));
       o.persistForClass(SweetSixteen.VAR_bracketId, SweetSixteen.staticSetBracketId(siteRequest2, (String)result.get(SweetSixteen.VAR_bracketId)));
       o.persistForClass(SweetSixteen.VAR_name, SweetSixteen.staticSetName(siteRequest2, (String)result.get(SweetSixteen.VAR_name)));
-      o.persistForClass(SweetSixteen.VAR_southGame1Winner, SweetSixteen.staticSetSouthGame1Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame1Winner)));
       o.persistForClass(SweetSixteen.VAR_sessionId, SweetSixteen.staticSetSessionId(siteRequest2, (String)result.get(SweetSixteen.VAR_sessionId)));
-      o.persistForClass(SweetSixteen.VAR_southGame1Loser, SweetSixteen.staticSetSouthGame1Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame1Loser)));
+      o.persistForClass(SweetSixteen.VAR_southGame1Winner, SweetSixteen.staticSetSouthGame1Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame1Winner)));
       o.persistForClass(SweetSixteen.VAR_userKey, SweetSixteen.staticSetUserKey(siteRequest2, (String)result.get(SweetSixteen.VAR_userKey)));
+      o.persistForClass(SweetSixteen.VAR_southGame1Loser, SweetSixteen.staticSetSouthGame1Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame1Loser)));
       o.persistForClass(SweetSixteen.VAR_southGame2Winner, SweetSixteen.staticSetSouthGame2Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame2Winner)));
-      o.persistForClass(SweetSixteen.VAR_southGame2Loser, SweetSixteen.staticSetSouthGame2Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame2Loser)));
       o.persistForClass(SweetSixteen.VAR_objectTitle, SweetSixteen.staticSetObjectTitle(siteRequest2, (String)result.get(SweetSixteen.VAR_objectTitle)));
+      o.persistForClass(SweetSixteen.VAR_southGame2Loser, SweetSixteen.staticSetSouthGame2Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_southGame2Loser)));
       o.persistForClass(SweetSixteen.VAR_displayPage, SweetSixteen.staticSetDisplayPage(siteRequest2, (String)result.get(SweetSixteen.VAR_displayPage)));
-      o.persistForClass(SweetSixteen.VAR_westGame1Winner, SweetSixteen.staticSetWestGame1Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame1Winner)));
       o.persistForClass(SweetSixteen.VAR_editPage, SweetSixteen.staticSetEditPage(siteRequest2, (String)result.get(SweetSixteen.VAR_editPage)));
-      o.persistForClass(SweetSixteen.VAR_westGame1Loser, SweetSixteen.staticSetWestGame1Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame1Loser)));
+      o.persistForClass(SweetSixteen.VAR_westGame1Winner, SweetSixteen.staticSetWestGame1Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame1Winner)));
       o.persistForClass(SweetSixteen.VAR_userPage, SweetSixteen.staticSetUserPage(siteRequest2, (String)result.get(SweetSixteen.VAR_userPage)));
+      o.persistForClass(SweetSixteen.VAR_westGame1Loser, SweetSixteen.staticSetWestGame1Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame1Loser)));
       o.persistForClass(SweetSixteen.VAR_download, SweetSixteen.staticSetDownload(siteRequest2, (String)result.get(SweetSixteen.VAR_download)));
       o.persistForClass(SweetSixteen.VAR_westGame2Winner, SweetSixteen.staticSetWestGame2Winner(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame2Winner)));
       o.persistForClass(SweetSixteen.VAR_westGame2Loser, SweetSixteen.staticSetWestGame2Loser(siteRequest2, (String)result.get(SweetSixteen.VAR_westGame2Loser)));

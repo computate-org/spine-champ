@@ -143,6 +143,19 @@ public class FinalFour extends FinalFourGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
+   * DisplayName: free throws made
+   * Description: The number of free throws the guesser made. 
+   * HtmRow: 4
+   * HtmCell: 2
+   * HtmColumn: 2
+   **/
+  protected void _freeThrowsMade(Wrap<Integer> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * Persist: true
    * DisplayName: bracket ID
    * Description: The ID of this bracket
    * VarId: true

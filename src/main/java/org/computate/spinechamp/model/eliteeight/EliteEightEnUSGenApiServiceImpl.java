@@ -806,13 +806,13 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               num++;
               bParams.add(o2.sqlYear());
             break;
-          case "setBracketId":
-              o2.setBracketId(jsonObject.getString(entityVar));
+          case "setFreeThrowsMade":
+              o2.setFreeThrowsMade(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(EliteEight.VAR_bracketId + "=$" + num);
+              bSql.append(EliteEight.VAR_freeThrowsMade + "=$" + num);
               num++;
-              bParams.add(o2.sqlBracketId());
+              bParams.add(o2.sqlFreeThrowsMade());
             break;
           case "setSessionId":
               o2.setSessionId(jsonObject.getString(entityVar));
@@ -822,13 +822,13 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               num++;
               bParams.add(o2.sqlSessionId());
             break;
-          case "setName":
-              o2.setName(jsonObject.getString(entityVar));
+          case "setBracketId":
+              o2.setBracketId(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(EliteEight.VAR_name + "=$" + num);
+              bSql.append(EliteEight.VAR_bracketId + "=$" + num);
               num++;
-              bParams.add(o2.sqlName());
+              bParams.add(o2.sqlBracketId());
             break;
           case "setUserKey":
               o2.setUserKey(jsonObject.getString(entityVar));
@@ -837,6 +837,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               bSql.append(EliteEight.VAR_userKey + "=$" + num);
               num++;
               bParams.add(o2.sqlUserKey());
+            break;
+          case "setName":
+              o2.setName(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(EliteEight.VAR_name + "=$" + num);
+              num++;
+              bParams.add(o2.sqlName());
             break;
           case "setSouthGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -869,6 +877,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
+          case "setObjectTitle":
+              o2.setObjectTitle(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(EliteEight.VAR_objectTitle + "=$" + num);
+              num++;
+              bParams.add(o2.sqlObjectTitle());
+            break;
           case "setSouthGame1Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -900,14 +916,6 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
-          case "setObjectTitle":
-              o2.setObjectTitle(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(EliteEight.VAR_objectTitle + "=$" + num);
-              num++;
-              bParams.add(o2.sqlObjectTitle());
-            break;
           case "setDisplayPage":
               o2.setDisplayPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
@@ -915,6 +923,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               bSql.append(EliteEight.VAR_displayPage + "=$" + num);
               num++;
               bParams.add(o2.sqlDisplayPage());
+            break;
+          case "setEditPage":
+              o2.setEditPage(jsonObject.getString(entityVar));
+              if(bParams.size() > 0)
+                bSql.append(", ");
+              bSql.append(EliteEight.VAR_editPage + "=$" + num);
+              num++;
+              bParams.add(o2.sqlEditPage());
             break;
           case "setWestGame1Winner":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -947,13 +963,13 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
-          case "setEditPage":
-              o2.setEditPage(jsonObject.getString(entityVar));
+          case "setUserPage":
+              o2.setUserPage(jsonObject.getString(entityVar));
               if(bParams.size() > 0)
                 bSql.append(", ");
-              bSql.append(EliteEight.VAR_editPage + "=$" + num);
+              bSql.append(EliteEight.VAR_userPage + "=$" + num);
               num++;
-              bParams.add(o2.sqlEditPage());
+              bParams.add(o2.sqlUserPage());
             break;
           case "setWestGame1Loser":
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -985,14 +1001,6 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
                 });
               }));
             });
-            break;
-          case "setUserPage":
-              o2.setUserPage(jsonObject.getString(entityVar));
-              if(bParams.size() > 0)
-                bSql.append(", ");
-              bSql.append(EliteEight.VAR_userPage + "=$" + num);
-              num++;
-              bParams.add(o2.sqlUserPage());
             break;
           case "setDownload":
               o2.setDownload(jsonObject.getString(entityVar));
@@ -1584,14 +1592,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
             num++;
             bParams.add(o2.sqlYear());
             break;
-          case EliteEight.VAR_bracketId:
-            o2.setBracketId(jsonObject.getString(entityVar));
+          case EliteEight.VAR_freeThrowsMade:
+            o2.setFreeThrowsMade(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(EliteEight.VAR_bracketId + "=$" + num);
+            bSql.append(EliteEight.VAR_freeThrowsMade + "=$" + num);
             num++;
-            bParams.add(o2.sqlBracketId());
+            bParams.add(o2.sqlFreeThrowsMade());
             break;
           case EliteEight.VAR_sessionId:
             o2.setSessionId(jsonObject.getString(entityVar));
@@ -1602,14 +1610,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
             num++;
             bParams.add(o2.sqlSessionId());
             break;
-          case EliteEight.VAR_name:
-            o2.setName(jsonObject.getString(entityVar));
+          case EliteEight.VAR_bracketId:
+            o2.setBracketId(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(EliteEight.VAR_name + "=$" + num);
+            bSql.append(EliteEight.VAR_bracketId + "=$" + num);
             num++;
-            bParams.add(o2.sqlName());
+            bParams.add(o2.sqlBracketId());
             break;
           case EliteEight.VAR_userKey:
             o2.setUserKey(jsonObject.getString(entityVar));
@@ -1619,6 +1627,15 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
             bSql.append(EliteEight.VAR_userKey + "=$" + num);
             num++;
             bParams.add(o2.sqlUserKey());
+            break;
+          case EliteEight.VAR_name:
+            o2.setName(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(EliteEight.VAR_name + "=$" + num);
+            num++;
+            bParams.add(o2.sqlName());
             break;
           case EliteEight.VAR_southGame1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1640,6 +1657,15 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
+          case EliteEight.VAR_objectTitle:
+            o2.setObjectTitle(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(EliteEight.VAR_objectTitle + "=$" + num);
+            num++;
+            bParams.add(o2.sqlObjectTitle());
+            break;
           case EliteEight.VAR_southGame1Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
               futures1.add(Future.future(promise2 -> {
@@ -1660,15 +1686,6 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
-          case EliteEight.VAR_objectTitle:
-            o2.setObjectTitle(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(EliteEight.VAR_objectTitle + "=$" + num);
-            num++;
-            bParams.add(o2.sqlObjectTitle());
-            break;
           case EliteEight.VAR_displayPage:
             o2.setDisplayPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
@@ -1677,6 +1694,15 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
             bSql.append(EliteEight.VAR_displayPage + "=$" + num);
             num++;
             bParams.add(o2.sqlDisplayPage());
+            break;
+          case EliteEight.VAR_editPage:
+            o2.setEditPage(jsonObject.getString(entityVar));
+            if(bParams.size() > 0) {
+              bSql.append(", ");
+            }
+            bSql.append(EliteEight.VAR_editPage + "=$" + num);
+            num++;
+            bParams.add(o2.sqlEditPage());
             break;
           case EliteEight.VAR_westGame1Winner:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1698,14 +1724,14 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
               }));
             });
             break;
-          case EliteEight.VAR_editPage:
-            o2.setEditPage(jsonObject.getString(entityVar));
+          case EliteEight.VAR_userPage:
+            o2.setUserPage(jsonObject.getString(entityVar));
             if(bParams.size() > 0) {
               bSql.append(", ");
             }
-            bSql.append(EliteEight.VAR_editPage + "=$" + num);
+            bSql.append(EliteEight.VAR_userPage + "=$" + num);
             num++;
-            bParams.add(o2.sqlEditPage());
+            bParams.add(o2.sqlUserPage());
             break;
           case EliteEight.VAR_westGame1Loser:
             Optional.ofNullable(jsonObject.getString(entityVar)).ifPresent(val -> {
@@ -1726,15 +1752,6 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
                 });
               }));
             });
-            break;
-          case EliteEight.VAR_userPage:
-            o2.setUserPage(jsonObject.getString(entityVar));
-            if(bParams.size() > 0) {
-              bSql.append(", ");
-            }
-            bSql.append(EliteEight.VAR_userPage + "=$" + num);
-            num++;
-            bParams.add(o2.sqlUserPage());
             break;
           case EliteEight.VAR_download:
             o2.setDownload(jsonObject.getString(entityVar));
@@ -4211,7 +4228,7 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
       SiteRequest siteRequest = o.getSiteRequest_();
       SqlConnection sqlConnection = siteRequest.getSqlConnection();
       Long pk = o.getPk();
-      sqlConnection.preparedQuery("SELECT created, archived, sweetSixteen, guesserId, year, bracketId, sessionId, name, userKey, southGame1Winner, southGame1Loser, objectTitle, displayPage, westGame1Winner, editPage, westGame1Loser, userPage, download, eastGame1Winner, eastGame1Loser, midwestGame1Winner, midwestGame1Loser, finalFour FROM EliteEight WHERE pk=$1")
+      sqlConnection.preparedQuery("SELECT created, archived, sweetSixteen, guesserId, year, freeThrowsMade, sessionId, bracketId, userKey, name, southGame1Winner, objectTitle, southGame1Loser, displayPage, editPage, westGame1Winner, userPage, westGame1Loser, download, eastGame1Winner, eastGame1Loser, midwestGame1Winner, midwestGame1Loser, finalFour FROM EliteEight WHERE pk=$1")
           .collecting(Collectors.toList())
           .execute(Tuple.of(pk)
           ).onSuccess(result -> {
@@ -4591,18 +4608,19 @@ public class EliteEightEnUSGenApiServiceImpl extends BaseApiServiceImpl implemen
       o.persistForClass(EliteEight.VAR_sweetSixteen, EliteEight.staticSetSweetSixteen(siteRequest2, (String)result.get(EliteEight.VAR_sweetSixteen)));
       o.persistForClass(EliteEight.VAR_guesserId, EliteEight.staticSetGuesserId(siteRequest2, (String)result.get(EliteEight.VAR_guesserId)));
       o.persistForClass(EliteEight.VAR_year, EliteEight.staticSetYear(siteRequest2, (String)result.get(EliteEight.VAR_year)));
-      o.persistForClass(EliteEight.VAR_bracketId, EliteEight.staticSetBracketId(siteRequest2, (String)result.get(EliteEight.VAR_bracketId)));
+      o.persistForClass(EliteEight.VAR_freeThrowsMade, EliteEight.staticSetFreeThrowsMade(siteRequest2, (String)result.get(EliteEight.VAR_freeThrowsMade)));
       o.persistForClass(EliteEight.VAR_sessionId, EliteEight.staticSetSessionId(siteRequest2, (String)result.get(EliteEight.VAR_sessionId)));
-      o.persistForClass(EliteEight.VAR_name, EliteEight.staticSetName(siteRequest2, (String)result.get(EliteEight.VAR_name)));
+      o.persistForClass(EliteEight.VAR_bracketId, EliteEight.staticSetBracketId(siteRequest2, (String)result.get(EliteEight.VAR_bracketId)));
       o.persistForClass(EliteEight.VAR_userKey, EliteEight.staticSetUserKey(siteRequest2, (String)result.get(EliteEight.VAR_userKey)));
+      o.persistForClass(EliteEight.VAR_name, EliteEight.staticSetName(siteRequest2, (String)result.get(EliteEight.VAR_name)));
       o.persistForClass(EliteEight.VAR_southGame1Winner, EliteEight.staticSetSouthGame1Winner(siteRequest2, (String)result.get(EliteEight.VAR_southGame1Winner)));
-      o.persistForClass(EliteEight.VAR_southGame1Loser, EliteEight.staticSetSouthGame1Loser(siteRequest2, (String)result.get(EliteEight.VAR_southGame1Loser)));
       o.persistForClass(EliteEight.VAR_objectTitle, EliteEight.staticSetObjectTitle(siteRequest2, (String)result.get(EliteEight.VAR_objectTitle)));
+      o.persistForClass(EliteEight.VAR_southGame1Loser, EliteEight.staticSetSouthGame1Loser(siteRequest2, (String)result.get(EliteEight.VAR_southGame1Loser)));
       o.persistForClass(EliteEight.VAR_displayPage, EliteEight.staticSetDisplayPage(siteRequest2, (String)result.get(EliteEight.VAR_displayPage)));
-      o.persistForClass(EliteEight.VAR_westGame1Winner, EliteEight.staticSetWestGame1Winner(siteRequest2, (String)result.get(EliteEight.VAR_westGame1Winner)));
       o.persistForClass(EliteEight.VAR_editPage, EliteEight.staticSetEditPage(siteRequest2, (String)result.get(EliteEight.VAR_editPage)));
-      o.persistForClass(EliteEight.VAR_westGame1Loser, EliteEight.staticSetWestGame1Loser(siteRequest2, (String)result.get(EliteEight.VAR_westGame1Loser)));
+      o.persistForClass(EliteEight.VAR_westGame1Winner, EliteEight.staticSetWestGame1Winner(siteRequest2, (String)result.get(EliteEight.VAR_westGame1Winner)));
       o.persistForClass(EliteEight.VAR_userPage, EliteEight.staticSetUserPage(siteRequest2, (String)result.get(EliteEight.VAR_userPage)));
+      o.persistForClass(EliteEight.VAR_westGame1Loser, EliteEight.staticSetWestGame1Loser(siteRequest2, (String)result.get(EliteEight.VAR_westGame1Loser)));
       o.persistForClass(EliteEight.VAR_download, EliteEight.staticSetDownload(siteRequest2, (String)result.get(EliteEight.VAR_download)));
       o.persistForClass(EliteEight.VAR_eastGame1Winner, EliteEight.staticSetEastGame1Winner(siteRequest2, (String)result.get(EliteEight.VAR_eastGame1Winner)));
       o.persistForClass(EliteEight.VAR_eastGame1Loser, EliteEight.staticSetEastGame1Loser(siteRequest2, (String)result.get(EliteEight.VAR_eastGame1Loser)));
