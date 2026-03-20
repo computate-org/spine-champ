@@ -107,11 +107,34 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: free throws made
+   * DisplayName: First Round free throws made
    * Description: The number of free throws the guesser made. 
    * HtmRow: 3
    * HtmCell: 2
-   * HtmColumn: 2
+   **/
+  protected void _freeThrowsMadeFirstRound(Wrap<Integer> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * Persist: true
+   * DisplayName: Second Round free throws made
+   * Description: The number of free throws the guesser made. 
+   * HtmRow: 3
+   * HtmCell: 3
+   **/
+  protected void _freeThrowsMadeSecondRound(Wrap<Integer> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * DocValues: true
+   * Persist: true
+   * DisplayName: Sweet Sixteen free throws made
+   * Description: The number of free throws the guesser made. 
+   * HtmRow: 3
+   * HtmCell: 4
    **/
   protected void _freeThrowsMade(Wrap<Integer> w) {
   }
@@ -574,7 +597,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DisplayName: correct guesses
    * Description: A chart of the number of correct guesses in this Championship bracket
    * HtmRow: 3
-   * HtmCell: 3
+   * HtmCell: 5
    * Modify: false
    * wa-pie-chart:
    *   style: "height: 200px; "

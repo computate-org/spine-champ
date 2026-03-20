@@ -138,6 +138,8 @@ ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS userPage text;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS download text;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS guesserId text;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS year integer;
+ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS freeThrowsMadeFirstRound integer;
+ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS freeThrowsMadeSecondRound integer;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS freeThrowsMade integer;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS bracketId text UNIQUE;
 ALTER TABLE SweetSixteen ADD COLUMN IF NOT EXISTS name text;

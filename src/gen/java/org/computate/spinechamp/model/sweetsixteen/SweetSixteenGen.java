@@ -463,6 +463,146 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     return Optional.ofNullable(year).map(v -> v.toString()).orElse(null);
   }
 
+	//////////////////////////////
+  // freeThrowsMadeFirstRound //
+	//////////////////////////////
+
+
+  /**
+   *  The entity freeThrowsMadeFirstRound
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer freeThrowsMadeFirstRound;
+
+  /**
+   * <br> The entity freeThrowsMadeFirstRound
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:freeThrowsMadeFirstRound">Find the entity freeThrowsMadeFirstRound in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _freeThrowsMadeFirstRound(Wrap<Integer> w);
+
+  public Integer getFreeThrowsMadeFirstRound() {
+    return freeThrowsMadeFirstRound;
+  }
+
+  public void setFreeThrowsMadeFirstRound(Integer freeThrowsMadeFirstRound) {
+    this.freeThrowsMadeFirstRound = freeThrowsMadeFirstRound;
+  }
+  @JsonIgnore
+  public void setFreeThrowsMadeFirstRound(String o) {
+    this.freeThrowsMadeFirstRound = SweetSixteen.staticSetFreeThrowsMadeFirstRound(siteRequest_, o);
+  }
+  public static Integer staticSetFreeThrowsMadeFirstRound(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected SweetSixteen freeThrowsMadeFirstRoundInit() {
+    Wrap<Integer> freeThrowsMadeFirstRoundWrap = new Wrap<Integer>().var("freeThrowsMadeFirstRound");
+    if(freeThrowsMadeFirstRound == null) {
+      _freeThrowsMadeFirstRound(freeThrowsMadeFirstRoundWrap);
+      Optional.ofNullable(freeThrowsMadeFirstRoundWrap.getO()).ifPresent(o -> {
+        setFreeThrowsMadeFirstRound(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static Integer staticSearchFreeThrowsMadeFirstRound(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrFreeThrowsMadeFirstRound(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqFreeThrowsMadeFirstRound(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchFreeThrowsMadeFirstRound(siteRequest_, SweetSixteen.staticSetFreeThrowsMadeFirstRound(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlFreeThrowsMadeFirstRound() {
+    return freeThrowsMadeFirstRound;
+  }
+
+  public static String staticJsonFreeThrowsMadeFirstRound(Integer freeThrowsMadeFirstRound) {
+    return Optional.ofNullable(freeThrowsMadeFirstRound).map(v -> v.toString()).orElse(null);
+  }
+
+	///////////////////////////////
+  // freeThrowsMadeSecondRound //
+	///////////////////////////////
+
+
+  /**
+   *  The entity freeThrowsMadeSecondRound
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer freeThrowsMadeSecondRound;
+
+  /**
+   * <br> The entity freeThrowsMadeSecondRound
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.spinechamp.model.sweetsixteen.SweetSixteen&fq=entiteVar_enUS_indexed_string:freeThrowsMadeSecondRound">Find the entity freeThrowsMadeSecondRound in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _freeThrowsMadeSecondRound(Wrap<Integer> w);
+
+  public Integer getFreeThrowsMadeSecondRound() {
+    return freeThrowsMadeSecondRound;
+  }
+
+  public void setFreeThrowsMadeSecondRound(Integer freeThrowsMadeSecondRound) {
+    this.freeThrowsMadeSecondRound = freeThrowsMadeSecondRound;
+  }
+  @JsonIgnore
+  public void setFreeThrowsMadeSecondRound(String o) {
+    this.freeThrowsMadeSecondRound = SweetSixteen.staticSetFreeThrowsMadeSecondRound(siteRequest_, o);
+  }
+  public static Integer staticSetFreeThrowsMadeSecondRound(SiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected SweetSixteen freeThrowsMadeSecondRoundInit() {
+    Wrap<Integer> freeThrowsMadeSecondRoundWrap = new Wrap<Integer>().var("freeThrowsMadeSecondRound");
+    if(freeThrowsMadeSecondRound == null) {
+      _freeThrowsMadeSecondRound(freeThrowsMadeSecondRoundWrap);
+      Optional.ofNullable(freeThrowsMadeSecondRoundWrap.getO()).ifPresent(o -> {
+        setFreeThrowsMadeSecondRound(o);
+      });
+    }
+    return (SweetSixteen)this;
+  }
+
+  public static Integer staticSearchFreeThrowsMadeSecondRound(SiteRequest siteRequest_, Integer o) {
+    return o;
+  }
+
+  public static String staticSearchStrFreeThrowsMadeSecondRound(SiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqFreeThrowsMadeSecondRound(SiteRequest siteRequest_, String o) {
+    return SweetSixteen.staticSearchFreeThrowsMadeSecondRound(siteRequest_, SweetSixteen.staticSetFreeThrowsMadeSecondRound(siteRequest_, o)).toString();
+  }
+
+  public Integer sqlFreeThrowsMadeSecondRound() {
+    return freeThrowsMadeSecondRound;
+  }
+
+  public static String staticJsonFreeThrowsMadeSecondRound(Integer freeThrowsMadeSecondRound) {
+    return Optional.ofNullable(freeThrowsMadeSecondRound).map(v -> v.toString()).orElse(null);
+  }
+
 	////////////////////
   // freeThrowsMade //
 	////////////////////
@@ -2378,6 +2518,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         actualSweetSixteenInit();
         guesserIdInit();
         yearInit();
+        freeThrowsMadeFirstRoundInit();
+        freeThrowsMadeSecondRoundInit();
         freeThrowsMadeInit();
         bracketIdInit();
         nameInit();
@@ -2472,6 +2614,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return oSweetSixteen.guesserId;
       case "year":
         return oSweetSixteen.year;
+      case "freeThrowsMadeFirstRound":
+        return oSweetSixteen.freeThrowsMadeFirstRound;
+      case "freeThrowsMadeSecondRound":
+        return oSweetSixteen.freeThrowsMadeSecondRound;
       case "freeThrowsMade":
         return oSweetSixteen.freeThrowsMade;
       case "bracketId":
@@ -2687,6 +2833,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSetGuesserId(siteRequest_, v);
     case "year":
       return SweetSixteen.staticSetYear(siteRequest_, v);
+    case "freeThrowsMadeFirstRound":
+      return SweetSixteen.staticSetFreeThrowsMadeFirstRound(siteRequest_, v);
+    case "freeThrowsMadeSecondRound":
+      return SweetSixteen.staticSetFreeThrowsMadeSecondRound(siteRequest_, v);
     case "freeThrowsMade":
       return SweetSixteen.staticSetFreeThrowsMade(siteRequest_, v);
     case "bracketId":
@@ -2799,6 +2949,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchGuesserId(siteRequest_, (String)o);
     case "year":
       return SweetSixteen.staticSearchYear(siteRequest_, (Integer)o);
+    case "freeThrowsMadeFirstRound":
+      return SweetSixteen.staticSearchFreeThrowsMadeFirstRound(siteRequest_, (Integer)o);
+    case "freeThrowsMadeSecondRound":
+      return SweetSixteen.staticSearchFreeThrowsMadeSecondRound(siteRequest_, (Integer)o);
     case "freeThrowsMade":
       return SweetSixteen.staticSearchFreeThrowsMade(siteRequest_, (Integer)o);
     case "bracketId":
@@ -2881,6 +3035,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchStrGuesserId(siteRequest_, (String)o);
     case "year":
       return SweetSixteen.staticSearchStrYear(siteRequest_, (Integer)o);
+    case "freeThrowsMadeFirstRound":
+      return SweetSixteen.staticSearchStrFreeThrowsMadeFirstRound(siteRequest_, (Integer)o);
+    case "freeThrowsMadeSecondRound":
+      return SweetSixteen.staticSearchStrFreeThrowsMadeSecondRound(siteRequest_, (Integer)o);
     case "freeThrowsMade":
       return SweetSixteen.staticSearchStrFreeThrowsMade(siteRequest_, (Integer)o);
     case "bracketId":
@@ -2963,6 +3121,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return SweetSixteen.staticSearchFqGuesserId(siteRequest_, o);
     case "year":
       return SweetSixteen.staticSearchFqYear(siteRequest_, o);
+    case "freeThrowsMadeFirstRound":
+      return SweetSixteen.staticSearchFqFreeThrowsMadeFirstRound(siteRequest_, o);
+    case "freeThrowsMadeSecondRound":
+      return SweetSixteen.staticSearchFqFreeThrowsMadeSecondRound(siteRequest_, o);
     case "freeThrowsMade":
       return SweetSixteen.staticSearchFqFreeThrowsMade(siteRequest_, o);
     case "bracketId":
@@ -3064,6 +3226,22 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
           setYear(val == null ? null : val.toString());
         }
         saves.add("year");
+        return val;
+      } else if("freethrowsmadefirstround".equals(varLower)) {
+        if(val instanceof Integer) {
+          setFreeThrowsMadeFirstRound((Integer)val);
+        } else {
+          setFreeThrowsMadeFirstRound(val == null ? null : val.toString());
+        }
+        saves.add("freeThrowsMadeFirstRound");
+        return val;
+      } else if("freethrowsmadesecondround".equals(varLower)) {
+        if(val instanceof Integer) {
+          setFreeThrowsMadeSecondRound((Integer)val);
+        } else {
+          setFreeThrowsMadeSecondRound(val == null ? null : val.toString());
+        }
+        saves.add("freeThrowsMadeSecondRound");
         return val;
       } else if("freethrowsmade".equals(varLower)) {
         if(val instanceof Integer) {
@@ -3218,6 +3396,18 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         Integer year = (Integer)doc.get("year_docvalues_int");
         if(year != null)
           oSweetSixteen.setYear(year);
+      }
+
+      if(saves.contains("freeThrowsMadeFirstRound")) {
+        Integer freeThrowsMadeFirstRound = (Integer)doc.get("freeThrowsMadeFirstRound_docvalues_int");
+        if(freeThrowsMadeFirstRound != null)
+          oSweetSixteen.setFreeThrowsMadeFirstRound(freeThrowsMadeFirstRound);
+      }
+
+      if(saves.contains("freeThrowsMadeSecondRound")) {
+        Integer freeThrowsMadeSecondRound = (Integer)doc.get("freeThrowsMadeSecondRound_docvalues_int");
+        if(freeThrowsMadeSecondRound != null)
+          oSweetSixteen.setFreeThrowsMadeSecondRound(freeThrowsMadeSecondRound);
       }
 
       if(saves.contains("freeThrowsMade")) {
@@ -3386,6 +3576,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     if(year != null) {
       doc.put("year_docvalues_int", year);
     }
+    if(freeThrowsMadeFirstRound != null) {
+      doc.put("freeThrowsMadeFirstRound_docvalues_int", freeThrowsMadeFirstRound);
+    }
+    if(freeThrowsMadeSecondRound != null) {
+      doc.put("freeThrowsMadeSecondRound_docvalues_int", freeThrowsMadeSecondRound);
+    }
     if(freeThrowsMade != null) {
       doc.put("freeThrowsMade_docvalues_int", freeThrowsMade);
     }
@@ -3491,6 +3687,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "year":
         return "year_docvalues_int";
+      case "freeThrowsMadeFirstRound":
+        return "freeThrowsMadeFirstRound_docvalues_int";
+      case "freeThrowsMadeSecondRound":
+        return "freeThrowsMadeSecondRound_docvalues_int";
       case "freeThrowsMade":
         return "freeThrowsMade_docvalues_int";
       case "bracketId":
@@ -3564,6 +3764,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "guesserId_docvalues_string";
       case "year":
         return "year_docvalues_int";
+      case "freeThrowsMadeFirstRound":
+        return "freeThrowsMadeFirstRound_docvalues_int";
+      case "freeThrowsMadeSecondRound":
+        return "freeThrowsMadeSecondRound_docvalues_int";
       case "freeThrowsMade":
         return "freeThrowsMade_docvalues_int";
       case "bracketId":
@@ -3635,6 +3839,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         return "guesserId";
       case "year_docvalues_int":
         return "year";
+      case "freeThrowsMadeFirstRound_docvalues_int":
+        return "freeThrowsMadeFirstRound";
+      case "freeThrowsMadeSecondRound_docvalues_int":
+        return "freeThrowsMadeSecondRound";
       case "freeThrowsMade_docvalues_int":
         return "freeThrowsMade";
       case "bracketId_docvalues_string":
@@ -3728,6 +3936,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     oSweetSixteen.setActualSweetSixteen(Optional.ofNullable(doc.get("actualSweetSixteen_stored_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setGuesserId(Optional.ofNullable(doc.get("guesserId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setYear(Optional.ofNullable(doc.get("year_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setFreeThrowsMadeFirstRound(Optional.ofNullable(doc.get("freeThrowsMadeFirstRound_docvalues_int")).map(v -> v.toString()).orElse(null));
+    oSweetSixteen.setFreeThrowsMadeSecondRound(Optional.ofNullable(doc.get("freeThrowsMadeSecondRound_docvalues_int")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setFreeThrowsMade(Optional.ofNullable(doc.get("freeThrowsMade_docvalues_int")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setBracketId(Optional.ofNullable(doc.get("bracketId_docvalues_string")).map(v -> v.toString()).orElse(null));
     oSweetSixteen.setName(Optional.ofNullable(doc.get("name_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -3778,6 +3988,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
         apiRequest.addVars("guesserId");
       if(!Objects.equals(year, original.getYear()))
         apiRequest.addVars("year");
+      if(!Objects.equals(freeThrowsMadeFirstRound, original.getFreeThrowsMadeFirstRound()))
+        apiRequest.addVars("freeThrowsMadeFirstRound");
+      if(!Objects.equals(freeThrowsMadeSecondRound, original.getFreeThrowsMadeSecondRound()))
+        apiRequest.addVars("freeThrowsMadeSecondRound");
       if(!Objects.equals(freeThrowsMade, original.getFreeThrowsMade()))
         apiRequest.addVars("freeThrowsMade");
       if(!Objects.equals(bracketId, original.getBracketId()))
@@ -3854,6 +4068,8 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     sb.append(Optional.ofNullable(actualSweetSixteen).map(v -> "actualSweetSixteen: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(guesserId).map(v -> "guesserId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(year).map(v -> "year: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(freeThrowsMadeFirstRound).map(v -> "freeThrowsMadeFirstRound: " + v + "\n").orElse(""));
+    sb.append(Optional.ofNullable(freeThrowsMadeSecondRound).map(v -> "freeThrowsMadeSecondRound: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(freeThrowsMade).map(v -> "freeThrowsMade: " + v + "\n").orElse(""));
     sb.append(Optional.ofNullable(bracketId).map(v -> "bracketId: \"" + v + "\"\n" ).orElse(""));
     sb.append(Optional.ofNullable(name).map(v -> "name: \"" + v + "\"\n" ).orElse(""));
@@ -3903,6 +4119,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String SET_guesserId = "setGuesserId";
   public static final String VAR_year = "year";
   public static final String SET_year = "setYear";
+  public static final String VAR_freeThrowsMadeFirstRound = "freeThrowsMadeFirstRound";
+  public static final String SET_freeThrowsMadeFirstRound = "setFreeThrowsMadeFirstRound";
+  public static final String VAR_freeThrowsMadeSecondRound = "freeThrowsMadeSecondRound";
+  public static final String SET_freeThrowsMadeSecondRound = "setFreeThrowsMadeSecondRound";
   public static final String VAR_freeThrowsMade = "freeThrowsMade";
   public static final String SET_freeThrowsMade = "setFreeThrowsMade";
   public static final String VAR_bracketId = "bracketId";
@@ -3994,7 +4214,9 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_actualSweetSixteen = "Actual Sweet Sixteen bracket";
   public static final String DISPLAY_NAME_guesserId = "guesser";
   public static final String DISPLAY_NAME_year = "year";
-  public static final String DISPLAY_NAME_freeThrowsMade = "free throws made";
+  public static final String DISPLAY_NAME_freeThrowsMadeFirstRound = "First Round free throws made";
+  public static final String DISPLAY_NAME_freeThrowsMadeSecondRound = "Second Round free throws made";
+  public static final String DISPLAY_NAME_freeThrowsMade = "Sweet Sixteen free throws made";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
   public static final String DISPLAY_NAME_southGame1WinnerGuess = "East game 1 guess";
@@ -4064,6 +4286,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return patch ? SET_guesserId : VAR_guesserId;
     case VAR_year:
       return patch ? SET_year : VAR_year;
+    case VAR_freeThrowsMadeFirstRound:
+      return patch ? SET_freeThrowsMadeFirstRound : VAR_freeThrowsMadeFirstRound;
+    case VAR_freeThrowsMadeSecondRound:
+      return patch ? SET_freeThrowsMadeSecondRound : VAR_freeThrowsMadeSecondRound;
     case VAR_freeThrowsMade:
       return patch ? SET_freeThrowsMade : VAR_freeThrowsMade;
     case VAR_bracketId:
@@ -4144,6 +4370,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return DISPLAY_NAME_guesserId;
     case VAR_year:
       return DISPLAY_NAME_year;
+    case VAR_freeThrowsMadeFirstRound:
+      return DISPLAY_NAME_freeThrowsMadeFirstRound;
+    case VAR_freeThrowsMadeSecondRound:
+      return DISPLAY_NAME_freeThrowsMadeSecondRound;
     case VAR_freeThrowsMade:
       return DISPLAY_NAME_freeThrowsMade;
     case VAR_bracketId:
@@ -4221,6 +4451,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return "The ID of this guesser";
     case VAR_year:
       return "The year of the tournament";
+    case VAR_freeThrowsMadeFirstRound:
+      return "The number of free throws the guesser made. ";
+    case VAR_freeThrowsMadeSecondRound:
+      return "The number of free throws the guesser made. ";
     case VAR_freeThrowsMade:
       return "The number of free throws the guesser made. ";
     case VAR_bracketId:
@@ -4249,6 +4483,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     case VAR_guesserId:
       return "String";
     case VAR_year:
+      return "Integer";
+    case VAR_freeThrowsMadeFirstRound:
+      return "Integer";
+    case VAR_freeThrowsMadeSecondRound:
       return "Integer";
     case VAR_freeThrowsMade:
       return "Integer";
@@ -4323,8 +4561,6 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
-    case VAR_freeThrowsMade:
-      return 2;
       default:
         return BaseModel.htmColumnBaseModel(var);
     }
@@ -4335,6 +4571,10 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     case VAR_guesserId:
       return 3;
     case VAR_year:
+      return 3;
+    case VAR_freeThrowsMadeFirstRound:
+      return 3;
+    case VAR_freeThrowsMadeSecondRound:
       return 3;
     case VAR_freeThrowsMade:
       return 3;
@@ -4405,8 +4645,12 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
       return 0;
     case VAR_year:
       return 1;
-    case VAR_freeThrowsMade:
+    case VAR_freeThrowsMadeFirstRound:
       return 2;
+    case VAR_freeThrowsMadeSecondRound:
+      return 3;
+    case VAR_freeThrowsMade:
+      return 4;
     case VAR_southGame1WinnerGuess:
       return 0;
     case VAR_southGame1Winner:
@@ -4462,7 +4706,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     case VAR_incorrectGuesses:
       return 3;
     case VAR_correctGuessesChart:
-      return 3;
+      return 5;
       default:
         return BaseModel.htmCellBaseModel(var);
     }
