@@ -4462,7 +4462,7 @@ public abstract class SweetSixteenGen<DEV> extends BaseModel {
     case VAR_incorrectGuesses:
       return 3;
     case VAR_correctGuessesChart:
-      return 2;
+      return 3;
       default:
         return BaseModel.htmCellBaseModel(var);
     }

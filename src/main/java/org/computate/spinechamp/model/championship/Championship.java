@@ -9,6 +9,7 @@ import org.computate.spinechamp.model.finalfour.FinalFour;
 import org.computate.vertx.search.list.SearchList;
 
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -251,5 +252,32 @@ public class Championship extends ChampionshipGen<BaseModel> {
    * Modify: false
    **/
   protected void _incorrectGuesses(Wrap<Integer> w) {
+  }
+
+  /**
+   * {@inheritDoc}
+   * Stored: true
+   * DisplayName: correct guesses
+   * Description: A chart of the number of correct guesses in this Championship bracket
+   * HtmRow: 3
+   * HtmCell: 3
+   * Modify: false
+   * wa-pie-chart:
+   *   style: "height: 200px; "
+   * div:
+   *   class: wa-stack
+   **/
+  protected void _correctGuessesChart(Wrap<JsonObject> w) {
+    w.o(new JsonObject()
+      .put("data", new JsonObject()
+        .put("labels", new JsonArray().add("correct").add("incorrect"))
+        .put("datasets", new JsonArray()
+          .add(new JsonObject()
+            .put("label", "guesses")
+            .put("data", new JsonArray().add(correctGuesses).add(incorrectGuesses))
+          )
+        )
+      )
+    );
   }
 }

@@ -88,7 +88,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -387,7 +387,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -602,7 +602,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -799,7 +799,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -992,7 +992,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -1291,7 +1291,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -1506,7 +1506,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -1703,7 +1703,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -1896,7 +1896,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -2195,7 +2195,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -2410,7 +2410,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -2607,7 +2607,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -3704,7 +3704,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -4003,7 +4003,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -4218,7 +4218,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
       responses:
         '200':
@@ -4415,7 +4415,7 @@ paths:
           required: false
           schema:
             type: integer
-            default: 10
+            default: 100
             minimum: 0
         - in: query
           name: facet
@@ -8458,6 +8458,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PATCHChampionshipRequest:
       allOf:
         - type: object
@@ -8553,6 +8555,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     PATCHChampionshipResponse:
       allOf:
         - type: object
@@ -8648,6 +8657,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     POSTChampionshipRequest:
       allOf:
         - type: object
@@ -8678,6 +8694,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     POSTChampionshipResponse:
       allOf:
         - type: object
@@ -8708,6 +8726,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEFilterChampionshipResponse:
       allOf:
         - type: object
@@ -8738,6 +8758,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     PUTImportChampionshipRequest:
       allOf:
         - type: object
@@ -8773,6 +8795,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PUTImportChampionshipResponse:
       allOf:
         - type: object
@@ -8803,6 +8827,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     GETChampionshipResponse:
       allOf:
         - type: object
@@ -8833,6 +8859,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEChampionshipResponse:
       allOf:
         - type: object
@@ -8863,6 +8891,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     EditPageChampionshipResponse:
       allOf:
         - type: string
@@ -8933,6 +8963,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PATCHEliteEightRequest:
       allOf:
         - type: object
@@ -9098,6 +9130,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     PATCHEliteEightResponse:
       allOf:
         - type: object
@@ -9263,6 +9302,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     POSTEliteEightRequest:
       allOf:
         - type: object
@@ -9313,6 +9359,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     POSTEliteEightResponse:
       allOf:
         - type: object
@@ -9363,6 +9411,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEFilterEliteEightResponse:
       allOf:
         - type: object
@@ -9413,6 +9463,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     PUTImportEliteEightRequest:
       allOf:
         - type: object
@@ -9468,6 +9520,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PUTImportEliteEightResponse:
       allOf:
         - type: object
@@ -9518,6 +9572,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     GETEliteEightResponse:
       allOf:
         - type: object
@@ -9568,6 +9624,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEEliteEightResponse:
       allOf:
         - type: object
@@ -9618,6 +9676,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     EditPageEliteEightResponse:
       allOf:
         - type: string
@@ -9676,6 +9736,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PATCHFinalFourRequest:
       allOf:
         - type: object
@@ -9799,6 +9861,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     PATCHFinalFourResponse:
       allOf:
         - type: object
@@ -9922,6 +9991,13 @@ components:
               type: string
             removeAllIncorrectGuesses:
               type: string
+            setCorrectGuessesChart:
+              type: object
+              nullable: true
+            removeCorrectGuessesChart:
+              type: object
+            removeAllCorrectGuessesChart:
+              type: object
     POSTFinalFourRequest:
       allOf:
         - type: object
@@ -9960,6 +10036,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     POSTFinalFourResponse:
       allOf:
         - type: object
@@ -9998,6 +10076,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEFilterFinalFourResponse:
       allOf:
         - type: object
@@ -10036,6 +10116,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     PUTImportFinalFourRequest:
       allOf:
         - type: object
@@ -10079,6 +10161,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     PUTImportFinalFourResponse:
       allOf:
         - type: object
@@ -10117,6 +10201,8 @@ components:
                     type: string
                   incorrectGuesses:
                     type: string
+                  correctGuessesChart:
+                    type: object
     GETFinalFourResponse:
       allOf:
         - type: object
@@ -10155,6 +10241,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     DELETEFinalFourResponse:
       allOf:
         - type: object
@@ -10193,6 +10281,8 @@ components:
               type: string
             incorrectGuesses:
               type: string
+            correctGuessesChart:
+              type: object
     EditPageFinalFourResponse:
       allOf:
         - type: string

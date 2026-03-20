@@ -574,7 +574,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * DisplayName: correct guesses
    * Description: A chart of the number of correct guesses in this Championship bracket
    * HtmRow: 3
-   * HtmCell: 2
+   * HtmCell: 3
    * Modify: false
    * wa-pie-chart:
    *   style: "height: 200px; "
