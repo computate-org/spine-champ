@@ -20,6 +20,7 @@ import io.vertx.core.json.JsonObject;
  * Icon: <i class="{{ FONTAWESOME_STYLE }} fa-basketball"></i>
  * MenuDetails: sports brackets
  * MenuDetailsOpen: true
+ * Rows: 100
  *
  * SearchPageUri: /en-us/search/sweet-sixteen
  * EditPageUri: /en-us/edit/sweet-sixteen/{bracketId}
@@ -143,8 +144,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: South game 1 guess
-   * HtmRowTitleOpen: South game 1
+   * DisplayName: East game 1 guess
+   * HtmRowTitleOpen: East game 1
    * HtmRow: 5
    * HtmCell: 0
    * Modify: false
@@ -163,7 +164,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 1 winner
+   * DisplayName: East game 1 winner
    * HtmRow: 5
    * HtmCell: 1
    * Relate: Team.teamId
@@ -175,7 +176,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 1 loser
+   * DisplayName: East game 1 loser
    * HtmRow: 5
    * HtmCell: 2
    * Relate: Team.teamId
@@ -186,8 +187,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual South game 2 winner
-   * HtmRowTitleOpen: South game 2
+   * DisplayName: Actual East game 2 winner
+   * HtmRowTitleOpen: East game 2
    * HtmRow: 6
    * HtmCell: 0
    * Modify: false
@@ -206,7 +207,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 2 winner
+   * DisplayName: East game 2 winner
    * HtmRow: 6
    * HtmCell: 1
    * Relate: Team.teamId
@@ -218,7 +219,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 2 loser
+   * DisplayName: East game 2 loser
    * HtmRow: 6
    * HtmCell: 2
    * Relate: Team.teamId
@@ -229,8 +230,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual West game 1 winner
-   * HtmRowTitleOpen: West game 1
+   * DisplayName: Actual South game 1 winner
+   * HtmRowTitleOpen: South game 1
    * HtmRow: 7
    * HtmCell: 0
    * Modify: false
@@ -249,7 +250,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 1 winner
+   * DisplayName: South game 1 winner
    * HtmRow: 7
    * HtmCell: 1
    * Relate: Team.teamId
@@ -261,7 +262,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 1 loser
+   * DisplayName: South game 1 loser
    * HtmRow: 7
    * HtmCell: 2
    * Relate: Team.teamId
@@ -272,8 +273,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual West game 2 winner
-   * HtmRowTitleOpen: West game 2
+   * DisplayName: Actual South game 2 winner
+   * HtmRowTitleOpen: South game 2
    * HtmRow: 8
    * HtmCell: 0
    * Modify: false
@@ -292,7 +293,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 2 winner
+   * DisplayName: South game 2 winner
    * HtmRow: 8
    * HtmCell: 0
    * Relate: Team.teamId
@@ -304,7 +305,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 2 loser
+   * DisplayName: South game 2 loser
    * HtmRow: 8
    * HtmCell: 1
    * Relate: Team.teamId
@@ -315,8 +316,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual East game 1 winner
-   * HtmRowTitleOpen: East game 1
+   * DisplayName: Actual West game 1 winner
+   * HtmRowTitleOpen: West game 1
    * HtmRow: 9
    * HtmCell: 0
    * Modify: false
@@ -335,7 +336,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 1 winner
+   * DisplayName: West game 1 winner
    * HtmRow: 9
    * HtmCell: 1
    * Relate: Team.teamId
@@ -347,7 +348,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 1 loser
+   * DisplayName: West game 1 loser
    * HtmRow: 9
    * HtmCell: 2
    * Relate: Team.teamId
@@ -358,8 +359,8 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual East game 2 winner
-   * HtmRowTitleOpen: East game 2
+   * DisplayName: Actual West game 2 winner
+   * HtmRowTitleOpen: West game 2
    * HtmRow: 10
    * HtmCell: 0
    * Modify: false
@@ -378,7 +379,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 2 winner
+   * DisplayName: West game 2 winner
    * HtmRow: 10
    * HtmCell: 1
    * Relate: Team.teamId
@@ -390,7 +391,7 @@ public class SweetSixteen extends SweetSixteenGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 2 loser
+   * DisplayName: West game 2 loser
    * HtmRow: 10
    * HtmCell: 2
    * Relate: Team.teamId

@@ -56,9 +56,6 @@ import org.computate.search.response.solr.SolrResponse;
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ChampionshipGen into the class Championship. 
- * </li><li>You can add a class comment "Rows: 100" if you wish the Championship API to return more or less than 10 records by default. 
- * In this case, the API will return 100 records from the API instead of 10 by default. 
- * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
  * </li>
  * <h3>About the Championship class and it's generated class ChampionshipGen&lt;BaseModel&gt;: </h3>extends ChampionshipGen
  * <p>
@@ -93,7 +90,10 @@ import org.computate.search.response.solr.SolrResponse;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the Championship class will inherit the helpful inherited class comments from the super class ChampionshipGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>Rows: 100</h2>
+ * <p>This class contains a comment <b>"Rows: 100"</b>, which means the Championship API will return a default of 100 records instead of 10 by default. 
+ * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
  * <h2>Order: 10</h2>
  * <p>This class contains a comment <b>"Order: 10"</b>, which means this class will be sorted by the given number 10 ascending when code that relates to multiple classes at the same time is generated. 
  * </p>
@@ -213,6 +213,7 @@ public abstract class ChampionshipGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/championship";
 
   public static final String Icon = "<i class=\"{{ FONTAWESOME_STYLE }} fa-court-sport\"></i>";
+  public static final Integer Rows = 100;
 
 	///////////////////////////
   // actualFinalFourSearch //

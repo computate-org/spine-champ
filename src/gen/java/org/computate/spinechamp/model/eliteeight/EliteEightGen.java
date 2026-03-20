@@ -57,9 +57,6 @@ import org.computate.search.response.solr.SolrResponse;
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class EliteEightGen into the class EliteEight. 
- * </li><li>You can add a class comment "Rows: 100" if you wish the EliteEight API to return more or less than 10 records by default. 
- * In this case, the API will return 100 records from the API instead of 10 by default. 
- * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
  * </li>
  * <h3>About the EliteEight class and it's generated class EliteEightGen&lt;BaseModel&gt;: </h3>extends EliteEightGen
  * <p>
@@ -94,7 +91,10 @@ import org.computate.search.response.solr.SolrResponse;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the EliteEight class will inherit the helpful inherited class comments from the super class EliteEightGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>Rows: 100</h2>
+ * <p>This class contains a comment <b>"Rows: 100"</b>, which means the EliteEight API will return a default of 100 records instead of 10 by default. 
+ * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
  * <h2>Order: 8</h2>
  * <p>This class contains a comment <b>"Order: 8"</b>, which means this class will be sorted by the given number 8 ascending when code that relates to multiple classes at the same time is generated. 
  * </p>
@@ -214,6 +214,7 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
   public static final String DELETEFilter_enUS_StringFormatUrl = "%s/en-us/api/elite-eight";
 
   public static final String Icon = "<i class=\"{{ FONTAWESOME_STYLE }} fa-basketball-hoop\"></i>";
+  public static final Integer Rows = 100;
 
 	//////////////////////////////
   // actualSweetSixteenSearch //
@@ -3003,15 +3004,15 @@ public abstract class EliteEightGen<DEV> extends BaseModel {
   public static final String DISPLAY_NAME_freeThrowsMade = "free throws made";
   public static final String DISPLAY_NAME_bracketId = "bracket ID";
   public static final String DISPLAY_NAME_name = "bracket name";
-  public static final String DISPLAY_NAME_southGame1WinnerGuess = "South game 1 guess";
-  public static final String DISPLAY_NAME_southGame1Winner = "South game 1 winner";
-  public static final String DISPLAY_NAME_southGame1Loser = "South game 1 loser";
-  public static final String DISPLAY_NAME_westGame1WinnerGuess = "Actual West game 1 winner";
-  public static final String DISPLAY_NAME_westGame1Winner = "West game 1 winner";
-  public static final String DISPLAY_NAME_westGame1Loser = "West game 1 loser";
-  public static final String DISPLAY_NAME_eastGame1WinnerGuess = "Actual East game 1 winner";
-  public static final String DISPLAY_NAME_eastGame1Winner = "East game 1 winner";
-  public static final String DISPLAY_NAME_eastGame1Loser = "East game 1 loser";
+  public static final String DISPLAY_NAME_southGame1WinnerGuess = "East game 1 guess";
+  public static final String DISPLAY_NAME_southGame1Winner = "East game 1 winner";
+  public static final String DISPLAY_NAME_southGame1Loser = "East game 1 loser";
+  public static final String DISPLAY_NAME_westGame1WinnerGuess = "Actual South game 1 winner";
+  public static final String DISPLAY_NAME_westGame1Winner = "South game 1 winner";
+  public static final String DISPLAY_NAME_westGame1Loser = "South game 1 loser";
+  public static final String DISPLAY_NAME_eastGame1WinnerGuess = "Actual West game 1 winner";
+  public static final String DISPLAY_NAME_eastGame1Winner = "West game 1 winner";
+  public static final String DISPLAY_NAME_eastGame1Loser = "West game 1 loser";
   public static final String DISPLAY_NAME_midwestGame1WinnerGuess = "Actual Midwest game 1 winner";
   public static final String DISPLAY_NAME_midwestGame1Winner = "Midwest game 1 winner";
   public static final String DISPLAY_NAME_midwestGame1Loser = "Midwest game 1 loser";

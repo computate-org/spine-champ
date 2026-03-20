@@ -18,6 +18,7 @@ import io.vertx.core.json.JsonObject;
  * Description: A predicted tournament with 8 teams. 
  * AName: an elite eight bracket
  * Icon: <i class="{{ FONTAWESOME_STYLE }} fa-basketball-hoop"></i>
+ * Rows: 100
  *
  * SearchPageUri: /en-us/search/elite-eight
  * EditPageUri: /en-us/edit/elite-eight/{bracketId}
@@ -180,8 +181,8 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: South game 1 guess
-   * HtmRowTitleOpen: South game 1
+   * DisplayName: East game 1 guess
+   * HtmRowTitleOpen: East game 1
    * HtmRow: 5
    * HtmCell: 0
    * Modify: false
@@ -200,10 +201,10 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 1 winner
+   * DisplayName: East game 1 winner
    * HtmRow: 5
    * HtmCell: 1
-   * HtmRowTitleOpen: South games
+   * HtmRowTitleOpen: East games
    * Relate: Team.teamId
    **/
   protected void _southGame1Winner(Wrap<String> w) {
@@ -213,7 +214,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: South game 1 loser
+   * DisplayName: East game 1 loser
    * HtmRow: 5
    * HtmCell: 2
    * Relate: Team.teamId
@@ -224,8 +225,8 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual West game 1 winner
-   * HtmRowTitleOpen: West game 1
+   * DisplayName: Actual South game 1 winner
+   * HtmRowTitleOpen: South game 1
    * HtmRow: 6
    * HtmCell: 0
    * Modify: false
@@ -244,10 +245,10 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 1 winner
+   * DisplayName: South game 1 winner
    * HtmRow: 6
    * HtmCell: 1
-   * HtmRowTitleOpen: West games
+   * HtmRowTitleOpen: South games
    * Relate: Team.teamId
    **/
   protected void _westGame1Winner(Wrap<String> w) {
@@ -257,7 +258,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: West game 1 loser
+   * DisplayName: South game 1 loser
    * HtmRow: 6
    * HtmCell: 2
    * Relate: Team.teamId
@@ -268,8 +269,8 @@ public class EliteEight extends EliteEightGen<BaseModel> {
   /**
    * {@inheritDoc}
    * DocValues: true
-   * DisplayName: Actual East game 1 winner
-   * HtmRowTitleOpen: East game 1
+   * DisplayName: Actual West game 1 winner
+   * HtmRowTitleOpen: West game 1
    * HtmRow: 7
    * HtmCell: 0
    * Modify: false
@@ -288,10 +289,10 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 1 winner
+   * DisplayName: West game 1 winner
    * HtmRow: 7
    * HtmCell: 1
-   * HtmRowTitleOpen: East games
+   * HtmRowTitleOpen: West games
    * Relate: Team.teamId
    **/
   protected void _eastGame1Winner(Wrap<String> w) {
@@ -301,7 +302,7 @@ public class EliteEight extends EliteEightGen<BaseModel> {
    * {@inheritDoc}
    * DocValues: true
    * Persist: true
-   * DisplayName: East game 1 loser
+   * DisplayName: West game 1 loser
    * HtmRow: 7
    * HtmCell: 2
    * Relate: Team.teamId
